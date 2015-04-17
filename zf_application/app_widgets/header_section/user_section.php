@@ -15,6 +15,8 @@ $userDetails = $zf_model_data->zf_getUserDetails($identificationCode);
 foreach ($userDetails as $value) {
 
     $userName = $value['firstName']." ".$value['lastName'];
+    
+    $imagePath = $value['imagePath'];
 
 }
 
@@ -109,9 +111,16 @@ $user_menu = array(
 ?>
 <li class="dropdown user">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-        <img alt="" src="<?php echo ZF_ROOT_PATH . ZF_CLIENT . "zf_app_global" . DS . "app_global_files" . DS . "app_global_images" . DS . "main_icons" . DS . "avatar1_small.jpg"; ?>" style="border-radius: 50% !important; border: 1px solid #7FC5EF; padding: 0.07em; margin-top: -0.07em;" />
-        <span class="username"><?php echo $userName; ?></span>
-        <i class="fa fa-angle-down"></i>
+        <?php if(empty($imagePath) || $imagePath == NULL){ ?>
+            <div class="user-section-image">   
+               <i class="fa fa-user" style="font-size: 30px;  color: #e5e5e5 !important; padding-top: 5px;"></i>
+               <span class="username"><?php echo $userName; ?></span><i class="fa fa-angle-down"></i>
+            </div>
+        <?php }else{ ?>
+            <?php $zf_model_data->getUserImage($imagePath, $userName); ?>
+            <span class="username"><?php echo $userName; ?></span><i class="fa fa-angle-down"></i>
+        <?php }?>
+   
     </a>
     <ul class="dropdown-menu">
         <li>

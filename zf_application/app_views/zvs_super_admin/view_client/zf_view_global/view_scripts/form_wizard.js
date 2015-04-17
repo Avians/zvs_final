@@ -33,11 +33,16 @@ var FormWizard = function () {
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
+                   
+                    //Designation
+                    designation: {
+                        required: true
+                    },
                     
                    //First Name
                     firstName: {
                         maxlength: 45,
-                        minlength: 0,
+                        minlength: 2,
                         required: true
                     },
                     
@@ -51,15 +56,68 @@ var FormWizard = function () {
                     //Last Name
                     lastName: {
                         maxlength: 45,
-                        minlength: 0,
+                        minlength: 2,
                         required: true
+                    },
+                    
+                    //Id Number
+                    idNumber: {
+                        maxlength: 45,
+                        minlength: 2,
+                        required: true 
+                    },
+                    
+                    //Mobile Number
+                    mobileNumber: {
+                        maxlength: 15,
+                        minlength: 5,
+                        required: true
+                    },
+                    
+                    //Box Address
+                    boxAddress: {
+                        maxlength: 60,
+                        minlength: 2,
+                        required: true
+                    },
+                    
+                    //Country
+                    country: {
+                        required: true
+                    },
+                    
+                    //Locality
+                    locality:{
+                        required: true
+                    },
+                    
+                    //Email
+                    email: {
+                        maxlength: 120,
+                        minlength: 5,
+                        email: true,
+                        required: true
+                    },
+                    
+                    //Password
+                    password: {
+                        maxlength: 30,
+                        minlength: 5,
+                        required: true
+                    },
+                    
+                    //Confirm Password
+                    password2: {
+                        maxlength: 30,
+                        minlength: 5,
+                        required: true,
+                        equalTo: "#password"
                     }
                 
-                    
                 },
 
                 messages: { // custom messages for radio buttons and checkboxes
-                    'adminGender': {
+                    'gender': {
                         required: "Select at one option",
                         minlength: jQuery.format("Select at one option")
                     }
@@ -109,6 +167,7 @@ var FormWizard = function () {
                 }
 
             });
+            
 
             var displayConfirm = function() {
                 $('#confirmInfo .form-control-static', form).each(function(){

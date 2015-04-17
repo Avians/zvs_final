@@ -71,7 +71,23 @@ class user_section_Model extends Zf_Model {
             
         }
         
+    }
+    
+    
+    
+    
+    /**
+     * This method fetches the user profile image
+     */
+    public function getUserImage($imagePath, $userName){
+         
+        $user_image = ZF_ROOT_PATH.ZF_DATASTORE."zvs_user_images".DS."zvs_super_admin".DS.$imagePath;
+                   
+        $image = "";
+        $image .= '<img src=" '.$user_image.'" title=" '.$userName.' " class="active-user-section-image" height="40px" width="40px" >';
 
+        echo  $image;
+      
     }
     
 }

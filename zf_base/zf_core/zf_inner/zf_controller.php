@@ -109,6 +109,7 @@ class Zf_Controller {
          */
         $loggedIn = Zf_SessionHandler::zf_getSessionVariable("LoggedIn");
         
+        
         //Also check to see that the current controller is not "initializeController"
         $current_controller = $this->zf_controllerURL[0];
         if(!$loggedIn && $current_controller != "initialize"){

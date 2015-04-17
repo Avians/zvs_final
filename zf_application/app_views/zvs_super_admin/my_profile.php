@@ -45,16 +45,21 @@
                                 foreach ($userInformation as $value) {
 
                                     $designation = $value['designation']; $userName = $value['firstName']." ".$value['lastName']; $mobileNumber = $value['mobileNumber']; $gender = $value['gender']; $dateCreated = date(" jS M, Y", strtotime($value['dateCreated']));
-                                    $address = $value['address']; $imagePath = $value['imagePath']; $idNumber = strtoupper($value['idNumber']);
+                                    $address = $value['boxAddress']; $imagePath = $value['imagePath']; $idNumber = strtoupper($value['idNumber']);
+                                    
                                 } 
                                 
                             ?>
                             
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
-                                    <div class="zvs-circular">
-                                        <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
-                                    </div>
+                                    <?php if(empty($imagePath) || $imagePath == NULL){ ?>
+                                        <div class="zvs-circular">   
+                                           <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
+                                        </div>
+                                    <?php }else{
+                                        $zf_controller->zf_targetModel->getUserImage($imagePath, $userName); 
+                                    }?>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                     <div class="table-responsive">

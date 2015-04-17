@@ -26,7 +26,7 @@
     @define('APPLICATION_FOLDER'     , 'zvs_final/');
     @define('APPLICATION_NAME'       , 'Zilas Virtual School Platform');
     @define('APPLICATION_LOGO'       , 'zvs_final/zf_client/zf_app_global/app_global_files/app_global_images/logo.png');
-   @define('APPLICATION_COPYRIGHT'  , '<span style="font-family: ProximaNova-Light !important; font-size: 14px !important;">&copy;</span>'.date('Y').',&nbsp;Zilas Virtual Schools<sup style="font-size: 8px !important; font-style: normal;">TM</sup>. All Rights Reserved.');
+    @define('APPLICATION_COPYRIGHT'  , '<span style="font-family: ProximaNova-Light !important; font-size: 14px !important;">&copy;</span>'.date('Y').',&nbsp;Zilas Virtual Schools<sup style="font-size: 8px !important; font-style: normal;">TM</sup>. All Rights Reserved.');
     @define("DATE_FORMAT"            , date('Y-m-d H:i:s'));
     
     

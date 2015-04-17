@@ -284,6 +284,22 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     /*box-shadow: 0 0 5px #efefef; -webkit-box-shadow: 0 0 5px #efefef; -moz-box-shadow: 0 0 5px #efefef;*/
 }
 
+.active-zvs-circular {
+    width: 90px; height: 90px; border-radius: 50% !important; -webkit-border-radius: 50% !important; -moz-border-radius: 50% !important;
+    border: 0.09em solid #d5d5d5; text-align: center !important; margin: -5px auto 0 auto; padding: 0.1em; 
+    /*box-shadow: 0 0 5px #efefef; -webkit-box-shadow: 0 0 5px #efefef; -moz-box-shadow: 0 0 5px #efefef;*/
+}
+
+.user-section-image {
+    width: 35px; height: 35px; border-radius: 50% !important; -webkit-border-radius: 50% !important; -moz-border-radius: 50% !important;
+    border: 0.09em solid #efefef; text-align: center !important; padding: 0.07em; margin-top: 0.5em;
+}
+
+.active-user-section-image {
+    width: 35px; height: 35px; border-radius: 50% !important; -webkit-border-radius: 50% !important; -moz-border-radius: 50% !important;
+    border: 0.09em solid #d5d5d5; text-align: center !important; padding: 0.07em; margin-top: -0.07em;
+}
+
 .zvs-user-profile{
     color: #d5d5d5;
 }

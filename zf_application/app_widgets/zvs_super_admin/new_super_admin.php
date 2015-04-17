@@ -137,9 +137,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Box Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="address" class="form-control" placeholder="P.O Box 1111-0111, Nairobi - Kenya" value="<?php echo $zf_formHandler->zf_getFormValue("address"); ?>">
+                                    <input type="text" name="boxAddress" class="form-control" placeholder="P.O Box 1111-0111, Nairobi - Kenya" value="<?php echo $zf_formHandler->zf_getFormValue("boxAddress"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("address"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("boxAddress"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@
                                 <div class="col-md-8">
                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+school+logo" alt=""/>
+                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=profile+image" alt=""/>
                                         </div>
                                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
                                         </div>
@@ -250,7 +250,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Password:</label>
                                 <div class="col-md-8">
-                                    <input type="password" name="passowrd" class="form-control" placeholder="Password" value="<?php echo $zf_formHandler->zf_getFormValue("password"); ?>">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<?php echo $zf_formHandler->zf_getFormValue("password"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("password"); ?>
                                     </span>
@@ -278,23 +278,14 @@
                 <div class="tab-pane" id="confirmInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
-                    <h4 class="form-section confirm-inner-title">Judge Setup Information</h4>
+                    <h4 class="form-section confirm-inner-title">Super Administrator Setup Information</h4>
                      
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">First Name:</label>
+                                <label class="control-label col-md-4">Email Address:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="firstName"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Middle Name:</label>
-                                <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result"  data-display="middleName"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="email">[Always remember your email and password]</p>
                                 </div>
                             </div>
                         </div>
@@ -303,6 +294,36 @@
                     <!--/row-->
                      
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Designation:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="designation"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">First Name:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="firstName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Middle Name:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="middleName"></p>
+                                </div>
+                            </div>
+                        </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
@@ -319,9 +340,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Email Address:</label>
+                                <label class="control-label col-md-4">ID Number:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="emailAddress"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="idNumber"></p>
                                 </div>
                             </div>
                         </div>
@@ -331,6 +352,50 @@
                                 <label class="control-label col-md-4">Mobile Number:</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static confirm-form-result"  data-display="mobileNumber"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="boxAddress"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Gender:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="gender"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Country:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="country"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Locality:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="locality"></p>
                                 </div>
                             </div>
                         </div>

@@ -483,7 +483,7 @@ class Authentication_Model extends Zf_Model {
 
         return Zf_SecureData::zf_data_encode($randomPassword);//encoded password
  
-    } 
+    }
     
     
     
@@ -491,7 +491,7 @@ class Authentication_Model extends Zf_Model {
     /**
      * This method builds the email body for resetting a password
      */
-    private function zvs_resetPasswordEmailBody($zvs_userPassword){
+    public function zvs_resetPasswordEmailBody($zvs_userPassword){
         
         $emailbody = '';
         $emailbody .='<html>
@@ -570,7 +570,7 @@ class Authentication_Model extends Zf_Model {
         
     }
     
-    
+  
 }
 
 ?>

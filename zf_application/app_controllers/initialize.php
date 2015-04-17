@@ -123,6 +123,25 @@ class InitializeController extends Zf_Controller {
         
     }
     
+    
+    
+    
+    /**
+     * This action activates user accounts
+     */
+    public function actionActivateAccounts($activationParameters){
+        
+        if($activationParameters != NULL && !empty($activationParameters)){
+            
+            $activationDetails = Zf_SecureData::zf_decode_url($activationParameters);
+            
+            $this->zf_targetModel->processActivateUserAccount($activationDetails);
+            exit();
+            
+        }
+        
+    }
+    
 
 }
 ?>
