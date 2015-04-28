@@ -37,7 +37,30 @@
                                             <h3 class="">Platform Super Administrators</h3>
                                         </div>
                                         <div class="portlet-body">
-                                            Content goes here
+                                            <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th  style="width: 60%;">Media House</th><th style="width: 35%;">No. of Products</th><th style="width: 5%;">View</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>          
                                 </div>
@@ -47,7 +70,25 @@
                                             <h3 class="">Platform Administrators</h3>
                                         </div>
                                         <div class="portlet-body">
-                                            Content goes here
+                                            <div class="school-class-inner scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0" >
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th  style="width: 60%;">Media House</th><th style="width: 35%;">No. of Products</th><th style="width: 5%;">View</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>          
                                 </div>

@@ -112,8 +112,8 @@ $user_menu = array(
 <li class="dropdown user">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <?php if(empty($imagePath) || $imagePath == NULL){ ?>
-            <div class="user-section-image">   
-               <i class="fa fa-user" style="font-size: 30px;  color: #e5e5e5 !important; padding-top: 5px;"></i>
+            <div class="">   
+               <i class="fa fa-user user-section-image" style="font-size: 28px;  color: #e5e5e5 !important; padding-top: 7px;"></i>
                <span class="username"><?php echo $userName; ?></span><i class="fa fa-angle-down"></i>
             </div>
         <?php }else{ ?>

@@ -284,6 +284,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     /*box-shadow: 0 0 5px #efefef; -webkit-box-shadow: 0 0 5px #efefef; -moz-box-shadow: 0 0 5px #efefef;*/
 }
 
+.zvs-table-blocks {
+   height: 250px !important;  max-height: 250px !important; border: 1px solid #E1E1E1 !important;
+   padding-top: 0.3em !important; padding-left: 0.3em !important; padding-right: 0.8em !important;
+}
+
 .active-zvs-circular {
     width: 90px; height: 90px; border-radius: 50% !important; -webkit-border-radius: 50% !important; -moz-border-radius: 50% !important;
     border: 0.09em solid #d5d5d5; text-align: center !important; margin: -5px auto 0 auto; padding: 0.1em; 
