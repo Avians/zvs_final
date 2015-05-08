@@ -2,25 +2,25 @@
     //Get the identfication code held in a session variable.
     $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
     
-    $zvs_formParameter = "new_super_admin";
+    $zvs_formParameter = "new_platform_admin";
     
 ?>
-<form action="<?php Zf_GenerateLinks::basic_internal_link("zvs_super_admin", "userInformation", $zvs_formParameter); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="super_admin_form">
-    <div class="form-wizard" id="newSuperAdmin">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("zvs_super_admin", "userInformation", $zvs_formParameter); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="platform_admin_form">
+    <div class="form-wizard" id="newPlatformAdmin">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">
                 <li>
-                    <a href="#superAdminInfo" data-toggle="tab" class="step active">
+                    <a href="#platformAdminInfo" data-toggle="tab" class="step active">
                         <span class="number">
                             1
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> Super Admin Setup
+                            <i class="fa fa-check"></i> Platform Admin Setup
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#confirmSuperAdminInfo" data-toggle="tab" class="step">
+                    <a href="#confirmPlatformAdminInfo" data-toggle="tab" class="step">
                         <span class="number">
                             2
                         </span>
@@ -45,8 +45,8 @@
                 
                 
                 <!-- START OF ADMIN SETUP FORM-->
-                <div class="tab-pane" id="superAdminInfo">
-                    <h3 class="form-section form-title">Super Administrator Information</h3>
+                <div class="tab-pane" id="platformAdminInfo">
+                    <h3 class="form-section form-title">Platform Administrator Information</h3>
                     
                     <div class="row">
                         <div class="col-md-6">
@@ -164,7 +164,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Admin Country:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me superAdminCountry" id="superAdminCountry" name="country" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("country"); ?>">
+                                    <select class="form-control select2me platformAdminCountry" id="platformAdminCountry" name="country" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("country"); ?>">
                                         <?php
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
@@ -181,7 +181,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Admin Locality:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me superAdminLocality" id="superAdminLocality" name="locality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("locality"); ?>">
+                                    <select class="form-control select2me platformAdminLocality" id="platformAdminLocality" name="locality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("locality"); ?>">
                                         <option value=""></option>
                                     </select>
                                     <span class="help-block server-side-error" >
@@ -275,7 +275,7 @@
                 <!-- END OF ADMINL SETUP FORM-->
                 
                 <!-- START OF CONFIRM SETUP SECTION-->
-                <div class="tab-pane" id="confirmSuperAdminInfo">
+                <div class="tab-pane" id="confirmPlatformAdminInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
                     <h4 class="form-section confirm-inner-title">Super Administrator Setup Information</h4>

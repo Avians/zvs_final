@@ -23,7 +23,7 @@ var FormWizard = function () {
                 }
             });
 
-            var form = $('#submit_form');
+            var form = $('#super_admin_form, #platform_admin_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -170,7 +170,7 @@ var FormWizard = function () {
             
 
             var displayConfirm = function() {
-                $('#confirmInfo .form-control-static', form).each(function(){
+                $('#confirmSuperAdminInfo .form-control-static, #confirmPlatformAdminInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":radio")) {
                         input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
@@ -195,33 +195,33 @@ var FormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#newSuperAdmin')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#newSuperAdmin, #newPlatformAdmin')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
-                jQuery('li', $('#newSuperAdmin')).removeClass("done");
+                jQuery('li', $('#newSuperAdmin, #newPlatformAdmin')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
-                    $('#newSuperAdmin').find('.button-previous').hide();
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-previous').hide();
                 } else {
-                    $('#newSuperAdmin').find('.button-previous').show();
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-previous').show();
                 }
 
                 if (current >= total) {
-                    $('#newSuperAdmin').find('.button-next').hide();
-                    $('#newSuperAdmin').find('.button-submit').show();
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-next').hide();
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-submit').show();
                     displayConfirm();
                 } else {
-                    $('#newSuperAdmin').find('.button-next').show();
-                    $('#newSuperAdmin').find('.button-submit').hide();
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-next').show();
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
-            $('#submit_form').bootstrapWizard({
+            $('#super_admin_form, #platform_admin_form').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -252,14 +252,14 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#newSuperAdmin').find('.progress-bar').css({
+                    $('#newSuperAdmin, #newPlatformAdmin').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#submit_form').find('.button-previous').hide();
-            $('#submit_form .button-submit').click(function () {
+            $('#super_admin_form, #platform_admin_form').find('.button-previous').hide();
+            $('#super_admin_form .button-submit, #platform_admin_form .button-submit').click(function () {
                 
                 //form.submit();
                 

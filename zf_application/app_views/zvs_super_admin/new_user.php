@@ -1,4 +1,9 @@
+<?php
+
+    //Access to pull all administrator information.
+    $zf_controller->Zf_loadModel("zvs_super_admin", "userInformation");
     
+?>    
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
@@ -39,27 +44,28 @@
                                         <div class="portlet-body">
                                             <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
                                                 <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered table-hover">
+                                                    <table class="table table-striped table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th  style="width: 60%;">Media House</th><th style="width: 35%;">No. of Products</th><th style="width: 5%;">View</th>
+                                                                <th  style="width: 60%;">Full Names</th><th style="width: 30%;">Status</th><th style="width: 10%;">Details</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <?php
+                                                                //Fetch all platform super administartors
+                                                                $zf_controller->zf_targetModel->fetchSuperAdministrators();
+                                                            ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="zvs-content-footer">
+                                            <div class="row">
+                                                <?php  
+                                                    //Count all types of platform administrators
+                                                    $zf_controller->zf_targetModel->countSuperAdministrators();
+                                                ?>
                                             </div>
                                         </div>
                                     </div>          
@@ -72,22 +78,28 @@
                                         <div class="portlet-body">
                                             <div class="school-class-inner scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0" >
                                                 <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered table-hover">
+                                                    <table class="table table-striped table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th  style="width: 60%;">Media House</th><th style="width: 35%;">No. of Products</th><th style="width: 5%;">View</th>
+                                                                <th  style="width: 60%;">Full Names</th><th style="width: 30%;">Status</th><th style="width: 10%;">Details</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
-                                                            <tr><td>1</td><td>2</td><td>3</td></tr>
+                                                            <?php
+                                                                //Fetch all platform main administartors
+                                                                $zf_controller->zf_targetModel->fetchPlatformAdministrators();
+                                                            ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="zvs-content-footer">
+                                            <div class="row">
+                                                <?php  
+                                                    //Count all types of platform administrators
+                                                    $zf_controller->zf_targetModel->countPlatformAdministrators();
+                                                ?>
                                             </div>
                                         </div>
                                     </div>          
@@ -115,7 +127,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform main administrators
-                                                //Zf_ApplicationWidgets::zf_load_widget("zvs_super_admin", "new_super_admin.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("zvs_super_admin", "new_platform_admin.php");
                                             ?>
                                         </div>
                                     </div>          

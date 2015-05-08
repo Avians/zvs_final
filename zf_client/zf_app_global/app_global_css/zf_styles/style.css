@@ -2028,8 +2028,9 @@ Custom tables
 }
 
 .table thead tr th {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
+  color: #21B4E2 !important;
 }
 
 .table-advance {

@@ -61,6 +61,34 @@ class Zvs_super_adminController extends Zf_Controller {
         Zf_View::zf_displayView('new_user');
         
     }
+    
+    
+    
+    
+    /**
+     * This action executes the view super admin view
+     */
+    public function actionView_super_admin($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('view_super_admin', $zf_actionData);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This action executes the view super admin view
+     */
+    public function actionView_platform_admin($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('view_platform_admin', $zf_actionData);
+        
+    }
    
     
 
@@ -258,7 +286,7 @@ class Zvs_super_adminController extends Zf_Controller {
             
         }else if($filterDataParameter == 'process_locality'){
             
-            //Register the new platform administrator form
+            //Get the locality of a platform administrator
             $this->zf_targetModel->getAdminLocality();
             
         }

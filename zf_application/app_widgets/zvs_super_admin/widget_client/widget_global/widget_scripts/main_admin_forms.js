@@ -5,20 +5,40 @@
         //Here we process school locality.
         var adminLocality = function ($absolute_path, $separator){
             
-            $('.adminCountry').change(function(){
+            //Process the locality of a super administrator
+            $('.superAdminCountry').change(function(){
                 
                 var processLocality = $absolute_path + "zvs_super_admin" + $separator + "userInformation" + $separator + "process_locality";
-                var countryCode = $("#adminCountry").val();
+                var countryCodeSuperAdmin = $("#superAdminCountry").val();
 
                 $.ajax({
                     type: "POST",
                     url: processLocality,
-                    data: {countryCode: countryCode},
+                    data: {countryCode: countryCodeSuperAdmin},
                     cache: false,
                     success: function(html) {
-                       $("#adminLocality").html(html);
+                       $("#superAdminLocality").html(html);
                     }
-                });   
+                });
+
+            });
+            
+            
+            //Process the loclity of a platform administrator
+            $('.platformAdminCountry').change(function(){
+                
+                var processLocality = $absolute_path + "zvs_super_admin" + $separator + "userInformation" + $separator + "process_locality";
+                var countryCodePlatformAdmin = $("#platformAdminCountry").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: processLocality,
+                    data: {countryCode: countryCodePlatformAdmin},
+                    cache: false,
+                    success: function(html){
+                        $('#platformAdminLocality').html(html);
+                    }
+                });
 
             });
                

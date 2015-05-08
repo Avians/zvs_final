@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                    <h3 class="page-title">My Profile</h3>
+                    <h3 class="page-title">Platform Administrator's Profile</h3>
                     <div class="page-breadcrumb breadcrumb">
                         <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                     <div class="portlet box zvs-content-blocks">
                         <div class="zvs-content-titles">
-                            <h3>Personal Profile</h3>
+                            <h3>Platform Administrator's Profile</h3>
                         </div>
                         <div class="portlet-body">
                             <?php 
@@ -76,7 +76,7 @@
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                     <div class="portlet box zvs-content-blocks">
                         <div class="zvs-content-titles">
-                            <h3>My Story</h3>
+                            <h3>Administrator's Story</h3>
                         </div>
                         <div class="portlet-body" style="text-align: justify;">
                             
@@ -87,18 +87,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12"></div>
+                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12"></div>
                                 <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 margin-bottom-5">
-                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "new_school", "$identificationCode"); ?>">
+                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "new_user", "$identificationCode"); ?>">
                                         <button type="button" class="btn pull-right zvs-buttons" style="color: #ffffff !important;">
-                                            <i  style="color: #ffffff !important;" class="fa fa-sign-in"></i> &nbsp;Register a School
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 margin-bottom-5">
-                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "schools_directory", "$identificationCode"); ?>">
-                                        <button type="button" class="btn pull-right zvs-buttons" style="color: #ffffff !important;">
-                                            <i  style="color: #ffffff !important;" class="fa fa-folder-open"></i> Schools Directory
+                                            <i  style="color: #ffffff !important;" class="fa fa-arrow-circle-left"></i> &nbsp;Back to Administrators
                                         </button>
                                     </a>
                                 </div>

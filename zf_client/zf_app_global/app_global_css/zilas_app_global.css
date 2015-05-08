@@ -278,6 +278,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     font-weight: bold; letter-spacing: 0.05em !important;
 }
 
+.zvs-content-footer {
+    padding: 0px 0px 10px 25px !important; color: #3C3C3C !important; font-family: ProximaNova-Semibold !important; font-size: 12px !important;
+    font-weight: 400; letter-spacing: 0.05em !important; margin-top: -17px !important;
+}
+
 .zvs-circular {
     width: 90px; height: 90px; border-radius: 50% !important; -webkit-border-radius: 50% !important; -moz-border-radius: 50% !important;
     border: 1px solid #efefef; text-align: center !important; margin: -5px auto 0 auto;

@@ -71,10 +71,239 @@ class userInformation_Model extends Zf_Model {
         
          
     }
+    
+    
+    
+    
+    /**
+     * This method fetches all super administrators information
+     */
+    public function fetchSuperAdministrators(){
+        
+        //Fetch all super administrators
+        $superAdmins = $this->fetchAdminsInformation("zvs_superAdmin");
+        
+        $usersRows = '';
+        
+        if($superAdmins == 0){
+            
+            $usersRows = '<tr><td>There are not platform super administrator yet.</td></tr>';
+            
+        }else{
+            
+            foreach ($superAdmins as $values){
+
+                $fullName = $values['firstName']." ".$values['lastName'];$identificationCode = $values['identificationCode'];
+                $status = $values['userStatus']; if($status == "1"){ $userStatus = "Active"; }else{ $userStatus = "Inactive"; }
+                $usersRows .= '<tr><td>'.$fullName.'</td><td>'.$userStatus.'</td><td><a href=" '.ZF_ROOT_PATH.'zvs_super_admin'.DS.'view_super_admin'.DS.$identificationCode.' "><i class="fa fa-eye"></i></a></td></tr>';
+
+            }
+
+        }
+        
+        echo $usersRows;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method counts all super administrators information
+     */
+    public function countSuperAdministrators(){
+        
+        //Active platfrorm administrators
+        $activeAdmins = $this->activePlatformAdmins("zvs_superAdmin");
+        
+        //Inactive platfrorm administrators
+        $inactiveAdmins = $this->inactivePlatformAdmins("zvs_superAdmin");
+        
+        $adminsCount = '<div class="col-md-6">Count Active: '.$activeAdmins.'</div><div class="col-md-6">Count Inactive: '.$inactiveAdmins.'</div>';
+        
+        echo $adminsCount;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method fetches all platform administrators information
+     */
+    public function fetchPlatformAdministrators(){
+        
+        //Fetch all super administrators
+        $platformAdmins = $this->fetchAdminsInformation("zvs_platformAdmin");
+        
+        $usersRows = '';
+        
+        if($platformAdmins == 0){
+            
+            $usersRows = '<tr><td colspan="3">There are not platform main administrator yet.</td></tr>';
+            
+        }else{
+            
+            foreach ($platformAdmins as $values){
+
+                $fullName = $values['firstName']." ".$values['lastName'];$identificationCode = $values['identificationCode'];
+                $status = $values['userStatus']; if($status == "1"){ $userStatus = "Active"; }else{ $userStatus = "Inactive"; }
+                $usersRows .= '<tr><td>'.$fullName.'</td><td>'.$userStatus.'</td><td><a href=" '.ZF_ROOT_PATH.'zvs_super_admin'.DS.'view_platform_admin'.DS.$identificationCode.' "><i class="fa fa-eye"></i></a></td></tr>';
+
+            }
+
+        }
+        
+        echo $usersRows;
+    }
+    
+    
+    
+    
+    /**
+     * This method counts all platform administrators information
+     */
+    public function countPlatformAdministrators(){
+        
+        //Active platfrorm administrators
+        $activeAdmins = $this->activePlatformAdmins("zvs_platformAdmin");
+        
+        //Inactive platfrorm administrators
+        $inactiveAdmins = $this->inactivePlatformAdmins("zvs_platformAdmin");
+        
+        $adminsCount = '<div class="col-md-6">Count Active: '.$activeAdmins.'</div><div class="col-md-6">Count Inactive: '.$inactiveAdmins.'</div>';
+          
+        echo $adminsCount;
+        
+    }
+    
+
+   
+    
+    /**
+     * This private method fetches user information
+     */
+    private function fetchAdminsInformation($administratorType){
+        
+        if($administratorType == "zvs_superAdmin"){
+            
+            $zvs_table = "zvs_super_admin";
+            
+        }else if($administratorType == "zvs_platformAdmin"){
+            
+            $zvs_table = "zvs_platform_admin";
+            
+        }
+        
+        $fetchPlatformAdmins = Zf_QueryGenerator::BuildSQLSelect($zvs_table);
+        
+        $zvs_executeFetchPlatformAdmins = $this->Zf_AdoDB->Execute($fetchPlatformAdmins);
+
+        if(!$zvs_executeFetchPlatformAdmins){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zvs_executeFetchPlatformAdmins->RecordCount() > 0){
+
+                while(!$zvs_executeFetchPlatformAdmins->EOF){
+                    
+                    $results = $zvs_executeFetchPlatformAdmins->GetRows();
+                    
+                }
+                
+                return $results;
+                
+            }else{
+                
+                return 0;
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method actually counts all active administrators
+     */
+    private function activePlatformAdmins($administratorType){
+        
+        if($administratorType == "zvs_superAdmin"){
+            
+            $zvs_table = "zvs_super_admin";
+            
+        }else if($administratorType == "zvs_platformAdmin"){
+            
+            $zvs_table = "zvs_platform_admin";
+            
+        }
+        
+        $zvs_value['userStatus'] = Zf_QueryGenerator::SQLValue(1);
+        
+        $activePlatformAdmins = Zf_QueryGenerator::BuildSQLSelect($zvs_table, $zvs_value);
+        
+        $zvs_executeActivePlatformAdmins = $this->Zf_AdoDB->Execute($activePlatformAdmins);
+        
+        if (!$zvs_executeActivePlatformAdmins){
+            
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+            
+        }else{
+                
+            $zvs_activePlatformAdminsCount = $zvs_executeActivePlatformAdmins->RecordCount();
+            
+        }
+        
+        return $zvs_activePlatformAdminsCount;
+        
+    }
+
 
     
     
+    /**
+     * This private method actually counts all inactive administrators
+     */
+    private function inactivePlatformAdmins($administratorType){
+        
+        if($administratorType == "zvs_superAdmin"){
+            
+            $zvs_table = "zvs_super_admin";
+            
+        }else if($administratorType == "zvs_platformAdmin"){
+            
+            $zvs_table = "zvs_platform_admin";
+            
+        }
+        
+        $zvs_value['userStatus'] = Zf_QueryGenerator::SQLValue(0);
+        
+        $inactivePlatformAdmins = Zf_QueryGenerator::BuildSQLSelect($zvs_table, $zvs_value);
+        
+        $zvs_executeInactivePlatformAdmins = $this->Zf_AdoDB->Execute($inactivePlatformAdmins);
+        
+        if (!$zvs_executeInactivePlatformAdmins){
+            
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+            
+        }else{
+                
+            $zvs_inactivePlatformAdminsCount = $zvs_executeInactivePlatformAdmins->RecordCount();
+            
+        }
+        
+        return $zvs_inactivePlatformAdminsCount;
+        
+    }
+
     
+
+
     /**
      * This method fetches the user profile image
      */
