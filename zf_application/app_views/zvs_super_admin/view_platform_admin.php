@@ -46,6 +46,17 @@
 
                                     $designation = $value['designation']; $userName = $value['firstName']." ".$value['lastName']; $mobileNumber = $value['mobileNumber']; $gender = $value['gender']; $dateCreated = date(" jS M, Y", strtotime($value['dateCreated']));
                                     $address = $value['boxAddress']; $imagePath = $value['imagePath']; $idNumber = strtoupper($value['idNumber']);
+                                
+                                    if($gender == "Male"){
+                                        
+                                        $referrer = "His"; $referrer2 = "he";
+                                        
+                                    }else if($gender == "Female"){
+                                        
+                                        $referrer = "Her"; $referrer2 = "she";
+                                        
+                                    }
+                                    
                                 }   
                             ?>
                             
@@ -82,8 +93,8 @@
                             
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <p><?= $designation." ".$userName; ?> is a Platform Administrator at Zilas Virtual Schools<sup style='font-size: 8px !important; font-style: normal;'>TM</sup>. My platform ID Number is <span style='color: #32B9E4; '><?=$idNumber;?></span> and I have been registered since <?=$dateCreated;?>.</p>
-                                    <p>As a Platform Administrator I register new schools on the platform and ensure that their IT administrator are able to access platform resources and construct a virtual school from scratch. in addition, I have the power to confirm or suspend a school that faults platform regulations. </p>
+                                    <p><?= $designation." ".$userName; ?> is a Platform Administrator at Zilas Virtual Schools<sup style='font-size: 8px !important; font-style: normal;'>TM</sup>. <?=$referrer;?> platform ID Number is <span style='color: #32B9E4; '><?=$idNumber;?></span> and I have been registered since <?=$dateCreated;?>.</p>
+                                    <p>As a Platform Administrator <?=$referrer2;?> registers new schools on the platform and ensures that their IT administrator are able to access platform resources and construct a virtual school from scratch. In addition, <?=$referrer2; ?> she has the power to confirm or suspend a school that faults platform regulations. </p>
                                 </div>
                             </div>
                             <div class="row">

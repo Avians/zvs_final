@@ -95,7 +95,7 @@ class userInformation_Model extends Zf_Model {
 
                 $fullName = $values['firstName']." ".$values['lastName'];$identificationCode = $values['identificationCode'];
                 $status = $values['userStatus']; if($status == "1"){ $userStatus = "Active"; }else{ $userStatus = "Inactive"; }
-                $usersRows .= '<tr><td>'.$fullName.'</td><td>'.$userStatus.'</td><td><a href=" '.ZF_ROOT_PATH.'zvs_super_admin'.DS.'view_super_admin'.DS.$identificationCode.' "><i class="fa fa-eye"></i></a></td></tr>';
+                $usersRows .= '<tr><td>'.$fullName.'</td><td>'.$userStatus.'</td><td><a href=" '.ZF_ROOT_PATH.'zvs_super_admin'.DS.'view_super_admin'.DS.$identificationCode.' " title="View '.$fullName.'" ><i class="fa fa-eye"></i></a></td></tr>';
 
             }
 
@@ -148,7 +148,7 @@ class userInformation_Model extends Zf_Model {
 
                 $fullName = $values['firstName']." ".$values['lastName'];$identificationCode = $values['identificationCode'];
                 $status = $values['userStatus']; if($status == "1"){ $userStatus = "Active"; }else{ $userStatus = "Inactive"; }
-                $usersRows .= '<tr><td>'.$fullName.'</td><td>'.$userStatus.'</td><td><a href=" '.ZF_ROOT_PATH.'zvs_super_admin'.DS.'view_platform_admin'.DS.$identificationCode.' "><i class="fa fa-eye"></i></a></td></tr>';
+                $usersRows .= '<tr><td>'.$fullName.'</td><td>'.$userStatus.'</td><td><a href=" '.ZF_ROOT_PATH.'zvs_super_admin'.DS.'view_platform_admin'.DS.$identificationCode.' "  title="View '.$fullName.'"><i class="fa fa-eye"></i></a></td></tr>';
 
             }
 
