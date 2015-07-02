@@ -1,4 +1,4 @@
-var FormWizard = function () {
+var PlatformAdminFormWizard = function () {
 
 
     return {
@@ -23,7 +23,7 @@ var FormWizard = function () {
                 }
             });
 
-            var form = $('#super_admin_form, #platform_admin_form');
+            var form = $('#platform_admin_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -111,7 +111,7 @@ var FormWizard = function () {
                         maxlength: 30,
                         minlength: 5,
                         required: true,
-                        equalTo: "#password"
+                        equalTo: "#adminpassword"
                     }
                 
                 },
@@ -170,7 +170,7 @@ var FormWizard = function () {
             
 
             var displayConfirm = function() {
-                $('#confirmSuperAdminInfo .form-control-static, #confirmPlatformAdminInfo .form-control-static', form).each(function(){
+                $('#confirmPlatformAdminInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":radio")) {
                         input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
@@ -195,33 +195,33 @@ var FormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#newSuperAdmin, #newPlatformAdmin')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#newPlatformAdmin')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
-                jQuery('li', $('#newSuperAdmin, #newPlatformAdmin')).removeClass("done");
+                jQuery('li', $('#newPlatformAdmin')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-previous').hide();
+                    $('#newPlatformAdmin').find('.button-previous').hide();
                 } else {
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-previous').show();
+                    $('#newPlatformAdmin').find('.button-previous').show();
                 }
 
                 if (current >= total) {
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-next').hide();
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-submit').show();
+                    $('#newPlatformAdmin').find('.button-next').hide();
+                    $('#newPlatformAdmin').find('.button-submit').show();
                     displayConfirm();
                 } else {
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-next').show();
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.button-submit').hide();
+                    $('#newPlatformAdmin').find('.button-next').show();
+                    $('#newPlatformAdmin').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
-            $('#super_admin_form, #platform_admin_form').bootstrapWizard({
+            $('#platform_admin_form').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -252,14 +252,14 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#newSuperAdmin, #newPlatformAdmin').find('.progress-bar').css({
+                    $('#newPlatformAdmin').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#super_admin_form, #platform_admin_form').find('.button-previous').hide();
-            $('#super_admin_form .button-submit, #platform_admin_form .button-submit').click(function () {
+            $('#platform_admin_form').find('.button-previous').hide();
+            $('#platform_admin_form .button-submit').click(function () {
                 
                 //form.submit();
                 

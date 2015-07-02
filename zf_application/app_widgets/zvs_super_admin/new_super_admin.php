@@ -2,10 +2,10 @@
     //Get the identfication code held in a session variable.
     $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
     
-    $zvs_formParameter = "new_super_admin";
+    $new_super_admin = "new_super_admin";
     
 ?>
-<form action="<?php Zf_GenerateLinks::basic_internal_link("zvs_super_admin", "userInformation", $zvs_formParameter); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="super_admin_form">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("zvs_super_admin", "userInformation", $new_super_admin); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="super_admin_form">
     <div class="form-wizard" id="newSuperAdmin">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">

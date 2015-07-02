@@ -271,23 +271,23 @@ class Zvs_super_adminController extends Zf_Controller {
      */
     public function actionUserInformation($zvs_parameter){
         
-        $filterDataUrl =  Zf_SecureData::zf_decode_url($zvs_parameter);
-        $filterDataParameter =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
         
-        if($filterDataUrl == 'new_super_admin'){
+        if($filterDataVariable == 'process_locality'){
             
-            //Register the new super administrator form
+            //Get the locality of any platform administrator
+            $this->zf_targetModel->getAdminLocality();
+            
+        }else if($filterDataUrl === 'new_super_admin'){
+            
+            //Register a new platform super administrator 
             $this->zf_targetModel->registerNewSuperAdmin();
             
-        }else if($filterDataUrl == 'new_platform_admin'){
+        }else if($filterDataUrl === 'new_platform_admin'){
             
-            //Register the new platform administrator form
+            //Register a new platform main administrator
             $this->zf_targetModel->registerNewPlatformAdmin();
-            
-        }else if($filterDataParameter == 'process_locality'){
-            
-            //Get the locality of a platform administrator
-            $this->zf_targetModel->getAdminLocality();
             
         }
         

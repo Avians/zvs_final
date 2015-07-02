@@ -4,7 +4,8 @@
  */
 $(document).ready(function() {
     
-    FormWizard.init();
+    SuperAdminFormWizard.init();
+    PlatformAdminFormWizard.init();
     FormSelect.init();
     ComponentsPickers.init();
     

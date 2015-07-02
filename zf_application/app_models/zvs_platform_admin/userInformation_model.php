@@ -68,6 +68,22 @@ class userInformation_Model extends Zf_Model {
         
          
     }
+    
+    
+    
+     /**
+     * This method fetches the user profile image
+     */
+    public function getUserImage($imagePath, $userName){
+         
+        $user_image = ZF_ROOT_PATH.ZF_DATASTORE."zvs_user_images".DS."zvs_platform_admin".DS.$imagePath;
+                   
+        $image = "";
+        $image .= '<img src=" '.$user_image.'" title=" '.$userName.' " class="active-zvs-circular" height="80px" width="80px" >';
+
+        echo  $image;
+      
+    }
    
     
 }

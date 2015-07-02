@@ -87,7 +87,7 @@ class userInformation_Model extends Zf_Model {
         
         if($superAdmins == 0){
             
-            $usersRows = '<tr><td>There are not platform super administrator yet.</td></tr>';
+            $usersRows = '<tr><td>There are not platform super administrators yet.</td></tr>';
             
         }else{
             
@@ -140,7 +140,7 @@ class userInformation_Model extends Zf_Model {
         
         if($platformAdmins == 0){
             
-            $usersRows = '<tr><td colspan="3">There are not platform main administrator yet.</td></tr>';
+            $usersRows = '<tr><td colspan="3">There are not platform main administrators yet.</td></tr>';
             
         }else{
             
@@ -388,6 +388,9 @@ class userInformation_Model extends Zf_Model {
         //This array holds all valid data. 
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
+        //This of debugging purposes only.
+        //echo "<pre>Super Admin Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        
         /**
          * 
         identificationArray = 
@@ -583,14 +586,256 @@ class userInformation_Model extends Zf_Model {
      */
     public function registerNewPlatformAdmin(){
         
-        echo "We are about to register a new platform admin."; exit();
+        //Chain the form's posted data
+        $this->zf_formController
+                ->zf_postFormData('designation')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Designation')
+                
+                ->zf_postFormData('firstName')
+                ->zf_validateFormData('zf_maximumLength', 45, 'First name')
+                ->zf_validateFormData('zf_minimumLength', 2, 'First name')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'First name')
+
+                ->zf_postFormData('middleName')
+                
+                ->zf_postFormData('lastName')
+                ->zf_validateFormData('zf_maximumLength', 45, 'Last name')
+                ->zf_validateFormData('zf_minimumLength', 2, 'Last name')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Last name')
+
+                ->zf_postFormData('idNumber')
+                ->zf_validateFormData('zf_maximumLength', 45, 'Id Number')
+                ->zf_validateFormData('zf_minimumLength', 2, 'Id Number')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Id Number')
+
+                ->zf_postFormData('mobileNumber')
+                ->zf_validateFormData('zf_maximumLength', 15, 'Mobile number')
+                ->zf_validateFormData('zf_minimumLength', 5, 'Mobile number')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Mobile number')
+
+                ->zf_postFormData('boxAddress')
+                ->zf_validateFormData('zf_maximumLength', 60, 'Box address')
+                ->zf_validateFormData('zf_minimumLength', 2, 'Box address')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Box address')
+
+                ->zf_postFormData('gender')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Admin gender')
+                
+                ->zf_postFormData('country')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Country')
+                
+                ->zf_postFormData('locality')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Locality')
+                
+                ->zf_postFormData('imagePath')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Profile Image')
+                
+                ->zf_postFormData('email')
+                ->zf_validateFormData('zf_maximumLength', 120, 'Email address')
+                ->zf_validateFormData('zf_minimumLength', 5, 'Email address')
+                ->zf_validateFormData('zf_checkEmail', 'email')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Email Address')
+                
+                ->zf_postFormData('password')
+                ->zf_validateFormData('zf_maximumLength', 30, 'Your password')
+                ->zf_validateFormData('zf_minimumLength', 5, 'Your password')
+                ->zf_validateFormData('zf_fieldNotEmpty', 'Password');
+        
+
+        //This array holds all error data
+        $this->_errorResult = $this->zf_formController->zf_fetchErrorData();
+
+        //This array holds all valid data. 
+        $this->_validResult = $this->zf_formController->zf_fetchValidData();
+        
+        //This of debugging purposes only.
+        //echo "<pre>Platform Admin Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
         
         
-//        TEST CASE FOR IDENTIFICATION CODE
-//        $identificationCode = Zf_SecureData::zf_encode_data(str_replace("+", "", $this->_validResult['country']).ZVSS_CONNECT.$this->_validResult['locality'].ZVSS_CONNECT."zvs_platform_super_admin".ZVSS_CONNECT.ZVS_SUPER_ADMIN.ZVSS_CONNECT."zvs_psa_".$this->_validResult['idNumber']);
-//                    
-//        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
-//        echo "<pre>"; print_r($identificationArray); echo "</pre>"; exit();
+        /**
+         * 
+        identificationArray = 
+        {
+            [0] => 254 ---> country
+            [1] => 30 --->locality
+            [2] => zvs_platform_super_admin --->plaform user type
+            [3] => 510 ---> platform user role
+            [4] => zvs_psa_0001 ---> plaform user id (always perfixed by zvs_psa_idnumber)
+        }
+         */
+        
+        if(empty($this->_errorResult)){
+            
+            //1. check if a user with a similar email address already exits
+            $emailValue['email'] = Zf_QueryGenerator::SQLValue($this->_validResult['email']);
+            $emailColumn = array('email');
+            
+            //Generate and execute the query
+            $zvs_confirmEmail = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $emailValue, $emailColumn);
+            $zvs_executeConfirmEmail = $this->Zf_AdoDB->Execute($zvs_confirmEmail);
+            
+            if(!$zvs_executeConfirmEmail){
+                
+                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+                
+            }else{
+                
+                //Check that the count is greater than zero or 0
+                if($zvs_executeConfirmEmail->RecordCount() > 0){
+                    
+                    //User with a similar email address error
+                    Zf_SessionHandler::zf_setSessionVariable("user_setup", "email_address_error");
+                    
+                    $zf_errorData = array("zf_fieldName" => "email", "zf_errorMessage" => "* User with a similar email address already exist!!");
+                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                    Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_user');
+                    exit();
+                    
+                }else{
+                    
+                    //Create and encrypt the identification code using input data
+                    $identificationCode = Zf_SecureData::zf_encode_data(str_replace("+", "", $this->_validResult['country']).ZVSS_CONNECT.$this->_validResult['locality'].ZVSS_CONNECT."zvs_platform_super_admin".ZVSS_CONNECT.ZVS_ADMIN.ZVSS_CONNECT."zvs_pa_".$this->_validResult['idNumber']);
+                    
+                    //2. Check if a user with a similar identification code already exist
+                    $identificationCodeValue['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);
+                    $identificationCodeColumn = array('identificationCode');
+
+                    //Generate and execute the query
+                    $zvs_confirmIdentificationCode = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $identificationCodeValue, $identificationCodeColumn);
+                    $zvs_executeIdentificationCode = $this->Zf_AdoDB->Execute($zvs_confirmIdentificationCode);
+                    
+                    if(!$zvs_executeIdentificationCode){
+                        
+                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+                        
+                    }else{
+                        
+                        //Check that the count is greater than zero or 0
+                        if($zvs_executeIdentificationCode->RecordCount() > 0){
+                            
+                            //User with a similar identification code error
+                            Zf_SessionHandler::zf_setSessionVariable("user_setup", "identification_code_error");
+
+                            $zf_errorData = array("zf_fieldName" => "idNumber", "zf_errorMessage" => "* User with a similar identification code already exist!!");
+                            Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                            Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_user');
+                            exit();
+                            
+                        }else{
+                            
+                            //No error established so we store the user image if any and register this user into the database.
+                            
+                            foreach ($this->_validResult as $zf_fieldName => $zf_fieldValue) {
+                                
+                                if($zf_fieldName == "email" || $zf_fieldName == "password"){
+                                    
+                                    if($zf_fieldName == "password"){
+                                        
+                                        $zvs_userDetails[$zf_fieldName] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($this->_validResult[$zf_fieldName])); 
+                                        
+                                    }else{
+                                        
+                                        $zvs_userDetails[$zf_fieldName] = Zf_QueryGenerator::SQLValue($this->_validResult[$zf_fieldName]); 
+                                        
+                                    }
+                                    
+                                }else if($zf_fieldName != "email" || $zf_fieldName != "password" || $zf_fieldName != "image_path"){
+                                    
+                                    if($zf_fieldName == "idNumber"){
+                                        
+                                        $zvs_platformAdminDetails[$zf_fieldName] = Zf_QueryGenerator::SQLValue("ZVS_PA_".$this->_validResult[$zf_fieldName]);
+                                        
+                                    }else{
+                                        
+                                        $zvs_platformAdminDetails[$zf_fieldName] = Zf_QueryGenerator::SQLValue($this->_validResult[$zf_fieldName]);
+                                        
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                            //Prepare user image if any for storage
+                            if(is_array($this->_validResult['imagePath']) && $this->_validResult['imagePath'][size] != 0){
+                                
+                                //We use the identification code to generate the corresponding image name.
+                                $imageName = Zf_Core_Functions::Zf_CleanName($identificationCode);
+                                $uploadDirectory = ZF_DATASTORE."zvs_user_images".DS."zvs_platform_admin";
+                                $imageArray = $this->_validResult['imagePath'];
+
+                                //Store the user image into the datastore/user_images/zvs_super_admin directory
+                                $this->zvs_uploadImage($imageArray, $imageName, $uploadDirectory);
+                                
+                                //This is the image name stored in the database
+                                $zvs_platformAdminDetails['imagePath'] = Zf_QueryGenerator::SQLValue($imageName.".png");
+                                
+                            }
+                            
+                            
+                            //Other database information for zvs application users
+                            $zvs_userDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);
+                            
+                            //Other database information for zvs super administrators
+                            $zvs_platformAdminDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);        
+                            $zvs_platformAdminDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
+                            $zvs_platformAdminDetails['timeCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentTime());
+                            $zvs_platformAdminDetails['userStatus'] = Zf_QueryGenerator::SQLValue(ZVS_INACTIVE_USER);
+                            
+                            
+                            //Build the insert SQL queries
+                            $insertApplicationUser = Zf_QueryGenerator::BuildSQLInsert('zvs_application_users', $zvs_userDetails);
+                            $executeInsertApplicationUser = $this->Zf_AdoDB->Execute($insertApplicationUser);
+                            
+                            $insertPlatformAdminDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_platform_admin', $zvs_platformAdminDetails);
+                            $executeInsertPlatformAdminDetails = $this->Zf_AdoDB->Execute($insertPlatformAdminDetails);
+                            
+                            //print_r($this->zvs_activateAccountEmailBody($this->_validResult, ZVS_SUPER_ADMIN, $identificationCode)); exit();
+                            
+                            if(!$executeInsertApplicationUser || !$executeInsertPlatformAdminDetails){
+                           
+                                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                            }else{
+                                
+                                //Compose and send an account activation email
+                                $zf_mailElements = array(
+                                    "zf_senderName" => "Zilas Virtual School Platform",
+                                    "zf_senderEmail" => "mathew@headsafrica.com",
+                                    "zf_mailAddresses" => array($this->_validResult['email']),
+                                    "zf_replyAddress" => "mathew@headsafrica.com", //Can be left empty if not desired. 
+                                    "zf_mailSubject" => "Account Activation",
+                                    "zf_mailBody" => $this->zvs_activateAccountEmailBody($this->_validResult, ZVS_SUPER_ADMIN, $identificationCode),
+                                    "zf_mailType" => "rich-html" //'rich-html' or 'plain-text'
+                                );
+
+                                //Send Email to user's provided email address
+                                Zf_SendEmails::zf_sendMail($zf_mailElements);
+
+                                //Redirect to the platform users overview
+                                Zf_SessionHandler::zf_setSessionVariable("user_setup", "user_setup_success");
+                                Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_user');
+                                exit();
+
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+        }else{
+            
+            //Redirect to the registration form section. Also make an error indicator.
+            Zf_SessionHandler::zf_setSessionVariable("user_setup", "general_form_error");
+            
+            echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
+            Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_user');
+            
+        }
         
     }
     
@@ -705,7 +950,7 @@ class userInformation_Model extends Zf_Model {
                                     -moz-border-radius: 5px 5px 0px 0px; -webkit-border-radius: 5px 5px 0px 0px; border-radius: 5px 5px 0px 0px;
                                 ">
 
-                                    <a href="'.ZF_ROOT_PATH .'">
+                                    <a href="'.ZF_ROOT_PATH.'">
                                         <img src="'.ZF_ROOT_PATH.'/zf_client/zf_app_global/app_global_files/app_global_images/logo.png" width=" 60px " height=" 55px" style="margin: 20px auto auto 20px; border: 1px solid #0F6199; border-radius: 3px !important;" alt="HeadsAfrica Solutions Limited - Logo" >
                                     </a>
 

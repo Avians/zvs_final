@@ -2,10 +2,10 @@
     //Get the identfication code held in a session variable.
     $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
     
-    $zvs_formParameter = "new_platform_admin";
+    $new_platform_admin = "new_platform_admin";
     
 ?>
-<form action="<?php Zf_GenerateLinks::basic_internal_link("zvs_super_admin", "userInformation", $zvs_formParameter); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="platform_admin_form">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("zvs_super_admin", "userInformation", $new_platform_admin); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="platform_admin_form">
     <div class="form-wizard" id="newPlatformAdmin">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">
@@ -250,7 +250,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Password:</label>
                                 <div class="col-md-8">
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="<?php echo $zf_formHandler->zf_getFormValue("password"); ?>">
+                                    <input type="password" name="password" id="adminpassword" class="form-control" placeholder="Password" value="<?php echo $zf_formHandler->zf_getFormValue("password"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("password"); ?>
                                     </span>

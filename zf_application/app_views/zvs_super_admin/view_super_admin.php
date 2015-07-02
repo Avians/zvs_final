@@ -30,7 +30,29 @@
             <!-- END PAGE HEADER-->
             
             <div class="clearfix"></div>
-            
+            <?php 
+                $userInformation = $zf_controller->zf_targetModel->getUserInformation($identificationCode);
+
+                foreach ($userInformation as $value) {
+
+                    $designation = $value['designation']; $userName = $value['firstName']." ".$value['lastName']; $mobileNumber = $value['mobileNumber']; $gender = $value['gender']; $dateCreated = date(" jS M, Y", strtotime($value['dateCreated']));
+                    $address = $value['boxAddress']; $imagePath = $value['imagePath']; $idNumber = strtoupper($value['idNumber']); $userStatus = $value['userStatus'];
+
+                    if($gender == "Male"){
+
+                        $referrer = "His"; $referrer2 = "he";
+
+                    }else if($gender == "Female"){
+
+                        $referrer = "Her"; $referrer2 = "she";
+
+                    }
+
+                    $status = ($userStatus == 1 ? "Active" : "Inactive");
+
+                } 
+
+            ?>
             <!-- BEGIN INNER CONTENT -->
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -39,27 +61,6 @@
                             <h3>Super Administrator Profile</h3>
                         </div>
                         <div class="portlet-body">
-                            <?php 
-                                $userInformation = $zf_controller->zf_targetModel->getUserInformation($identificationCode);
-                                
-                                foreach ($userInformation as $value) {
-
-                                    $designation = $value['designation']; $userName = $value['firstName']." ".$value['lastName']; $mobileNumber = $value['mobileNumber']; $gender = $value['gender']; $dateCreated = date(" jS M, Y", strtotime($value['dateCreated']));
-                                    $address = $value['boxAddress']; $imagePath = $value['imagePath']; $idNumber = strtoupper($value['idNumber']);
-                                    
-                                    if($gender == "Male"){
-                                        
-                                        $referrer = "His"; $referrer2 = "he";
-                                        
-                                    }else if($gender == "Female"){
-                                        
-                                        $referrer = "Her"; $referrer2 = "she";
-                                        
-                                    }
-             
-                                } 
-                                
-                            ?>
                             
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
@@ -70,6 +71,7 @@
                                     <?php }else{
                                         $zf_controller->zf_targetModel->getUserImage($imagePath, $userName); 
                                     }?>
+                                    <div class="margin-top-10"><span style="color: #32B9E4;"><i class="fa fa-check-circle-o zvs-user-profile" style="color: #32B9E4;"></i>&nbsp;&nbsp;User <?=$status;?></span></div>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                     <div class="table-responsive">
