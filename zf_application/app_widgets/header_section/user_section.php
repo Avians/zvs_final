@@ -117,7 +117,7 @@ $user_menu = array(
                <span class="username"><?php echo $userName; ?></span><i class="fa fa-angle-down"></i>
             </div>
         <?php }else{ ?>
-            <?php $zf_model_data->getUserImage($imagePath, $userName); ?>
+            <?php $zf_model_data->getUserImage($imagePath, $userName, $identificationCode); ?>
             <span class="username"><?php echo $userName; ?></span><i class="fa fa-angle-down"></i>
         <?php }?>
    

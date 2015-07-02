@@ -79,9 +79,28 @@ class user_section_Model extends Zf_Model {
     /**
      * This method fetches the user profile image
      */
-    public function getUserImage($imagePath, $userName){
+    public function getUserImage($imagePath, $userName, $identificationCode){
+        
+        //Get the user role held in a session variable.
+        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        $userRole = $identificationArray[3];
+        
+        if($userRole == ZVS_SUPER_ADMIN){
+            
+            $image_directory = "zvs_super_admin";
+            
+        }else if($userRole == ZVS_ADMIN){
+            
+            $image_directory = "zvs_platform_admin";
+            
+        }else if($userRole == SCHOOL_MAIN_ADMIN){
+            
+            $image_directory = "zvs_school_main_admin";
+            
+        }
          
-        $user_image = ZF_ROOT_PATH.ZF_DATASTORE."zvs_user_images".DS."zvs_super_admin".DS.$imagePath;
+        $user_image = ZF_ROOT_PATH.ZF_DATASTORE."zvs_user_images".DS.$image_directory.DS.$imagePath;
                    
         $image = "";
         $image .= '<img src=" '.$user_image.'" title=" '.$userName.' " class="active-user-section-image" height="40px" width="40px" >';
