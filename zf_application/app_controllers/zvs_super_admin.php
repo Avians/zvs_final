@@ -293,6 +293,25 @@ class Zvs_super_adminController extends Zf_Controller {
         
     }
     
+    
+    
+    /**
+     * This action sends new school data to the model for processing
+     */
+    public function actionNewSchoolRegistration($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl === 'new_school_form'){
+            
+            //Register a new school to Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewPlatformSchool();
+            
+        }
+        
+    }
+    
 
 }
 ?>

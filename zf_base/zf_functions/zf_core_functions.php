@@ -100,7 +100,7 @@ class Zf_Core_Functions {
     public static function Zf_FrameworkTagLine(){
         
         $zf_external_link = array(
-            'name' => 'Developed by: HeadsAfrica Solutions Ltd',
+            'name' => 'A Product of HeadsAfrica Solutions Ltd',
             'link' => 'http://www.headsafrica.com', //Always ensure that the external link starts with http:// or https://
             'title' => 'HeadsAfrica',
             'target' => '_blank',
@@ -417,6 +417,38 @@ class Zf_Core_Functions {
             date_default_timezone_set($currentTimeZone); 
             
         }
+        
+    }
+    
+    
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD FOR UPLOADING IMAGES
+     * -------------------------------------------------------------------------
+     * @param none
+     * @return string image path
+     */
+    public static function Zf_uploadImages($imageArray, $imageName, $uploadDirectory){
+        
+        //Generate the parameters for the file to be uploaded (school logo)
+        $zf_upload_parameters = array(
+            "zf_fileUploadFolder" => $uploadDirectory,
+            "zf_fileFieldName" => $imageArray
+        );
+
+        //Rules for modifying the file to be uploaded (school logo)
+        $zf_upload_settings = array(
+            'file_new_name_body' => $imageName,
+            'file_new_name_ext' => 'png',
+            'image_resize' => true,
+            'image_x' => 100,
+            'image_y' => 100,
+            'forbidden' => array('application/*')
+        );
+
+        //Process the actual upload of the user image
+        Zf_File_Upload::zf_fileUpload($zf_upload_parameters, $zf_upload_settings);
         
     }
     

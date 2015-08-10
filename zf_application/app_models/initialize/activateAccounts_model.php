@@ -45,6 +45,14 @@ class ActivateAccounts_Model extends Zf_Model {
             
             $table = "zvs_super_admin";
             
+        }else if($userRole == ZVS_ADMIN){
+            
+            $table = "zvs_platform_admin";
+            
+        }else if($userRole == SCHOOL_MAIN_ADMIN){
+            
+            $table = "zvs_school_admin";
+            
         }
         
         $zf_valueUserStatus['userStatus'] = Zf_QueryGenerator::SQLValue(1); 

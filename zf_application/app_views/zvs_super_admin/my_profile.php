@@ -8,6 +8,8 @@
         //This is user identificationCode
         $identificationCode = $zf_actionData;
         
+        //echo $identificationCode; exit();
+        
         //This model holds all user information details
         $zf_controller->Zf_loadModel("zvs_super_admin", "userInformation");
         
