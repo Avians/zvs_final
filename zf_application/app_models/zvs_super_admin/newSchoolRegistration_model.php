@@ -35,9 +35,9 @@ class newSchoolRegistration_Model extends Zf_Model {
     
     
     
-    /**
-     * Register new super administrators
-     */
+   /**
+    * Register a new platform school
+    */
     public function registerNewPlatformSchool(){
         
         //Chain the form's posted data
@@ -420,6 +420,7 @@ class newSchoolRegistration_Model extends Zf_Model {
     
     
     
+    
    /**
     * --------------------------------------------------------------------------------------
     * |                                                                                    |
@@ -465,9 +466,10 @@ class newSchoolRegistration_Model extends Zf_Model {
     
     
     
-    /**
-     * This method builds the email body for resetting a password
-     */
+    
+   /**
+    * This method builds the email body for resetting a password
+    */
     private function zvs_activateAccountEmailBody($zvs_emailDetails, $zvs_role, $identificationCode){
         
         $zf_controller = "initialize";

@@ -1,5 +1,9 @@
+<?php
 
+    //Access to pull all administrator information.
+    $zf_controller->Zf_loadModel("zvs_school_details", "platformSchoolDetails");
     
+?>    
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
@@ -35,7 +39,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="zvs-content-titles">
-                                            <h3 class="">Platform Secondary Schools</h3>
+                                            <h3 class="">Platform Primary Schools</h3>
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
@@ -48,8 +52,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                                //Fetch all platform super administartors
-                                                                //$zf_controller->zf_targetModel->fetchSuperAdministrators();
+                                                                //Fetch all platform primary schools
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("primarySchools");
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -59,8 +63,8 @@
                                         <div class="zvs-content-footer">
                                             <div class="row">
                                                 <?php  
-                                                    //Count all types of platform administrators
-                                                    //$zf_controller->zf_targetModel->countSuperAdministrators();
+                                                    //Count all platform primary schools
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("primarySchools");
                                                 ?>
                                             </div>
                                         </div>
@@ -69,7 +73,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="zvs-content-titles">
-                                            <h3 class="">Platform Primary Schools</h3>
+                                            <h3 class="">Platform Secondary Schools</h3>
                                         </div>
                                         <div class="portlet-body">
                                             <div class="school-class-inner scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0" >
@@ -82,8 +86,8 @@
                                                         </thead>
                                                         <tbody>
                                                             <?php
-                                                                //Fetch all platform main administartors
-                                                                //$zf_controller->zf_targetModel->fetchPlatformAdministrators();
+                                                                //Fetch all platform secondary schools
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("secondarySchools");
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -93,8 +97,79 @@
                                         <div class="zvs-content-footer">
                                             <div class="row">
                                                 <?php  
-                                                    //Count all types of platform administrators
-                                                    //$zf_controller->zf_targetModel->countPlatformAdministrators();
+                                                    //Count all platform secondary schools
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("secondarySchools");
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="zvs-content-titles">
+                                            <h3 class="">Platform Tertiary Colleges</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th  style="width: 60%;">School Names</th><th style="width: 30%;">Status</th><th style="width: 10%;">Details</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                                //Fetch all platform tertiary schools
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("tertiaryColleges");
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="zvs-content-footer">
+                                            <div class="row">
+                                                <?php  
+                                                    //Count all platform tertiary colleges
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("tertiaryColleges");
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="zvs-content-titles">
+                                            <h3 class="">Platform Polytechnics</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="school-class-inner scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0" >
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th  style="width: 60%;">School Names</th><th style="width: 30%;">Status</th><th style="width: 10%;">Details</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                                //Fetch all platform polytechnics
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("polytechnics");
+                                                            ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="zvs-content-footer">
+                                            <div class="row">
+                                                <?php  
+                                                    //Count all platform polytechnics
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("polytechnics");
                                                 ?>
                                             </div>
                                         </div>

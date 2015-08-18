@@ -71,7 +71,7 @@ class userInformation_Model extends Zf_Model {
     
     
     
-     /**
+    /**
      * This method fetches the user profile image
      */
     public function getUserImage($imagePath, $userName){

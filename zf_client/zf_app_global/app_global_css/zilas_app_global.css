@@ -153,6 +153,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; 
 }
 
+.portlet-body-short{
+    min-height:91px !important; margin-bottom: 0px !important; padding: 0px 25px 25px 25px !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; 
+}
+
 .tabbable-custom > .tab-content {
     min-height: 335px !important; margin-bottom:0px !important;
    

@@ -125,6 +125,19 @@ class Zvs_super_adminController extends Zf_Controller {
         Zf_View::zf_displayView('new_school');
         
     }
+    
+    
+    
+    /**
+     * This action executes the view super admin view
+     */
+    public function actionView_platform_school($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('view_platform_school', $zf_actionData);
+        
+    }
    
     
 

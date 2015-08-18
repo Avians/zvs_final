@@ -503,7 +503,7 @@ class userInformation_Model extends Zf_Model {
                                 $imageArray = $this->_validResult['imagePath'];
 
                                 //Store the user image into the datastore/user_images/zvs_super_admin directory
-                                $this->zvs_uploadImage($imageArray, $imageName, $uploadDirectory);
+                                Zf_Core_Functions::Zf_uploadImages($imageArray, $imageName, $uploadDirectory);
                                 
                                 //This is the image name stored in the database
                                 $zvs_superAdminDetails['imagePath'] = Zf_QueryGenerator::SQLValue($imageName.".png");
@@ -764,7 +764,7 @@ class userInformation_Model extends Zf_Model {
                                 $imageArray = $this->_validResult['imagePath'];
 
                                 //Store the user image into the datastore/user_images/zvs_super_admin directory
-                                $this->zvs_uploadImage($imageArray, $imageName, $uploadDirectory);
+                                Zf_Core_Functions::Zf_uploadImages($imageArray, $imageName, $uploadDirectory);
                                 
                                 //This is the image name stored in the database
                                 $zvs_platformAdminDetails['imagePath'] = Zf_QueryGenerator::SQLValue($imageName.".png");
@@ -884,36 +884,7 @@ class userInformation_Model extends Zf_Model {
     }
     
     
-    
-    
-    /**
-     * This method uploads the images to the desired folder
-     */
-    private function zvs_uploadImage($imageArray, $imageName, $uploadDirectory){
-        
-        //Generate the parameters for the file to be uploaded (school logo)
-        $zf_upload_parameters = array(
-            "zf_fileUploadFolder" => $uploadDirectory,
-            "zf_fileFieldName" => $imageArray
-        );
 
-        //Rules for modifying the file to be uploaded (school logo)
-        $zf_upload_settings = array(
-            'file_new_name_body' => $imageName,
-            'file_new_name_ext' => 'png',
-            'image_resize' => true,
-            'image_x' => 100,
-            'image_y' => 100,
-            'forbidden' => array('application/*')
-        );
-
-        //Process the actual upload of the user image
-        Zf_File_Upload::zf_fileUpload($zf_upload_parameters, $zf_upload_settings);
-        
-    }
-
-       
-    
     
     /**
      * This method builds the email body for resetting a password
