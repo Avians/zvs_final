@@ -99,7 +99,7 @@
                             </div>
                                 
                         </div>
-                    </div>  
+                    </div> 
                     <div class="portlet box zvs-content-blocks">
                         <div class="zvs-content-titles">
                             <h3>Platform Administrator Details</h3>
@@ -111,7 +111,7 @@
                                 <div class="row margin-top-10">
                                     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12"></div>
                                     <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                                        <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "my_profile", $identificationCode); ?>">
+                                        <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "my_profile", "$identificationCode"); ?>">
                                             <button type="button" class="btn pull-right zvs-buttons" style="color: #ffffff !important;">
                                                 <i  style="color: #ffffff !important;" class="fa fa-arrow-circle-left"></i> &nbsp;My Profile
                                             </button>
@@ -119,21 +119,23 @@
                                     </div>
                                 </div>
                             <?php }else{ 
-                                echo $zf_controller->zf_targetModel->getPlatformAdminInformation($createdBy, $schoolName);
+                                print_r($zf_controller->zf_targetModel->getPlatformAdminInformation($createdBy, $schoolName));
+                                if(Zf_Core_Functions::Zf_DecodeIdentificationCode($createdBy)[3] != ZVS_SUPER_ADMIN){
                             ?> 
                                 <div class="row margin-top-10">
                                     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12"></div>
                                     <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-                                        <a href="<?=ZF_ROOT_PATH.$zvs_controller.DS.'view_platform_admin'.DS.$createdBy; ?>">
+                                        <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "my_profile", "$identificationCode"); ?>">
                                             <button type="button" class="btn pull-right zvs-buttons" style="color: #ffffff !important;">
                                                 <i  style="color: #ffffff !important;" class="fa fa-user"></i> &nbsp;Admin Profile
                                             </button>
                                         </a>
                                     </div>
-                                </div>        
-                            <?php }?>
+                                </div>  
+                            <?php }}?>
                         </div>
                     </div>
+ 
                 </div>
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                     <div class="portlet box zvs-content-blocks">

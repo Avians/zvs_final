@@ -3,6 +3,9 @@
     //Access to pull all administrator information.
     $zf_controller->Zf_loadModel("zvs_school_details", "platformSchoolDetails");
     
+    //This is user identification code
+    $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
+    
 ?>    
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -53,7 +56,7 @@
                                                         <tbody>
                                                             <?php
                                                                 //Fetch all platform primary schools
-                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("primarySchools");
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("primarySchools", $identificationCode);
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -64,7 +67,7 @@
                                             <div class="row">
                                                 <?php  
                                                     //Count all platform primary schools
-                                                    $zf_controller->zf_targetModel->countPlatformSchools("primarySchools");
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("primarySchools", $identificationCode);
                                                 ?>
                                             </div>
                                         </div>
@@ -87,7 +90,7 @@
                                                         <tbody>
                                                             <?php
                                                                 //Fetch all platform secondary schools
-                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("secondarySchools");
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("secondarySchools", $identificationCode);
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -98,7 +101,7 @@
                                             <div class="row">
                                                 <?php  
                                                     //Count all platform secondary schools
-                                                    $zf_controller->zf_targetModel->countPlatformSchools("secondarySchools");
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("secondarySchools", $identificationCode);
                                                 ?>
                                             </div>
                                         </div>
@@ -124,7 +127,7 @@
                                                         <tbody>
                                                             <?php
                                                                 //Fetch all platform tertiary schools
-                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("tertiaryColleges");
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("tertiaryColleges", $identificationCode);
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -135,7 +138,7 @@
                                             <div class="row">
                                                 <?php  
                                                     //Count all platform tertiary colleges
-                                                    $zf_controller->zf_targetModel->countPlatformSchools("tertiaryColleges");
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("tertiaryColleges", $identificationCode);
                                                 ?>
                                             </div>
                                         </div>
@@ -158,7 +161,7 @@
                                                         <tbody>
                                                             <?php
                                                                 //Fetch all platform polytechnics
-                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("polytechnics");
+                                                                $zf_controller->zf_targetModel->fetchPlatformSchools("polytechnics", $identificationCode);
                                                             ?>
                                                         </tbody>
                                                     </table>
@@ -169,7 +172,7 @@
                                             <div class="row">
                                                 <?php  
                                                     //Count all platform polytechnics
-                                                    $zf_controller->zf_targetModel->countPlatformSchools("polytechnics");
+                                                    $zf_controller->zf_targetModel->countPlatformSchools("polytechnics", $identificationCode);
                                                 ?>
                                             </div>
                                         </div>

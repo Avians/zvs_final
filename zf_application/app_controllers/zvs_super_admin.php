@@ -120,9 +120,11 @@ class Zvs_super_adminController extends Zf_Controller {
     /**
      * This action executes the new school view
      */
-    public function actionNew_school(){
+    public function actionNew_school($identificationCode){
         
-        Zf_View::zf_displayView('new_school');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('new_school', $zf_actionData);
         
     }
     

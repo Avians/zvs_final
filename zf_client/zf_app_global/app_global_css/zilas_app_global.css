@@ -154,7 +154,7 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
 }
 
 .portlet-body-short{
-    min-height:91px !important; margin-bottom: 0px !important; padding: 0px 25px 25px 25px !important;
+    min-height:106px !important; margin-bottom: 0px !important; padding: 0px 25px 25px 25px !important;
     border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; 
 }
 
@@ -310,6 +310,12 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     width: 90px; height: 90px; border-radius: 50% !important; -webkit-border-radius: 50% !important; -moz-border-radius: 50% !important;
     border: 0.09em solid #d5d5d5; text-align: center !important; margin: -5px auto 0 auto; padding: 0.1em; 
     /*box-shadow: 0 0 5px #efefef; -webkit-box-shadow: 0 0 5px #efefef; -moz-box-shadow: 0 0 5px #efefef;*/
+}
+
+.active-zvs-square {
+    width: 90px; height: 90px; border-radius: 5px !important; -webkit-border-radius: 5px !important; -moz-border-radius: 5px !important;
+    border: 0.07em solid #d5d5d5; text-align: center !important; margin: -5px auto 0 auto; padding: 0.1em;
+
 }
 
 .user-section-image {

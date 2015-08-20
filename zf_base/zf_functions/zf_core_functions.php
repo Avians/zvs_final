@@ -287,7 +287,7 @@ class Zf_Core_Functions {
         
         $imageName = str_replace(" ", "", ucwords($imageName));
         
-        $search = array("{","[","(","@","^","!","|","$","#", "?","&","`","~",";","*",")","]","}");
+        $search = array("{","[","(","@","^","!","|","$","#","%","?","&","`","~",";","*",")","]","}");
         $cleanImageName = str_replace($search, "", $imageName);
         
         return $cleanImageName;

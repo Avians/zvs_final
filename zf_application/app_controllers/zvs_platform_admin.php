@@ -52,9 +52,25 @@ class Zvs_platform_adminController extends Zf_Controller {
     /**
      * This action executes the new school view
      */
-    public function actionNew_school(){
+    public function actionNew_school($identificationCode){
         
-        Zf_View::zf_displayView('new_school');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('new_school', $zf_actionData);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This action executes the view super admin view
+     */
+    public function actionView_platform_school($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('view_platform_school', $zf_actionData);
         
     }
     

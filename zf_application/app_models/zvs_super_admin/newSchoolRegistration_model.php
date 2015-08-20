@@ -181,17 +181,10 @@ class newSchoolRegistration_Model extends Zf_Model {
         //This of debugging purposes only.
         //echo "<pre>All School Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
         
-        /**
-         * 
-        identificationArray = 
-        {
-            [0] => 254 ---> country
-            [1] => 30 --->locality
-            [2] => zvs_platform_super_admin --->plaform user type
-            [3] => 510 ---> platform user role
-            [4] => zvs_psa_0001 ---> plaform user id (always perfixed by zvs_psa_idnumber)
-        }
-         */
+        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['createdBy']);
+        
+        //Here we get the user role of the registering user.
+        if($identificationArray[3] == ZVS_SUPER_ADMIN){ $zvs_controller = "zvs_super_admin"; }else if($identificationArray[3] == ZVS_ADMIN){ $zvs_controller = "zvs_platform_admin"; }
         
         if(empty($this->_errorResult)){
             
@@ -231,7 +224,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                     
                     $zf_errorData = array("zf_fieldName" => "schoolCode", "zf_errorMessage" => "* A school with a similar school code or registration number already exists!!");
                     Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                    Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_school');
+                    Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
                     exit();
                     
                 }else{
@@ -259,7 +252,7 @@ class newSchoolRegistration_Model extends Zf_Model {
 
                             $zf_errorData = array("zf_fieldName" => "email", "zf_errorMessage" => "* This email address is already registered!!");
                             Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                            Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_school');
+                            Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
                             exit();
                         
                         }else{
@@ -390,7 +383,7 @@ class newSchoolRegistration_Model extends Zf_Model {
 
                                 //Redirect to the platform users overview
                                 Zf_SessionHandler::zf_setSessionVariable("school_setup", "school_setup_success");
-                                Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_school');
+                                Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
                                 exit();
                                 
                             }
@@ -412,7 +405,7 @@ class newSchoolRegistration_Model extends Zf_Model {
             Zf_SessionHandler::zf_setSessionVariable("school_setup", "general_form_error");
             
             echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
-            Zf_GenerateLinks::zf_header_location('zvs_super_admin', 'new_school');
+            Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
             
         }
         
