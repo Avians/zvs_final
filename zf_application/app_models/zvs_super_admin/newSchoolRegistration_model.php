@@ -180,19 +180,20 @@ class newSchoolRegistration_Model extends Zf_Model {
         
         //This of debugging purposes only.
         //echo "<pre>All School Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
-        
+       
         $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['createdBy']);
         
         //Here we get the user role of the registering user.
         if($identificationArray[3] == ZVS_SUPER_ADMIN){ $zvs_controller = "zvs_super_admin"; }else if($identificationArray[3] == ZVS_ADMIN){ $zvs_controller = "zvs_platform_admin"; }
         
+
         if(empty($this->_errorResult)){
             
            
             //We concatinate value in order to generate a unique user identification code.
             $countryCode = ltrim($this->_validResult['schoolCountry'], "+");
             $localityCode = $this->_validResult['schoolLocality'];
-            $systemSchoolCode = $this->zvss_generateSystemSchoolCode();
+            $systemSchoolCode = $this->zvs_generateSystemSchoolCode();
             $userRole = SCHOOL_MAIN_ADMIN;
             $userId = $this->_validResult['idNumber'];
             
@@ -224,7 +225,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                     
                     $zf_errorData = array("zf_fieldName" => "schoolCode", "zf_errorMessage" => "* A school with a similar school code or registration number already exists!!");
                     Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                    Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
+                    Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school', $this->_validResult['createdBy']);
                     exit();
                     
                 }else{
@@ -252,7 +253,7 @@ class newSchoolRegistration_Model extends Zf_Model {
 
                             $zf_errorData = array("zf_fieldName" => "email", "zf_errorMessage" => "* This email address is already registered!!");
                             Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                            Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
+                            Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school', $this->_validResult['createdBy']);
                             exit();
                         
                         }else{
@@ -273,6 +274,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                                         $zvs_userDetails[$zvs_fieldName] = Zf_QueryGenerator::SQLValue($this->_validResult[$zvs_fieldName]); 
                                         
                                     }
+                                    
                                 }
                                 //2. Store the second batch to the zvs_school_admin table
                                 else if($zvs_fieldName == "designation" || $zvs_fieldName == "firstName" || $zvs_fieldName == "middleName" || $zvs_fieldName == "lastName" || $zvs_fieldName == "idNumber" || $zvs_fieldName == "mobileNumber" || $zvs_fieldName == "boxAddress" || $zvs_fieldName == "gender" || $zvs_fieldName == "country" || $zvs_fieldName == "locality" ){
@@ -383,7 +385,7 @@ class newSchoolRegistration_Model extends Zf_Model {
 
                                 //Redirect to the platform users overview
                                 Zf_SessionHandler::zf_setSessionVariable("school_setup", "school_setup_success");
-                                Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
+                                Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school', $this->_validResult['createdBy']);
                                 exit();
                                 
                             }
@@ -405,7 +407,8 @@ class newSchoolRegistration_Model extends Zf_Model {
             Zf_SessionHandler::zf_setSessionVariable("school_setup", "general_form_error");
             
             echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
-            Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school');
+            Zf_GenerateLinks::zf_header_location($zvs_controller, 'new_school', $this->_validResult['createdBy']);
+            exit();
             
         }
         
@@ -421,7 +424,7 @@ class newSchoolRegistration_Model extends Zf_Model {
     * |                                                                                    |
     * --------------------------------------------------------------------------------------
     */
-    public function zvss_generateSystemSchoolCode(){
+    public function zvs_generateSystemSchoolCode(){
         
             //Generate a random string.
             $systemSchoolCode = Zf_Core_Functions::Zf_GenerateRandomString(30);

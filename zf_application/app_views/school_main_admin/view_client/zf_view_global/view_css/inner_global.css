@@ -6,3 +6,20 @@
         Purpose of the stylesheet follows.
 */
 
+/*This is class that is necessary for the styling of all view errors*/
+.content-view-errors {
+    color: #B94A48 !important;
+    font-family: Ubuntu-L !important;
+    font-size: 14px !important;
+    font-weight: lighter;
+    line-height: 20px !important;
+}
+
+.content-table-flags{
+    color: indianred !important;
+}
+
+.content-table-flags-success{
+    color: #3c763d !important;
+}
+

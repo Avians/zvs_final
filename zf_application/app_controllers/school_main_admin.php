@@ -64,9 +64,11 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage classes view
      */
-    public function actionManage_classes(){
+    public function actionManage_classes($identificationCode){
         
-        Zf_View::zf_displayView('manage_classes');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_classes', $zf_actionData);
         
     }
    
@@ -326,6 +328,29 @@ class School_main_adminController extends Zf_Controller {
         
     }
     
+    
+    
+    
+    /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA TO THE DATABASE.
+     */
+    public function actionNewClassRegistration($zvs_parameter){
+        
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_class"){
+            
+            //Register a class to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewClass();
+            
+        }else if($filterDataUrl == "new_stream"){
+            
+            //Register a stream into a school class on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewStream();
+            
+        }
+        
+    }
     
 
 }

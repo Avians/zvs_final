@@ -1,19 +1,16 @@
 <?php
 
-    //This is the actual encrypted user identification code.
-    $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
-    
-    //Decode the session variable
-    $identifictionArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
-    
-    //echo "<code>".$identificationCode."</code><br><br><pre>";print_r($identifictionArray);echo "</pre>"; //Strictly for debugging purposes.
+    //Here we generate the active URL
+    $activeURL = Zf_Core_Functions::Zf_URLSanitize(); $zvs_controller = $activeURL[0];
 
+    //We get the active identification from the user session.
+    $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
 
 ?>
 <div class="row">
     
     <!--Manage School Profile-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "school_profile", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "school_profile", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -29,7 +26,7 @@
     </a>
     
     <!--Manage School Classes-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_classes", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_classes", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -45,7 +42,7 @@
     </a>
         
     <!--Manage School Departments-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_departments", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_departments", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -61,7 +58,7 @@
     </a>
     
     <!--Manage School Hostels-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_hostels", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_hostels", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -77,7 +74,7 @@
     </a>
     
     <!--Manage School Library-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_library", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_library", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -93,7 +90,7 @@
     </a>
     
     <!--Manage School Transport-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_transport", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_transport", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -109,7 +106,7 @@
     </a>
     
     <!--Manage School Teachers-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_teachers", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_teachers", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -125,7 +122,7 @@
     </a>
     
     <!--Manage School Students-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_students", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_students", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -141,7 +138,7 @@
    </a>
     
     <!--Manage School Sub Staff-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_substaff", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_substaff", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -157,7 +154,7 @@
     </a>
     
     <!--Manage School Fees-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_fees", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_fees", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -173,7 +170,7 @@
     </a>
     
     <!--Manage School Subjects-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_subjects", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_subjects", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -189,7 +186,7 @@
     </a>
     
     <!--Manage School Examination-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_exams", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_exams", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -205,7 +202,7 @@
     </a>
     
     <!--Manage School Marksheet-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_marksheet", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_marksheet", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -221,7 +218,7 @@
     </a>
     
     <!--Manage School Timetable-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_timetable", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_timetable", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -237,7 +234,7 @@
     </a>
     
     <!--Manage School Notice Board-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_notice_board", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_notice_board", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -253,7 +250,7 @@
     </a>
     
     <!--Manage School Calender-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_calendar", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_calendar", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -269,7 +266,7 @@
     </a>
     
     <!--Manage School Affiliates-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "manage_affiliates", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_affiliates", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">
@@ -285,7 +282,7 @@
     </a>
     
     <!--Manage Admin Profile-->
-    <a href="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "my_profile", $identificationCode)?>">
+    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "my_profile", $identificationCode)?>">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <div class="dashboard-button-wrapper">
                 <div class="fa-dashboard-icons">

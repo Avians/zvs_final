@@ -38,7 +38,7 @@ class userInformation_Model extends Zf_Model {
       
         $zvs_sqlValueUserCode["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
         
-        $zvs_fetchUserDetails = Zf_QueryGenerator::BuildSQLSelect("zvs_school_main_admin", $zvs_sqlValueUserCode);
+        $zvs_fetchUserDetails = Zf_QueryGenerator::BuildSQLSelect("zvs_school_admin", $zvs_sqlValueUserCode);
         $zvs_executeFetchUserDetails = $this->Zf_AdoDB->Execute($zvs_fetchUserDetails);
 
         if(!$zvs_executeFetchUserDetails){
@@ -73,6 +73,23 @@ class userInformation_Model extends Zf_Model {
     
     
     /**
+     * This method fetches the user profile image
+     */
+    public function getUserImage($imagePath, $userName){
+         
+        $user_image = ZF_ROOT_PATH.ZF_DATASTORE."zvs_user_images".DS."zvs_school_admin".DS.$imagePath;
+                   
+        $image = "";
+        $image .= '<img src=" '.$user_image.'" title=" '.$userName.' " class="active-zvs-circular" height="80px" width="80px" >';
+
+        echo  $image;
+      
+    }
+    
+    
+    
+    
+    /**
      * This method fetches all school information
      */
     public function getSchoolInformation($identificationCode){
@@ -81,7 +98,7 @@ class userInformation_Model extends Zf_Model {
 
         $schoolSystemCode = $identificationArray[2];
       
-        $zvs_schoolSystemCode["schoolSystemCode"] = Zf_QueryGenerator::SQLValue($schoolSystemCode);
+        $zvs_schoolSystemCode["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($schoolSystemCode);
         
         $zvs_fetchSchoolDetails = Zf_QueryGenerator::BuildSQLSelect("zvs_school_details", $zvs_schoolSystemCode);
         $zvs_executeFetchSchoolDetails = $this->Zf_AdoDB->Execute($zvs_fetchSchoolDetails);

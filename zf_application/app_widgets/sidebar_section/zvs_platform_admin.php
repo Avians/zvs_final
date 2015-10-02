@@ -113,6 +113,7 @@ $main_menu = array(
     
     
 );
+
 ?>
 
 <!--This is the menu item links to the main dashboard-->
@@ -151,7 +152,7 @@ $main_menu = array(
 </li>
 
 <!--This is the menu item links to management of resources allocated to schools-->
-<li class="<?php if ($zvs_action == "manage_resources") { echo "active";} ?>">
+<li class="last <?php if ($zvs_action == "manage_resources") { echo "active";} ?>">
     <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_resources']); ?>
 </li>
 

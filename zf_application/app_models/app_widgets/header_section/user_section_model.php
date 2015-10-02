@@ -36,7 +36,7 @@ class user_section_Model extends Zf_Model {
             
         }else if($userRole == SCHOOL_MAIN_ADMIN){
             
-            $zvs_table = "zvs_school_main_admin";
+            $zvs_table = "zvs_school_admin";
             
         }
         
@@ -96,7 +96,7 @@ class user_section_Model extends Zf_Model {
             
         }else if($userRole == SCHOOL_MAIN_ADMIN){
             
-            $image_directory = "zvs_school_main_admin";
+            $image_directory = "zvs_school_admin";
             
         }
          

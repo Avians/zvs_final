@@ -254,7 +254,7 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%) !important;
     background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%) !important;
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0) !important;
-    background-color:#f6f6f6; text-decoration: none !important; color: #2682B9 !important;
+    background-color:#f6f6f6; text-decoration: none !important; color: #21B4E2 !important;
 }
 .dashboard-button-wrapper:active {
     position:relative !important;
@@ -303,6 +303,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
 
 .zvs-table-blocks {
    height: 250px !important;  max-height: 250px !important; border: 1px solid #E1E1E1 !important;
+   padding-top: 0.3em !important; padding-left: 0.3em !important; padding-right: 0.8em !important;
+}
+
+.zvs-body-contents{
+    height: 400px !important;  max-height: 400px !important; border: 1px solid #E1E1E1 !important;
    padding-top: 0.3em !important; padding-left: 0.3em !important; padding-right: 0.8em !important;
 }
 

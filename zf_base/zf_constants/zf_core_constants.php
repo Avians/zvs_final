@@ -181,6 +181,14 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('ZVS_GUEST_USER')        ?   null : define('ZVS_GUEST_USER'        ,  -1); 
     defined('ZVS_BANNED_USER')       ?   null : define('ZVS_BANNED_USER'       ,  -5);
     
+    
+    //Platform restricted schools
+    defined('ZVS_ACTIVE_SCHOOL')       ?   null : define('ZVS_ACTIVE_SCHOOL'       ,  1);
+    defined('ZVS_INACTIVE_SCHOOL')       ?   null : define('ZVS_INACTIVE_SCHOOL'   ,  0);
+    
+    defined('ZVS_GUEST_SCHOOL')        ?   null : define('ZVS_GUEST_SCHOOL'        ,  -1); 
+    defined('ZVS_BANNED_SCHOOL')       ?   null : define('ZVS_BANNED_SCHOOL'       ,  -5);
+    
    
 
 ?>

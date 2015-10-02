@@ -17,21 +17,32 @@
             </div>
             <!-- END PAGE HEADER-->
             
-            <!--START MAIN DASHBOARD OPERATIONS-->
+            <!-- START DASHBOARD SHORTCUTS -->
             <?php
-                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "dashboard_operations.php");
+                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "dashboard_shortcuts.php");
             ?>
-            <!--END MAIN DASHBOARD OPERATIONS-->
+            <!-- END DASHBOARD SHORTCUTS -->
             
-            <div class="clearfix"></div>
-            
-            <!-- BEGIN INNER CONTENT -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 default-errors">
-                    This is the school admin main dashboard.
+            <div class="clearfix"><hr><br></div>
+
+            <!-- BEGIN SCHOOL LOCALITIES -->
+            <div class="row margin-top-0">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                        <div class="zvs-content-titles">
+                            <h3 class="">School Location on Map</h3>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="zvs-body-contents">
+                                xxxx
+                            </div>
+                        </div>
+                    </div>          
                 </div>
             </div>
-            <!-- END INNER CONTENT -->
+            <!-- END SCHOOL LOCALITIES -->
+            
+            <div class="clearfix"><br></div>
             
         </div>
     </div>

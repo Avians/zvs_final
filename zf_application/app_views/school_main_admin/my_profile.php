@@ -44,16 +44,20 @@
                                 
                                 foreach ($userInformation as $value) {
 
-                                    $designation = $value['designation']; $userName = $value['firstName']." ".$value['lastName']; $mobileNumber = $value['mobileNumber']; $gender = $value['gender']; $dateCreated = date("M j, Y", strtotime($value['dateCreated'])); $address = $value['address']; $imagePath = $value['imagePath'];
+                                    $designation = $value['designation']; $userName = $value['firstName']." ".$value['lastName']; $mobileNumber = $value['mobileNumber']; $gender = $value['gender']; $dateCreated = date("M j, Y", strtotime($value['dateCreated'])); $address = $value['boxAddress']; $imagePath = $value['imagePath'];
 
                                 }   
                             ?>
                             
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
-                                    <div class="zvs-circular">
-                                        <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
-                                    </div>
+                                    <?php if(empty($imagePath) || $imagePath == NULL){ ?>
+                                        <div class="zvs-circular">   
+                                           <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
+                                        </div>
+                                    <?php }else{
+                                        $zf_controller->zf_targetModel->getUserImage($imagePath, $userName); 
+                                    }?>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                                     <div class="table-responsive">
@@ -85,10 +89,16 @@
                                 //print_r($schoolInformation);
                                 foreach ($schoolInformation as $value) {
 
-                                    $schoolName = $value['schoolName']; $dateOfEstablishment = date("F, Y", strtotime($value['dateOfEstablishment'])); $dateOfRegistration = date("F, Y", strtotime($value['dateOfRegistration'])); 
-                                    $schoolLevel = $value['schoolLevel']; $schoolGender = $value['schoolGender']; $schoolCategory = $value['schoolCategory']; $schoolType = $value['schoolType']; $mainSchoolSponsor = $value['mainSchoolSponsor']; $countryCode = $value['schoolCountry']; $localityCode = $value['schoolLocality'];
+                                    $schoolName = $value['schoolName']; $dateOfEstablishment = date("F, Y", strtotime($value['dateOfEstablishment'])); $dateOfRegistration = date(" jS M, Y", strtotime($value['dateCreated']));
+                                    $schoolLevel = $value['schoolLevel']; $schoolGender = $value['schoolGender']; $schoolCategory = strtolower($value['schoolCategory']); $schoolType = $value['schoolType']; $mainSchoolSponsor = $value['mainSchoolSponsor']; $countryCode = $value['schoolCountry']; $localityCode = $value['schoolLocality'];
                                     
-                                    $schoolLocation = $zf_controller->zf_targetModel->getSchoolLocation($countryCode, $localityCode);
+                                    if($schoolLevel == "Primary School"){ $schoolLevel = "primary";}else if($schoolLevel == "Secondary School"){$schoolLevel = "secondary";}else if($schoolLevel == "Tertiary College"){$schoolLevel = "college";}else if($schoolLevel == "Polytechnic"){$schoolLevel = "polytechnic";}                   
+                                    if($schoolGender == "Boys School"){$schoolGender = "boys'";}else if($schoolGender == "Girls School"){$schoolGender = "girls'";}
+                                    if($schoolType == "Public School"){$schoolType = "publicly";}else if($schoolType == "Private School"){$schoolType = "privately";}
+                                    
+                                    
+                                    $zf_controller->Zf_loadModel("zvs_school_details", "platformSchoolDetails");
+                                    $schoolLocality = $zf_controller->zf_targetModel->getSchoolLocation($countryCode, $localityCode);
                                                     
                                 }   
                             ?>
@@ -99,7 +109,7 @@
                                         <?=$designation." ".$userName; ?> is the school main administrator for <?=$schoolName; ?>, hosted on Zilas Virtual Schools<sup style='font-size: 8px !important; font-style: normal;'>TM</sup> platform.
                                         My role on the platform is to ensure that the virtual version of <?=$schoolName; ?> is configured and properly functioning.
                                     </p>
-                                    <p><?=$schoolName; ?> has been registered on Zilas Virtual Schools<sup style='font-size: 8px !important; font-style: normal;'>TM</sup> platform since <?=$dateOfRegistration; ?>. Established in <?=$dateOfEstablishment; ?> in <?=$schoolLocation; ?>, this is a <?=$schoolGender.", ".$schoolCategory." ".$schoolLevel." and ".$schoolType; ?> school, which is mainly sponsored by the <?=$mainSchoolSponsor;?>.</p>
+                                    <p><?=$schoolName; ?> has been registered on Zilas Virtual Schools<sup style='font-size: 8px !important; font-style: normal;'>TM</sup> platform since <?=$dateOfRegistration; ?>. Established in <?=$dateOfEstablishment;?>, the <?=$schoolType;?> administered school is located in <?=$schoolLocality;?>, and is a <?=$schoolLevel;?> <?=$schoolGender;?> <?=$schoolCategory;?></p>
                                 </div>
                             </div>
                             <div class="row">
