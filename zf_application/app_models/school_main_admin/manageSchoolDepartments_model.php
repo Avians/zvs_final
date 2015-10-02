@@ -50,15 +50,15 @@ class manageSchoolDepartments_Model extends Zf_Model {
          
          $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
          
-         $zvs_classGridView = '';
+         $zvs_departmentGridView = '';
          
-         //Here we fetch and return all class details.
-         $zvs_classDetails = $this->zvs_fetchClassDetails($systemSchoolCode);
+         //Here we fetch and return all department details.
+         $zvs_departmentDetails = $this->zvs_fetchDepartmentDetails($systemSchoolCode);
          
          
-         if($zvs_classDetails == 0){
+         if($zvs_departmentDetails == 0){
              
-             $zvs_classGridView .='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             $zvs_departmentGridView .='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="zvs-content-titles">
                                             <h3>Departments Overview Warning!!</h3>
@@ -76,78 +76,73 @@ class manageSchoolDepartments_Model extends Zf_Model {
              
          }else{
              
-             foreach($zvs_classDetails as $classValues){
+             foreach($zvs_departmentDetails as $departmentValues){
                  
-                 $zvs_className = $classValues['schoolClassName']; $schoolClassCode =  $classValues['schoolClassCode'];
-                 
+                 $zvs_departmentName = $departmentValues['schoolDepartmentName']; $schoolDepartmentCode =  $departmentValues['schoolDepartmentCode'];
                  
                  
                  //Here we fetch and return all stream details.
-                 $zvs_streamDetails = $this->zvs_fetchStreamDetails($schoolClassCode);
+                 //$zvs_subDepartmentDetails = $this->zvs_fetchSubDepartmentDetails($schoolClassCode);
              
-            $zvs_classGridView .='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            $zvs_departmentGridView .='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                        <div class="zvs-content-titles">
-                                           <h3 class="">'.$zvs_className.'</h3>
-                                       </div>';
-
-                                       if($zvs_streamDetails == 0){
-
-                                           $zvs_classGridView .='<div class="portlet-body">
-                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 13% !important;">
-                                                                        <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
-                                                                        <span class="content-view-errors" >
-                                                                            &nbsp;There are no streams in '.strtolower($zvs_className).' yet! <br>You need to add atleast one stream to have an overview.
-                                                                        </span>
-                                                                    </div>
-                                                                </div>';
-
-                                       }else{
-                                           
-                                           
-                                                $zvs_classGridView .='<div class="portlet-body">
-                                                                             <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
-                                                                                  <div class="table-responsive">
-                                                                                      <table class="table table-striped table-hover">
-                                                                                          <thead>
-                                                                                              <tr>
-                                                                                                  <th  style="width: 50%;">Stream Name</th><th style="width: 10%;">Capacity</th><th style="width: 10%;">Occupancy</th><th style="width: 10%;">Availability</th>
-                                                                                              </tr>
-                                                                                          </thead>
-                                                                                          <tbody>';
-                                                
-                                                                                            foreach ($zvs_streamDetails as $streamValues) {
-
-                                                                                                $streamName = $streamValues['schoolStreamName']; $streamCapacity = $streamValues['schoolStreamCapacity']; $streamOccupancy = $streamValues['schoolStreamOccupancy']; $streamAvailability = $streamCapacity - $streamOccupancy;
-                                                                                                $streamCode = $streamValues['schoolStreamCode'];
-                                                                                                
-                                                                                                $zvs_classGridView .='<tr><td>'.$streamName.'</td><td style="text-align:center !important;">'.$streamCapacity.'</td><td style="text-align:center !important;">'.$streamOccupancy.'</td><td style="text-align:center !important;">'.$streamAvailability.'</td><td><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_stream_details'.DS.  Zf_SecureData::zf_encode_url($streamCode).' " title="View '.$zvs_className.' '.$streamName.'" ><i class="fa fa-list"></i></a></td></tr>';
-                                                                                                
-                                                                                            }
-
-                                                                    $zvs_classGridView .='</tbody>
-                                                                                      </table>
-                                                                                  </div>
-                                                                             </div>
-                                                                        </div>
-                                                                        <div class="zvs-content-footer">
-                                                                            <div class="row">';
-                                                                    
-                                                                                $zvs_classGridView .= $this->zvs_fetchClassInnerDetails($schoolClassCode);  
-                                                                                
-                                                     $zvs_classGridView .=' </div>
-                                                                        </div>';
-
-                                       }
+                                           <h3 class="">'.$zvs_departmentName.' Department</h3>
+                                       </div>
+                                       <div class="portlet-body">
+                                            <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">';
                                         
-            $zvs_classGridView .='</div>          
+                    $zvs_departmentGridView .=' <div class="row">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
+                                                        <div class="zvs-circular" style="margin-top: -2px !important;">   
+                                                           <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped table-condensed table-responsive table-hover">
+                                                                <tbody>
+                                                                    <tr><td><i class="fa fa-user zvs-user-profile"></i></td><td><?= $designation." ".$userName; ?></td></tr>
+                                                                    <tr><td><i class="fa fa-phone zvs-user-profile"></i></td><td><?= $mobileNumber; ?></td></tr>
+                                                                    <tr><td><i class="fa fa-envelope zvs-user-profile"></i></td><td><?= $address; ?></td></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped table-hover">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th  style="width: 35%;">Sub Dept. Name</th><th style="width: 35%;">Head of Sub Dept.</th><th style="width: 20%;">Mobile No.</th><th style="width: 10%;"></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr><td>English</td><td>Mathew Juma</td><td>0727074108</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                    <tr><td>1</td><td>1</td><td>1</td><td><i class="fa fa-list"></i></td></tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>          
                                 </div>';
              
              }
              
          }
          
-         echo $zvs_classGridView;
+         echo $zvs_departmentGridView;
          
         
     }
@@ -163,9 +158,9 @@ class manageSchoolDepartments_Model extends Zf_Model {
          $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
 
          //Here we fetch and return all class details.
-         $zvs_classDetails = $this->zvs_fetchClassDetails($systemSchoolCode);
+         $zvs_departmentDetails = $this->zvs_fetchDepartmentDetails($systemSchoolCode);
          
-         return $zvs_classDetails;
+         return $zvs_departmentDetails;
         
     }
     
@@ -175,153 +170,25 @@ class manageSchoolDepartments_Model extends Zf_Model {
     /**
      * This method checks and counts, then returns class details for all classess in the school 
      */
-    private function zvs_fetchClassDetails($systemSchoolCode){
+    private function zvs_fetchDepartmentDetails($systemSchoolCode){
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         
-        $fetchSchoolClasses = Zf_QueryGenerator::BuildSQLSelect('zvs_school_classes', $zvs_sqlValue);
+        $fetchSchoolDepartments = Zf_QueryGenerator::BuildSQLSelect('zvs_school_departments', $zvs_sqlValue);
         
-        $zf_executeFetchSchoolClasses= $this->Zf_AdoDB->Execute($fetchSchoolClasses);
+        $zf_executeFetchSchoolDepartments = $this->Zf_AdoDB->Execute($fetchSchoolDepartments);
 
-        if(!$zf_executeFetchSchoolClasses){
+        if(!$zf_executeFetchSchoolDepartments){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
-            if($zf_executeFetchSchoolClasses->RecordCount() > 0){
+            if($zf_executeFetchSchoolDepartments->RecordCount() > 0){
 
-                while(!$zf_executeFetchSchoolClasses->EOF){
+                while(!$zf_executeFetchSchoolDepartments->EOF){
                     
-                    $results = $zf_executeFetchSchoolClasses->GetRows();
-                    
-                }
-                
-                return $results;
-
-                
-            }else{
-                
-                return 0;
-                
-            }
-        }
-        
-    }
-    
-    
-    
-    /**
-     * This method checks and counts, then returns all inner class details for all classess in the school 
-     */
-    private function zvs_fetchClassInnerDetails($schoolClassCode){
-        
-        $capacityCount = $this->zvs_classCapacityCount($schoolClassCode); 
-        $occupancyCount = $this->zvs_classOccupancyCount($schoolClassCode); 
-        $availabilityCount = $capacityCount - $occupancyCount;
-        
-        $classInnerDetails = '<div class="col-md-4">Capacity: '.$capacityCount.'</div><div class="col-md-4">Occupancy: '.$occupancyCount.'</div><div class="col-md-4">Availability: '.$availabilityCount.'</div>';
-        
-        return $classInnerDetails;
-        
-    }
-    
-    
-    
-    /**
-     * 
-     */
-    private function zvs_classCapacityCount($schoolClassCode){
-        
-        $zvs_table = "zvs_school_streams";
-        
-        $zvs_query =  "SELECT SUM(schoolStreamCapacity) AS streamCapacity FROM ". $zvs_table . " WHERE schoolClassCode = '$schoolClassCode' "; //die
-        
-        $zf_executeFetchSchoolStreams = $this->Zf_AdoDB->Execute($zvs_query);
-
-        if(!$zf_executeFetchSchoolStreams){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            $classCapacity = $zf_executeFetchSchoolStreams->fields['streamCapacity'];
-            
-            if($classCapacity > 0){
-                
-                return $classCapacity;
-                
-            }else{
-                
-                return 0;
-                
-            }
-            
-        }
-        
-    }
-    
-    
-    
-    
-    /**
-     * 
-     */
-    private function zvs_classOccupancyCount($schoolClassCode){
-        
-        $zvs_table = "zvs_school_streams";
-        
-        $zvs_query =  "SELECT SUM(schoolStreamOccupancy) AS streamOccupancy FROM ". $zvs_table . " WHERE schoolClassCode = '$schoolClassCode' "; //die
-        
-        $zf_executeFetchSchoolStreams = $this->Zf_AdoDB->Execute($zvs_query);
-
-        if(!$zf_executeFetchSchoolStreams){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            $classOccupancy = $zf_executeFetchSchoolStreams->fields['streamOccupancy'];
-            
-            if($classOccupancy > 0){
-                
-                return $classOccupancy;
-                
-            }else{
-                
-                return 0;
-                
-            }
-            
-        }
-        
-    }
-    
-    
-    
-    
-    /**
-     * This method checks and counts, then returns all stream details for all classess in the school.
-     */
-    private function zvs_fetchStreamDetails($schoolClassCode){
-        
-        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
-        
-        $fetchSchoolStreams = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zvs_sqlValue);
-        
-        $zf_executeFetchSchoolStreams = $this->Zf_AdoDB->Execute($fetchSchoolStreams);
-
-        if(!$zf_executeFetchSchoolStreams){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            if($zf_executeFetchSchoolStreams->RecordCount() > 0){
-
-                while(!$zf_executeFetchSchoolStreams->EOF){
-                    
-                    $results = $zf_executeFetchSchoolStreams->GetRows();
+                    $results = $zf_executeFetchSchoolDepartments->GetRows();
                     
                 }
                 

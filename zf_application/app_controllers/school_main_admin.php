@@ -78,9 +78,11 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage departments view
      */
-    public function actionManage_departments(){
+    public function actionManage_departments($identificationCode){
         
-        Zf_View::zf_displayView('manage_departments');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_departments', $zf_actionData);
         
     }
    
