@@ -212,14 +212,21 @@ class platformSchoolDetails_Model extends Zf_Model {
         
         if($platformSchools == 0){
             
-            $schoolRows = '<tr><td colspan="3" >There are no '.$schoolLevel.' yet.</td></tr>';
+            $schoolRows = '<tr>
+                                <td colspan="3" style="background-color: #ffffff; !imprtant;" >
+                                    <div class=" zvs-content-warnings" style="text-align: center !important; padding-top: 6% !important; height: 100px !important; margin-top: 5% !important; margin-bottom: 5% !important;">
+                                        <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
+                                        <span class="content-view-errors" >
+                                            &nbsp;There are no '.$schoolLevel.' in yet! <br>You need to add '.$schoolLevel.' to have overview.
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>';
             
         }else{
             
             foreach ($platformSchools as $values){
                 
-                //if($this->userRole == ZVS_SUPER_ADMIN){ $zvs_controller = "zvs_super_admin";}else if($this->userRole == ZVS_ADMIN){$zvs_controller = "zvs_platform_admin";}
-
                 $schoolName = $values['schoolName']; $systemSchoolCode = $values['systemSchoolCode'];
                 $status = $values['schoolStatus']; if($status == "1"){ $schoolStatus = "Active"; }else{ $schoolStatus = "Inactive"; }
                 $schoolRows .= '<tr><td>'.$schoolName.'</td><td>'.$schoolStatus.'</td><td><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_platform_school'.DS.  Zf_SecureData::zf_encode_url($systemSchoolCode).' " title="View '.$schoolName.'" ><i class="fa fa-list"></i></a></td></tr>';

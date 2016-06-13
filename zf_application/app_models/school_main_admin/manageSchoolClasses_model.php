@@ -15,10 +15,6 @@
 
 class manageSchoolClasses_Model extends Zf_Model {
     
-
-    private $_errorResult = array();
-    private $_validResult = array();
-    
     private $zvs_controller;
 
 
@@ -87,9 +83,14 @@ class manageSchoolClasses_Model extends Zf_Model {
              
             $zvs_classGridView .='<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                       <div class="zvs-content-titles">
-                                           <h3 class="">'.$zvs_className.'</h3>
-                                       </div>';
+                                        <div class="zvs-content-titles">
+                                            <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
+                                                <h3 style="padding-left: 10px !important;">'.$zvs_className.'</h3>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
+                                                <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_class_details'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolClassCode).' " title="View '.$zvs_className.'" ><i class="fa fa-list"></i></a></h3>
+                                            </div>
+                                        </div>';
 
                                        if($zvs_streamDetails == 0){
 
@@ -121,7 +122,7 @@ class manageSchoolClasses_Model extends Zf_Model {
                                                                                                 $streamName = $streamValues['schoolStreamName']; $streamCapacity = $streamValues['schoolStreamCapacity']; $streamOccupancy = $streamValues['schoolStreamOccupancy']; $streamAvailability = $streamCapacity - $streamOccupancy;
                                                                                                 $streamCode = $streamValues['schoolStreamCode'];
                                                                                                 
-                                                                                                $zvs_classGridView .='<tr><td>'.$streamName.'</td><td style="text-align:center !important;">'.$streamCapacity.'</td><td style="text-align:center !important;">'.$streamOccupancy.'</td><td style="text-align:center !important;">'.$streamAvailability.'</td><td><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_stream_details'.DS.  Zf_SecureData::zf_encode_url($streamCode).' " title="View '.$zvs_className.' '.$streamName.'" ><i class="fa fa-list"></i></a></td></tr>';
+                                                                                                $zvs_classGridView .='<tr><td>'.$streamName.'</td><td style="text-align:center !important;">'.$streamCapacity.'</td><td style="text-align:center !important;">'.$streamOccupancy.'</td><td style="text-align:center !important;">'.$streamAvailability.'</td><td><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_stream_details'.DS.  Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$streamCode).' " title="View '.$zvs_className.' '.$streamName.'" ><i class="fa fa-list"></i></a></td></tr>';
                                                                                                 
                                                                                             }
 
@@ -211,6 +212,7 @@ class manageSchoolClasses_Model extends Zf_Model {
     
     
     
+    
     /**
      * This method checks and counts, then returns all inner class details for all classess in the school 
      */
@@ -220,7 +222,7 @@ class manageSchoolClasses_Model extends Zf_Model {
         $occupancyCount = $this->zvs_classOccupancyCount($schoolClassCode); 
         $availabilityCount = $capacityCount - $occupancyCount;
         
-        $classInnerDetails = '<div class="col-md-4">Capacity: '.$capacityCount.'</div><div class="col-md-4">Occupancy: '.$occupancyCount.'</div><div class="col-md-4">Availability: '.$availabilityCount.'</div>';
+        $classInnerDetails = '<div class="col-md-4 col-sm-4">Capacity: '.$capacityCount.'</div><div class="col-md-4 col-sm-4">Occupancy: '.$occupancyCount.'</div><div class="col-md-4 col-sm-4">Availability: '.$availabilityCount.'</div>';
         
         return $classInnerDetails;
         
@@ -228,10 +230,11 @@ class manageSchoolClasses_Model extends Zf_Model {
     
     
     
+    
     /**
      * 
      */
-    private function zvs_classCapacityCount($schoolClassCode){
+    public function zvs_classCapacityCount($schoolClassCode){
         
         $zvs_table = "zvs_school_streams";
         
@@ -240,8 +243,8 @@ class manageSchoolClasses_Model extends Zf_Model {
         $zf_executeFetchSchoolStreams = $this->Zf_AdoDB->Execute($zvs_query);
 
         if(!$zf_executeFetchSchoolStreams){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+            
+             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
@@ -267,7 +270,7 @@ class manageSchoolClasses_Model extends Zf_Model {
     /**
      * 
      */
-    private function zvs_classOccupancyCount($schoolClassCode){
+    public function zvs_classOccupancyCount($schoolClassCode){
         
         $zvs_table = "zvs_school_streams";
         
@@ -294,6 +297,37 @@ class manageSchoolClasses_Model extends Zf_Model {
             }
             
         }
+        
+    }
+    
+    
+    
+    
+    /**
+     * 
+     */
+    public function zvs_classStreamsCount($schoolClassCode){
+      
+        $zvs_table = "zvs_school_streams";
+        
+        $zvs_column[] = "schoolStreamCode";
+        $zvs_value['schoolClassCode'] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        
+        $classStreams = Zf_QueryGenerator::BuildSQLSelect($zvs_table, $zvs_value, $zvs_column);
+        
+        $zvs_executeClassStreams = $this->Zf_AdoDB->Execute($classStreams);
+        
+        if (!$zvs_executeClassStreams){
+            
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+            
+        }else{
+                
+            $zvs_classStreamCount = $zvs_executeClassStreams->RecordCount();
+            
+        }
+        
+        return $zvs_classStreamCount;
         
     }
     
@@ -336,6 +370,92 @@ class manageSchoolClasses_Model extends Zf_Model {
         }
         
     }
+    
+    
+    
+    /**
+     * THESE METHODS ARE EXTERNAL ACCESSORS TO THE EXTERNAL VIEWS OF CLASSESS AND STREAMS. THEY CAN ALSO BE USED BY OTHER METHODS
+     * TO ACCESS THE SAME DETAILS
+     */
+    
+    
+    /**
+     * This method checks and returns data for a specific target class. 
+     */
+    public function zvs_fetchClassOuterDetails($schoolClassCode){
+        
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        
+        $fetchSchoolClasses = Zf_QueryGenerator::BuildSQLSelect('zvs_school_classes', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolClasses= $this->Zf_AdoDB->Execute($fetchSchoolClasses);
+
+        if(!$zf_executeFetchSchoolClasses){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolClasses->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolClasses->EOF){
+                    
+                    $results = $zf_executeFetchSchoolClasses->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method checks and returns data for a specific target class. 
+     */
+    public function zvs_fetchStreamOuterDetails($classStreamCode){
+        
+        $zvs_sqlValue["schoolStreamCode"] = Zf_QueryGenerator::SQLValue($classStreamCode);
+        
+        $fetchClassStream = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zvs_sqlValue);
+        
+        $zf_executeFetchClassStream = $this->Zf_AdoDB->Execute($fetchClassStream);
+
+        if(!$zf_executeFetchClassStream){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchClassStream->RecordCount() > 0){
+
+                while(!$zf_executeFetchClassStream->EOF){
+                    
+                    $results = $zf_executeFetchClassStream->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
+    
     
 }
 

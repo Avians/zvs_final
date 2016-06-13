@@ -158,6 +158,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; 
 }
 
+.portlet-inner-body-short{
+    padding: 10px auto 10px auto !important; margin-bottom: 0px !important; text-align: center !important; font-size: 18px !important; font-family: Oswald-Light !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; 
+}
+
 .tabbable-custom > .tab-content {
     min-height: 335px !important; margin-bottom:0px !important;
    
@@ -288,6 +293,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
 .zvs-content-titles h3{
     padding: 5px 0px 0px 25px !important; color: #3C3C3C !important; font-family: ProximaNova-Semibold !important; font-size: 13px !important;
     font-weight: bold; letter-spacing: 0.05em !important;
+}
+
+.zvs-inner-content-titles h3{
+    padding: 10px auto 10px auto !important; color: #21B4E2 !important; font-family: Oswald-Light !important; font-size: 20px !important;
+    font-weight: bold; letter-spacing: 0.05em !important; text-align: center !important;
 }
 
 .zvs-content-footer {

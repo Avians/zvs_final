@@ -8,7 +8,7 @@ class class_select_Model extends Zf_Model {
     
     
     //This method is responsoble for building country codes.
-    public function zvs_buildCountryCode($identificationCode) {
+    public function zvs_buildClassSelectCode($identificationCode) {
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         

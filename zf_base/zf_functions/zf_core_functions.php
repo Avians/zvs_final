@@ -453,6 +453,27 @@ class Zf_Core_Functions {
     }
     
     
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD FOR RUNNING THROUGH AN ARRAY OF ARRAYS
+     * -------------------------------------------------------------------------
+     * @param none
+     * @return string true or false
+     */
+    public static function Zf_recursiveArray($outer_array, $inner_arrays, $strict = false){
+        
+        //This function runs a recursive treversal of the array.
+        foreach ($inner_arrays as $item) {
+            if (($strict ? $item === $outer_array : $item == $outer_array) || (is_array($item) && self::Zf_recursiveArray($outer_array, $item, $strict))) {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    
+    
   
 }
 

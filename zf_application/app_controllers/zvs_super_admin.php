@@ -207,14 +207,44 @@ class Zvs_super_adminController extends Zf_Controller {
     /**
      * This action executes the resources view
      */
-    public function actionManage_resources(){
+    public function actionManage_resources($identificationCode){
         
-        Zf_View::zf_displayView('manage_resources');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_resources', $zf_actionData);
         
     }
     
     
-   
+    
+    
+    /**
+     * This action executes view_modules view
+     */
+    public function actionView_module_details($moduleDetails){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($moduleDetails);
+        
+        Zf_View::zf_displayView('view_module_details', $zf_actionData);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This action executes view_resources view
+     */
+    public function actionView_resource_details($resourceId){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($resourceId);
+        
+        Zf_View::zf_displayView('view_resource_details', $zf_actionData);
+        
+    }
+
+    
+    
     
     /**
      * This action executes the personal profile view
@@ -322,6 +352,43 @@ class Zvs_super_adminController extends Zf_Controller {
             
             //Register a new school to Zilas Virtual Schools platform 
             $this->zf_targetModel->registerNewPlatformSchool();
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * This action sends new module data to the model for processing
+     */
+    public function actionNewResourcesRegistration($zvs_parameter){
+        
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_module"){
+            
+            //Register a module to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewModule();
+            
+        }
+        if($filterDataUrl == "new_resource"){
+            
+            //Register a module to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewResource();
+            
+        }
+        if($filterDataUrl == "edit_module"){
+            
+            //This action activates or de-actives an existing module. 
+            $this->zf_targetModel->editExistingModule();
+            
+        }
+        if($filterDataUrl == "edit_resource"){
+            
+            //This action activates or de-actives an existing module. 
+            $this->zf_targetModel->editExistingResource();
             
         }
         

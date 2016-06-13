@@ -582,7 +582,308 @@
                 <div class="tab-pane" id="confirmSetupInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
-                    <h4 class="form-section confirm-inner-title">Confirm School Setup Information</h4>
+                    <h4 class="form-section confirm-inner-title">School Setup Information</h4>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Code:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolCode"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Registration Number:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="registrationNumber"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Name:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Year Established:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="dateOfEstablishment"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Email:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolEmail"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Website:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolWebsite"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Phone:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolPhoneNumber"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Mobile:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolMobileNumber"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolBoxAddress"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Motto:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolMotto"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Level:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolLevel"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Category:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolCategory"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Gender:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolGender"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Type:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolType"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Country:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolCountry"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Locality:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolLocality"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <h4 class="form-section confirm-inner-title">School Administrator Information</h4>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Admin Designation:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="designation"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">First Name:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="firstName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Middle Name:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="middleName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Last Name:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="lastName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Gender:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="gender"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Id Number:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="idNumber"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Mobile Number:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="mobileNumber"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Email Address:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="email"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="boxAddress"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Admin Country:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result" data-display="country"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Admin Locality:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="locality"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--/row-->
                     
                     
                 </div>

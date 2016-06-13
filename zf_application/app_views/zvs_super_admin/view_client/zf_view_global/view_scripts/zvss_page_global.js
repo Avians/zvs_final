@@ -7,6 +7,8 @@ $(document).ready(function() {
     SuperAdminFormWizard.init();
     PlatformAdminFormWizard.init();
     NewSchoolFormWizard.init();
+    NewModuleFormWizard.init();
+    EditModuleFormWizard.init();
     FormSelect.init();
     ComponentsPickers.init();
     

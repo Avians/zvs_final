@@ -27,6 +27,7 @@
 
         <div class="clearfix"></div>
         <?php
+            //An pop up indicator that show success or failure in creating a new department or sub-department.
             $zf_widgetFolder = "indicators"; $zf_widgetFile = "department_setup_indicator.php";
             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
         ?> 
@@ -44,7 +45,7 @@
                         <div>
                             <div class="row margin-top-10">
                                 <?php
-                                    //Here we fetch all class details
+                                    //Here we fetch all department details for the school departments.
                                     $zf_controller->zf_targetModel->fetchDepartmentsDetails($identificationCode);
                                 ?>
                             </div>
@@ -56,7 +57,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform super administrators
-                                                //Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_department_form.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_department_form.php");
                                             ?>
                                         </div>
                                     </div>          
@@ -78,7 +79,7 @@
                                             <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
                                                 <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i>
                                                 <span class="content-view-errors" >
-                                                    &nbsp;There are no registered school departments yet! You need to add atleast one department to have an overview.
+                                                    &nbsp;There are no registered school departments yet! You need to add at-least one department to have an overview.
                                                 </span>
                                             </div>
                                         </div>
@@ -91,8 +92,8 @@
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="portlet-body form" >
                                             <?php
-                                                //Confirm the presence of a class so as to pull the new stream form.
-                                                //Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_sub_department_form.php");
+                                                //Confirm the presence of a sub department so as to pull the new sub department form.
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_sub_department_form.php");
                                             ?>
                                         </div>
                                     </div>          
@@ -117,9 +118,9 @@
         //Here we are generating the applications absolute path.
         var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
         var $separator = "<?= DS; ?>";
-        var $current_view = "manage_classes";
+        var $current_view = "manage_department";
 
-        //ManageClasses.init($current_view, $absolute_path, $separator );
+        ManageForms.init($current_view, $absolute_path, $separator );
 
 
     });

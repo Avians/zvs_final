@@ -210,16 +210,6 @@ class Authentication_Model extends Zf_Model {
                                                 exit();
                                                 
                                             }
-                                            
-                                            
-                                            //School community section
-                                            else if($userRole == SCHOOL_PRINCIPAL){
-                                                
-                                                //Dashboard for school principal
-                                                Zf_GenerateLinks::zf_header_location("school_principal", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
                                             else if($userRole == SCHOOL_MAIN_ADMIN){
                                                 
                                                 //Dashboard for main school administrator
@@ -227,49 +217,6 @@ class Authentication_Model extends Zf_Model {
                                                 exit();
                                                 
                                             }
-                                            else if($userRole == SCHOOL_GENERAL_ADMIN){
-                                                
-                                                //Dashboard for general school administrator
-                                                Zf_GenerateLinks::zf_header_location("school_general_admin", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
-                                            else if($userRole == SCHOOL_SUB_STAFF){
-                                                
-                                                //Dashboard for school sub staff
-                                                Zf_GenerateLinks::zf_header_location("school_sub_staff", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
-                                            else if($userRole == SCHOOL_BOG){
-                                                
-                                                //Dashboard for school board of governor
-                                                Zf_GenerateLinks::zf_header_location("school_bog", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
-                                            else if($userRole == SCHOOL_STUDENT){
-                                                
-                                                //Dashboard for school student
-                                                Zf_GenerateLinks::zf_header_location("school_student", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
-                                            else if($userRole == SCHOOL_PARENT){
-                                                
-                                                //Dashboard for school parent
-                                                Zf_GenerateLinks::zf_header_location("school_parent", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
-                                            else if($userRole == SCHOOL_ALUMNI){
-                                                
-                                                //Dashboard for school alumni
-                                                Zf_GenerateLinks::zf_header_location("school_alumni", "main_dashboard", $identificationCode);
-                                                exit();
-                                                
-                                            }
-                                            
                                             
                                             //Restricted users section
                                             else if($userRole == ZVS_GUEST_USER){
@@ -287,13 +234,23 @@ class Authentication_Model extends Zf_Model {
                                                 
                                             }else {
                                                 
-                                                //Form error
-                                                $zvss_errorData = array( "zf_fieldName" => "email", "zf_errorMessage" => "* Information is invalid. Contact school " );
-                                                Zf_FormController::zf_validateSpecificField($this->_validResult, $zvss_errorData);
+                                                if(!empty($userRole) && $userRole != ""){
+                                                    
+                                                    //Redirect to the general dashboard for any school user.
+                                                    Zf_GenerateLinks::zf_header_location("zvs_general_school", "main_dashboard", $identificationCode);
+                                                    exit();
+                                                    
+                                                }else{
+                                                    
+                                                    //Form error
+                                                    $zvss_errorData = array( "zf_fieldName" => "email", "zf_errorMessage" => "* Information is invalid. Contact school " );
+                                                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zvss_errorData);
 
-                                                //Redirect to login page
-                                                Zf_GenerateLinks::zf_header_location('initialize');
-                                                exit();
+                                                    //Redirect to login page
+                                                    Zf_GenerateLinks::zf_header_location('initialize');
+                                                    exit();
+                                                    
+                                                }
                                                 
                                             }   
                                            
