@@ -129,12 +129,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                                       </table>
                                                                                   </div>
                                                                              </div>
-                                                                        </div>';
-
-                                       }
-                                        
-            $zvs_resourcesGridView .='</div>          
-                                </div><div class="zvs-content-footer">
+                                                                        </div><div class="zvs-content-footer">
                                                                             <div class="row">';
                                                                     
                                                                    $zvs_resourcesGridView .= '<div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
@@ -143,6 +138,11 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                                 
                                                      $zvs_resourcesGridView .=' </div>
                                                                         </div>';
+
+                                       }
+                                        
+            $zvs_resourcesGridView .='</div>          
+                                </div>';
              
              }
              
