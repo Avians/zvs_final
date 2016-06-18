@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Jun 13, 2016 at 01:35 PM
+-- Generation Time: Jun 18, 2016 at 07:21 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.7
 
@@ -48,7 +48,7 @@ INSERT INTO `zvs_application_users` (`id`, `email`, `password`, `identificationC
 (7, 'athiasavians@gmail.com', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '-B8SXuuBHzlhkuoFkxWLsh21XcsB5XCazm2sChuJZnGqKD6lrzLxIj4qrUFkd5LcGNOjRAflqjzp2daSmHbaOeProh5vZbJddzXuk6WASb4BQ0p0Bifd3NDxGdWUSZoq', 1),
 (8, 'frida@zilasvirtualschools.com', '9xwQaWODCuoOASrkWUKzKTTLEH-XthPCIMqH_oiipwY', 'pSoaHX1j8XXb2diMDomSijvRhBm6bxybcBWAbm6KL-mKnf601gVVsnjNPfnt5wclTlXDRp78mC6Y69_jWauJjagrwdqBkdLh9RvqvMF8O3_9G2EJloD2wNVgUddYWyLw', 1),
 (9, 'liz@pangani.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', 'Ujtzm2mvPdc_9TvTJK7Xj0q7uQW68YotqQJt4BjFJ26dDam-gc_dprXCAxPYR1725xxw_hz8RFK4WpGLC5Fav45ejoXQ9pqeBItL2ZyXjq1I-p90244FXFQ-6Klwlf6X', 1),
-(10, 'user@masenoschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKzJn2XDT3eVzD9H0dzYGd35oduERokTIhwrEOlCSVTdE9c-3V86xlnnF9sC59x1q9nu318c_kxFLXJ7hg7Id_PA', 1),
+(10, 'user@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (11, 'elvis@migtech.co.ke', 'FbCzkk2c9C-_e5VO8EM4amH_hpi5CRKpz3z-PbMkSe0', 'Gx09RceJmKjyZXazBudPOO_0lmmHibkZqheh3XE3xNFHCgacBK7zIJNL_36pylAiliQ3UT2L5Q5O7rF-xHE6AbE3vObQAP46tnDEhUvPg7RWXr8zOy5f2AvMTXf0Kuow', 1);
 
 -- --------------------------------------------------------
@@ -100,7 +100,27 @@ CREATE TABLE `zvs_platform_resources` (
   `dateCreated` date NOT NULL,
   `dateModified` date DEFAULT NULL,
   `resourceStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_platform_resources`
+--
+
+INSERT INTO `zvs_platform_resources` (`id`, `resourceId`, `resourceName`, `resourceCategory`, `dateCreated`, `dateModified`, `resourceStatus`) VALUES
+(1, 'ClsMod[`^`]ViewClasses', 'View Classes', 'Class', '2016-06-13', NULL, 1),
+(2, 'ClsMod[`^`]ClassProfile', 'Class Profile', 'Class', '2016-06-17', NULL, 1),
+(3, 'ClsMod[`^`]ViewStreams', 'View Streams', 'Class', '2016-06-17', NULL, 0),
+(4, 'ClsMod[`^`]StreamProfile', 'Stream Profile', 'Class', '2016-06-17', NULL, 0),
+(5, 'DepMod[`^`]ViewDepartments', 'View Departments', 'Department', '2016-06-17', NULL, 0),
+(6, 'DepMod[`^`]DepartmentProfile', 'Department Profile', 'Department', '2016-06-17', NULL, 0),
+(7, 'DepMod[`^`]ViewSubDepartments', 'View Sub Departments', 'Department', '2016-06-17', NULL, 0),
+(8, 'DepMod[`^`]SubDepartmentProfile', 'Sub Department Profile', 'Department', '2016-06-17', NULL, 0),
+(9, 'FinMod[`^`]CreateFees', 'Create Fees', 'Finance', '2016-06-17', NULL, 0),
+(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '2016-06-17', NULL, 0),
+(11, 'FinMod[`^`]CollectFees', 'Collect Fees', 'Finance', '2016-06-17', NULL, 1),
+(12, 'FinMod[`^`]FeeStructure', 'Fee Structure', 'Finance', '2016-06-17', NULL, 0),
+(13, 'FinMod[`^`]FeeDefaulters', 'Fee Defaulters', 'Finance', '2016-06-17', NULL, 0),
+(14, 'FinMod[`^`]FeeRefunds', 'Fee Refunds', 'Finance', '2016-06-17', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -121,9 +141,9 @@ CREATE TABLE `zvs_resource_categories` (
 --
 
 INSERT INTO `zvs_resource_categories` (`id`, `categoryName`, `categoryPrefix`, `dateCreated`, `categoryStatus`) VALUES
-(1, 'Class', 'ClsMod', '2016-06-09', 0),
+(1, 'Class', 'ClsMod', '2016-06-09', 1),
 (2, 'Department', 'DepMod', '2016-06-09', 0),
-(3, 'Finance', 'FinMod', '2016-06-09', 0),
+(3, 'Finance', 'FinMod', '2016-06-09', 1),
 (4, 'Student', 'StuMod', '2016-06-09', 0),
 (5, 'Teacher', 'TchMod', '2016-06-09', 0),
 (6, 'Sub Staff', 'SstMod', '2016-06-09', 0),
@@ -150,16 +170,22 @@ CREATE TABLE `zvs_resource_role_mapper` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(200) NOT NULL,
   `schoolRoleId` varchar(100) NOT NULL,
-  `schoolResourceId` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `schoolResourceId` varchar(45) DEFAULT NULL,
+  `resourceCategory` varchar(6) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_resource_role_mapper`
 --
 
-INSERT INTO `zvs_resource_role_mapper` (`id`, `systemSchoolCode`, `schoolRoleId`, `schoolResourceId`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]AllocateSchoolFees'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ParMod[`^`]ViewParent');
+INSERT INTO `zvs_resource_role_mapper` (`id`, `systemSchoolCode`, `schoolRoleId`, `schoolResourceId`, `resourceCategory`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]AllocateSchoolFees', 'ClsMod'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]ClassProfile', 'ClsMod'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod[`^`]ViewClasses', 'ClsMod'),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod', 'ClsMod'),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod[`^`]ClassProfile', 'ClsMod'),
+(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod', 'FinMod'),
+(7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]CollectFees', 'FinMod');
 
 -- --------------------------------------------------------
 
@@ -715,14 +741,15 @@ CREATE TABLE `zvs_school_roles` (
   `dateModified` date DEFAULT NULL,
   `assignStatus` tinyint(1) unsigned zerofill NOT NULL,
   `roleStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_roles`
 --
 
 INSERT INTO `zvs_school_roles` (`id`, `systemSchoolCode`, `schoolRoleCode`, `schoolRoleName`, `schoolRoleAlias`, `schoolRoleId`, `dateCreated`, `dateModified`, `assignStatus`, `roleStatus`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-06-09', NULL, 1, 1);
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'Principal', 'Principal', 'Principal', '2016-06-17', NULL, 1, 1),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-06-17', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -987,7 +1014,7 @@ ALTER TABLE `zvs_platform_admin`
 -- AUTO_INCREMENT for table `zvs_platform_resources`
 --
 ALTER TABLE `zvs_platform_resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `zvs_resource_categories`
 --
@@ -997,7 +1024,7 @@ ALTER TABLE `zvs_resource_categories`
 -- AUTO_INCREMENT for table `zvs_resource_role_mapper`
 --
 ALTER TABLE `zvs_resource_role_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `zvs_school_admin`
 --
@@ -1042,7 +1069,7 @@ ALTER TABLE `zvs_school_locality`
 -- AUTO_INCREMENT for table `zvs_school_roles`
 --
 ALTER TABLE `zvs_school_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `zvs_school_streams`
 --
