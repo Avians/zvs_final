@@ -95,9 +95,11 @@ class pull_platform_resources_Model extends Zf_Model {
                                                                                             foreach ($zvs_resourceDetails as $resourceValues) {
 
                                                                                                 $resourceName = $resourceValues['resourceName']; $resourceID = $resourceValues['resourceId']; 
+                                                                                                $resourceCategoryId =  explode(ZVSS_CONNECT, $resourceID)[0];
+                                                                                                
                                                                                                 $cleanName = Zf_Core_Functions::Zf_CleanName($resourceName);
                                                                                                 
-                                                                                                $zvs_resourcesGridView .='<tr><td><label class="checkbox-inline"><input type="checkbox" name="'.$cleanName.'"  value="'.$resourceID.'" id="'.$resourceID.'">'.$resourceName.'</td></tr>';
+                                                                                                $zvs_resourcesGridView .='<tr><td><label class="checkbox-inline"><input type="checkbox" name="'.$cleanName.'"  value="'.$resourceID.'" id="'.$resourceID.'"><input type="hidden" name="'.$resourceCategoryId.'"  value="'.$resourceCategoryId.'" id="'.$resourceCategoryId.'">'.$resourceName.'</td></tr>';
                                                                                                 
                                                                                             }
 
