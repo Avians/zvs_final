@@ -22,10 +22,10 @@
                         Select a role from available school roles and assign available platform resources to the selected role.
                     </div>
                     <div class="row">
-                        <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 100px !important; padding-top: 30px !important;">
+                        <div class="col-md-8" min-height: 100px !important; padding-top: 30px !important;">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Select School Role:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-6">Select School Role:</label>
+                                <div class="col-md-6">
                                     <select class="form-control select2me roleOptions" id="roleOptions" name="schoolRoleId" data-placeholder="Principal, Bursar, Teacher, Parent ...."  value="<?php echo $zf_formHandler->zf_getFormValue("schoolRoleId"); ?>">
                                         <?php
                                             $zf_widgetFolder = "school_main_admin";
@@ -36,22 +36,6 @@
                                         <?php echo $zf_formHandler->zf_getFormError("schoolRoleId"); ?>
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-5">
-                            <div class="row">
-                                <div class="col-md-12" style="padding-top: 30px !important;">
-                                    <div class="form-group">
-                                        <div class="col-md-9 col-md-offset-2">
-                                            <div class="checkbox-list activateAllSubjects">
-                                                <label class="checkbox-inline">
-                                                    <input id="activateAllSubjects" type="checkbox" name="activateAllSubjects" value="1">&nbsp;Activate all inactive subjects</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/span-->
                             </div>
                         </div>
                         <!--/span-->

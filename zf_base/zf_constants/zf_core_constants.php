@@ -189,6 +189,83 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('ZVS_GUEST_SCHOOL')        ?   null : define('ZVS_GUEST_SCHOOL'        ,  -1); 
     defined('ZVS_BANNED_SCHOOL')       ?   null : define('ZVS_BANNED_SCHOOL'       ,  -5);
     
+    
+
+    
+/**
+ * -----------------------------------------------------------------------------
+ * THESE HOLDS ALL PLATFORM MODULES WITHIN ZILAS VIRTUAL SCHOOLS
+ * -----------------------------------------------------------------------------
+ */ 
+    //Class Module
+    defined('CLASS_MODULE') ? null : define('CLASS_MODULE' , 'ClsMod');
+    
+    //Department Module
+    defined('DEPARTMENT_MODULE') ? null : define('DEPARTMENT_MODULE' , 'DepMod');
+    
+    
+    //Finance Module
+    defined('FINANCE_MODULE') ? null : define('FINANCE_MODULE' , 'FinMod');
+    
+    
+    //Student Module
+    defined('STUDENT_MODULE') ? null : define('STUDENT_MODULE' , 'StuMod');
+    
+    
+    //Teacher Module
+    defined('TEACHER_MODULE') ? null : define('TEACHER_MODULE' , 'TchMod');
+    
+    
+    //Sub Staff Module
+    defined('SUB_STAFF_MODULE') ? null : define('SUB_STAFF_MODULE' , 'SstMod');
+    
+    
+    //Parent Module
+    defined('PARENT_MODULE') ? null : define('PARENT_MODULE' , 'ParMod');
+    
+    
+    //BOG Module
+    defined('BOG_MODULE') ? null : define('BOG_MODULE' , 'BogMod');
+    
+    
+    //Subject Module
+    defined('SUBJECT_MODULE') ? null : define('SUBJECT_MODULE' , 'SubMod');
+    
+    
+    //Examination Module
+    defined('EXAMINATION_MODULE') ? null : define('EXAMINATION_MODULE' , 'ExmMod');
+    
+    
+    //Marksheet Module
+    defined('MARKSHEET_MODULE') ? null : define('MARKSHEET_MODULE' , 'MrkMod');
+    
+    
+    //Timetable Module
+    defined('TIMETABLE_MODULE') ? null : define('TIMETABLE_MODULE' , 'TtbMod');
+    
+    
+    //Noticeboard Module
+    defined('NOTICEBOARD_MODULE') ? null : define('NOTICEBOARD_MODULE' , 'NtcMod');
+    
+    
+    //Library Module
+    defined('LIBRARY_MODULE') ? null : define('LIBRARY_MODULE' , 'LibMod');
+    
+    
+    //Transport Module
+    defined('TRANSPORT_MODULE') ? null : define('TRANSPORT_MODULE' , 'TrnMod');
+    
+    
+    //Kitchen Module
+    defined('KITCHEN_MODULE') ? null : define('KITCHEN_MODULE' , 'KtnMod');
+    
+    
+    //Health Module
+    defined('HEALTH_MODULE') ? null : define('HEALTH_MODULE' , 'HthMod');
+    
+    
+    //Hostel Module
+    defined('HOSTEL_MODULE') ? null : define('HOSTEL_MODULE' , 'HosMod');
    
 
 ?>

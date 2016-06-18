@@ -14,9 +14,9 @@ class zvs_general_school_menu_Model extends Zf_Model {
         $userRole = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[3];
         
         $zvs_sqlValues["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValues["schoolRoleID"] = Zf_QueryGenerator::SQLValue($userRole);
+        $zvs_sqlValues["schoolRoleId"] = Zf_QueryGenerator::SQLValue($systemSchoolCode.ZVSS_CONNECT.$userRole);
         
-        $zvs_sqlColumns[] = "schoolResourceId";
+        $zvs_sqlColumns = array('schoolResourceId', 'resourceCategory'); //This specifies all columns that need to be fetched
         
         
         //We select all resources from the database where school and userRole matches as above.

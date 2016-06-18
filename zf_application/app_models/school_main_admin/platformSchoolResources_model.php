@@ -116,7 +116,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                 
                                                                                             foreach ($zvs_resourceDetails as $resourceValues) {
 
-                                                                                                $resourceName = $resourceValues['resourceName']; $dateCreated = $resourceValues['dateCreated']; $resourceStatus = ($resourceValues['resourceStatus'] == 1 ? '<i class="fa fa-check" style="color:#3c763d !important;"></i>':'<i class="fa fa-times" style="color:#a94442 !important;"></i>');
+                                                                                                $resourceName = $resourceValues['resourceName']; $dateCreated = $resourceValues['dateCreated']; $resourceStatus = ($resourceValues['resourceStatus'] == 1 ? '<i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
                                                                                                 
                                                                                                 $zvs_resourcesGridView .='<tr><td>'.$resourceName.'</td><td style="text-align:center !important;">'.$dateCreated.'</td><td style="text-align:center !important;">'.$resourceStatus.'</td></tr>';
                                                                                                 

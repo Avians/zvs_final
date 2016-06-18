@@ -73,7 +73,7 @@ class platformSchoolResources_Model extends Zf_Model {
                  
                  $categoryName = $categoryValues['categoryName'];
                  $categoryPrefix = $categoryValues['categoryPrefix'];
-                 $categoryStatus = ($categoryValues['categoryStatus'] == 1 ? '<i class="fa fa-check-circle-o" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle-o" style="color:#a94442 !important;"></i>');
+                 $categoryStatus = ($categoryValues['categoryStatus'] == 1 ? '<i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
                  
                  
                  
@@ -123,7 +123,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                 
                                                                                             foreach ($zvs_resourceDetails as $resourceValues) {
 
-                                                                                                $resourceName = $resourceValues['resourceName']; $resourceStatus = ($resourceValues['resourceStatus'] == 1 ? '<i class="fa fa-check-circle-o" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle-o" style="color:#a94442 !important;"></i>');
+                                                                                                $resourceName = $resourceValues['resourceName']; $resourceStatus = ($resourceValues['resourceStatus'] == 1 ? '<i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
                                                                                                 $resourceID = $resourceValues['resourceId'];
                                                                                                 
                                                                                                 $zvs_resourcesGridView .='<tr><td>'.$resourceName.'</td><td style="text-align:center !important;">'.$resourceStatus.'</td><td style="text-align:center !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_resource_details'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$resourceID).' " title="View '.$resourceName.'" ><i class="fa fa-list"></i></a></td></tr>';
