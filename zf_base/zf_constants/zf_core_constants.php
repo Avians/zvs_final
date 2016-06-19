@@ -197,74 +197,90 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
  * THESE HOLDS ALL PLATFORM MODULES WITHIN ZILAS VIRTUAL SCHOOLS
  * -----------------------------------------------------------------------------
  */ 
-    //Class Module
+    defined('CONNECT') ? null : define('CONNECT' , '[`^`]');
+    
+    //Class Module and resources
     defined('CLASS_MODULE') ? null : define('CLASS_MODULE' , 'ClsMod');
+        defined('VIEW_CLASSES') ? null : define('VIEW_CLASSES' , 'ClsMod'.CONNECT.'ViewClasses');
+        defined('CLASS_PROFILE') ? null : define('CLASS_PROFILE' , 'ClsMod'.CONNECT.'ClassProfile');
+        defined('VIEW_STREAMS') ? null : define('VIEW_STREAMS' , 'ClsMod'.CONNECT.'ViewStreams');
+        defined('STREAM_PROFILE') ? null : define('STREAM_PROFILE' , 'ClsMod'.CONNECT.'StreamProfile');
     
-    //Department Module
+    //Department Module and resources
     defined('DEPARTMENT_MODULE') ? null : define('DEPARTMENT_MODULE' , 'DepMod');
+        defined('VIEW_DEPARTMENTS') ? null : define('VIEW_DEPARTMENTS' , 'DepMod'.CONNECT.'ViewDepartments');
+        defined('DEPARTMENT_PROFILE') ? null : define('DEPARTMENT_PROFILE' , 'DepMod'.CONNECT.'DepartmentProfile');
+        defined('VIEW_SUB_DEPARTMENTS') ? null : define('VIEW_SUB_DEPARTMENTS' , 'DepMod'.CONNECT.'ViewSubDepartments');
+        defined('SUB_DEPARTMENT_PROFILE') ? null : define('SUB_DEPARTMENT_PROFILE' , 'DepMod'.CONNECT.'SubDepartmentProfile');
     
     
-    //Finance Module
+    //Finance Module and resources
     defined('FINANCE_MODULE') ? null : define('FINANCE_MODULE' , 'FinMod');
+        defined('CREATE_FEES') ? null : define('CREATE_FEES' , 'FinMod'.CONNECT.'CreateFees');
+        defined('ALLOCATE_FINANCES') ? null : define('ALLOCATE_FINANCES' , 'FinMod'.CONNECT.'AllocateFinances');
+        defined('COLLECT_FEES') ? null : define('COLLECT_FEES' , 'FinMod'.CONNECT.'CollectFees');
+        defined('FEE_STRUCTURE') ? null : define('FEE_STRUCTURE' , 'FinMod'.CONNECT.'FeeStructure');
+        defined('FEE_DEFAULTERS') ? null : define('FEE_DEFAULTERS' , 'FinMod'.CONNECT.'FeeDefaulters');
+        defined('FEE_REFUNDS') ? null : define('FEE_REFUNDS' , 'FinMod'.CONNECT.'FeeRefunds');
     
     
-    //Student Module
+    //Student Module and resources
     defined('STUDENT_MODULE') ? null : define('STUDENT_MODULE' , 'StuMod');
     
     
-    //Teacher Module
+    //Teacher Module and resources
     defined('TEACHER_MODULE') ? null : define('TEACHER_MODULE' , 'TchMod');
     
     
-    //Sub Staff Module
+    //Sub Staff Module and resources
     defined('SUB_STAFF_MODULE') ? null : define('SUB_STAFF_MODULE' , 'SstMod');
     
     
-    //Parent Module
+    //Parent Module and resources
     defined('PARENT_MODULE') ? null : define('PARENT_MODULE' , 'ParMod');
     
     
-    //BOG Module
+    //BOG Module and resources
     defined('BOG_MODULE') ? null : define('BOG_MODULE' , 'BogMod');
     
     
-    //Subject Module
+    //Subject Module and resources
     defined('SUBJECT_MODULE') ? null : define('SUBJECT_MODULE' , 'SubMod');
     
     
-    //Examination Module
+    //Examination Module and resources
     defined('EXAMINATION_MODULE') ? null : define('EXAMINATION_MODULE' , 'ExmMod');
     
     
-    //Marksheet Module
+    //Marksheet Module and resources
     defined('MARKSHEET_MODULE') ? null : define('MARKSHEET_MODULE' , 'MrkMod');
     
     
-    //Timetable Module
+    //Timetable Module and resources
     defined('TIMETABLE_MODULE') ? null : define('TIMETABLE_MODULE' , 'TtbMod');
     
     
-    //Noticeboard Module
+    //Noticeboard Module and resources
     defined('NOTICEBOARD_MODULE') ? null : define('NOTICEBOARD_MODULE' , 'NtcMod');
     
     
-    //Library Module
+    //Library Module and resources
     defined('LIBRARY_MODULE') ? null : define('LIBRARY_MODULE' , 'LibMod');
     
     
-    //Transport Module
+    //Transport Module and resources
     defined('TRANSPORT_MODULE') ? null : define('TRANSPORT_MODULE' , 'TrnMod');
     
     
-    //Kitchen Module
+    //Kitchen Module and resources
     defined('KITCHEN_MODULE') ? null : define('KITCHEN_MODULE' , 'KtnMod');
     
     
-    //Health Module
+    //Health Module and resources
     defined('HEALTH_MODULE') ? null : define('HEALTH_MODULE' , 'HthMod');
     
     
-    //Hostel Module
+    //Hostel Module and resources
     defined('HOSTEL_MODULE') ? null : define('HOSTEL_MODULE' , 'HosMod');
    
 

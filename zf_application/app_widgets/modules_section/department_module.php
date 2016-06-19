@@ -77,15 +77,18 @@ $main_menu = array(
         <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['new_user']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_directory") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_directory']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_reports") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_reports']); ?>
-        </li>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_DEPARTMENTS, $zvs_allowedResources)){ ?>
+               View Departments<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(DEPARTMENT_PROFILE, $zvs_allowedResources)){ ?>
+               Department Profile<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_SUB_DEPARTMENTS, $zvs_allowedResources)){ ?>
+               View Sub Department<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(SUB_DEPARTMENT_PROFILE, $zvs_allowedResources)){ ?>
+               Sub Department Profile<br>
+        <?php } ?>
     </ul>
 </li>
 

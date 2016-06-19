@@ -103,7 +103,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                 </div>
                                                                 <div class="zvs-content-footer">
                                                                     <div class="row">
-                                                                        <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9"><br/>&nbsp;</div>
+                                                                        <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">&nbsp;</div>
                                                                     </div>
                                                                 </div>';
 

@@ -23,8 +23,8 @@
         $schoolRoleName = $roleDetails['schoolRoleName']; $assignStatus = $roleDetails['assignStatus']; 
         $roleStatus = $roleDetails['roleStatus'];  $dateCreated = $roleDetails['dateCreated'];
         
-        $currentAssignStatus = ($assignStatus == 1 ? 'Active - <i class="fa fa-check-circle-o" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle-o" style="color:#a94442 !important;"></i>');
-        $currentRoleStatus = ($roleStatus == 1 ? 'Active - <i class="fa fa-check-circle-o" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle-o" style="color:#a94442 !important;"></i>');
+        $currentAssignStatus = ($assignStatus == 1 ? 'Active - <i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
+        $currentRoleStatus = ($roleStatus == 1 ? 'Active - <i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
   
     }
     

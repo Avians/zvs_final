@@ -12,7 +12,9 @@ $zvs_controller = $activeURL[0]; $zvs_action = $activeURL[1]; $zvs_parameter = Z
 
 //This external widget data 
 $zvs_allowedResources = $zf_externalWidgetData;
-
+//echo "<pre>";
+//print_r($zvs_allowedResources);
+//echo "</pre>";
 
 $main_menu = array(
     
@@ -82,7 +84,22 @@ $main_menu = array(
         <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_CLASSES, $zvs_allowedResources)){ ?>
+               View Classes<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(CLASS_PROFILE, $zvs_allowedResources)){ ?>
+               Class Profile<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_STREAMS, $zvs_allowedResources)){ ?>
+               View Streams<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STREAM_PROFILE, $zvs_allowedResources)){ ?>
+               Stream Profile<br>
+        <?php } ?>
+    </ul>
+</li>
+
+<!--        <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['new_user']); ?>
         </li>
         <li class="<?php if ($zvs_action == "admin_directory") { echo "active";} ?>">
@@ -90,7 +107,4 @@ $main_menu = array(
         </li>
         <li class="<?php if ($zvs_action == "admin_reports") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_reports']); ?>
-        </li>
-    </ul>
-</li>
-
+        </li>-->

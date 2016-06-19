@@ -21,7 +21,7 @@
         $resourceName = $resourceDetails['resourceName']; $resourceCategory = $resourceDetails['resourceCategory']; 
         $resourceStatus = $resourceDetails['resourceStatus'];  $dateCreated = $resourceDetails['dateCreated'];
         
-        $currentStatus = ($resourceStatus == 1 ? 'Active - <i class="fa fa-check-circle-o" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle-o" style="color:#a94442 !important;"></i>');
+        $currentStatus = ($resourceStatus == 1 ? 'Active - <i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
         
     }
     

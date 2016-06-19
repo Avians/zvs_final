@@ -77,15 +77,24 @@ $main_menu = array(
         <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['new_user']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_directory") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_directory']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_reports") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_reports']); ?>
-        </li>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(CREATE_FEES, $zvs_allowedResources)){ ?>
+               Create Fees<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(ALLOCATE_FINANCES, $zvs_allowedResources)){ ?>
+               Allocate Finances<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(COLLECT_FEES, $zvs_allowedResources)){ ?>
+               Collect Fees<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(FEE_STRUCTURE, $zvs_allowedResources)){ ?>
+               Fee Structure<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(FEE_DEFAULTERS, $zvs_allowedResources)){ ?>
+               Fee Defaulters<br>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(FEE_REFUNDS, $zvs_allowedResources)){ ?>
+               Fee Refunds<br>
+        <?php } ?>
     </ul>
 </li>
 
