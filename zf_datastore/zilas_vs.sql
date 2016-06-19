@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Jun 18, 2016 at 07:21 PM
+-- Generation Time: Jun 19, 2016 at 12:43 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.7
 
@@ -32,7 +32,7 @@ CREATE TABLE `zvs_application_users` (
   `password` varchar(120) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
   `userStatus` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_application_users`
@@ -48,8 +48,9 @@ INSERT INTO `zvs_application_users` (`id`, `email`, `password`, `identificationC
 (7, 'athiasavians@gmail.com', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '-B8SXuuBHzlhkuoFkxWLsh21XcsB5XCazm2sChuJZnGqKD6lrzLxIj4qrUFkd5LcGNOjRAflqjzp2daSmHbaOeProh5vZbJddzXuk6WASb4BQ0p0Bifd3NDxGdWUSZoq', 1),
 (8, 'frida@zilasvirtualschools.com', '9xwQaWODCuoOASrkWUKzKTTLEH-XthPCIMqH_oiipwY', 'pSoaHX1j8XXb2diMDomSijvRhBm6bxybcBWAbm6KL-mKnf601gVVsnjNPfnt5wclTlXDRp78mC6Y69_jWauJjagrwdqBkdLh9RvqvMF8O3_9G2EJloD2wNVgUddYWyLw', 1),
 (9, 'liz@pangani.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', 'Ujtzm2mvPdc_9TvTJK7Xj0q7uQW68YotqQJt4BjFJ26dDam-gc_dprXCAxPYR1725xxw_hz8RFK4WpGLC5Fav45ejoXQ9pqeBItL2ZyXjq1I-p90244FXFQ-6Klwlf6X', 1),
-(10, 'user@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
-(11, 'elvis@migtech.co.ke', 'FbCzkk2c9C-_e5VO8EM4amH_hpi5CRKpz3z-PbMkSe0', 'Gx09RceJmKjyZXazBudPOO_0lmmHibkZqheh3XE3xNFHCgacBK7zIJNL_36pylAiliQ3UT2L5Q5O7rF-xHE6AbE3vObQAP46tnDEhUvPg7RWXr8zOy5f2AvMTXf0Kuow', 1);
+(10, 'principal@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(11, 'elvis@migtech.co.ke', 'FbCzkk2c9C-_e5VO8EM4amH_hpi5CRKpz3z-PbMkSe0', 'Gx09RceJmKjyZXazBudPOO_0lmmHibkZqheh3XE3xNFHCgacBK7zIJNL_36pylAiliQ3UT2L5Q5O7rF-xHE6AbE3vObQAP46tnDEhUvPg7RWXr8zOy5f2AvMTXf0Kuow', 1),
+(12, 'bursar@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKyw-N5NqEiU3LcvotPg2TBx6_zGrL-XOE_QiZHy6f3lhuZLHGyrtbRyJjrRU18pIybtpLOc66TIhTUzYuMTAXj0', 1);
 
 -- --------------------------------------------------------
 
@@ -109,16 +110,16 @@ CREATE TABLE `zvs_platform_resources` (
 INSERT INTO `zvs_platform_resources` (`id`, `resourceId`, `resourceName`, `resourceCategory`, `dateCreated`, `dateModified`, `resourceStatus`) VALUES
 (1, 'ClsMod[`^`]ViewClasses', 'View Classes', 'Class', '2016-06-13', NULL, 1),
 (2, 'ClsMod[`^`]ClassProfile', 'Class Profile', 'Class', '2016-06-17', NULL, 1),
-(3, 'ClsMod[`^`]ViewStreams', 'View Streams', 'Class', '2016-06-17', NULL, 0),
-(4, 'ClsMod[`^`]StreamProfile', 'Stream Profile', 'Class', '2016-06-17', NULL, 0),
-(5, 'DepMod[`^`]ViewDepartments', 'View Departments', 'Department', '2016-06-17', NULL, 0),
-(6, 'DepMod[`^`]DepartmentProfile', 'Department Profile', 'Department', '2016-06-17', NULL, 0),
-(7, 'DepMod[`^`]ViewSubDepartments', 'View Sub Departments', 'Department', '2016-06-17', NULL, 0),
+(3, 'ClsMod[`^`]ViewStreams', 'View Streams', 'Class', '2016-06-17', NULL, 1),
+(4, 'ClsMod[`^`]StreamProfile', 'Stream Profile', 'Class', '2016-06-17', NULL, 1),
+(5, 'DepMod[`^`]ViewDepartments', 'View Departments', 'Department', '2016-06-17', NULL, 1),
+(6, 'DepMod[`^`]DepartmentProfile', 'Department Profile', 'Department', '2016-06-17', NULL, 1),
+(7, 'DepMod[`^`]ViewSubDepartments', 'View Sub Departments', 'Department', '2016-06-17', NULL, 1),
 (8, 'DepMod[`^`]SubDepartmentProfile', 'Sub Department Profile', 'Department', '2016-06-17', NULL, 0),
-(9, 'FinMod[`^`]CreateFees', 'Create Fees', 'Finance', '2016-06-17', NULL, 0),
-(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '2016-06-17', NULL, 0),
+(9, 'FinMod[`^`]CreateFees', 'Create Fees', 'Finance', '2016-06-17', NULL, 1),
+(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '2016-06-17', NULL, 1),
 (11, 'FinMod[`^`]CollectFees', 'Collect Fees', 'Finance', '2016-06-17', NULL, 1),
-(12, 'FinMod[`^`]FeeStructure', 'Fee Structure', 'Finance', '2016-06-17', NULL, 0),
+(12, 'FinMod[`^`]FeeStructure', 'Fee Structure', 'Finance', '2016-06-17', NULL, 1),
 (13, 'FinMod[`^`]FeeDefaulters', 'Fee Defaulters', 'Finance', '2016-06-17', NULL, 0),
 (14, 'FinMod[`^`]FeeRefunds', 'Fee Refunds', 'Finance', '2016-06-17', NULL, 0);
 
@@ -142,7 +143,7 @@ CREATE TABLE `zvs_resource_categories` (
 
 INSERT INTO `zvs_resource_categories` (`id`, `categoryName`, `categoryPrefix`, `dateCreated`, `categoryStatus`) VALUES
 (1, 'Class', 'ClsMod', '2016-06-09', 1),
-(2, 'Department', 'DepMod', '2016-06-09', 0),
+(2, 'Department', 'DepMod', '2016-06-09', 1),
 (3, 'Finance', 'FinMod', '2016-06-09', 1),
 (4, 'Student', 'StuMod', '2016-06-09', 0),
 (5, 'Teacher', 'TchMod', '2016-06-09', 0),
@@ -152,7 +153,7 @@ INSERT INTO `zvs_resource_categories` (`id`, `categoryName`, `categoryPrefix`, `
 (9, 'Subject', 'SubMod', '2016-06-10', 0),
 (10, 'Examination', 'ExmMod', '2016-06-10', 0),
 (11, 'Marksheet', 'MrkMod', '2016-06-10', 0),
-(12, 'Timetable', 'TtbMob', '2016-06-10', 0),
+(12, 'Timetable', 'TtbMod', '2016-06-10', 0),
 (13, 'Noticeboard', 'NtcMod', '2016-06-10', 0),
 (14, 'Library', 'LibMod', '2016-06-10', 0),
 (15, 'Transport', 'TrnMod', '2016-06-10', 0),
@@ -172,20 +173,40 @@ CREATE TABLE `zvs_resource_role_mapper` (
   `schoolRoleId` varchar(100) NOT NULL,
   `schoolResourceId` varchar(45) DEFAULT NULL,
   `resourceCategory` varchar(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_resource_role_mapper`
 --
 
 INSERT INTO `zvs_resource_role_mapper` (`id`, `systemSchoolCode`, `schoolRoleId`, `schoolResourceId`, `resourceCategory`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]AllocateSchoolFees', 'ClsMod'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]ClassProfile', 'ClsMod'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod[`^`]ViewClasses', 'ClsMod'),
-(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod', 'ClsMod'),
-(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod[`^`]ClassProfile', 'ClsMod'),
-(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod', 'FinMod'),
-(7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]CollectFees', 'FinMod');
+(8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]ViewClasses', 'ClsMod'),
+(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod', 'ClsMod'),
+(10, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]ClassProfile', 'ClsMod'),
+(11, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]ViewStreams', 'ClsMod'),
+(12, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'DepMod[`^`]ViewDepartments', 'DepMod'),
+(13, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'DepMod', 'DepMod'),
+(14, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'DepMod[`^`]DepartmentProfile', 'DepMod'),
+(15, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'DepMod[`^`]ViewSubDepartments', 'DepMod'),
+(16, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]CreateFees', 'FinMod'),
+(17, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod', 'FinMod'),
+(18, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]AllocateFinances', 'FinMod'),
+(19, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]FeeStructure', 'FinMod'),
+(20, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod', 'ClsMod'),
+(21, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]StreamProfile', 'ClsMod'),
+(22, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'DepMod', 'DepMod'),
+(23, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod', 'FinMod'),
+(24, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod[`^`]ViewClasses', 'ClsMod'),
+(25, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod', 'ClsMod'),
+(26, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'ClsMod[`^`]ClassProfile', 'ClsMod'),
+(27, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'DepMod[`^`]ViewDepartments', 'DepMod'),
+(28, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'DepMod', 'DepMod'),
+(29, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'DepMod[`^`]DepartmentProfile', 'DepMod'),
+(30, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]CreateFees', 'FinMod'),
+(31, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod', 'FinMod'),
+(32, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]AllocateFinances', 'FinMod'),
+(33, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]CollectFees', 'FinMod'),
+(34, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'FinMod[`^`]FeeStructure', 'FinMod');
 
 -- --------------------------------------------------------
 
@@ -1004,7 +1025,7 @@ ALTER TABLE `zvs_super_admin`
 -- AUTO_INCREMENT for table `zvs_application_users`
 --
 ALTER TABLE `zvs_application_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `zvs_platform_admin`
 --
@@ -1024,7 +1045,7 @@ ALTER TABLE `zvs_resource_categories`
 -- AUTO_INCREMENT for table `zvs_resource_role_mapper`
 --
 ALTER TABLE `zvs_resource_role_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `zvs_school_admin`
 --
