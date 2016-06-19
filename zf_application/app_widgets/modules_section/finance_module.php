@@ -17,48 +17,72 @@ $zvs_allowedResources = $zf_externalWidgetData;
 $main_menu = array(
     
     
-    //New platform user
-    "new_user" => array(
-        'name' => '<i class="fa fa-user"></i> New User',
+    //Create fees
+    "create_fees" => array(
+        'name' => '<i class="fa fa-user"></i> Create Fees',
         'controller' => $zvs_controller,
-        'action' => 'new_user',
-        'parameter' => $identificationCode,
+        'action' => 'create_fees',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin directory
-    "admin_directory" => array(
-        'name' => '<i class="fa fa-list"></i> Admin Users Directory',
+    //Allocate finances
+    "allocate_finances" => array(
+        'name' => '<i class="fa fa-list"></i> Allocate Finances',
         'controller' => $zvs_controller,
-        'action' => 'admin_directory',
-        'parameter' => $identificationCode,
+        'action' => 'allocate_finances',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin reports
-    "admin_reports" => array(
-        'name' => '<i class="fa fa-bar-chart"></i> Admin Reports',
+    //Collect fees
+    "collect_fees" => array(
+        'name' => '<i class="fa fa-bar-chart"></i> Collect Fees',
         'controller' => $zvs_controller,
-        'action' => 'admin_reports',
-        'parameter' => $identificationCode,
+        'action' => 'collect_fees',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Manage resources
-    "manage_resources" => array(
-        'name' => '<i class="fa fa-yelp"></i> Manage Resources <span class="selected"></span>',
+    //Fee structure
+    "fee_structure" => array(
+        'name' => '<i class="fa fa-yelp"></i> Fee Structure',
         'controller' => $zvs_controller,
-        'action' => 'manage_resources',
-        'parameter' => $identificationCode,
+        'action' => 'fee_structure',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
+    //Fee defaulters
+    "fee_defaulters" => array(
+        'name' => '<i class="fa fa-yelp"></i> Fee Defaulters',
+        'controller' => $zvs_controller,
+        'action' => 'fee_defaulters',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
+    //Fee refunds
+    "fee_refunds" => array(
+        'name' => '<i class="fa fa-yelp"></i> Fee Refunds',
+        'controller' => $zvs_controller,
+        'action' => 'fee_refunds',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
@@ -69,31 +93,43 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" || $zvs_action == "collect_fees" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
         <span class="title"> Finance Module </span>
-        <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" || $zvs_action == "collect_fees" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" || $zvs_action == "collect_fees" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(CREATE_FEES, $zvs_allowedResources)){ ?>
-               Create Fees<br>
+            <li class="<?php if ($zvs_action == "create_fees") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['create_fees']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(ALLOCATE_FINANCES, $zvs_allowedResources)){ ?>
-               Allocate Finances<br>
+            <li class="<?php if ($zvs_action == "allocate_finances") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['allocate_finances']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(COLLECT_FEES, $zvs_allowedResources)){ ?>
-               Collect Fees<br>
+            <li class="<?php if ($zvs_action == "collect_fees") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['collect_fees']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(FEE_STRUCTURE, $zvs_allowedResources)){ ?>
-               Fee Structure<br>
+            <li class="<?php if ($zvs_action == "fee_structure") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['fee_structure']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(FEE_DEFAULTERS, $zvs_allowedResources)){ ?>
-               Fee Defaulters<br>
+            <li class="<?php if ($zvs_action == "fee_defaulters") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['fee_defaulters']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(FEE_REFUNDS, $zvs_allowedResources)){ ?>
-               Fee Refunds<br>
+            <li class="<?php if ($zvs_action == "fee_refunds") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['fee_refunds']); ?>
+            </li>
         <?php } ?>
     </ul>
 </li>

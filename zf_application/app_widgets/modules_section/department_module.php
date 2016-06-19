@@ -17,48 +17,48 @@ $zvs_allowedResources = $zf_externalWidgetData;
 $main_menu = array(
     
     
-    //New platform user
-    "new_user" => array(
-        'name' => '<i class="fa fa-user"></i> New User',
+    //View departments
+    "view_departments" => array(
+        'name' => '<i class="fa fa-user"></i> View Departments',
         'controller' => $zvs_controller,
-        'action' => 'new_user',
-        'parameter' => $identificationCode,
+        'action' => 'view_departments',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin directory
-    "admin_directory" => array(
-        'name' => '<i class="fa fa-list"></i> Admin Users Directory',
+    //Department profile
+    "department_profile" => array(
+        'name' => '<i class="fa fa-list"></i> Department Profile',
         'controller' => $zvs_controller,
-        'action' => 'admin_directory',
-        'parameter' => $identificationCode,
+        'action' => 'department_profile',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin reports
-    "admin_reports" => array(
-        'name' => '<i class="fa fa-bar-chart"></i> Admin Reports',
+    //View sub-department
+    "view_sub_departments" => array(
+        'name' => '<i class="fa fa-bar-chart"></i> View Sub Departments',
         'controller' => $zvs_controller,
-        'action' => 'admin_reports',
-        'parameter' => $identificationCode,
+        'action' => 'view_sub_departments',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Manage resources
-    "manage_resources" => array(
-        'name' => '<i class="fa fa-yelp"></i> Manage Resources <span class="selected"></span>',
+    //Sub-department profile
+    "sub_department_profile" => array(
+        'name' => '<i class="fa fa-yelp"></i> Sub Department Profile',
         'controller' => $zvs_controller,
-        'action' => 'manage_resources',
-        'parameter' => $identificationCode,
+        'action' => 'sub_department_profile',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
@@ -69,25 +69,33 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
         <span class="title"> Department Module </span>
-        <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_DEPARTMENTS, $zvs_allowedResources)){ ?>
-               View Departments<br>
+            <li class="<?php if ($zvs_action == "view_departments") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['view_departments']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(DEPARTMENT_PROFILE, $zvs_allowedResources)){ ?>
-               Department Profile<br>
+            <li class="<?php if ($zvs_action == "department_profile") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['department_profile']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_SUB_DEPARTMENTS, $zvs_allowedResources)){ ?>
-               View Sub Department<br>
+            <li class="<?php if ($zvs_action == "view_sub_departments") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['view_sub_departments']); ?>
+            </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(SUB_DEPARTMENT_PROFILE, $zvs_allowedResources)){ ?>
-               Sub Department Profile<br>
+            <li class="<?php if ($zvs_action == "sub_department_profile") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['sub_department_profile']); ?>
+            </li>
         <?php } ?>
     </ul>
 </li>
