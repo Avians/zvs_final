@@ -8,7 +8,7 @@
 $activeURL = Zf_Core_Functions::Zf_URLSanitize();
 
 //This are the active controller, action and parameter if any.
-$zvs_controller = $activeURL[0]; $zvs_action = $activeURL[1]; $zvs_parameter = Zf_SecureData::zf_decode_data($activeURL[2]);
+$zvs_controller = SUBMOD; $zvs_action = $activeURL[1]; $zvs_parameter = Zf_SecureData::zf_decode_data($activeURL[2]);
 
 //This external widget data 
 $zvs_allowedResources = $zf_externalWidgetData;
