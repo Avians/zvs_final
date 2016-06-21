@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                    <h3 class="page-title">Page Title</h3>
+                    <h3 class="page-title">Class Profile</h3>
                     <div class="page-breadcrumb breadcrumb">
                         <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                     </div>
