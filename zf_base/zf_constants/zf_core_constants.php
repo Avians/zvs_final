@@ -149,7 +149,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
  * -----------------------------------------------------------------------------
  */
     defined('ZF_APP_GLOBAL')       ? null : define('ZF_APP_GLOBAL' ,  ZF_CLIENT.'zf_app_global'.DS);
-    defined('ZF_DESKTOP_LAPTOP')   ? null : define('ZF_DESKTOP_LAPTOPL' ,  ZF_CLIENT.'zf_desktop_laptop'.DS);
+    defined('ZF_DESKTOP_LAPTOP')   ? null : define('ZF_DESKTOP_LAPTOP' ,  ZF_CLIENT.'zf_desktop_laptop'.DS);
     defined('ZF_MOBILE_DEVICE')    ? null : define('ZF_MOBILE_DEVICE' ,  ZF_CLIENT.'zf_mobile_device'.DS);
     defined('ZF_TABLET_DEVICE')    ? null : define('ZF_TABLET_DEVICE' ,  ZF_CLIENT.'zf_tablet_devices'.DS);
     
