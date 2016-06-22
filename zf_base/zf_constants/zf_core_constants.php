@@ -286,7 +286,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     
     
     //Transport Module and resources
-    defined('TRNMODTEST') ? null : define('TRNMOD' , 'transport_module');
+    defined('TRNMOD') ? null : define('TRNMOD' , 'transport_module');
     defined('TRANSPORT_MODULE') ? null : define('TRANSPORT_MODULE' , 'TrnMod');
     
     
