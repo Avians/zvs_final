@@ -2,14 +2,85 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82af5c26-9ac2-42c0-b711-9d3a666bd3be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/department_module/department_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/department_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/department_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/department_module/view_departments.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/department_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nbproject/private/private.properties" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/class_profile.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/index.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/view_classes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_controllers/zwf_template.php" afterPath="$PROJECT_DIR$/zf_application/app_controllers/zvs_template.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/blank_page.php" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/blank_page.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/index.php" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/index.php" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/view_client/zf_view_global/view_css/inner_global.css" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_css/inner_global.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/view_client/zf_view_global/view_files/view_seo/zf_seo.php" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zf_base/zf_constants/zf_core_constants.php" afterPath="$PROJECT_DIR$/zf_base/zf_constants/zf_core_constants.php" />
     </list>
     <ignored path="zvs_final.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,50 +116,7 @@
     <favorites_list name="zvs_final" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="manage_departments.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zf_application/app_views/school_main_admin/manage_departments.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4166665" vertical-offset="0" max-vertical-offset="2070">
-              <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-              <folding>
-                <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="35745">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="department_profile.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/department_profile.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8333335" vertical-offset="0" max-vertical-offset="585">
-              <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_departments.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/view_departments.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22222222" vertical-offset="0" max-vertical-offset="630">
-              <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -173,60 +201,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zvs_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zvs_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zf_application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zvs_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zvs_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zf_application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zvs_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zvs_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zf_application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="department_module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -284,6 +258,13 @@
       <option name="number" value="Default" />
       <updated>1440869399607</updated>
     </task>
+    <task id="LOCAL-00001" summary="Created the department module view">
+      <created>1466580212680</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1466580212680</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -292,16 +273,17 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23101777" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16235864" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="34" y="75" width="244" height="681" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -347,6 +329,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Created the department module view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created the department module view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -519,13 +503,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zf_application/app_views/school_main_admin/manage_departments.php">
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/hostel_module/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4166665" vertical-offset="0" max-vertical-offset="2070">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/health_module/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/examination_module/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/finance_module/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/view_departments.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22222222" vertical-offset="0" max-vertical-offset="630">
+          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/department_profile.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22222222" vertical-offset="0" max-vertical-offset="630">
+          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -537,18 +559,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/department_profile.php">
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/school_main_admin/manage_departments.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8333335" vertical-offset="0" max-vertical-offset="585">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.24444444" vertical-offset="0" max-vertical-offset="1932">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/kitchen_module/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/zf_application/app_views/department_module/view_departments.php">
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/library_module/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22222222" vertical-offset="0" max-vertical-offset="630">
-          <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zf_application/app_views/marksheet_module/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
