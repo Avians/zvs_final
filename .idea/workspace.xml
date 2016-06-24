@@ -2,84 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82af5c26-9ac2-42c0-b711-9d3a666bd3be" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/class_profile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/view_classes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/finance_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/health_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/hostel_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/kitchen_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/library_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/marksheet_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/noticeboard_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/parent_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/student_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/sub_staff_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/subject_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/teacher_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/transport_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_controllers/zwf_template.php" afterPath="$PROJECT_DIR$/zf_application/app_controllers/zvs_template.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/blank_page.php" afterPath="$PROJECT_DIR$/zf_application/app_views/zvs_template/blank_page.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/index.php" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/index.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/view_client/zf_view_global/view_css/inner_global.css" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_css/inner_global.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/zf_application/app_views/zvs_templates/view_client/zf_view_global/view_files/view_seo/zf_seo.php" afterPath="$PROJECT_DIR$/zf_application/app_views/examination_module/view_client/zf_view_global/view_files/view_seo/zf_seo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="zvs_final.iws" />
@@ -234,15 +156,15 @@
       <BehatRunner />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -264,53 +186,60 @@
       <option name="project" value="LOCAL" />
       <updated>1466580212680</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created views for all the other modules">
+      <created>1466600203460</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1466600203460</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23101777" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23101777" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16235864" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="34" y="75" width="244" height="681" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16478191" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="34" y="75" width="244" height="681" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32796487" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23101777" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23101777" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1631664" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="34" y="75" width="244" height="681" />
+      <window_info id="Project" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16478191" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="34" y="75" width="244" height="681" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
@@ -330,7 +259,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Created the department module view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created the department module view" />
+    <MESSAGE value="Created views for all the other modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created views for all the other modules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -341,36 +271,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7995">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#zvs_generateSystemSchoolCode#0;n#newSchoolRegistration_Model#0;n#!!top" expanded="false" />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -378,7 +278,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2956" max-vertical-offset="3585">
           <caret line="189" column="99" selection-start-line="189" selection-start-column="99" selection-end-line="189" selection-end-column="99" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -386,7 +285,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="13860">
           <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -422,36 +320,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="2820" max-vertical-offset="7770">
           <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-          <folding>
-            <element signature="n#zvs_generateSystemSchoolCode#0;n#newSchoolRegistration_Model#0;n#!!top" expanded="false" />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1466161199000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -459,7 +327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28616852" vertical-offset="3375" max-vertical-offset="4530">
           <caret line="249" column="73" selection-start-line="249" selection-start-column="73" selection-end-line="249" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -467,7 +334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.19236884" vertical-offset="2956" max-vertical-offset="3585">
           <caret line="189" column="99" selection-start-line="189" selection-start-column="99" selection-end-line="189" selection-end-column="99" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -475,7 +341,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="13860">
           <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -483,7 +348,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.9570746" vertical-offset="0" max-vertical-offset="3030">
           <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -491,7 +355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3370429" vertical-offset="901" max-vertical-offset="2505">
           <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -499,7 +362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38155803" vertical-offset="60" max-vertical-offset="2070">
           <caret line="20" column="61" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -507,7 +369,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -515,7 +376,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -523,7 +383,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -531,7 +390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -539,7 +397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22222222" vertical-offset="0" max-vertical-offset="630">
           <caret line="10" column="64" selection-start-line="10" selection-start-column="64" selection-end-line="10" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -547,7 +404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22222222" vertical-offset="0" max-vertical-offset="630">
           <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -555,7 +411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="35745">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -563,9 +418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24444444" vertical-offset="0" max-vertical-offset="1932">
           <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -573,7 +425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -581,7 +432,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -589,7 +439,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="33362">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

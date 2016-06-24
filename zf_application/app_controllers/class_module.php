@@ -31,15 +31,6 @@ class class_moduleController extends Zf_Controller {
         parent::__construct();
         
     }
-
-    
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
-        
-        Zf_View::zf_displayView('index');
-        
-    }
-
     
     //Executes the view classes view. Also is the defaukt action for this controller
     public function actionView_classes(){
@@ -49,10 +40,26 @@ class class_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the class profile view. Also is the defaukt action for this controller
+    //This controller executes the class profile view.
     public function actionClass_profile(){
         
         Zf_View::zf_displayView('class_profile');
+        
+    }
+    
+    
+    //This controller executes the view streams view.
+    public function actionView_streams(){
+        
+        Zf_View::zf_displayView('view_streams');
+        
+    }
+    
+    
+    //This controller executes the stream profile view.
+    public function actionStream_profile(){
+        
+        Zf_View::zf_displayView('stream_profile');
         
     }
     

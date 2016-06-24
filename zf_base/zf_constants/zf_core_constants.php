@@ -223,8 +223,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('FINANCE_MODULE') ? null : define('FINANCE_MODULE' , 'FinMod');
     
         defined('CREATE_FEES') ? null : define('CREATE_FEES' , 'FinMod'.CONNECT.'CreateFees');
-        defined('ALLOCATE_FINANCES') ? null : define('ALLOCATE_FINANCES' , 'FinMod'.CONNECT.'AllocateFinances');
         defined('COLLECT_FEES') ? null : define('COLLECT_FEES' , 'FinMod'.CONNECT.'CollectFees');
+        defined('FINANCE_STATUS') ? null : define('FINANCE_STATUS' , 'FinMod'.CONNECT.'FinanceStatus');
+        defined('ALLOCATE_FINANCES') ? null : define('ALLOCATE_FINANCES' , 'FinMod'.CONNECT.'AllocateFinances');
         defined('FEE_STRUCTURE') ? null : define('FEE_STRUCTURE' , 'FinMod'.CONNECT.'FeeStructure');
         defined('FEE_DEFAULTERS') ? null : define('FEE_DEFAULTERS' , 'FinMod'.CONNECT.'FeeDefaulters');
         defined('FEE_REFUNDS') ? null : define('FEE_REFUNDS' , 'FinMod'.CONNECT.'FeeRefunds');

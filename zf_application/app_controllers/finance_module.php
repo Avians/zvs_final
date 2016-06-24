@@ -33,14 +33,60 @@ class finance_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    //Executes the create fees view. Also is the defaukt action for this controller
+    public function actionCreate_fees(){
         
-        Zf_View::zf_displayView('index');
+        Zf_View::zf_displayView('create_fees');
         
     }
     
     
+    //This controller executes collect fees view
+    public function actionCollect_fees(){
+        
+        Zf_View::zf_displayView('collect_fees');
+        
+    }
+    
+    
+    //This controller executes the finance status view
+    public function actionFinance_status(){
+        
+        Zf_View::zf_displayView('finance_status');
+        
+    }
+    
+    
+    //This controller executes the assign finances view
+    public function actionAssign_finances(){
+        
+        Zf_View::zf_displayView('assign_finances');
+        
+    }
+    
+    
+    //This controller executes the fee structure view
+    public function actionFee_structure(){
+        
+        Zf_View::zf_displayView('fee_structure');
+        
+    }
+   
+    
+    //This controller executes the fee defaulters view
+    public function actionFee_defaulters(){
+        
+        Zf_View::zf_displayView('fee_defaulters');
+        
+    }
+
+    
+    //This controller executes the fee refunds view
+    public function actionFee_refunds(){
+        
+        Zf_View::zf_displayView('fee_refunds');
+        
+    }
 
 }
 ?>

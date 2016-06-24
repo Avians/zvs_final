@@ -33,10 +33,34 @@ class department_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    //Executes the view departments view. Also is the defaukt action for this controller
+    public function actionView_departments(){
         
-        Zf_View::zf_displayView('index');
+        Zf_View::zf_displayView('view_departments');
+        
+    }
+    
+    
+    //This controller executes the department profile view
+    public function actionDepartment_profile(){
+        
+        Zf_View::zf_displayView('department_profile');
+        
+    }
+    
+    
+    //This controller executes the View Sub-department view
+    public function actionView_sub_department(){
+        
+        Zf_View::zf_displayView('view_sub_department');
+        
+    }
+    
+    
+    //This controller executes the Sub-department profile view
+    public function actionSub_department_profile(){
+        
+        Zf_View::zf_displayView('sub_department_profile');
         
     }
     
