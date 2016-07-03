@@ -317,6 +317,19 @@ class School_main_adminController extends Zf_Controller {
         Zf_View::zf_displayView('view_role_details', $zf_actionData);
         
     }
+    
+    
+   
+    /**
+     * This action executes view_resource view
+     */
+    public function actionView_role_resources($roleResources){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($roleResources);
+        
+        Zf_View::zf_displayView('view_role_resources', $zf_actionData);
+        
+    }
    
     
 
@@ -331,9 +344,8 @@ class School_main_adminController extends Zf_Controller {
         Zf_View::zf_displayView('manage_resources', $zf_actionData);
         
     }
-   
     
-
+ 
     
     /**
      * This action executes the manage affiliates view
@@ -529,7 +541,7 @@ class School_main_adminController extends Zf_Controller {
         
         if($filterAction == "mapResources"){
             
-            //Register a class to a school on Zilas Virtual Schools platform 
+            //map roles to existing school resources
             $this->zf_targetModel->resourcesRolesMapper($filteredData[0]);
             
         }

@@ -26,7 +26,6 @@ class edit_role_form_Model extends Zf_Model {
             $roleStatus = $value['roleStatus']; $assignStatus = $value['assignStatus'];
             
             if($roleStatus == 1){ $activeRoleValue = "checked";  }else if($roleStatus == 0){ $inactiveRoleValue = "checked"; }
-            if($assignStatus == 1){ $activeAssignValue = "checked";  }else if($assignStatus == 0){ $inactiveAssignValue = "checked"; }
         }
         
         $form_view .='<div class="row">
@@ -45,23 +44,7 @@ class edit_role_form_Model extends Zf_Model {
                         </div>
                     </div>
                     <!--/row-->
-                    <div class="row">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Assign Status:</label>
-                                <div class="col-md-8">
-                                    <div class="radio-list">
-                                        <label class="radio-inline">
-                                        <input type="radio" name="assignStatus" value="1" '.$activeAssignValue.' data-title="Active"> Active </label>
-                                        <label class="radio-inline">
-                                        <input type="radio" name="assignStatus" value="0" '.$inactiveAssignValue.'  data-title="Inactive"> Inactive </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/row-->
-                    
+                         
                     <!--/row-->
                     <input type="hidden" name="schoolRoleCode" value="'.$schoolRoleCode.'" />
                     <input type="hidden" name="systemSchoolCode" value="'.$systemSchoolCode.'" />

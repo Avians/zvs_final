@@ -88,18 +88,18 @@ class manageSchoolRoles_Model extends Zf_Model {
                                                          <table class="table table-striped table-hover">
                                                              <thead>
                                                                  <tr>
-                                                                     <th  style="width: 60%;">Role Name</th><th style="width: 15%;">Date Created</th><th style="width: 15%; text-align:center !important;">Role Status</th><th style="width: 10%;">Details</th>
+                                                                     <th  style="width: 40%;">Role Name</th><th style="width: 15%;">Date Created</th><th style="width: 20%; text-align:center !important;">Role Status</th><th style="width: 15%; text-align:left !important;">Resource Status</th><th style="width: 10%;">Details</th>
                                                                  </tr>
                                                              </thead>
                                                              <tbody>';
                                                                foreach($zvs_roleDetails as $roleValues){
 
                                                                     $zvs_roleName = $roleValues['schoolRoleName']; $schoolRoleCode =  $roleValues['schoolRoleCode'];
-                                                                    $dateCreated = $roleValues['dateCreated']; $roleStatus = ($roleValues['roleStatus'] == 1 ? 'Active' : 'Inactive');
+                                                                    $dateCreated = $roleValues['dateCreated']; $roleStatus = $roleValues['roleStatus']; $assignStatus = $roleValues['assignStatus'];
+                                                                    $currentAssignStatus = ($assignStatus == 1 ? '<span class="data-success">Assigned</span>':'<span class="data-danger">Not Assigned</span>');
+                                                                    $currentRoleStatus = ($roleStatus == 1 ? '<i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
 
-
-
-                                                                    $zvs_roleGridView .='<tr><td>'.$zvs_roleName.'</td><td>'.$dateCreated.'</td><td style="text-align:center !important;">'.$roleStatus.'</td><td><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_role_details'.DS.Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolRoleCode).' " title="View '.$zvs_roleName.'" ><i class="fa fa-list"></i></a></td></tr>';
+                                                                    $zvs_roleGridView .='<tr><td>'.$zvs_roleName.'</td><td>'.$dateCreated.'</td><td style="text-align:center !important;">'.$currentRoleStatus.'</td><td style="text-align:left !important;">'.$currentAssignStatus.'</td><td><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_role_details'.DS.Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolRoleCode).' " title="View '.$zvs_roleName.'" ><i class="fa fa-list"></i></a></td></tr>';
 
 
                                                                }

@@ -12,6 +12,9 @@
     $identicationCode = $urlParameter[0]; $systemSchoolCode = $urlParameter[1]; 
     $roleName = $urlParameter[2]; $schoolRoleCode = $systemSchoolCode.ZVSS_CONNECT.$roleName;
     
+    echo "<pre>";
+    print_r($urlParameter);
+    echo "</pre>";
     
     //We are accessing the model that holds all class details
     $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolRoles");
@@ -60,6 +63,8 @@
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
                         <li><a><?=$schoolRoleName;?> Overview</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Add a resources to </a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Delete resources from </a></li>
                     </ul>
                     
                     <div class="z-content-inner">
@@ -125,6 +130,16 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <?php
+
+                                    echo "<pre>";
+                                    print_r($urlParameter);
+                                    echo "</pre>";
+
+                                    ?>
                             </div>
                         </div>
                     </div>

@@ -60,17 +60,6 @@
                                     </div>
                                 </div>
                                 <!--/row-->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label col-md-6">Assign Status:</label>
-                                            <div class="col-md-6">
-                                                <p class="form-control-static confirm-form-result" data-display="assignStatus"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/row-->
                             </div>
                             <!-- END OF CONFIRM SETUP SECTION-->
 

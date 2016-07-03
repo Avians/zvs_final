@@ -395,4 +395,10 @@ This is the styling for the zozo tabs and accordion
 }
 
 
-//This CSS is used specifically to style checkboxes and radio buttons
+.data-success{
+    color: #3c763d !important;
+}
+
+.data-danger{
+    color: #a94442 !important;
+}

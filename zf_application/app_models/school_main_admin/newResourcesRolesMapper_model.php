@@ -54,10 +54,10 @@ class newResourcesRolesMapper_Model extends Zf_Model {
         foreach ($zvs_resourceDetails as $resourceValues) {
             
             $categoryId = explode(ZVSS_CONNECT, $resourceValues['resourceId'])[0];
-            $cleanName = Zf_Core_Functions::Zf_CleanName($resourceValues['resourceName']);
+            $cleanResourceName = Zf_Core_Functions::Zf_CleanName($resourceValues['resourceName']);
             
-            $this->zf_formController->zf_postFormData($cleanName);
-            $this->zf_formController->zf_postFormData($categoryId);
+            $this->zf_formController->zf_postFormData($cleanResourceName);
+            //$this->zf_formController->zf_postFormData($categoryId);//Not useful at this stage
 
         }
 
@@ -90,6 +90,9 @@ class newResourcesRolesMapper_Model extends Zf_Model {
                     $zvs_roleDetails['schoolResourceId'] = Zf_QueryGenerator::SQLValue($rolesValue);
                     $zvs_roleDetails['resourceCategory'] = Zf_QueryGenerator::SQLValue($resuorceCategory);
                     $insertMappedResourceRole = Zf_QueryGenerator::BuildSQLInsert('zvs_resource_role_mapper', $zvs_roleDetails);
+                    
+                    //echo $insertMappedResourceRole; exit();
+                    
                     $executeInsertMappedResourceRole = $this->Zf_AdoDB->Execute($insertMappedResourceRole);
                     
                     if(!$executeInsertMappedResourceRole){

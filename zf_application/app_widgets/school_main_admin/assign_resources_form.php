@@ -51,6 +51,7 @@
     
     <div class="row">
         <?php
+            //Here we pull all the forms that have all available platform resources 
             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, "pull_platform_resources.php", $schoolSystemCode);
         ?>    
     </div>

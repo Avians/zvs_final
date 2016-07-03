@@ -166,12 +166,7 @@ class newRoleRegistration_Model extends Zf_Model {
                 
                                  ->zf_postFormData('roleStatus')
                                 ->zf_validateFormData('zf_maximumLength', 1, 'Category status')
-                                ->zf_validateFormData('zf_minimumLength', 1, 'Category status')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Category status')
-
-                                ->zf_postFormData('assignStatus')
-                                ->zf_validateFormData('zf_maximumLength', 1, 'Category status')
-                                ->zf_validateFormData('zf_minimumLength', 1, 'Category status')
+                                ->zf_validateFormData('zf_minimumLength', 0, 'Category status')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Category status')
                 
                                 ->zf_postFormData('identificationCode');
@@ -190,7 +185,6 @@ class newRoleRegistration_Model extends Zf_Model {
         if (empty($this->_errorResult)) {
 
                 $roleColumns['roleStatus'] = Zf_QueryGenerator::SQLValue($this->_validResult['roleStatus']);
-                $roleColumns['assignStatus'] = Zf_QueryGenerator::SQLValue($this->_validResult['assignStatus']);
                 
                 $roleValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['systemSchoolCode']);
                 $roleValues['schoolRoleCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['schoolRoleCode']);
