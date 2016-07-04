@@ -77,82 +77,83 @@ class newResourcesRolesMapper_Model extends Zf_Model {
             Zf_GenerateLinks::zf_header_location("school_main_admin", 'manage_resources', $identificationCode);
             exit();
             
-        }
-        
-        
-        //This of debugging purposes only.
-        echo "<pre>All Resource Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
-       
-        
-        if(empty($this->_errorResult)){
-            
-            //since all roles outlined in the drop-down select haven't been assigned before, they don't exist in the mapper table.
-            
-            foreach ($this->_validResult as $roleKey=>$rolesValue) {
-                
-                if($roleKey === "schoolRoleId"){
-                    
-                    $zvs_roleDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($schoolSystemCode);
-                    $zvs_roleDetails['schoolRoleId'] = Zf_QueryGenerator::SQLValue($this->_validResult["schoolRoleId"]);
-                    
-                    
-                }else{
-                    
-                    $resuorceCategory = explode(ZVSS_CONNECT, $rolesValue)[0];
-                
-                    $zvs_roleDetails['schoolResourceId'] = Zf_QueryGenerator::SQLValue($rolesValue);
-                    $zvs_roleDetails['resourceCategory'] = Zf_QueryGenerator::SQLValue($resuorceCategory);
-                    $insertMappedResourceRole = Zf_QueryGenerator::BuildSQLInsert('zvs_resource_role_mapper', $zvs_roleDetails);
-                    
-                    //echo $insertMappedResourceRole; exit();
-                    
-                    $executeInsertMappedResourceRole = $this->Zf_AdoDB->Execute($insertMappedResourceRole);
-                    
-                    if(!$executeInsertMappedResourceRole){
-
-                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-                        exit();
-
-                    }
-                    
-                }
-
-            }
-            
-            //Update the role as having been assigned resources so that it doesn't appear in the selection form.
-            
-            $zvs_role_column['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($schoolSystemCode);
-            $zvs_role_column['schoolRoleCode'] = Zf_QueryGenerator::SQLValue($this->_validResult["schoolRoleId"]);
-            
-            $zvs_role_value['assignStatus'] = Zf_QueryGenerator::SQLValue(1);
-            
-            $updateMappedRole = Zf_QueryGenerator::BuildSQLUpdate('zvs_school_roles', $zvs_role_value, $zvs_role_column);
-            $executeUpdateMappedRole = $this->Zf_AdoDB->Execute($updateMappedRole);
-            
-            if(!$executeUpdateMappedRole){
-
-                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-            }else{
-            
-                //Redirect to the platform users overview
-                Zf_SessionHandler::zf_setSessionVariable("resources_roles_mapper", "role_mapping_success");
-                Zf_GenerateLinks::zf_header_location("school_main_admin", 'manage_resources', $identificationCode);
-                exit();
-            
-            }
-            
         }else{
             
-            //Redirect to the registration form section. Also make an error indicator.
-            Zf_SessionHandler::zf_setSessionVariable("resources_roles_mapper", "mapper_form_error");
+            //This of debugging purposes only.
+            //echo "<pre>All Resource Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+
+
+            if(empty($this->_errorResult)){
+
+                //since all roles outlined in the drop-down select haven't been assigned before, they don't exist in the mapper table.
+
+                foreach ($this->_validResult as $roleKey=>$rolesValue) {
+
+                    if($roleKey === "schoolRoleId"){
+
+                        $zvs_roleDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($schoolSystemCode);
+                        $zvs_roleDetails['schoolRoleId'] = Zf_QueryGenerator::SQLValue($this->_validResult["schoolRoleId"]);
+
+
+                    }else{
+
+                        $resuorceCategory = explode(ZVSS_CONNECT, $rolesValue)[0];
+
+                        $zvs_roleDetails['schoolResourceId'] = Zf_QueryGenerator::SQLValue($rolesValue);
+                        $zvs_roleDetails['resourceCategory'] = Zf_QueryGenerator::SQLValue($resuorceCategory);
+                        $insertMappedResourceRole = Zf_QueryGenerator::BuildSQLInsert('zvs_resource_role_mapper', $zvs_roleDetails);
+
+                        //echo $insertMappedResourceRole; exit();
+
+                        $executeInsertMappedResourceRole = $this->Zf_AdoDB->Execute($insertMappedResourceRole);
+
+                        if(!$executeInsertMappedResourceRole){
+
+                            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+                            exit();
+
+                        }
+
+                    }
+
+                }
+
+                //Update the role as having been assigned resources so that it doesn't appear in the selection form.
+
+                $zvs_role_column['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($schoolSystemCode);
+                $zvs_role_column['schoolRoleCode'] = Zf_QueryGenerator::SQLValue($this->_validResult["schoolRoleId"]);
+
+                $zvs_role_value['assignStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+                $updateMappedRole = Zf_QueryGenerator::BuildSQLUpdate('zvs_school_roles', $zvs_role_value, $zvs_role_column);
+                $executeUpdateMappedRole = $this->Zf_AdoDB->Execute($updateMappedRole);
+
+                if(!$executeUpdateMappedRole){
+
+                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                }else{
+
+                    //Redirect to the platform users overview
+                    Zf_SessionHandler::zf_setSessionVariable("resources_roles_mapper", "role_mapping_success");
+                    Zf_GenerateLinks::zf_header_location("school_main_admin", 'manage_resources', $identificationCode);
+                    exit();
+
+                }
+
+            }else{
+
+                //Redirect to the registration form section. Also make an error indicator.
+                Zf_SessionHandler::zf_setSessionVariable("resources_roles_mapper", "mapper_form_error");
+
+                echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
+                Zf_GenerateLinks::zf_header_location("school_main_admin", 'manage_resources', $identificationCode);
+                exit();
+
+            }
             
-            echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
-            Zf_GenerateLinks::zf_header_location("school_main_admin", 'manage_resources', $identificationCode);
-            exit();
             
         }
-        
         
     }
     

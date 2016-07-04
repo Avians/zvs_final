@@ -342,7 +342,7 @@ class School_main_adminController extends Zf_Controller {
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
         Zf_View::zf_displayView('manage_resources', $zf_actionData);
-        
+       
     }
     
  
