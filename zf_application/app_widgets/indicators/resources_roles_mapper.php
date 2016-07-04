@@ -4,9 +4,14 @@
         You have not selected a school role. Check <strong>"Assign Resources to Roles"</strong> section and select a role, then re-assign resources!!
     </div>
 <?php }else if(Zf_SessionHandler::zf_getSessionVariable('resources_roles_mapper') == 'role_mapping_error'){ ?>
-    <div class="alert alert-danger display-none error-fadeout">
+    <div class="alert alert-danger display-none error-fadeout" style="text-align: left !important;">
         <button class="close" data-dismiss="alert"></button>
-        There are no active resources within any modules or may be you did not select any resources from the ones provided. You action has been terminated, please check and try again!!
+        <b>You action has been terminated due one of the following, please check and try again!!</b>
+        <ol>
+            <li>There are no active resources availed within any modules.</li>
+            <li>You did not select any resources from the ones provided.</li>
+            <li>You did not select a role to assign availed resources to.</li>
+        </ol>
     </div>
 <?php }else if(Zf_SessionHandler::zf_getSessionVariable('resources_roles_mapper') == 'role_mapping_success'){ ?>
     <div class="alert alert-success display-none success-fadeout">
