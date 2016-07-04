@@ -56,6 +56,8 @@ class newResourcesRolesMapper_Model extends Zf_Model {
             $categoryId = explode(ZVSS_CONNECT, $resourceValues['resourceId'])[0];
             $cleanResourceName = Zf_Core_Functions::Zf_CleanName($resourceValues['resourceName']);
             
+            //echo $cleanResourceName."==".$categoryId."<br>"; //For debugging purposes...
+            
             $this->zf_formController->zf_postFormData($cleanResourceName);
             //$this->zf_formController->zf_postFormData($categoryId);//Not useful at this stage
 
@@ -68,9 +70,20 @@ class newResourcesRolesMapper_Model extends Zf_Model {
         //This array holds all valid data. 
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
+        if(count($this->_validResult) === 1){
+            
+            //Redirect to the platform users overview
+            Zf_SessionHandler::zf_setSessionVariable("resources_roles_mapper", "role_mapping_error");
+            Zf_GenerateLinks::zf_header_location("school_main_admin", 'manage_resources', $identificationCode);
+            exit();
+            
+        }
+        
+        
         //This of debugging purposes only.
-        //echo "<pre>All Resource Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
+        echo "<pre>All Resource Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
        
+        
         if(empty($this->_errorResult)){
             
             //since all roles outlined in the drop-down select haven't been assigned before, they don't exist in the mapper table.

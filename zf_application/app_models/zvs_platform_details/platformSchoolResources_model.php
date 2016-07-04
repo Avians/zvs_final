@@ -96,8 +96,8 @@ class platformSchoolResources_Model extends Zf_Model {
                                            $zvs_resourcesGridView .='<div class="portlet-body">
                                                                     <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 13% !important;">
                                                                         <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
-                                                                        <span class="content-view-errors" >
-                                                                            &nbsp;There are no resources in '.strtolower($categoryName).' yet! <br>Once resources are added to the module, they will be populated here-in.
+                                                                        <span class="content-view-errors data-danger" >
+                                                                            &nbsp;There are no resources registered for '.strtolower($categoryName).' module! <br>Once resources are added to the module, they will be populated here-in.
                                                                         </span>
                                                                     </div>
                                                                 </div>

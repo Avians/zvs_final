@@ -95,7 +95,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                     <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 13% !important;">
                                                                         <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
                                                                         <span class="content-view-errors" >
-                                                                            &nbsp;There are no resources in '.strtolower($categoryName).' yet! <br>Once resources are added to the module, they will be populated here-in.
+                                                                            &nbsp;There are no resources registered for '.strtolower($categoryName).' module! Once resources are added to the module, they will be populated in this section.
                                                                         </span>
                                                                     </div>
                                                                 </div>';
