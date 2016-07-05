@@ -31,8 +31,8 @@ class edit_role_form_Model extends Zf_Model {
         $form_view .='<div class="row">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Role Status:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-lg-4 col-md-4 col-sm-6 col-xs-12">Role Status:</label>
+                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                                     <div class="radio-list">
                                         <label class="radio-inline">
                                         <input type="radio" name="roleStatus" value="1" '.$activeRoleValue.' data-title="Active"> Active </label>

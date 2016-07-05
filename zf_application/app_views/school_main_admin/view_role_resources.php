@@ -12,10 +12,6 @@
     $identicationCode = $urlParameter[0]; $systemSchoolCode = $urlParameter[1]; 
     $roleName = $urlParameter[2]; $schoolRoleCode = $systemSchoolCode.ZVSS_CONNECT.$roleName;
     
-    echo "<pre>";
-    print_r($urlParameter);
-    echo "</pre>";
-    
     //We are accessing the model that holds all class details
     $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolRoles");
     
@@ -63,8 +59,8 @@
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
                         <li><a><?=$schoolRoleName;?> Overview</a></li>
-                        <li><a><i class="fa fa-plus-square"></i> Add a resources to </a></li>
-                        <li><a><i class="fa fa-plus-square"></i> Delete resources from </a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Add a resources to <?=$schoolRoleName;?></a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Delete resources from <?=$schoolRoleName;?></a></li>
                     </ul>
                     
                     <div class="z-content-inner">
@@ -104,9 +100,9 @@
                                         <div class="portlet-body-short" style="border: 0px solid #000 !important;">
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-20" style="margin-top: 10% !important;">
-                                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_roles", $identicationCode); ?> " style="text-decoration: none !important;">
+                                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_resources", $identicationCode); ?> " style="text-decoration: none !important;">
                                                         <button type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
-                                                            <i style="color: #ffffff !important;" class="fa fa-yelp"></i> &nbsp;Manage Roles
+                                                            <i style="color: #ffffff !important;" class="fa fa-yelp"></i> &nbsp;Manage Resources
                                                         </button>
                                                     </a>
                                                 </div>
@@ -117,29 +113,12 @@
                                 <!--span-->
                                 
                                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                    <div class="portlet box zvs-content-blocks">
-                                        <div class="zvs-content-titles">
-                                            <h3>Edit Role Status</h3>
-                                        </div>
-                                        <div class="portlet-body">
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <?php Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "edit_role_form.php", $urlParameter); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <?php
-
-                                    echo "<pre>";
-                                    print_r($urlParameter);
-                                    echo "</pre>";
-
+                                    <?php 
+                                        //Access to pull all administrator information.
+                                        $zf_controller->Zf_loadModel("school_main_admin", "platformSchoolResources");
+                                        $zf_controller->zf_targetModel->fetchRoleResources($schoolRoleCode, $roleName);
                                     ?>
+                                </div>
                             </div>
                         </div>
                     </div>

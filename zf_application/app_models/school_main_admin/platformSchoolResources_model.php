@@ -381,9 +381,6 @@ class platformSchoolResources_Model extends Zf_Model {
      * roles to which resources have been assigned and also to those that resources haven't been
      * assigned yet.
      */
-    /**
-     * This method returns all class details for a given school
-     */
     public function fetchRolesDetails($identificationCode){
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
@@ -430,7 +427,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                           <h3 style="padding-left: 10px !important;">'.$roleName.'</h3>
                                                       </div>
                                                       <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
-                                                          <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_role_resources'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolClassCode).' " title="View '.$roleName.'" ><i class="fa fa-list"></i></a></h3>
+                                                          <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_role_resources'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$roleCode).' " title="View '.$roleName.'" ><i class="fa fa-list"></i></a></h3>
                                                       </div>
                                                   </div>';
 
@@ -495,6 +492,81 @@ class platformSchoolResources_Model extends Zf_Model {
         
     }
     
+    
+    
+    /**
+     * This method fetches resources assigned to specific roles in the the selected school.
+     */
+    public function fetchRoleResources($schoolRoleCode, $roleName){
+        
+        //Here we fetch and return all resources that have been assigned to a given school role.
+        $zvs_assignedResources = $this->fetchAssignedResources($schoolRoleCode);
+        
+        $zvs_resourcesGridView .='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                             <div class="portlet box zvs-content-blocks" style="min-height: 427px !important;">
+                                                  <div class="zvs-content-titles">
+                                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                          <h3 style="padding-left: 10px !important;">Resources Assigned to '.$roleName.'</h3>
+                                                      </div>
+                                                  </div>';
+
+                                                 if($zvs_assignedResources == 0){
+                                                     
+                                                        $zvs_resourcesGridView .='<div class="portlet-body">
+                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 20% !important; min-height:340px !important;">
+                                                                        <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
+                                                                        <span class="content-view-errors" >
+                                                                            &nbsp;Resources are not yet assigned to '.strtolower($roleName).'. Once resources are assigned to this role, you should be able to view them here!!.
+                                                                        </span>
+                                                                    </div>
+                                                                </div>';
+
+                                                 }else{
+
+
+                                                          $zvs_resourcesGridView .='<div class="portlet-body">
+                                                                                       <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0"  style="min-height:340px !important;">
+                                                                                            <div class="table-responsive">
+                                                                                                <table class="table table-striped table-hover">
+                                                                                                    <thead>
+                                                                                                        <tr>
+                                                                                                            <th  style="width: 100%;">Resource Name</th>
+                                                                                                        </tr>
+                                                                                                    </thead>
+                                                                                                    <tbody>';
+                                                          
+                                                                                                        foreach ($zvs_assignedResources as $resourceValues) {
+
+                                                                                                            $resourceId = $resourceValues['schoolResourceId']; 
+                                                                                                            
+                                                                                                            $resourceDetails = $this->zvs_fetchResourceDetails($resourceId, $purpose="assign");
+                                                                                                            
+                                                                                                            foreach($resourceDetails as $resourceValues){
+                                                                                                                
+                                                                                                                $zvs_resourcesGridView .='<tr><td>'.$resourceValues['resourceName'].'</td></tr>';
+                                                                                                            
+                                                                                                                
+                                                                                                            }
+                                                                                                            
+
+                                                                                                        }
+
+                                                                                $zvs_resourcesGridView .='</tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                       </div>
+                                                                                    </div>';
+
+                                                 }
+
+                      $zvs_resourcesGridView .='</div>          
+                                          </div>';
+
+            
+         
+         echo $zvs_resourcesGridView;
+        
+    }
     
 }
 

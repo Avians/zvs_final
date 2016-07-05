@@ -50,10 +50,10 @@
                             <!-- START OF CONFIRM SETUP SECTION-->
                             <div class="tab-pane" id="confirmInfo">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <label class="control-label col-md-6">Role Status:</label>
-                                            <div class="col-md-6">
+                                            <label class="control-label col-lg-4 col-md-4 col-sm-6 col-xs-12">Role Status:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                                                 <p class="form-control-static confirm-form-result" data-display="roleStatus"></p>
                                             </div>
                                         </div>
