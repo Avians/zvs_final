@@ -13,41 +13,19 @@
 <form id="subjectUpdateForm" action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newResourcesRolesMapper", $manageResourcesParameters); ?>" method="post" class="form-horizontal" >    
     
     <div class="row margin-top-10">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-            <div class="portlet box zvs-content-blocks" style="min-height: 200px !important;">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="portlet box zvs-content-blocks" style="min-height: 50px !important;">
                 <div class="portlet-body form" >
-                    <h3 class="form-section form-title" style="padding-top: 10px !important;">Assign Platform Resources to School Roles</h3> 
+                    <h3 class="form-section form-title" style="padding-top: 30px !important;">Add Platform Resources this Role</h3> 
                     <div class="alert alert-info">
                         <button class="close" data-dismiss="alert"></button>
-                        Select a role from available school roles and assign available platform resources to the selected role.
+                        Select resources from the available platform resources and add them to the selected school role.
                     </div>
-                    <div class="row">
-                        <div class="col-md-8" min-height: 100px !important; padding-top: 30px !important;">
-                            <div class="form-group">
-                                <label class="control-label col-md-6">Select School Role:</label>
-                                <div class="col-md-6">
-                                    <select class="form-control select2me roleOptions" id="roleOptions" name="schoolRoleId" data-placeholder="Principal, Bursar, Teacher, Parent ...."  value="<?php echo $zf_formHandler->zf_getFormValue("schoolRoleId"); ?>">
-                                        <?php
-                                            $zf_widgetFolder = "school_main_admin";
-                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, "roles_options.php", $schoolSystemCode);
-                                        ?>
-                                    </select>
-                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("schoolRoleId"); ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/span-->
-                    </div>
-                    <!--/row-->
                 </div>
             </div>
         </div>
     </div>
     <!--/row-->
-    
-    <h3 class="form-section form-title">Select resources to assign a role</h3>
     
     <div class="row">
         <?php
