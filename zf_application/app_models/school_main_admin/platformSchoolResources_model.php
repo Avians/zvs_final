@@ -575,14 +575,8 @@ class platformSchoolResources_Model extends Zf_Model {
      */
     public function addRoleResources($urlParameter){
         
-        $identicationCode = $urlParameter[0]; $systemSchoolCode = $urlParameter[1]; 
-        $roleName = $urlParameter[2]; $schoolRoleCode = $systemSchoolCode.ZVSS_CONNECT.$roleName;
-        
-        //echo $identicationCode."<br>".$systemSchoolCode."<br>".$roleName."<br>".$schoolRoleCode;
-        
-        
         //1. First we return all available platform resources
-        Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "add_resources_form.php", $systemSchoolCode);
+        Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "add_resources_form.php", $urlParameter);
         
         
         //2. We check will check resources that are already assigned to this school role and remove them from that list.
