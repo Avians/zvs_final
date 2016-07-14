@@ -18,6 +18,11 @@
         <button class="close" data-dismiss="alert"></button>
         You successfully assigned resources to a school role. You can now have an overview of assigned roles.
     </div> 
-<?php
-} 
+<?php }else if(Zf_SessionHandler::zf_getSessionVariable('resources_roles_mapper') == 'role_delete_success'){ ?>
+    <div class="alert alert-danger display-none error-fadeout">
+        <button class="close" data-dismiss="alert"></button>
+        You successfully deleted resources from a school role. You can now have an overview of remaining assigned roles.
+    </div>
+<?php }
 Zf_SessionHandler::zf_unsetSessionVariable("resources_roles_mapper");
+?>

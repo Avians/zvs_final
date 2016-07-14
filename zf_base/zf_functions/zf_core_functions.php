@@ -474,6 +474,40 @@ class Zf_Core_Functions {
     }
     
     
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD FOR DELETING ELEMENTS IN AN ARRAY OF ARRAYS
+     * -------------------------------------------------------------------------
+     * @param none
+     * @return string true or false
+     */
+    //Delete array value from a recursive array.
+    public static function recursiveRemoval(&$array, $val)
+    {
+        if(is_array($array))
+        {
+            foreach($array as $key=>&$arrayElement)
+            {
+                if(is_array($arrayElement))
+                {
+                    $this->recursiveRemoval($arrayElement, $val);
+                }
+                else
+                {
+                    if($arrayElement == $val)
+                    {
+                        unset($array[$key]);
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
   
 }
 

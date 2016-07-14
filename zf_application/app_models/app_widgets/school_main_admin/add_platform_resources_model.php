@@ -58,31 +58,34 @@ class add_platform_resources_Model extends Zf_Model {
              
              foreach($zvs_categoriesDetails as $categoryValues){
                  
-                 $categoryName = $categoryValues['categoryName']; $categoryCode = $categoryValues['categoryPrefix'];
-                 
-                 
-                 
-                 //Here we fetch and return all resources that belong to a given category.
-                 $zvs_resourceDetails = $this->zvs_fetchResourceDetails($categoryName);
-                 
-                 echo "<pre>";
-                 print_r($zvs_resourceDetails);
-                 echo "</pre>";
-                 
-                 //Returns all already assigned resources
-                 $assignedResources = $this->zvs_fetchAssignedResources($categoryCode, $schoolRoleCode);
-                 
-                 foreach ($assignedResources as $value) {
-                     
-                     echo $value['schoolResourceId']." Athias"; 
-                     
-                     $array_without_strawberries = array_diff($zvs_resourceDetails, array($value['schoolResourceId']));
-                     
-                        echo "<pre>";
-                        print_r($zvs_resourceDetails);
-                        echo "</pre>";
-                 } 
-                 
+                $categoryName = $categoryValues['categoryName']; $categoryCode = $categoryValues['categoryPrefix'];
+                
+                //Returns all already assigned resources
+                $assignedResources = $this->zvs_fetchAssignedResources($categoryCode, $schoolRoleCode);
+                
+                //Here we fetch and return all resources that belong to a given category with the entire platform.
+                $zvs_resourceDetails = $this->zvs_fetchResourceDetails($categoryName);
+                
+                foreach ($assignedResources as $assignedResourceValue){
+                    
+                    $assignedResourceId = $assignedResourceValue['schoolResourceId'];
+                    
+                    //Fetch detailed information for the already assigned resources
+                    $zvs_assignedResourceDetails = $this->zvs_assignedResourceDetails($assignedResourceId);
+                    
+                    //Delete all the already assigned resources from the platform arrays
+                    foreach (array_keys($zvs_resourceDetails, $zvs_assignedResourceDetails, true) as $key) {
+                    
+                        unset($zvs_resourceDetails[$key]);
+
+                    }
+                    
+                }
+                
+                
+                //This array holds all resources that are not yet assigned to the role
+                $unassignedResourceDetails = $zvs_resourceDetails;
+                
                 
             $zvs_resourcesGridView .='<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
@@ -92,13 +95,13 @@ class add_platform_resources_Model extends Zf_Model {
                                             </div>
                                         </div>';
 
-                                       if($zvs_resourceDetails == 0){
+                                       if(empty($unassignedResourceDetails)){
 
                                            $zvs_resourcesGridView .='<div class="portlet-body">
                                                                     <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 30% !important;">
                                                                         <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
                                                                         <span class="content-view-errors" >
-                                                                            &nbsp;There are no active resources in '.strtolower($categoryName).' module as of yet!!
+                                                                            &nbsp;There are no unassigned active resources as of now!!
                                                                         </span>
                                                                     </div>
                                                                 </div>';
@@ -117,31 +120,19 @@ class add_platform_resources_Model extends Zf_Model {
                                                                                           </thead>
                                                                                           <tbody>';
                                                 
-                                                                                            foreach ($assignedResources as $assignedValues) {
+                                                                                                    
+                                                                                                    foreach ($unassignedResourceDetails as $resourceValues) {
 
-                                                                                                $resourceCode = $assignedValues['schoolResourceId'];
-                                                                                                
-                                                                                                if (($key = array_search($resourceCode, $zvs_resourceDetails)) !== false) {
-                                                                                                    
-                                                                                                    unset($zvs_resourceDetails[$key]);
-                                                                                                    
-                                                                                                    print_r($zvs_resourceDetails);
-                                                                                                    
-//                                                                                                    foreach ($zvs_resourceDetails as $resourceValues) {
-//
-//                                                                                                        $resourceName = $resourceValues['resourceName']; $resourceID = $resourceValues['resourceId']; 
-//                                                                                                        $resourceCategoryId =  explode(ZVSS_CONNECT, $resourceID)[0];
-//
-//                                                                                                        $cleanName = Zf_Core_Functions::Zf_CleanName($resourceName);
-//
-//                                                                                                        $zvs_resourcesGridView .='<tr><td><label class="checkbox-inline"><input type="checkbox" name="'.$cleanName.'"  value="'.$resourceID.'" id="'.$resourceID.'"><input type="hidden" name="'.$resourceCategoryId.'"  value="'.$resourceCategoryId.'" id="'.$resourceCategoryId.'">'.$resourceName.'</td></tr>';
-//
-//                                                                                                    }
-                                                                                                    
-                                                                                                }
-                                                                                                
-                                                                                            }
+                                                                                                        $resourceName = $resourceValues['resourceName']; $resourceID = $resourceValues['resourceId']; 
+                                                                                                        $resourceCategoryId =  explode(ZVSS_CONNECT, $resourceID)[0];
 
+                                                                                                        $cleanName = Zf_Core_Functions::Zf_CleanName($resourceName);
+
+                                                                                                        $zvs_resourcesGridView .='<tr><td><label class="checkbox-inline"><input type="checkbox" name="'.$cleanName.'"  value="'.$resourceID.'" id="'.$resourceID.'"><input type="hidden" name="'.$resourceCategoryId.'"  value="'.$resourceCategoryId.'" id="'.$resourceCategoryId.'">'.$resourceName.'</td></tr>';
+
+                                                                                                    }
+                                                                                                    
+                                                                                                
                                                                     $zvs_resourcesGridView .='</tbody>
                                                                                       </table>
                                                                                   </div>
@@ -239,6 +230,48 @@ class add_platform_resources_Model extends Zf_Model {
         }
         
     }
+   
+    
+    
+    
+    /**
+     * This method checks and counts, then returns all stream details for all classess in the school.
+     */
+    private function zvs_assignedResourceDetails($resourceId){
+        
+        $zvs_sqlValue["resourceId"] = Zf_QueryGenerator::SQLValue($resourceId);
+        
+        $fetchTargetResource = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_resources', $zvs_sqlValue);
+        
+        $zf_executeFetchTargetResource  = $this->Zf_AdoDB->Execute($fetchTargetResource);
+
+        if(!$zf_executeFetchTargetResource ){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+            
+            $results[0] = $zf_executeFetchTargetResource->fields['id'];
+            $results['id'] = $zf_executeFetchTargetResource->fields['id'];
+            $results[1] = $zf_executeFetchTargetResource->fields['resourceId'];
+            $results['resourceId'] = $zf_executeFetchTargetResource->fields['resourceId'];
+            $results[2] = $zf_executeFetchTargetResource->fields['resourceName'];
+            $results['resourceName'] = $zf_executeFetchTargetResource->fields['resourceName'];
+            $results[3] = $zf_executeFetchTargetResource->fields['resourceCategory'];
+            $results['resourceCategory'] = $zf_executeFetchTargetResource->fields['resourceCategory'];
+            $results[4] = $zf_executeFetchTargetResource->fields['dateCreated'];
+            $results['dateCreated'] = $zf_executeFetchTargetResource->fields['dateCreated'];
+            $results[5] = $zf_executeFetchTargetResource->fields['dateModified'];
+            $results['dateModified'] = $zf_executeFetchTargetResource->fields['dateModified'];
+            $results[6] = $zf_executeFetchTargetResource->fields['resourceStatus'];
+            $results['resourceStatus'] = $zf_executeFetchTargetResource->fields['resourceStatus'];
+
+ 
+            return $results;
+            
+        }
+        
+    }
     
     
     
@@ -260,7 +293,7 @@ class add_platform_resources_Model extends Zf_Model {
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
-
+            
             if($zf_executeFetchAssignedResources->RecordCount() > 0){
 
                 while(!$zf_executeFetchAssignedResources->EOF){
@@ -277,8 +310,14 @@ class add_platform_resources_Model extends Zf_Model {
                 return 0;
                 
             }
+
+                
+            
         }
         
     }
+    
+    
+    
 }
 ?>

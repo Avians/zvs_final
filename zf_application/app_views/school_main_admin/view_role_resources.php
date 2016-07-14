@@ -127,7 +127,12 @@
                                 $zf_controller->zf_targetModel->addRoleResources($urlParameter);
                             ?>
                         </div>
-                        <div>Next 2</div>
+                        <div>
+                            <?php
+                                //Here we pull all available platform resources so as to assign them to school roles.
+                                $zf_controller->zf_targetModel->deleteRoleResources($urlParameter);
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

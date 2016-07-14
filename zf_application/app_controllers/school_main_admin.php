@@ -546,6 +546,14 @@ class School_main_adminController extends Zf_Controller {
             
         }
         
+        if($filterAction == "deleteResources"){
+            
+            //deletes resources from the selected roles
+            $this->zf_targetModel->rolesResourceDelete($filteredData[0]);
+            
+        }
+        
+        
     }
     
     
