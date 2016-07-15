@@ -94,7 +94,7 @@ class delete_platform_resources_Model extends Zf_Model {
                                                                                                                     
                                                                                                                 }
                                                                                                                 
-                                                                                                                $zvs_resourcesGridView .= $categoryName.'</td></tr>';
+                                                                                                                $zvs_resourcesGridView .= $categoryName.' Module</td></tr>';
                                                                                                             
                                                                                                                 
                                                                                                             }

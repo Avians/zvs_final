@@ -34,7 +34,7 @@
     </div>
     <!--/row-->
     
-    <div class="row">
+    <div class="row" style="margin-bottom: -20px !important;">
         <?php
             //Here we pull all the forms that have all available platform resources 
             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, "delete_platform_resources.php", $urlParameter);
@@ -44,12 +44,10 @@
     
    <div class="form-actions fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="col-md-offset-5 col-md-7">
-                    <button type="submit" class="btn blue button-submit">
-                        Submit <i class="m-icon-swapright m-icon-white"></i>
-                    </button>
-                </div>
+            <div class="col-md-12 col-md-offset-5 col-md-7">
+                <button type="submit" class="btn blue button-submit">
+                    Delete Resources <i class="m-icon-swapright m-icon-white"></i>
+                </button>
             </div>
         </div>
     </div>
