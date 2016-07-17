@@ -290,6 +290,7 @@ class platformSchoolResources_Model extends Zf_Model {
      */
     private function confirmSchoolRoles($systemSchoolCode, $purpose){
         
+        
         if($purpose == "assign"){
             
             $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
@@ -303,7 +304,9 @@ class platformSchoolResources_Model extends Zf_Model {
             
         }
         
+        
         $fetchSchoolRoles = Zf_QueryGenerator::BuildSQLSelect('zvs_school_roles', $zvs_sqlValue);
+        
         
         $zf_executeFetchSchoolRoles = $this->Zf_AdoDB->Execute($fetchSchoolRoles);
 
@@ -506,8 +509,8 @@ class platformSchoolResources_Model extends Zf_Model {
                                              <div class="portlet box zvs-content-blocks" style="min-height: 427px !important;">
                                                   <div class="zvs-content-titles">
                                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                          <h3 style="padding-left: 10px !important;">Resources Assigned to '.$roleName.'</h3>
-                                                      </div>
+                                                        <h3 style="padding-left: 10px !important;">Resources Assigned to '.$roleName.'</h3>     
+                                                    </div>
                                                   </div>';
 
                                                  if($zvs_assignedResources == 0){

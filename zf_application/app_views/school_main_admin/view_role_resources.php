@@ -24,8 +24,11 @@
         
         $currentAssignStatus = ($assignStatus == 1 ? 'Assigned - <i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'Not Assigned - <i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
         $currentRoleStatus = ($roleStatus == 1 ? 'Active - <i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'Inactive - <i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
-  
+        
+        $urlParameter[] = $schoolRoleName;
     }
+    
+    
     
 ?>
 
@@ -39,7 +42,7 @@
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">Role Details</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs();?>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -115,7 +118,7 @@
                                     <?php 
                                         //Access to pull all administrator information.
                                         $zf_controller->Zf_loadModel("school_main_admin", "platformSchoolResources");
-                                        $zf_controller->zf_targetModel->fetchRoleResources($schoolRoleCode, $roleName);
+                                        $zf_controller->zf_targetModel->fetchRoleResources($schoolRoleCode, $schoolRoleName);
                                     ?>
                                 </div>
                                 <!--span-->

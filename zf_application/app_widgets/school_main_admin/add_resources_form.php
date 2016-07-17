@@ -16,10 +16,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="portlet box zvs-content-blocks" style="min-height: 50px !important;">
                 <div class="portlet-body form" >
-                    <h3 class="form-section form-title" style="padding-top: 30px !important;">Add Platform Resources to <?=$urlParameter[2];?></h3> 
+                    <h3 class="form-section form-title" style="padding-top: 30px !important;">Add Platform Resources to <?=$urlParameter[3];?></h3> 
                     <div class="alert alert-info">
                         <button class="close" data-dismiss="alert"></button>
-                        Select resources from the available platform resources and add them to the role of <?=lcfirst($urlParameter[2]);?>.
+                        Select resources from the available platform resources and add them to the role of <?=strtolower($urlParameter[3]);?>.
                     </div>
                 </div>
             </div>

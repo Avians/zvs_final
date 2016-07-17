@@ -16,10 +16,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="portlet box zvs-content-blocks" style="min-height: 50px !important;">
                 <div class="portlet-body form" >
-                    <h3 class="form-section form-title" style="padding-top: 30px !important;">Delete Resources from <?=$urlParameter[2];?></h3> 
+                    <h3 class="form-section form-title" style="padding-top: 30px !important;">Delete Resources from <?=$urlParameter[3];?></h3> 
                     <div class="alert alert-info">
                         <button class="close" data-dismiss="alert"></button>
-                        Select resources from already assigned resources and delete them from the role of <?=lcfirst($urlParameter[2]);?>.
+                        Select resources from already assigned resources and delete them from the role of <?=strtolower($urlParameter[3]);?>.
                     </div>
                 </div>
             </div>
