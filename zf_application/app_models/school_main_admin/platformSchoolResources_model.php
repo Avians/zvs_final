@@ -430,7 +430,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                           <h3 style="padding-left: 10px !important;">'.$roleName.'</h3>
                                                       </div>
                                                       <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
-                                                          <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_role_resources'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$roleCode).' " title="View '.$roleName.'" ><i class="fa fa-list"></i></a></h3>
+                                                          <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_role_resources'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$roleCode).' " title="View &AMP; Edit '.$roleName.'" ><i class="fa fa-edit"></i></a></h3>
                                                       </div>
                                                   </div>';
 
