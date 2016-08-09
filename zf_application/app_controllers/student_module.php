@@ -34,9 +34,11 @@ class student_moduleController extends Zf_Controller {
 
     
     //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    public function actionRegister_student($identificationCode){
         
-        Zf_View::zf_displayView('index');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('register_student', $zf_actionData);
         
     }
     

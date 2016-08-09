@@ -970,7 +970,8 @@ Page content
 .page-content {  
   margin-top: 0px;   
   padding: 0px;
-  background-color: #F5F5F5 !important; 
+  background-color: #FFFFFF !important; 
+  /*background-color: #F5F5F5 !important;*/ 
 }
 
 .ie8 .page-content { 

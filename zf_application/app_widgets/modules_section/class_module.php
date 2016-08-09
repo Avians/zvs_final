@@ -16,18 +16,6 @@ $zvs_allowedResources = $zf_externalWidgetData;
 
 $main_menu = array(
     
-    //Main dashboard
-    "main_dashboard" => array(
-        'name' => '<i class="fa fa-home"></i> <span class="title">Main Dashboard</span><span class="selected"></span>',
-        'controller' => $zvs_controller,
-        'action' => 'main_dashboard',
-        'parameter' => $identificationCode,
-        'title' => '',
-        'style' => '',
-        'id' => ''
-    ),
-    
-    
     //View Classes
     "view_classes" => array(
         'name' => '<i class="fa fa-user"></i> View Classes',
@@ -78,11 +66,6 @@ $main_menu = array(
     
 );
 ?>
-
-<!--This is the menu item links to the main dashboard-->
-<li class="start <?php if (($zvs_controller == "zvs_platform_admin" && empty($zvs_action)) || $zvs_action == "main_dashboard") { echo "active";} ?>">
-    <?php Zf_GenerateLinks::zf_internal_link($main_menu['main_dashboard']); ?>
-</li>
 
 
 <!-- This menu item manages all aspects of ZVS admin users-->

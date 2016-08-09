@@ -44,7 +44,7 @@
     
    <div class="form-actions fluid">
         <div class="row">
-            <div class="col-md-12 col-md-offset-5 col-md-7">
+            <div class="col-md-offset-5 col-md-7">
                 <button type="submit" class="btn blue button-submit">
                     Add Resources <i class="m-icon-swapright m-icon-white"></i>
                 </button>

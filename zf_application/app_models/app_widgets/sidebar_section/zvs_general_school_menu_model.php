@@ -7,7 +7,12 @@ class zvs_general_school_menu_Model extends Zf_Model {
     }
     
     
-    //This method is responsoble for building country codes.
+    
+    
+    /**
+     * This method is responsoble for fetching all resources that are allowed for
+     * a given user role within a school.
+     */
     public function zvs_fetchUserResources($identificationCode) {
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];

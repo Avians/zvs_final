@@ -235,6 +235,8 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('STUMOD') ? null : define('STUMOD' , 'student_module');
     defined('STUDENT_MODULE') ? null : define('STUDENT_MODULE' , 'StuMod');
     
+        defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
+    
     
     //Teacher Module and resources
     defined('TCHMOD') ? null : define('TCHMOD' , 'teacher_module');
@@ -304,6 +306,11 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Hostel Module and resources
     defined('HOSMOD') ? null : define('HOSMOD' , 'hostel_module');
     defined('HOSTEL_MODULE') ? null : define('HOSTEL_MODULE' , 'HosMod');
+    
+    
+    //Assets Module and resources
+    defined('ASTMOD') ? null : define('ASTMOD' , 'assets_module');
+    defined('ASSETS_MODULE') ? null : define('ASSETS_MODULE' , 'AstMod');
    
 
 ?>

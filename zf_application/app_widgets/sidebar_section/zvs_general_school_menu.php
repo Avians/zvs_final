@@ -20,7 +20,7 @@ $identificationCode = $zf_externalWidgetData;
  * then we return those resources in an array.
  */
 
-//This array holds all valid resources
+//This array holds all valid user resources for the selected role.
 $zvs_allowedResources = $zf_model_data->zvs_fetchUserResources($identificationCode);
 
 
@@ -171,6 +171,14 @@ $zvs_allowedResources = $zf_model_data->zvs_fetchUserResources($identificationCo
     if(Zf_Core_Functions::Zf_recursiveArray(HOSTEL_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "hostel_module.php", $zvs_allowedResources);
+
+    } 
+
+ 
+    //19. Assets Module(AstMod) ==> zvs_assets
+    if(Zf_Core_Functions::Zf_recursiveArray(ASSETS_MODULE, $zvs_allowedResources)){ 
+        
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "assets_module.php", $zvs_allowedResources);
 
     } 
     

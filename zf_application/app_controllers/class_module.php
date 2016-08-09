@@ -33,17 +33,21 @@ class class_moduleController extends Zf_Controller {
     }
     
     //Executes the view classes view. Also is the defaukt action for this controller
-    public function actionView_classes(){
+    public function actionView_classes($identificationCode){
         
-        Zf_View::zf_displayView('view_classes');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('view_classes', $zf_actionData);
         
     }
 
     
     //This controller executes the class profile view.
-    public function actionClass_profile(){
+    public function actionClass_profile($identificationCode){
         
-        Zf_View::zf_displayView('class_profile');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('class_profile', $zf_actionData);
         
     }
     
