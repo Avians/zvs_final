@@ -38,6 +38,7 @@ class student_moduleController extends Zf_Controller {
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
+        //This is the view for registration of a new student/pupil
         Zf_View::zf_displayView('register_student', $zf_actionData);
         
     }
