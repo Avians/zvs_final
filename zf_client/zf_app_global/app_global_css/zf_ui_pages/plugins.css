@@ -1017,14 +1017,17 @@ Bootstrap Datepicker
 }
 
 .datepicker .active {  
-  background-color:#4b8df8 !important;
-  background-image: none !important;
-  filter: none !important;
+    background-color: #71ceef !important;
+    background-image: none !important;
+    border-radius: 5px !important;
+    filter: none !important;
+    font-family: Ubuntu-L !important;
 }
 
 .datepicker .active:hover {
-  background-color: #2678FC !important;
+  background-color: #21B4E2 !important;
   background-image: none !important;
+  color: #ffffff !important;
   filter: none !important;
 }
 

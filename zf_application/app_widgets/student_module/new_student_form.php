@@ -53,6 +53,160 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="control-label col-md-4">First Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="firstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("firstName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("firstName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Middle Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="middleName" class="form-control" placeholder="Middle Name" value="<?php echo $zf_formHandler->zf_getFormValue("middleName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("middleName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Last Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="lastName" class="form-control" placeholder="Last Name" value="<?php echo $zf_formHandler->zf_getFormValue("lastName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("lastName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Gender Name:</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input type="radio" name="gender" value="Male" checked data-title="Male"> Male </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="gender" value="Female"  data-title="Female"> Female </label>
+                                    </div>
+				</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Date of Birth:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $date;?>" style="width: 265px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                        <input type="text" id="startDate" class="form-control" readonly value="startDate">
+                                        <span class="input-group-btn">
+                                            <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Religion:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Country:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Locality:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Phone Number:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Main Language:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Photo:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="control-label col-md-4">Select Class:</label>
                                 <div class="col-md-8">
                                     <select class="form-control select2me" name="schoolClassCode" data-placeholder="Form 1 or Class 1, Form 2 or Class 2, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolClassCode"); ?>">
@@ -136,7 +290,6 @@
                     <!-- START LOGIN DETAILS-->
                     <h3 class="form-section form-title">Login Details</h3>
                     <!-- END LOGIN DETAILS-->
-                    
                     
                 </div>
                 <!-- END OF ADMINL SETUP FORM-->

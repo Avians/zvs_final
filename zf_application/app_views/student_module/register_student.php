@@ -33,7 +33,7 @@
                     <div id="tabbed-nav">
                         <ul class="z-tabs-titles">
                             <li><a>Student overview</a></li>
-                            <li><a><i class="fa fa-user-plus"></i> New Student</a></li>
+                            <li><a><i class="fa fa-user-plus"></i> Add New Student</a></li>
                         </ul>
 
                         <div class="z-content-inner">
