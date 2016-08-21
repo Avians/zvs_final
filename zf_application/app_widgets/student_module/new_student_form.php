@@ -4,6 +4,10 @@
     
     $new_student = "new_student";
     
+    $currentDate = Zf_Core_Functions::Zf_CurrentDate();
+    
+    //echo $currentDate;
+    
 ?>
 
 <form action="<?php Zf_GenerateLinks::basic_internal_link("student_module", "newStudentRegistration", $new_student); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_stream_form">
@@ -107,8 +111,8 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Date of Birth:</label>
                                 <div class="col-md-8">
-                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $date;?>" style="width: 265px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-                                        <input type="text" id="startDate" class="form-control" readonly value="startDate">
+                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 265px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                        <input type="text" class="form-control" readonly value="<?php echo $currentDate; ?>" >
                                         <span class="input-group-btn">
                                             <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
                                         </span>
