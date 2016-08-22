@@ -124,9 +124,16 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Religion:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    <select class="form-control select2me" name="religion" data-placeholder="Christian, Hindu, Muslim, ..."  value="<?php echo $zf_formHandler->zf_getFormValue("religion"); ?>">
+                                        <option value=""></option>
+                                        <option value="Christian">Christian</option>
+                                        <option value="Muslim">Muslim</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Buddhist">Buddhist</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("religion") ?>
                                     </span>
                                 </div>
                             </div>
@@ -138,9 +145,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Country:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                    <select class="form-control select2me studentCountry" id="studentCountry" name="studentCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("studentCountry"); ?>">
+                                        <?php
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("studentCountry") ?>
                                     </span>
                                 </div>
                             </div>
@@ -149,9 +161,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Locality:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <select class="form-control select2me studentLocality" id="studentLocality" name="studentLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("studentLocality"); ?>">
+                                        <option value=""></option>
+                                    </select>
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentLocality") ?>
                                     </span>
                                 </div>
                             </div>

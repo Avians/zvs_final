@@ -1,28 +1,30 @@
 <script type="text/javascript" >
 
-    //This variable processes platform administrators locations
-    var ManageForms = function(){
+
+    //This variable processes school locations
+    var StudentLocations = function(){
         
-        //Here we process all class details.
-        var classDetails = function ($absolute_path, $separator){
+        //This function processes the locality of a school and its administrator.
+        var studentLocality = function ($absolute_path, $separator){
             
-            //Process the locality of a super administrator
-            $('.superAdminCountry').change(function(){
+            //Process the locality of a school administrator from his/her selected country
+            $('.studentCountry').change(function(){
                 
-                var processLocality = $absolute_path + "zvs_super_admin" + $separator + "userInformation" + $separator + "process_locality";
-                var countryCodeSuperAdmin = $("#superAdminCountry").val();
+                var processLocality = $absolute_path + "student_module" + $separator + "studentInformation" + $separator + "process_locality";
+                var studentCountryCode = $("#studentCountry").val();
 
                 $.ajax({
                     type: "POST",
                     url: processLocality,
-                    data: {countryCode: countryCodeSuperAdmin},
+                    data: {countryCode: studentCountryCode},
                     cache: false,
                     success: function(html) {
-                       $("#superAdminLocality").html(html);
+                       $("#studentLocality").html(html);
                     }
                 });
 
             });
+            
                
         };
         
@@ -32,9 +34,9 @@
 
             init:function($current_view, $absolute_path, $separator){
 
-                if($current_view === "manage_classes"){
+                if($current_view === "new_student"){
 
-                    classDetails($absolute_path, $separator);
+                    studentLocality($absolute_path, $separator);
 
                 }
 
@@ -44,5 +46,6 @@
         
     }(); 
     
-    
 </script>
+
+

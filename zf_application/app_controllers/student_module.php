@@ -44,6 +44,26 @@ class student_moduleController extends Zf_Controller {
     }
     
     
+    
+    
+    /**
+     * This action send the user information to the model for processing
+     */
+    public function actionStudentInformation($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == 'process_locality'){
+            
+            //Get the locality of any platform administrator
+            $this->zf_targetModel->getStudentLocality();
+            
+        }
+        
+    }
+    
+    
 
 }
 ?>

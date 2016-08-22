@@ -26,6 +26,7 @@ class countries_select_Model extends Zf_Model {
                 $this->Zf_QueryGenerator->MoveFirst();
                 
                 echo "<option value=''></option>";
+                
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 
                     $fetchRow = $this->Zf_QueryGenerator->Row();
