@@ -12,7 +12,8 @@
                 
                 var processLocality = $absolute_path + "student_module" + $separator + "studentInformation" + $separator + "process_locality";
                 var studentCountryCode = $("#studentCountry").val();
-
+                
+                //Here we run ajax task
                 $.ajax({
                     type: "POST",
                     url: processLocality,
