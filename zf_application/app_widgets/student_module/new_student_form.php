@@ -147,6 +147,7 @@
                                 <div class="col-md-8">
                                     <select class="form-control select2me studentCountry" id="studentCountry" name="studentCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("studentCountry"); ?>">
                                         <?php
+                                            //Here we select countries
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
                                         ?>
