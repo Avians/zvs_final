@@ -177,9 +177,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Box Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <input type="text" name="boxAddress" class="form-control" placeholder="P.O Box 1111-0111, Nairobi - Kenya" value="<?php echo $zf_formHandler->zf_getFormValue("boxAddress"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("boxAddress"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -188,9 +188,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Phone Number:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <input type="text" name="phoneNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("phoneNumber"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("phoneNumber"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -200,11 +200,24 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Main Language:</label>
+                                <label class="control-label col-md-4">Official Language:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <select class="form-control select2me" name="officialLanguage" data-placeholder="English, French, Spanish ..."  value="<?php echo $zf_formHandler->zf_getFormValue("officialLanguage"); ?>">
+                                        <option value=""></option>
+                                        <option value="Christian">English</option>
+                                        <option value="Muslim">French</option>
+                                        <option value="Hindu">Spanish</option>
+                                        <option value="Buddhist">Russian</option>
+                                        <option value="Buddhist">Arabic</option>
+                                        <option value="Chinese">Chinese</option>
+                                        <option value="German">German</option>
+                                        <option value="Japanese">Japanese</option>
+                                        <option value="Portuguese">Portuguese</option>
+                                        <option value="Hindi">Hindi/Urdu</option>
+                                        <option value="Others">Others</option>
+                                    </select>
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("mainLanguage"); ?>
                                     </span>
                                 </div>
                             </div>
