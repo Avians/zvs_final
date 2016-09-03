@@ -1,5 +1,9 @@
 <?php
 
+//Here we are surpressing notices and warning but allowing all the other errors to be visible.
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+
+
 /**
  * -----------------------------------------------------------------------------
  * THIS IS CLASS THAT IS ESSENTIAL FOR THE VALIDATION OF ALL FORM FIELDS FOR ANY

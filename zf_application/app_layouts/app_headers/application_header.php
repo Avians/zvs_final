@@ -1,4 +1,5 @@
 <?php
+//Here we report all errors apart from Notices
 error_reporting((E_ALL & ~E_NOTICE) & 0);
 /**
  * -----------------------------------------------------------------------------
