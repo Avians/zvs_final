@@ -215,17 +215,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Photo:</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!--/row-->
                     <!-- END OF STUDENT DETAILS-->
