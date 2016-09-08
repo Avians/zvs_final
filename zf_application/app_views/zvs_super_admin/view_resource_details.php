@@ -96,7 +96,7 @@
                                         <div class="portlet-body-short" style="border: 0px solid #000 !important;">
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-20" style="margin-top: 10% !important;">
-                                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_resources", $identificationCode); ?> " style="text-decoration: none !important;">
+                                                    <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, "manage_resources", $identicationCode); ?> " style="text-decoration: none !important;">
                                                         <button type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
                                                             <i style="color: #ffffff !important;" class="fa fa-yelp"></i> &nbsp;Manage Resources
                                                         </button>

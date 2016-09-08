@@ -234,36 +234,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Select Class:</label>
-                                <div class="col-md-8">
-                                    <select class="form-control select2me" name="schoolClassCode" data-placeholder="Form 1 or Class 1, Form 2 or Class 2, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolClassCode"); ?>">
-                                        <?php
-                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "class_select.php";
-                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
-                                        ?>
-                                    </select>
-                                    <span class="help-block server-side-error">
-                                        <?php echo $zf_formHandler->zf_getFormError("schoolClassCode") ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Stream Name:</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--/row-->
                     <!-- END OF STUDENT DETAILS-->
                    
