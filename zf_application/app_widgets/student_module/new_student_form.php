@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Date of Birth:</label>
                                 <div class="col-md-8">
-                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 265px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 270px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
                                         <input type="text" class="form-control" readonly value="<?php echo $currentDate; ?>" >
                                         <span class="input-group-btn">
                                             <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
@@ -124,16 +124,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Religion:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="religion" data-placeholder="Christian, Hindu, Muslim, ..."  value="<?php echo $zf_formHandler->zf_getFormValue("religion"); ?>">
-                                        <option value=""></option>
-                                        <option value="Christian">Christian</option>
-                                        <option value="Muslim">Muslim</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Buddhist">Buddhist</option>
-                                        <option value="Others">Others</option>
+                                    <select class="form-control select2me studentReligion" id="studentReligion" name="studentReligion" data-placeholder="Christian, Hindu, Muslim, ..."  value="<?php echo $zf_formHandler->zf_getFormValue("studentReligion"); ?>">
+                                        <?php
+                                            //This widget creates select options for religions
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "religion_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
                                     </select>
                                     <span class="help-block server-side-error">
-                                        <?php echo $zf_formHandler->zf_getFormError("religion") ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentReligion") ?>
                                     </span>
                                 </div>
                             </div>
@@ -147,6 +146,7 @@
                                 <div class="col-md-8">
                                     <select class="form-control select2me studentCountry" id="studentCountry" name="studentCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("studentCountry"); ?>">
                                         <?php
+                                            //This widget creates select options for countires
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
                                         ?>
@@ -202,22 +202,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Official Language:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="officialLanguage" data-placeholder="English, French, Spanish ..."  value="<?php echo $zf_formHandler->zf_getFormValue("officialLanguage"); ?>">
-                                        <option value=""></option>
-                                        <option value="Christian">English</option>
-                                        <option value="Muslim">French</option>
-                                        <option value="Hindu">Spanish</option>
-                                        <option value="Buddhist">Russian</option>
-                                        <option value="Buddhist">Arabic</option>
-                                        <option value="Chinese">Chinese</option>
-                                        <option value="German">German</option>
-                                        <option value="Japanese">Japanese</option>
-                                        <option value="Portuguese">Portuguese</option>
-                                        <option value="Hindi">Hindi/Urdu</option>
-                                        <option value="Others">Others</option>
+                                    <select class="form-control select2me studentLanguage" id="studentLanguage" name="studentLanguage" data-placeholder="English, French, Spanish ..."  value="<?php echo $zf_formHandler->zf_getFormValue("studentLanguage"); ?>">
+                                        <?php
+                                            //This widget creates select options for languages
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "languages_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
                                     </select>
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("mainLanguage"); ?>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("studentLanguage") ?>
                                     </span>
                                 </div>
                             </div>
