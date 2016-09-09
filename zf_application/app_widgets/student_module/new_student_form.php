@@ -111,7 +111,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Date of Birth:</label>
                                 <div class="col-md-8">
-                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 270px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 277px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
                                         <input type="text" class="form-control" readonly value="<?php echo $currentDate; ?>" >
                                         <span class="input-group-btn">
                                             <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
@@ -225,6 +225,216 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="control-label col-md-4">First Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="parentFirstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("parentFirstName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("parentFirstName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Middle Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="parentMiddleName" class="form-control" placeholder="Middle Name" value="<?php echo $zf_formHandler->zf_getFormValue("parentMiddleName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("parentMiddleName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Last Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="parentLastName" class="form-control" placeholder="Last Name" value="<?php echo $zf_formHandler->zf_getFormValue("parentLastName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("parentLastName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Gender Name:</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input type="radio" name="parentGender" value="Male" checked data-title="Male"> Male </label>
+                                        <label class="radio-inline">
+                                        <input type="radio" name="parentGender" value="Female"  data-title="Female"> Female </label>
+                                    </div>
+				</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Date of Birth:</label>
+                                <div class="col-md-8">
+                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 277px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                                        <input type="text" class="form-control" name="parentDateOfBirth" readonly value="<?php echo $currentDate; ?>" >
+                                        <span class="input-group-btn">
+                                            <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Religion:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me studentReligion" id="parentReligion" name="parentReligion" data-placeholder="Christian, Hindu, Muslim, ..."  value="<?php echo $zf_formHandler->zf_getFormValue("parentReligion"); ?>">
+                                        <?php
+                                            //This widget creates select options for religions
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "religion_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("parentReligion") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Country:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me studentCountry" id="parentCountry" name="parentCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("parentCountry"); ?>">
+                                        <?php
+                                            //This widget creates select options for countires
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("parentCountry") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Locality:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me parentLocality" id="studentLocality" name="parentLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("parentLocality"); ?>">
+                                        <option value=""></option>
+                                    </select>
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("parentLocality") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="parentBoxAddress" class="form-control" placeholder="P.O Box 1111-0111, Nairobi - Kenya" value="<?php echo $zf_formHandler->zf_getFormValue("parentBoxAddress"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("parentBoxAddress"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Phone Number:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="parentPhoneNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("parentPhoneNumber"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("parentPhoneNumber"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Relation:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me studentLanguage" id="parentLanguage" name="parentLanguage" data-placeholder="English, French, Spanish ..."  value="<?php echo $zf_formHandler->zf_getFormValue("parentLanguage"); ?>">
+                                        <?php
+                                            //This widget creates select options for languages
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "languages_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("parentLanguage") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Occupation:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me studentLanguage" id="parentLanguage" name="parentLanguage" data-placeholder="English, French, Spanish ..."  value="<?php echo $zf_formHandler->zf_getFormValue("parentLanguage"); ?>">
+                                        <?php
+                                            //This widget creates select options for languages
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "languages_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("parentLanguage") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Official Language:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me studentLanguage" id="parentLanguage" name="parentLanguage" data-placeholder="English, French, Spanish ..."  value="<?php echo $zf_formHandler->zf_getFormValue("parentLanguage"); ?>">
+                                        <?php
+                                            //This widget creates select options for languages
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "languages_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("parentLanguage") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    <!-- END PARENT DETAILS-->
+                    
+                    
+                    <!-- START MEDICAL DETAILS-->
+                    <h3 class="form-section form-title">Medical Details</h3>
+                    <!-- END MEDICAL DETAILS-->
+                    
+                    
+                    <!-- START CLASS DETAILS-->
+                    <h3 class="form-section form-title">Class Details</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="control-label col-md-4">Select Class:</label>
                                 <div class="col-md-8">
                                     <select class="form-control select2me" name="schoolClassCode" data-placeholder="Form 1 or Class 1, Form 2 or Class 2, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolClassCode"); ?>">
@@ -252,16 +462,6 @@
                         </div>
                     </div>
                     <!--/row-->
-                    <!-- END PARENT DETAILS-->
-                    
-                    
-                    <!-- START MEDICAL DETAILS-->
-                    <h3 class="form-section form-title">Medical Details</h3>
-                    <!-- END MEDICAL DETAILS-->
-                    
-                    
-                    <!-- START CLASS DETAILS-->
-                    <h3 class="form-section form-title">Class Details</h3>
                     <!-- END CLASS DETAILS-->
                     
                     
