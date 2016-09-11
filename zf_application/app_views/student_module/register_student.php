@@ -85,7 +85,7 @@
         var $separator = "<?= DS; ?>";
         var $current_view = "new_student";
 
-        StudentLocations.init($current_view, $absolute_path, $separator );
+        StudentFormData.init($current_view, $absolute_path, $separator );
 
 
     });
