@@ -56,8 +56,13 @@ class student_moduleController extends Zf_Controller {
         
         if($filterDataVariable == 'process_locality'){
             
-            //Get the locality of any platform administrator
+            //Get the locality related to any student registration data
             $this->zf_targetModel->getStudentLocality();
+            
+        }else if($filterDataVariable == 'process_streams'){
+            
+            //Get the streams related a selected class
+            $this->zf_targetModel->getStreamDetails();
             
         }
         

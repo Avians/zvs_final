@@ -47,6 +47,43 @@
             });
             
             
+            //Process the location of a physician based on the selected country
+            $('.physicianCountry').change(function(){
+                
+                var processLocality = $absolute_path + "student_module" + $separator + "studentInformation" + $separator + "process_locality";
+                var physicianCountryCode = $("#physicianCountry").val();
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processLocality,
+                    data: {countryCode: physicianCountryCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#physicianLocality").html(html);
+                    }
+                });
+
+            });
+            
+            
+            
+            //Here we hide and show select menu for student blood group.
+            $(".studentBloodGroup").hide();
+            $("#studentBloodGroupYes").click(function(){
+                
+                $(".studentBloodGroup").fadeIn(1000);
+                
+            });
+            $("#studentBloodGroupNo").click(function(){
+                
+                $(".studentBloodGroup").fadeOut(1000, function(){
+                    $(".studentBloodGroup").hide();
+                });
+                
+            });
+            
+            
             
             //Here we hide and show explanation box for student disability.
             $(".studentDisability").hide();
@@ -54,14 +91,14 @@
                 
                 $(".studentDisability").fadeIn(1000);
                 
-            })
+            });
             $("#studentDisableNo").click(function(){
                 
                 $(".studentDisability").fadeOut(1000, function(){
-                    $(".studentAllergic").hide();
+                    $(".studentDisability").hide();
                 });
                 
-            })
+            });
             
             //Here we hide and show explanation box for student medication.
             $(".studentMedication").hide();
@@ -69,14 +106,14 @@
                 
                 $(".studentMedication").fadeIn(1000);
                 
-            })
+            });
             $("#studentMedicatedNo").click(function(){
                 
                 $(".studentMedication").fadeOut(1000, function(){
                     $(".studentMedication").hide();
                 });
                 
-            })
+            });
             
             
             //Here we hide and show explanation box for student allergy conditions.
@@ -85,14 +122,14 @@
                 
                 $(".studentAllergic").fadeIn(1000);
                 
-            })
+            });
             $("#studentAllergicNo").click(function(){
                 
                 $(".studentAllergic").fadeOut(1000, function(){
                     $(".studentAllergic").hide();
                 });
                 
-            })
+            });
             
             
             //Here we hide and show explanation box for student treatment conditions.
@@ -109,6 +146,61 @@
                 });
                 
             })
+            
+            
+            //Here we hide and show details box for student physician.
+            $(".studentPhysician").hide();
+            $("#studentPhysicianYes").click(function(){
+                
+                $(".studentPhysician").fadeIn(1000);
+                
+            })
+            $("#studentPhysicianNo").click(function(){
+                
+                $(".studentPhysician").fadeOut(1000, function(){
+                    $(".studentPhysician").hide();
+                });
+                
+            })
+            
+            
+            //Here we hide and show details box for student hospital.
+            $(".studentHospital").hide();
+            $("#studentHospitalYes").click(function(){
+                
+                $(".studentHospital").fadeIn(1000);
+                
+            })
+            $("#studentHospitalNo").click(function(){
+                
+                $(".studentHospital").fadeOut(1000, function(){
+                    $(".studentHospital").hide();
+                });
+                
+            })
+            
+            
+            
+            //Process the streams within the selected class
+            $('.studentClassCode').change(function(){
+                
+                var processStreams = $absolute_path + "student_module" + $separator + "studentInformation" + $separator + "process_streams";
+                var studentClassCode = $("#studentClassCode").val();
+                
+                //alert(studentClassCode); exit();
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processStreams,
+                    data: {studentClassCode: studentClassCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#studentStreamCode").html(html);
+                    }
+                });
+
+            });
                
         };
         

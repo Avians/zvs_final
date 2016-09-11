@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.4.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 11, 2016 at 11:02 AM
+-- Generation Time: Sep 11, 2016 at 06:06 PM
 -- Server version: 5.5.42
--- PHP Version: 5.6.10
+-- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `zilas_vs`
@@ -52,6 +52,33 @@ INSERT INTO `zvs_application_users` (`id`, `email`, `password`, `identificationC
 (11, 'elvis@migtech.co.ke', 'FbCzkk2c9C-_e5VO8EM4amH_hpi5CRKpz3z-PbMkSe0', 'Gx09RceJmKjyZXazBudPOO_0lmmHibkZqheh3XE3xNFHCgacBK7zIJNL_36pylAiliQ3UT2L5Q5O7rF-xHE6AbE3vObQAP46tnDEhUvPg7RWXr8zOy5f2AvMTXf0Kuow', 1),
 (12, 'bursar@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKyw-N5NqEiU3LcvotPg2TBx6_zGrL-XOE_QiZHy6f3lhuZLHGyrtbRyJjrRU18pIybtpLOc66TIhTUzYuMTAXj0', 1),
 (13, 'tonyiha@gmail.com', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '-VTXy54DNq-q9DS5pIYdP0a_4HiLKYH8cec11LCh3l539WT6-ZP62JtpkOG7D3hkKhtTPomkzaVP0W7Y5ZvbKosxff2L7bWm6xqr2QZKvAaLG-0K3_HnKn8Bx1oKGOxh', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_blood_groups`
+--
+
+CREATE TABLE `zvs_blood_groups` (
+  `id` int(11) NOT NULL,
+  `bloodGroupCode` varchar(60) NOT NULL,
+  `bloodGroupName` varchar(60) NOT NULL,
+  `bloodGroupStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_blood_groups`
+--
+
+INSERT INTO `zvs_blood_groups` (`id`, `bloodGroupCode`, `bloodGroupName`, `bloodGroupStatus`) VALUES
+(1, 'AB+', 'AB + (Positive)', 1),
+(2, 'AB-', 'AB - (Negative)', 1),
+(3, 'A+', 'A + (Positive)', 1),
+(4, 'A-', 'A - (Negative)', 1),
+(5, 'B+', 'B + (Positive)', 1),
+(6, 'B-', 'B - (Negative)', 1),
+(7, 'O+', 'O + (Positive)', 1),
+(8, 'O-', 'O - (Negative)', 1);
 
 -- --------------------------------------------------------
 
@@ -833,7 +860,7 @@ CREATE TABLE `zvs_school_streams` (
   `dateCreated` date DEFAULT NULL,
   `dateModified` date NOT NULL,
   `streamStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_streams`
@@ -869,7 +896,8 @@ INSERT INTO `zvs_school_streams` (`id`, `systemSchoolCode`, `schoolClassCode`, `
 (27, 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]FormOne', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]FormOne[`^`]ORANGE', 'ORANGE', 70, 0, '2016-03-17', '0000-00-00', 0),
 (28, 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]JAVA', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]JAVA[`^`]WEST', 'WEST', 80, 0, '2016-03-17', '0000-00-00', 0),
 (29, '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK', '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK[`^`]FormOne', '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK[`^`]FormOne[`^`]East', 'East', 50, 0, '2016-05-24', '0000-00-00', 0),
-(30, '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne[`^`]East', 'East', 50, 0, '2016-07-11', '0000-00-00', 0);
+(30, '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne[`^`]East', 'East', 50, 0, '2016-07-11', '0000-00-00', 0),
+(31, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]South', 'South', 65, 0, '2016-09-11', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -973,6 +1001,12 @@ INSERT INTO `zvs_super_admin` (`id`, `identificationCode`, `idNumber`, `designat
 ALTER TABLE `zvs_application_users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `identificationCode` (`identificationCode`);
+
+--
+-- Indexes for table `zvs_blood_groups`
+--
+ALTER TABLE `zvs_blood_groups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zvs_platform_admin`
@@ -1118,6 +1152,11 @@ ALTER TABLE `zvs_super_admin`
 ALTER TABLE `zvs_application_users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
+-- AUTO_INCREMENT for table `zvs_blood_groups`
+--
+ALTER TABLE `zvs_blood_groups`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
 -- AUTO_INCREMENT for table `zvs_platform_admin`
 --
 ALTER TABLE `zvs_platform_admin`
@@ -1196,7 +1235,7 @@ ALTER TABLE `zvs_school_roles`
 -- AUTO_INCREMENT for table `zvs_school_streams`
 --
 ALTER TABLE `zvs_school_streams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `zvs_school_sub_departments`
 --

@@ -6,7 +6,9 @@
     
     $currentDate = Zf_Core_Functions::Zf_CurrentDate();
     
-    //echo $currentDate;
+    $currentYear = explode("-", $currentDate)[2];
+    
+    //echo $currentYear;
     
 ?>
 
@@ -423,13 +425,32 @@
                     <h3 class="form-section form-title">Medical Details</h3>
                     <!--Student blood group-->
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-12" style="text-align: left !important;">Do you know your blood group?:</label>
+                                <div class="col-md-10 col-md-offset-2">
+                                    <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input id="studentBloodGroupYes" type="radio" name="isStudentBloodGroup" value="Yes"> Yes </label>
+                                        <label class="radio-inline">
+                                        <input id="studentBloodGroupNo" type="radio" name="isStudentBloodGroup" value="No" > No </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 studentBloodGroup">
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">What is your blood group?:</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="studentBloodGroup" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("studentBloodGroup"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("studentBloodGroup"); ?>
+                                   <select class="form-control select2me studentBloodGroup" id="studentBloodGroup" name="studentBloodGroup" data-placeholder="AB +, AB -, A +, A -, B +, B -, O + , O -"  value="<?php echo $zf_formHandler->zf_getFormValue("studentBloodGroup"); ?>">
+                                        <?php
+                                            //This widget creates select options for blood groups
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "blood_group_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("studentBloodGroup") ?>
                                     </span>
                                 </div>
                             </div>
@@ -441,7 +462,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Do you have any conditions or disabilities that limit your physical activities?:</label>
-                                <div class="col-md-12">
+                                <div class="col-md-11 col-md-offset-1">
                                     <div class="radio-list">
                                         <label class="radio-inline">
                                         <input id="studentDisableYes" type="radio" name="isStudentDisable" value="Yes"> Yes </label>
@@ -469,7 +490,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Do you have any medications that currently you are taking regularly?:</label>
-                                <div class="col-md-12">
+                                <div class="col-md-11 col-md-offset-1">
                                     <div class="radio-list">
                                         <label class="radio-inline">
                                         <input id="studentMedicatedYes" type="radio" name="isStudentMedicated" value="Yes"> Yes </label>
@@ -498,7 +519,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Do you experience allergies or allergic reactions to; Medicines, foods, seasons or any other?:</label>
-                                <div class="col-md-12">
+                                <div class="col-md-11 col-md-offset-1">
                                     <div class="radio-list">
                                         <label class="radio-inline">
                                         <input id="studentAllergicYes" type="radio" name="isStudentAllergic" value="Yes"> Yes </label>
@@ -527,7 +548,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Do you have any conditions that require a special consideration or treatment?:</label>
-                                <div class="col-md-12">
+                                <div class="col-md-11 col-md-offset-1">
                                     <div class="radio-list">
                                         <label class="radio-inline">
                                         <input id="studentTreatmentYes" type="radio" name="isStudentTreatment" value="Yes"> Yes </label>
@@ -555,24 +576,239 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="control-label col-md-12" style="text-align: left !important;">Incase of an emergency, do you have a specialized doctor/physician who handles your case?:</label>
-                                <div class="col-md-12">
+                                <label class="control-label col-md-12" style="text-align: left !important;">Incase of an emergency, do you have a specialized physician/doctor who handles your case?:</label>
+                                <div class="col-md-11 col-md-offset-1">
                                     <div class="radio-list">
                                         <label class="radio-inline">
-                                        <input id="studentTreatmentYes" type="radio" name="isStudentTreatment" value="Yes"> Yes </label>
+                                        <input id="studentPhysicianYes" type="radio" name="isStudentPhysician" value="Yes"> Yes </label>
                                         <label class="radio-inline">
-                                        <input id="studentTreatmentNo" type="radio" name="isStudentTreatment" value="No" > No </label>
+                                        <input id="studentPhysicianNo" type="radio" name="isStudentPhysician" value="No" > No </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 studentTreatment">
+                        <div class="col-md-12 studentPhysician">
                             <div class="form-group">
-                                <label class="control-label col-md-12" style="text-align: left !important;">Explain your special treatment or consideration condition:</label>
-                                <div class="col-md-12">
-                                    <textarea type="text" rows="10" name="studentTreatment" class="form-control" placeholder="Explain your special treatment or consideration conditions in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentTreatment"); ?>"></textarea>
+                                <label class="control-label col-md-12" style="text-align: left !important;">Fill in all physician/doctor's Information:</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 studentPhysician">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Designation:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="physicianFirstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianFirstName"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("studentTreatment"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianFirstName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row studentPhysician">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">First Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="physicianFirstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianFirstName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianFirstName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Last Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="physicianLastName" class="form-control" placeholder="Last Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianLastName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianLastName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">1<sup>st</sup> Mobile No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="1stMobileNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("1stMobileNumber"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("1stMobileNumber"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">2<sup>nd</sup> Mobile No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="2ndMobileNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("2ndMobileNumber"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("2ndMobileNumber"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Email Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="physicianEmailAddress" class="form-control" placeholder="Email Address" value="<?php echo $zf_formHandler->zf_getFormValue("physicianEmailAddress"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianEmailAddress"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="physicianBoxAddress" class="form-control" placeholder="Box Address" value="<?php echo $zf_formHandler->zf_getFormValue("physicianBoxAddress"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianBoxAddress"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Country:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me physicianCountry" id="physicianCountry" name="physicianCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("physicianCountry"); ?>">
+                                        <?php
+                                            //This widget creates select options for countires
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianCountry") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Locality:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me physicianLocality" id="physicianLocality" name="physicianLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("physicianLocality"); ?>">
+                                        <option value=""></option>
+                                    </select>
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianLocality") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    
+                    <!--Student special hospital-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-12" style="text-align: left !important;">Incase of sickness do you have a specific hospital that is restricted to handling your case?:</label>
+                                <div class="col-md-11 col-md-offset-1">
+                                    <div class="radio-list">
+                                        <label class="radio-inline">
+                                        <input id="studentHospitalYes" type="radio" name="isStudentHospital" value="Yes"> Yes </label>
+                                        <label class="radio-inline">
+                                        <input id="studentHospitalNo" type="radio" name="isStudentHospital" value="No" > No </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 studentHospital">
+                            <div class="form-group">
+                                <label class="control-label col-md-12" style="text-align: left !important;">Fill in all hospital information:</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row studentHospital">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Hospital Name:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="hospitalName" class="form-control" placeholder="Hospital Name" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("hospitalName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">1<sup>st</sup> Phone No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="1stHospitalNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("1stHospitalNumber"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("1stHospitalNumber"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">2<sup>nd</sup> Phone No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="2ndHospitalNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("2ndHospitalNumber"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("2ndHospitalNumber"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Email Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="hospitalEmailAddress" class="form-control" placeholder="Email Address" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalEmailAddress"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("hospitalEmailAddress"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Box Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="hospitalBoxAddress" class="form-control" placeholder="Box Address" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalBoxAddress"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("hospitalBoxAddress"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Country:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me hospitalCountry" id="hospitalCountry" name="hospitalCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("hospitalCountry"); ?>">
+                                        <?php
+                                            //This widget creates select options for countires
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianCountry") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Locality:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me hospitalLocality" id="hospitalLocality" name="hospitalLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalLocality"); ?>">
+                                        <option value=""></option>
+                                    </select>
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("hospitalLocality") ?>
                                     </span>
                                 </div>
                             </div>
@@ -590,14 +826,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Select Class:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="schoolClassCode" data-placeholder="Form 1 or Class 1, Form 2 or Class 2, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolClassCode"); ?>">
+                                    <select class="form-control select2me studentClassCode" id="studentClassCode" name="studentClassCode" data-placeholder="Form 1 or Class 1, Form 2 or Class 2, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentClassCode"); ?>">
                                         <?php
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "class_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
                                         ?>
                                     </select>
                                     <span class="help-block server-side-error">
-                                        <?php echo $zf_formHandler->zf_getFormError("schoolClassCode") ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentClassCode") ?>
                                     </span>
                                 </div>
                             </div>
@@ -606,15 +842,45 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Stream Name:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="streamName" class="form-control" placeholder="East, West, North, South,...." value="<?php echo $zf_formHandler->zf_getFormValue("streamName"); ?>">
+                                    <select class="form-control select2me studentStreamCode" id="studentStreamCode" name="studentStreamCode" data-placeholder="East, West, North, South, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentStreamCode"); ?>">
+                                        <option value=""></option>
+                                    </select>
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("streamName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentStreamCode") ?>
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Year of Study:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me" name="yearOfStudy" class="form-control" placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("yearOfBirth"); ?>">
+                                        <option value=""></option>
+                                        <?php Zf_Core_Functions::Zf_GenerateYearOption($currentYear-10, $currentYear);?>
+                                        <span class="help-block server-side-error" >
+                                            <?php echo $zf_formHandler->zf_getFormError("yearOfStudy") ?>
+                                        </span>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Admission No:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="admissionNumber" class="form-control" placeholder="2371, 0021, 6791, ...." value="<?php echo $zf_formHandler->zf_getFormValue("admissionNumber"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("admissionNumber"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- END CLASS DETAILS-->
                     
                     

@@ -78,6 +78,53 @@ class studentInformation_Model extends Zf_Model {
     }
     
     
+  
+    
+    
+    
+    /**
+     * This method is used to select Admin localities
+     */
+    public function getStreamDetails(){
+        
+        $classCode = $_POST['studentClassCode'];
+        
+        $zf_valueClassCode['schoolClassCode'] = Zf_QueryGenerator::SQLValue($classCode); 
+        //$zf_valueStreamStatus['streamStatus'] = Zf_QueryGenerator::SQLValue(0);
+        $zf_selectStreams = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zf_valueClassCode);
+        
+        if(!$this->Zf_QueryGenerator->Query($zf_selectStreams)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$zf_selectStreams}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                echo "<option value=''></option>";
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $fetchRow = $this->Zf_QueryGenerator->Row();
+                    echo "<option value='".$fetchRow->schoolStreamCode."' >".$fetchRow->schoolStreamName."</option>";
+
+                }
+
+            }else{
+                
+                echo "<option value=''></option>";
+                
+            }
+        }
+        
+        
+    }
+    
+    
 
     
     /**
