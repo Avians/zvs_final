@@ -47,7 +47,7 @@ class student_moduleController extends Zf_Controller {
     
     
     /**
-     * This action send the user information to the model for processing
+     * This action sends the user information to the model for processing
      */
     public function actionStudentInformation($zvs_parameter){
         
@@ -68,6 +68,25 @@ class student_moduleController extends Zf_Controller {
         
     }
     
+    
+    
+    
+    /**
+     * This action sends student registration data to the model for processing
+     */
+    public function actionNewStudentRegistration($zvs_parameter) {
+        
+       $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+       $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+       
+       if($filterDataUrl == 'new_student'){
+           
+           //This model method registers new student.
+           $this->zf_targetModel->registerNewStudent();
+           
+       }
+        
+    }
     
 
 }

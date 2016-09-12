@@ -476,7 +476,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Explain Conditions or Disabilities:</label>
                                 <div class="col-md-12">
-                                    <textarea type="text" rows="10" name="studentDisability" class="form-control" placeholder="Explaing your conditions or disabilities in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentDisability"); ?>"></textarea>
+                                    <textarea type="text" rows="10" id="studentDisability" name="studentDisability" class="form-control" placeholder="Explaing your conditions or disabilities in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentDisability"); ?>"></textarea>
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("studentDisability"); ?>
                                     </span>
@@ -504,7 +504,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Explain Current Medications:</label>
                                 <div class="col-md-12">
-                                    <textarea type="text" rows="10" name="studentMedication" class="form-control" placeholder="Explaing medications that you are currently undertaking regularly" value="<?php echo $zf_formHandler->zf_getFormValue("studentMedication"); ?>"></textarea>
+                                    <textarea type="text" rows="10" id="studentMedication" name="studentMedication" class="form-control" placeholder="Explaing medications that you are currently undertaking regularly" value="<?php echo $zf_formHandler->zf_getFormValue("studentMedication"); ?>"></textarea>
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("studentMedication"); ?>
                                     </span>
@@ -533,7 +533,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Explain your allergy condition:</label>
                                 <div class="col-md-12">
-                                    <textarea type="text" rows="10" name="studentAllergic" class="form-control" placeholder="Explain your allergy conditions in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentAllergic"); ?>"></textarea>
+                                    <textarea type="text" rows="10" id="studentAllergic" name="studentAllergic" class="form-control" placeholder="Explain your allergy conditions in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentAllergic"); ?>"></textarea>
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("studentAllergic"); ?>
                                     </span>
@@ -562,7 +562,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-12" style="text-align: left !important;">Explain your special treatment or consideration condition:</label>
                                 <div class="col-md-12">
-                                    <textarea type="text" rows="10" name="studentTreatment" class="form-control" placeholder="Explain your special treatment or consideration conditions in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentTreatment"); ?>"></textarea>
+                                    <textarea type="text" rows="10" id="studentTreatment" name="studentTreatment" class="form-control" placeholder="Explain your special treatment or consideration conditions in this section" value="<?php echo $zf_formHandler->zf_getFormValue("studentTreatment"); ?>"></textarea>
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("studentTreatment"); ?>
                                     </span>
@@ -596,9 +596,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Designation:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="physicianFirstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianFirstName"); ?>">
+                                    <input type="text" name="physicianDesignation" class="form-control studentPhysician" placeholder="Designation" value="<?php echo $zf_formHandler->zf_getFormValue("physicianDesignation"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("physicianFirstName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianFDesignation"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -610,7 +610,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">First Name:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="physicianFirstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianFirstName"); ?>">
+                                    <input type="text" name="physicianFirstName" class="form-control studentPhysician" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianFirstName"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("physicianFirstName"); ?>
                                     </span>
@@ -621,7 +621,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Last Name:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="physicianLastName" class="form-control" placeholder="Last Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianLastName"); ?>">
+                                    <input type="text" name="physicianLastName" class="form-control studentPhysician" placeholder="Last Name" value="<?php echo $zf_formHandler->zf_getFormValue("physicianLastName"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("physicianLastName"); ?>
                                     </span>
@@ -632,7 +632,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">1<sup>st</sup> Mobile No:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="1stMobileNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("1stMobileNumber"); ?>">
+                                    <input type="text" name="1stMobileNumber" class="form-control studentPhysician" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("1stMobileNumber"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("1stMobileNumber"); ?>
                                     </span>
@@ -643,7 +643,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">2<sup>nd</sup> Mobile No:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="2ndMobileNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("2ndMobileNumber"); ?>">
+                                    <input type="text" name="2ndMobileNumber" class="form-control studentPhysician" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("2ndMobileNumber"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("2ndMobileNumber"); ?>
                                     </span>
@@ -654,7 +654,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Email Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="physicianEmailAddress" class="form-control" placeholder="Email Address" value="<?php echo $zf_formHandler->zf_getFormValue("physicianEmailAddress"); ?>">
+                                    <input type="text" name="physicianEmailAddress" class="form-control studentPhysician" placeholder="Email Address" value="<?php echo $zf_formHandler->zf_getFormValue("physicianEmailAddress"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("physicianEmailAddress"); ?>
                                     </span>
@@ -665,7 +665,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Box Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="physicianBoxAddress" class="form-control" placeholder="Box Address" value="<?php echo $zf_formHandler->zf_getFormValue("physicianBoxAddress"); ?>">
+                                    <input type="text" name="physicianBoxAddress" class="form-control studentPhysician" placeholder="Box Address" value="<?php echo $zf_formHandler->zf_getFormValue("physicianBoxAddress"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("physicianBoxAddress"); ?>
                                     </span>
@@ -676,7 +676,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Country:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me physicianCountry" id="physicianCountry" name="physicianCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("physicianCountry"); ?>">
+                                    <select class="form-control select2me physicianCountry studentPhysician" id="physicianCountry" name="physicianCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("physicianCountry"); ?>">
                                         <?php
                                             //This widget creates select options for countires
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
@@ -693,7 +693,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Locality:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me physicianLocality" id="physicianLocality" name="physicianLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("physicianLocality"); ?>">
+                                    <select class="form-control select2me physicianLocality studentPhysician" id="physicianLocality" name="physicianLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("physicianLocality"); ?>">
                                         <option value=""></option>
                                     </select>
                                     <span class="help-block server-side-error" >
@@ -732,7 +732,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Hospital Name:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="hospitalName" class="form-control" placeholder="Hospital Name" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalName"); ?>">
+                                    <input type="text" name="hospitalName" class="form-control studentHospital" placeholder="Hospital Name" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalName"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("hospitalName"); ?>
                                     </span>
@@ -743,7 +743,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">1<sup>st</sup> Phone No:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="1stHospitalNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("1stHospitalNumber"); ?>">
+                                    <input type="text" name="1stHospitalNumber" class="form-control studentHospital" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("1stHospitalNumber"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("1stHospitalNumber"); ?>
                                     </span>
@@ -754,7 +754,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">2<sup>nd</sup> Phone No:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="2ndHospitalNumber" class="form-control" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("2ndHospitalNumber"); ?>">
+                                    <input type="text" name="2ndHospitalNumber" class="form-control studentHospital" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("2ndHospitalNumber"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("2ndHospitalNumber"); ?>
                                     </span>
@@ -765,7 +765,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Email Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="hospitalEmailAddress" class="form-control" placeholder="Email Address" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalEmailAddress"); ?>">
+                                    <input type="text" name="hospitalEmailAddress" class="form-control studentHospital" placeholder="Email Address" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalEmailAddress"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("hospitalEmailAddress"); ?>
                                     </span>
@@ -776,7 +776,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Box Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="hospitalBoxAddress" class="form-control" placeholder="Box Address" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalBoxAddress"); ?>">
+                                    <input type="text" name="hospitalBoxAddress" class="form-control studentHospital" placeholder="Box Address" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalBoxAddress"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("hospitalBoxAddress"); ?>
                                     </span>
@@ -787,7 +787,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Country:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me hospitalCountry" id="hospitalCountry" name="hospitalCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("hospitalCountry"); ?>">
+                                    <select class="form-control select2me hospitalCountry studentHospital" id="hospitalCountry" name="hospitalCountry" data-placeholder="Kenya, Algeria, South Africa, Venezuela"  value="<?php echo $zf_formHandler->zf_getFormValue("hospitalCountry"); ?>">
                                         <?php
                                             //This widget creates select options for countires
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "countries_select.php";
@@ -804,7 +804,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Locality:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me hospitalLocality" id="hospitalLocality" name="hospitalLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalLocality"); ?>">
+                                    <select class="form-control select2me hospitalLocality studentHospital" id="hospitalLocality" name="hospitalLocality" data-placeholder="Approx. specific location" value="<?php echo $zf_formHandler->zf_getFormValue("hospitalLocality"); ?>">
                                         <option value=""></option>
                                     </select>
                                     <span class="help-block server-side-error" >
@@ -885,12 +885,69 @@
                     
                     
                     <!-- START HOSTEL DETAILS-->
-                    <h3 class="form-section form-title">Hostel Details</h3>
+                    <!--<h3 class="form-section form-title">Hostel Details</h3>-->
                     <!-- END HOSTEL DETAILS-->
                     
                     
                     <!-- START LOGIN DETAILS-->
-                    <h3 class="form-section form-title">Login Details</h3>
+                    <h3 class="form-section form-title">Login Details <small class="form-indicators">* This information is vital for platform login</small></h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Email Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="studentEmail" class="form-control" placeholder="user@zilasvirtualschool.com" value="<?php echo $zf_formHandler->zf_getFormValue("studentEmail"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("studentEmail"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Role:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me schoolRole" id="schoolRole" name="schoolRole" data-placeholder="Student, Headboy, Class Prefect..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolRole"); ?>">
+                                        <?php
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "role_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("schoolRole") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Password:</label>
+                                <div class="col-md-8">
+                                    <input type="password" name="studentPassword" id="password" class="form-control" placeholder="Password" value="<?php echo $zf_formHandler->zf_getFormValue("studentPassword"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("studentPassword"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Confirm:</label>
+                                <div class="col-md-8">
+                                    <input type="password" name="studentPassword2" class="form-control" placeholder="Confirm Password" value="<?php echo $zf_formHandler->zf_getFormValue("studentPassword2"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("studentPassword2"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
                     <!-- END LOGIN DETAILS-->
                     
                 </div>

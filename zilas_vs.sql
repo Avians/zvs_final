@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.1.1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 11, 2016 at 06:06 PM
+-- Generation Time: Sep 12, 2016 at 06:21 PM
 -- Server version: 5.5.42
--- PHP Version: 5.6.7
+-- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `zilas_vs`
@@ -833,15 +833,16 @@ CREATE TABLE `zvs_school_roles` (
   `dateModified` date DEFAULT NULL,
   `assignStatus` tinyint(1) unsigned zerofill NOT NULL,
   `roleStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_roles`
 --
 
 INSERT INTO `zvs_school_roles` (`id`, `systemSchoolCode`, `schoolRoleCode`, `schoolRoleName`, `schoolRoleAlias`, `schoolRoleId`, `dateCreated`, `dateModified`, `assignStatus`, `roleStatus`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'Principal', 'Principal', 'Principal', '2016-08-18', NULL, 1, 1),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-09-10', NULL, 1, 1);
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'Principal', 'Principal', 'Principal', '2016-08-18', NULL, 1, 0),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-09-10', NULL, 1, 1),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Student', 'Student', 'Student', 'Student', '2016-09-11', NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -867,7 +868,7 @@ CREATE TABLE `zvs_school_streams` (
 --
 
 INSERT INTO `zvs_school_streams` (`id`, `systemSchoolCode`, `schoolClassCode`, `schoolStreamCode`, `schoolStreamName`, `schoolStreamCapacity`, `schoolStreamOccupancy`, `dateCreated`, `dateModified`, `streamStatus`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', 'East', 65, 35, '2015-09-10', '0000-00-00', 0),
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', 'East', 65, 35, '2015-09-10', '0000-00-00', 1),
 (2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]West', 'West', 65, 42, '2015-09-10', '0000-00-00', 0),
 (3, 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]FormOne', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]FormOne[`^`]Heroes', 'Heroes', 60, 30, '2015-09-10', '0000-00-00', 0),
 (4, 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]FormOne', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]FormOne[`^`]Champions', 'Champions', 60, 45, '2015-09-10', '0000-00-00', 0),
@@ -927,6 +928,46 @@ INSERT INTO `zvs_school_sub_departments` (`id`, `systemSchoolCode`, `schoolDepar
 (6, 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]Languages', 'SpRYrqdo*u?!&NAnxVZDXE@yg3MF$H[`^`]Languages[`^`]Kiswahili', 'Kiswahili', '2016-01-28', NULL, 0),
 (7, 'A4dbM8xWHUm@ZKFu#O3?sL&07jEt%9', 'A4dbM8xWHUm@ZKFu#O3?sL&07jEt%9[`^`]Humanities', 'A4dbM8xWHUm@ZKFu#O3?sL&07jEt%9[`^`]Humanities[`^`]History', 'History', '2016-01-31', NULL, 0),
 (8, '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK', '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK[`^`]Language', '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK[`^`]Language[`^`]English', 'English', '2016-05-24', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_students_class_details`
+--
+
+CREATE TABLE `zvs_students_class_details` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_students_guardian_details`
+--
+
+CREATE TABLE `zvs_students_guardian_details` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_students_medical_details`
+--
+
+CREATE TABLE `zvs_students_medical_details` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_students_personal_details`
+--
+
+CREATE TABLE `zvs_students_personal_details` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1131,6 +1172,30 @@ ALTER TABLE `zvs_school_sub_departments`
   ADD UNIQUE KEY `schoolSubDepartmentCode_UNIQUE` (`schoolSubDepartmentCode`);
 
 --
+-- Indexes for table `zvs_students_class_details`
+--
+ALTER TABLE `zvs_students_class_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_students_guardian_details`
+--
+ALTER TABLE `zvs_students_guardian_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_students_medical_details`
+--
+ALTER TABLE `zvs_students_medical_details`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_students_personal_details`
+--
+ALTER TABLE `zvs_students_personal_details`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `zvs_student_guardians`
 --
 ALTER TABLE `zvs_student_guardians`
@@ -1230,7 +1295,7 @@ ALTER TABLE `zvs_school_religions`
 -- AUTO_INCREMENT for table `zvs_school_roles`
 --
 ALTER TABLE `zvs_school_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `zvs_school_streams`
 --
@@ -1241,6 +1306,26 @@ ALTER TABLE `zvs_school_streams`
 --
 ALTER TABLE `zvs_school_sub_departments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `zvs_students_class_details`
+--
+ALTER TABLE `zvs_students_class_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zvs_students_guardian_details`
+--
+ALTER TABLE `zvs_students_guardian_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zvs_students_medical_details`
+--
+ALTER TABLE `zvs_students_medical_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zvs_students_personal_details`
+--
+ALTER TABLE `zvs_students_personal_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `zvs_student_guardians`
 --

@@ -89,9 +89,9 @@ class studentInformation_Model extends Zf_Model {
         
         $classCode = $_POST['studentClassCode'];
         
-        $zf_valueClassCode['schoolClassCode'] = Zf_QueryGenerator::SQLValue($classCode); 
-        //$zf_valueStreamStatus['streamStatus'] = Zf_QueryGenerator::SQLValue(0);
-        $zf_selectStreams = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zf_valueClassCode);
+        $zf_valueClassData['schoolClassCode'] = Zf_QueryGenerator::SQLValue($classCode); 
+        //$zf_valueClassData['streamStatus'] = Zf_QueryGenerator::SQLValue(1);
+        $zf_selectStreams = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zf_valueClassData);
         
         if(!$this->Zf_QueryGenerator->Query($zf_selectStreams)){
                 

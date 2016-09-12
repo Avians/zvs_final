@@ -67,6 +67,26 @@
             });
             
             
+            //Process the location of a physician based on the selected country
+            $('.hospitalCountry').change(function(){
+                
+                var processLocality = $absolute_path + "student_module" + $separator + "studentInformation" + $separator + "process_locality";
+                var hospitalCountryCode = $("#hospitalCountry").val();
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processLocality,
+                    data: {countryCode: hospitalCountryCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#hospitalLocality").html(html);
+                    }
+                });
+
+            });
+            
+            
             
             //Here we hide and show select menu for student blood group.
             $(".studentBloodGroup").hide();
@@ -95,6 +115,7 @@
             $("#studentDisableNo").click(function(){
                 
                 $(".studentDisability").fadeOut(1000, function(){
+                    $('#studentDisability').val('');
                     $(".studentDisability").hide();
                 });
                 
@@ -110,6 +131,7 @@
             $("#studentMedicatedNo").click(function(){
                 
                 $(".studentMedication").fadeOut(1000, function(){
+                    $("#studentMedication").val('');
                     $(".studentMedication").hide();
                 });
                 
@@ -126,6 +148,7 @@
             $("#studentAllergicNo").click(function(){
                 
                 $(".studentAllergic").fadeOut(1000, function(){
+                    $("#studentAllergic").val('');
                     $(".studentAllergic").hide();
                 });
                 
@@ -142,6 +165,7 @@
             $("#studentTreatmentNo").click(function(){
                 
                 $(".studentTreatment").fadeOut(1000, function(){
+                    $("#studentTreatment").val('');
                     $(".studentTreatment").hide();
                 });
                 
@@ -158,6 +182,7 @@
             $("#studentPhysicianNo").click(function(){
                 
                 $(".studentPhysician").fadeOut(1000, function(){
+                    $(".studentPhysician").val('');
                     $(".studentPhysician").hide();
                 });
                 
@@ -174,6 +199,7 @@
             $("#studentHospitalNo").click(function(){
                 
                 $(".studentHospital").fadeOut(1000, function(){
+                    $(".studentHospital").val('');
                     $(".studentHospital").hide();
                 });
                 
