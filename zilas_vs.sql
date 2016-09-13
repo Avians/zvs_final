@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.4.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 12, 2016 at 06:21 PM
+-- Generation Time: Sep 13, 2016 at 08:52 PM
 -- Server version: 5.5.42
--- PHP Version: 5.6.10
+-- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `zilas_vs`
@@ -942,11 +942,39 @@ CREATE TABLE `zvs_students_class_details` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `zvs_students_guardians_mapper`
+--
+
+CREATE TABLE `zvs_students_guardians_mapper` (
+  `id` int(11) NOT NULL,
+  `studentIdentificationCode` varchar(240) NOT NULL,
+  `guardianIdentificationCode` varchar(240) NOT NULL,
+  `recordStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `zvs_students_guardian_details`
 --
 
 CREATE TABLE `zvs_students_guardian_details` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `identificationCode` varchar(240) NOT NULL,
+  `guardianFirstName` varchar(60) NOT NULL,
+  `guardianMiddleName` varchar(60) NOT NULL,
+  `guardianLastName` varchar(60) NOT NULL,
+  `guardianGender` varchar(15) NOT NULL,
+  `guardianDateOfBirth` varchar(15) NOT NULL,
+  `guardianReligion` varchar(15) NOT NULL,
+  `guardianCountry` varchar(15) NOT NULL,
+  `guardianLocality` varchar(60) NOT NULL,
+  `guardianBoxAddress` varchar(60) NOT NULL,
+  `guardianPhoneNumber` varchar(60) NOT NULL,
+  `guardianRelation` varchar(60) NOT NULL,
+  `guardianOccupation` varchar(120) NOT NULL,
+  `guardianLanguage` varchar(60) NOT NULL,
+  `guardianStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -956,7 +984,37 @@ CREATE TABLE `zvs_students_guardian_details` (
 --
 
 CREATE TABLE `zvs_students_medical_details` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `studentIdentificationCode` varchar(240) NOT NULL,
+  `isStudentBloodGroup` varchar(5) NOT NULL,
+  `studentBloodGroup` text NOT NULL,
+  `isStudentDisable` varchar(5) NOT NULL,
+  `studentDisability` text NOT NULL,
+  `isStudentMedicated` varchar(5) NOT NULL,
+  `studentMedication` text NOT NULL,
+  `isStudentAllergic` varchar(5) NOT NULL,
+  `studentAllergic` text NOT NULL,
+  `isStudentTreatment` varchar(5) NOT NULL,
+  `studentTreatment` text NOT NULL,
+  `isStudentPhysician` varchar(5) NOT NULL,
+  `physicianDesignation` varchar(5) NOT NULL,
+  `physicianFirstName` varchar(60) NOT NULL,
+  `physicianLastName` varchar(60) NOT NULL,
+  `1stMobileNumber` varchar(30) NOT NULL,
+  `2ndMobileNumber` varchar(30) NOT NULL,
+  `physicianEmailAddress` varchar(60) NOT NULL,
+  `physicianBoxAddres` varchar(60) NOT NULL,
+  `physicianCountry` varchar(15) NOT NULL,
+  `physicianLocality` varchar(30) NOT NULL,
+  `isStudentHospital` varchar(5) NOT NULL,
+  `hospitalName` varchar(60) NOT NULL,
+  `1stHospitalNumber` varchar(30) NOT NULL,
+  `2ndHospitalNumber` varchar(30) NOT NULL,
+  `hospitalBoxAddress` varchar(60) NOT NULL,
+  `hospitalEmailAddress` varchar(60) NOT NULL,
+  `hospitalCountry` varchar(15) NOT NULL,
+  `hospitalLocality` varchar(30) NOT NULL,
+  `studentStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -966,7 +1024,20 @@ CREATE TABLE `zvs_students_medical_details` (
 --
 
 CREATE TABLE `zvs_students_personal_details` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `identificationCode` varchar(240) NOT NULL,
+  `studentFirstName` varchar(60) NOT NULL,
+  `studentMiddleName` varchar(60) NOT NULL,
+  `studentLastName` varchar(60) NOT NULL,
+  `studentGender` varchar(60) NOT NULL,
+  `studentDateOfBirth` varchar(15) NOT NULL,
+  `studentReligiom` varchar(60) NOT NULL,
+  `studentCountry` varchar(15) NOT NULL,
+  `studentLocality` varchar(100) NOT NULL,
+  `studentBoxAddress` varchar(60) NOT NULL,
+  `studentPhoneNumber` varchar(60) NOT NULL,
+  `studentLanguage` varchar(60) NOT NULL,
+  `studentStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1178,22 +1249,32 @@ ALTER TABLE `zvs_students_class_details`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `zvs_students_guardians_mapper`
+--
+ALTER TABLE `zvs_students_guardians_mapper`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `studentIdentificationCode` (`studentIdentificationCode`);
+
+--
 -- Indexes for table `zvs_students_guardian_details`
 --
 ALTER TABLE `zvs_students_guardian_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `identificationCode` (`identificationCode`);
 
 --
 -- Indexes for table `zvs_students_medical_details`
 --
 ALTER TABLE `zvs_students_medical_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `studentIdentificationCode` (`studentIdentificationCode`);
 
 --
 -- Indexes for table `zvs_students_personal_details`
 --
 ALTER TABLE `zvs_students_personal_details`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `identificationCode` (`identificationCode`);
 
 --
 -- Indexes for table `zvs_student_guardians`
@@ -1310,6 +1391,11 @@ ALTER TABLE `zvs_school_sub_departments`
 -- AUTO_INCREMENT for table `zvs_students_class_details`
 --
 ALTER TABLE `zvs_students_class_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zvs_students_guardians_mapper`
+--
+ALTER TABLE `zvs_students_guardians_mapper`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `zvs_students_guardian_details`

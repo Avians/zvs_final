@@ -859,11 +859,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Year of Study:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="yearOfStudy" class="form-control" placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("yearOfBirth"); ?>">
+                                    <select class="form-control select2me" name="currentYearOfStudy" class="form-control" placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("currentYearOfStudy"); ?>">
                                         <option value=""></option>
                                         <?php Zf_Core_Functions::Zf_GenerateYearOption($currentYear-10, $currentYear);?>
                                         <span class="help-block server-side-error" >
-                                            <?php echo $zf_formHandler->zf_getFormError("yearOfStudy") ?>
+                                            <?php echo $zf_formHandler->zf_getFormError("currentYearOfStud") ?>
                                         </span>
                                     </select>
                                 </div>
@@ -873,9 +873,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Admission No:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="admissionNumber" class="form-control" placeholder="2371, 0021, 6791, ...." value="<?php echo $zf_formHandler->zf_getFormValue("admissionNumber"); ?>">
+                                    <input type="text" name="studentAdmissionNumber" class="form-control" placeholder="2371, 0021, 6791, ...." value="<?php echo $zf_formHandler->zf_getFormValue("studentAdmissionNumber"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("admissionNumber"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentAdmissionNumber"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -889,17 +889,17 @@
                     <!-- END HOSTEL DETAILS-->
                     
                     
-                    <!-- START LOGIN DETAILS-->
-                    <h3 class="form-section form-title">Login Details <small class="form-indicators">* This information is vital for platform login</small></h3>
+                    <!-- STUDENT LOGIN DETAILS-->
+                    <h3 class="form-section form-title">Student Login Details <small class="form-indicators" style="color:#ff0000 !important;">* This information is vital for student platform login</small></h3>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Email Address:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="studentEmail" class="form-control" placeholder="user@zilasvirtualschool.com" value="<?php echo $zf_formHandler->zf_getFormValue("studentEmail"); ?>">
+                                    <input type="text" name="studentEmailAddress" class="form-control" placeholder="student@zilasvirtualschool.com" value="<?php echo $zf_formHandler->zf_getFormValue("studentEmailAddress"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("studentEmail"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentEmailAddress"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -908,14 +908,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">School Role:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me schoolRole" id="schoolRole" name="schoolRole" data-placeholder="Student, Headboy, Class Prefect..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolRole"); ?>">
+                                    <select class="form-control select2me schoolRole" id="schoolRole" name="studentSchoolRole" data-placeholder="Student, Headboy, Class Prefect..." value="<?php echo $zf_formHandler->zf_getFormValue("studentSchoolRole"); ?>">
                                         <?php
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "role_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
                                         ?>
                                     </select>
                                     <span class="help-block server-side-error">
-                                        <?php echo $zf_formHandler->zf_getFormError("schoolRole") ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("studentSchoolRole") ?>
                                     </span>
                                 </div>
                             </div>
@@ -942,6 +942,68 @@
                                     <input type="password" name="studentPassword2" class="form-control" placeholder="Confirm Password" value="<?php echo $zf_formHandler->zf_getFormValue("studentPassword2"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("studentPassword2"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    <!-- END LOGIN DETAILS-->
+                    
+                    
+                    <!-- GUARDIAN LOGIN DETAILS-->
+                    <h3 class="form-section form-title">Guardian Login Details <small class="form-indicators" style="color:#ff0000 !important;">* This information is vital for guardian platform login</small></h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Email Address:</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="guardianEmailAddress" class="form-control" placeholder="guardian@zilasvirtualschool.com" value="<?php echo $zf_formHandler->zf_getFormValue("guardianEmailAddress"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("guardianEmailAddress"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">School Role:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me schoolRole" id="schoolRole" name="guardianSchoolRole" data-placeholder="Parent, Teacher, Bursar, ..." value="<?php echo $zf_formHandler->zf_getFormValue("guardianSchoolRole"); ?>">
+                                        <?php
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "role_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("guardianSchoolRole") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Password:</label>
+                                <div class="col-md-8">
+                                    <input type="password" name="guardianPassword" id="password" class="form-control" placeholder="Password" value="<?php echo $zf_formHandler->zf_getFormValue("guardianPassword"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("guardianPassword"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Confirm:</label>
+                                <div class="col-md-8">
+                                    <input type="password" name="guardianPassword2" class="form-control" placeholder="Confirm Password" value="<?php echo $zf_formHandler->zf_getFormValue("guardianPassword2"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("guardianPassword2"); ?>
                                     </span>
                                 </div>
                             </div>
