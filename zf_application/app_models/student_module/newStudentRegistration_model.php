@@ -61,38 +61,40 @@ class newStudentRegistration_Model extends Zf_Model {
                 
                                 ->zf_postFormData('studentLocality')
                 
-                                ->zf_postFormData('studentBoxAddress')
+                                ->zf_postFormData('studentBoxAddress')//not required field
                 
-                                ->zf_postFormData('studentPhoneNumber')
+                                ->zf_postFormData('studentPhoneNumber')//not required field
                 
                                 ->zf_postFormData('studentLanguage');
         
         
         
         //In this section we chain all guardian related data
-        $this->zf_formController->zf_postFormData('guardianFirstName')
+        $this->zf_formController->zf_postFormData('guardianDesignation')
                     
-                                ->zf_postFormData('guardianMiddleName')
+                                ->zf_postFormData('guardianFirstName')
+                    
+                                ->zf_postFormData('guardianMiddleName')//not required field
                 
                                 ->zf_postFormData('guardianLastName')
                 
                                 ->zf_postFormData('guardianGender')
                 
-                                ->zf_postFormData('guardianDateOfBirth')
+                                ->zf_postFormData('guardianDateOfBirth')//not required field
                 
-                                ->zf_postFormData('guardianReligion')
+                                ->zf_postFormData('guardianReligion')//not required field
                 
                                 ->zf_postFormData('guardianCountry')
         
                                 ->zf_postFormData('guardianLocality')
                     
-                                ->zf_postFormData('guardianBoxAddress')
+                                ->zf_postFormData('guardianBoxAddress')//not required field
                 
-                                ->zf_postFormData('guardianPhoneNumber')
+                                ->zf_postFormData('guardianPhoneNumber')//not required field
                 
                                 ->zf_postFormData('guardianRelation')
                 
-                                ->zf_postFormData('guardianOccupation')
+                                ->zf_postFormData('guardianOccupation')//not required field
                 
                                 ->zf_postFormData('guardianLanguage');
         
@@ -101,69 +103,88 @@ class newStudentRegistration_Model extends Zf_Model {
         //In this section we chain all student medical data
         $this->zf_formController->zf_postFormData('isStudentBloodGroup')
         
-                                ->zf_postFormData('studentBloodGroup')
+                                ->zf_postFormData('studentBloodGroup')//not required field
         
                                 ->zf_postFormData('isStudentDisable')
         
-                                ->zf_postFormData('studentDisability')
+                                ->zf_postFormData('studentDisability')//not required field
         
                                 ->zf_postFormData('isStudentMedicated')
         
-                                ->zf_postFormData('studentMedication')
+                                ->zf_postFormData('studentMedication')//not required field
         
                                 ->zf_postFormData('isStudentAllergic')
         
-                                ->zf_postFormData('studentAllergic')
+                                ->zf_postFormData('studentAllergic')//not required field
         
                                 ->zf_postFormData('isStudentTreatment')
         
-                                ->zf_postFormData('studentTreatment')
+                                ->zf_postFormData('studentTreatment')//not required field
         
                                 ->zf_postFormData('isStudentPhysician')
         
-                                ->zf_postFormData('physicianDesignation')
+                                ->zf_postFormData('physicianDesignation')//not required field
         
-                                ->zf_postFormData('physicianFirstName')
+                                ->zf_postFormData('physicianFirstName')//not required field
         
-                                ->zf_postFormData('physicianLastName')
+                                ->zf_postFormData('physicianLastName')//not required field
         
-                                ->zf_postFormData('1stMobileNumber')
+                                ->zf_postFormData('1stMobileNumber')//not required field
         
-                                ->zf_postFormData('2ndMobileNumber')
+                                ->zf_postFormData('2ndMobileNumber')//not required field
         
-                                ->zf_postFormData('physicianEmailAddress')
+                                ->zf_postFormData('physicianEmailAddress')//not required field
         
-                                ->zf_postFormData('physicianBoxAddress')
+                                ->zf_postFormData('physicianBoxAddress')//not required field
         
-                                ->zf_postFormData('physicianCountry')
+                                ->zf_postFormData('physicianCountry')//not required field
         
-                                ->zf_postFormData('physicianLocality')
+                                ->zf_postFormData('physicianLocality')//not required field
         
                                 ->zf_postFormData('isStudentHospital')
         
-                                ->zf_postFormData('hospitalName')
+                                ->zf_postFormData('hospitalName')//not required field
         
-                                ->zf_postFormData('1stHospitalNumber')
+                                ->zf_postFormData('1stHospitalNumber')//not required field
         
-                                ->zf_postFormData('2ndHospitalNumber')
+                                ->zf_postFormData('2ndHospitalNumber')//not required field
         
-                                ->zf_postFormData('hospitalEmailAddress')
+                                ->zf_postFormData('hospitalEmailAddress')//not required field
         
-                                ->zf_postFormData('hospitalBoxAddress')
+                                ->zf_postFormData('hospitalBoxAddress')//not required field
         
-                                ->zf_postFormData('hospitalCountry')
+                                ->zf_postFormData('hospitalCountry')//not required field
         
-                                ->zf_postFormData('hospitalLocality');
+                                ->zf_postFormData('hospitalLocality');//not required field
         
         
         
         //In this section we chain all student class data
-        $this->zf_formController->zf_postFormData('studentClassCode');
+        $this->zf_formController->zf_postFormData('studentClassCode')
+        
+                                ->zf_postFormData('studentStreamCode')
+        
+                                ->zf_postFormData('studentYearOfStudy')
+        
+                                ->zf_postFormData('studentAdmissionNumber');
         
         
         
         //In this section we chain all student login data
-        $this->zf_formController->zf_postFormData('studentEmail');
+        $this->zf_formController->zf_postFormData('studentEmailAddress')
+                
+                                ->zf_postFormData('studentPassword')
+        
+                                ->zf_postFormData('studentSchoolRole');
+        
+        
+        
+        //In this section we chain all student login data
+        $this->zf_formController->zf_postFormData('guardianEmailAddress')
+        
+                                ->zf_postFormData('guardianPassword')
+        
+                                ->zf_postFormData('guardianSchoolRole');
         
         
         

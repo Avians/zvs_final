@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.1.1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 13, 2016 at 08:52 PM
+-- Generation Time: Sep 15, 2016 at 03:04 AM
 -- Server version: 5.5.42
--- PHP Version: 5.6.7
+-- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `zilas_vs`
@@ -114,6 +114,112 @@ CREATE TABLE `zvs_platform_admin` (
 
 INSERT INTO `zvs_platform_admin` (`id`, `identificationCode`, `idNumber`, `designation`, `firstName`, `middleName`, `lastName`, `mobileNumber`, `boxAddress`, `gender`, `country`, `locality`, `imagePath`, `dateCreated`, `timeCreated`, `dateModified`, `timeModified`, `createdBy`, `userStatus`) VALUES
 (1, 'YwfPDAkaDbBBuNbYAHfR8030FKTxS2GuxQ8uKKThnfbiDl4uFwZHOU-hRZzth9RM42ZewiPLLSyjliRIUZq9Cm_KW7hQeCNX5bW0ZQmxug5hV8F5VI6XiaCLcPiyYJRe', 'ZVS_PA_25138058', 'Mr.', 'James', 'Makau', 'Mweu', '0725830529', 'P.O Box 73619 - Nairobi', 'Male', '+254', '+30', NULL, '2015-08-18', '06:17:24', NULL, NULL, 'pSoaHX1j8XXb2diMDomSijvRhBm6bxybcBWAbm6KL-mtWlM0NHJJdIXj6sxsi4NWMsv34U7kuRjGb3fd9rPlDMw_RESDtvMpAfdTYg23vR_7rylRfEqSABHs29kz0IxS', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_platform_designations`
+--
+
+CREATE TABLE `zvs_platform_designations` (
+  `id` int(100) NOT NULL,
+  `designationCode` varchar(15) NOT NULL,
+  `designationName` varchar(15) NOT NULL,
+  `designationStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_platform_designations`
+--
+
+INSERT INTO `zvs_platform_designations` (`id`, `designationCode`, `designationName`, `designationStatus`) VALUES
+(1, 'Dr', 'Dr', 1),
+(2, 'Mr', 'Mr', 1),
+(3, 'Mrs', 'Mrs', 1),
+(4, 'Miss', 'Miss', 1),
+(5, 'Ms', 'Ms', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_platform_guardians`
+--
+
+CREATE TABLE `zvs_platform_guardians` (
+  `id` int(11) NOT NULL,
+  `guardianCode` varchar(60) NOT NULL,
+  `guardianName` varchar(60) NOT NULL,
+  `guardianStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_platform_guardians`
+--
+
+INSERT INTO `zvs_platform_guardians` (`id`, `guardianCode`, `guardianName`, `guardianStatus`) VALUES
+(1, 'Parent', 'Parent', 1),
+(2, 'Adoptive Parent', 'Adoptive Parent', 1),
+(3, 'Grandparent', 'Grandparent', 1),
+(4, 'Uncle or Aunt', 'Uncle/Aunt', 1),
+(5, 'Cousin', 'Cousin', 1),
+(6, 'Nephew or Niece', 'Nephew/Niece', 1),
+(7, 'Sponsor', 'Sponsor', 1),
+(8, 'Family Friend', 'Family Friend', 1),
+(9, 'Others', 'Others', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_platform_languages`
+--
+
+CREATE TABLE `zvs_platform_languages` (
+  `id` int(11) NOT NULL,
+  `languageCode` varchar(60) NOT NULL,
+  `languageName` varchar(60) NOT NULL,
+  `languageStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_platform_languages`
+--
+
+INSERT INTO `zvs_platform_languages` (`id`, `languageCode`, `languageName`, `languageStatus`) VALUES
+(1, 'English', 'English', 1),
+(2, 'French', 'French', 1),
+(3, 'Spanish', 'Spanish', 1),
+(4, 'Russian', 'Russian', 1),
+(5, 'Arabic', 'Arabic', 1),
+(6, 'Chinese', 'Chinese', 1),
+(7, 'German', 'German', 1),
+(8, 'Japanese', 'Japanese', 1),
+(9, 'Portuguese', 'Portuguese', 1),
+(10, 'Hindi', 'Hindi/Urdu', 1),
+(11, 'Others', 'Others', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_platform_religions`
+--
+
+CREATE TABLE `zvs_platform_religions` (
+  `id` int(11) NOT NULL,
+  `religionCode` varchar(60) NOT NULL,
+  `religionName` varchar(60) NOT NULL,
+  `religionStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_platform_religions`
+--
+
+INSERT INTO `zvs_platform_religions` (`id`, `religionCode`, `religionName`, `religionStatus`) VALUES
+(1, 'Christian', 'Christian', 1),
+(2, 'Muslim', 'Muslim', 1),
+(3, 'Hindu', 'Hindu', 1),
+(4, 'Buddhist', 'Buddhist', 1),
+(5, 'Others', 'Others', 1);
 
 -- --------------------------------------------------------
 
@@ -697,36 +803,6 @@ INSERT INTO `zvs_school_hostels` (`id`, `systemSchoolCode`, `schoolHostelCode`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zvs_school_languages`
---
-
-CREATE TABLE `zvs_school_languages` (
-  `id` int(11) NOT NULL,
-  `languageCode` varchar(60) NOT NULL,
-  `languageName` varchar(60) NOT NULL,
-  `languageStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `zvs_school_languages`
---
-
-INSERT INTO `zvs_school_languages` (`id`, `languageCode`, `languageName`, `languageStatus`) VALUES
-(1, 'English', 'English', 1),
-(2, 'French', 'French', 1),
-(3, 'Spanish', 'Spanish', 1),
-(4, 'Russian', 'Russian', 1),
-(5, 'Arabic', 'Arabic', 1),
-(6, 'Chinese', 'Chinese', 1),
-(7, 'German', 'German', 1),
-(8, 'Japanese', 'Japanese', 1),
-(9, 'Portuguese', 'Portuguese', 1),
-(10, 'Hindi', 'Hindi/Urdu', 1),
-(11, 'Others', 'Others', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `zvs_school_locality`
 --
 
@@ -791,30 +867,6 @@ INSERT INTO `zvs_school_locality` (`id`, `countryCode`, `localityCode`, `localit
 (45, '+254', '45', 'Vihiga', 'County', 0),
 (46, '+254', '46', 'Wajir', 'County', 0),
 (47, '+254', '47', 'West Pokot', 'County', 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `zvs_school_religions`
---
-
-CREATE TABLE `zvs_school_religions` (
-  `id` int(11) NOT NULL,
-  `religionCode` varchar(60) NOT NULL,
-  `religionName` varchar(60) NOT NULL,
-  `religionStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `zvs_school_religions`
---
-
-INSERT INTO `zvs_school_religions` (`id`, `religionCode`, `religionName`, `religionStatus`) VALUES
-(1, 'Christian', 'Christian', 1),
-(2, 'Muslim', 'Muslim', 1),
-(3, 'Hindu', 'Hindu', 1),
-(4, 'Buddhist', 'Buddhist', 1),
-(5, 'Others', 'Others', 1);
 
 -- --------------------------------------------------------
 
@@ -936,7 +988,13 @@ INSERT INTO `zvs_school_sub_departments` (`id`, `systemSchoolCode`, `schoolDepar
 --
 
 CREATE TABLE `zvs_students_class_details` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `identificationCode` varchar(240) NOT NULL,
+  `studentClassCode` varchar(240) NOT NULL,
+  `studentStreamCode` varchar(240) NOT NULL,
+  `studentYearOfStudy` varchar(4) NOT NULL,
+  `studentAdmissionNumber` varchar(30) NOT NULL,
+  `studentClassStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1043,34 +1101,6 @@ CREATE TABLE `zvs_students_personal_details` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zvs_student_guardians`
---
-
-CREATE TABLE `zvs_student_guardians` (
-  `id` int(11) NOT NULL,
-  `guardianCode` varchar(60) NOT NULL,
-  `guardianName` varchar(60) NOT NULL,
-  `guardianStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `zvs_student_guardians`
---
-
-INSERT INTO `zvs_student_guardians` (`id`, `guardianCode`, `guardianName`, `guardianStatus`) VALUES
-(1, 'Parent', 'Parent', 1),
-(2, 'Adoptive Parent', 'Adoptive Parent', 1),
-(3, 'Grandparent', 'Grandparent', 1),
-(4, 'Uncle or Aunt', 'Uncle/Aunt', 1),
-(5, 'Cousin', 'Cousin', 1),
-(6, 'Nephew or Niece', 'Nephew/Niece', 1),
-(7, 'Sponsor', 'Sponsor', 1),
-(8, 'Family Friend', 'Family Friend', 1),
-(9, 'Others', 'Others', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `zvs_super_admin`
 --
 
@@ -1125,6 +1155,30 @@ ALTER TABLE `zvs_blood_groups`
 --
 ALTER TABLE `zvs_platform_admin`
   ADD PRIMARY KEY (`id`,`identificationCode`);
+
+--
+-- Indexes for table `zvs_platform_designations`
+--
+ALTER TABLE `zvs_platform_designations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_platform_guardians`
+--
+ALTER TABLE `zvs_platform_guardians`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_platform_languages`
+--
+ALTER TABLE `zvs_platform_languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_platform_religions`
+--
+ALTER TABLE `zvs_platform_religions`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zvs_platform_resources`
@@ -1203,23 +1257,11 @@ ALTER TABLE `zvs_school_hostels`
   ADD UNIQUE KEY `schoolHostelCode_UNIQUE` (`schoolHostelCode`);
 
 --
--- Indexes for table `zvs_school_languages`
---
-ALTER TABLE `zvs_school_languages`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `zvs_school_locality`
 --
 ALTER TABLE `zvs_school_locality`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `localityCode` (`localityCode`);
-
---
--- Indexes for table `zvs_school_religions`
---
-ALTER TABLE `zvs_school_religions`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zvs_school_roles`
@@ -1277,12 +1319,6 @@ ALTER TABLE `zvs_students_personal_details`
   ADD UNIQUE KEY `identificationCode` (`identificationCode`);
 
 --
--- Indexes for table `zvs_student_guardians`
---
-ALTER TABLE `zvs_student_guardians`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `zvs_super_admin`
 --
 ALTER TABLE `zvs_super_admin`
@@ -1307,6 +1343,26 @@ ALTER TABLE `zvs_blood_groups`
 --
 ALTER TABLE `zvs_platform_admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `zvs_platform_designations`
+--
+ALTER TABLE `zvs_platform_designations`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `zvs_platform_guardians`
+--
+ALTER TABLE `zvs_platform_guardians`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `zvs_platform_languages`
+--
+ALTER TABLE `zvs_platform_languages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `zvs_platform_religions`
+--
+ALTER TABLE `zvs_platform_religions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_platform_resources`
 --
@@ -1358,20 +1414,10 @@ ALTER TABLE `zvs_school_details`
 ALTER TABLE `zvs_school_hostels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `zvs_school_languages`
---
-ALTER TABLE `zvs_school_languages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
 -- AUTO_INCREMENT for table `zvs_school_locality`
 --
 ALTER TABLE `zvs_school_locality`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
---
--- AUTO_INCREMENT for table `zvs_school_religions`
---
-ALTER TABLE `zvs_school_religions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_school_roles`
 --
@@ -1412,11 +1458,6 @@ ALTER TABLE `zvs_students_medical_details`
 --
 ALTER TABLE `zvs_students_personal_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `zvs_student_guardians`
---
-ALTER TABLE `zvs_student_guardians`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `zvs_super_admin`
 --

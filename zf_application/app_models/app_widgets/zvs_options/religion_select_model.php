@@ -10,7 +10,7 @@ class religion_select_Model extends Zf_Model {
     //This method is responsoble for building religion codes.
     public function zvs_buildReligionCode() {
         
-        $zf_selectReligion = Zf_QueryGenerator::BuildSQLSelect('zvs_school_religions');
+        $zf_selectReligion = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_religions');
 
         if(!$this->Zf_QueryGenerator->Query($zf_selectReligion)){
                 

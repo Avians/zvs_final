@@ -1,21 +1,21 @@
  <?php
 
-class languages_select_Model extends Zf_Model {
+class designations_select_Model extends Zf_Model {
 
     public function __construct() {
         parent::__construct();
     }
     
     
-    //This method is responsoble for building language codes.
-    public function zvs_buildLanguageCode() {
+    //This method is responsible for building designation codes.
+    public function zvs_buildDesignationCode() {
         
-        $zf_selectLanguages = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_languages');
+        $zf_selectDesignations = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_designations');
 
-        if(!$this->Zf_QueryGenerator->Query($zf_selectLanguages)){
+        if(!$this->Zf_QueryGenerator->Query($zf_selectDesignations)){
                 
             $message = "Query execution failed.<br><br>";
-            $message.= "The failed Query is : <b><i>{$zf_selectLanguages}.</i></b>";
+            $message.= "The failed Query is : <b><i>{$zf_selectDesignations}.</i></b>";
             echo $message; exit();
 
         }else{
@@ -30,7 +30,7 @@ class languages_select_Model extends Zf_Model {
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 
                     $fetchRow = $this->Zf_QueryGenerator->Row();
-                    echo "<option value='".$fetchRow->languageCode."' >".$fetchRow->languageName."</option>";
+                    echo "<option value='".$fetchRow->designationCode."' >".$fetchRow->designationName.".</option>";
 
                 }
 

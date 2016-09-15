@@ -54,11 +54,11 @@
                                 <label class="control-label col-md-4">Designation:</label>
                                 <div class="col-md-8">
                                     <select class="form-control select2me" name="designation" data-placeholder="Mr., Mrs., Miss, Ms., ..."  value="<?php echo $zf_formHandler->zf_getFormValue("designation"); ?>">
-                                        <option value=""></option>
-                                        <option value="Mr">Mr.</option>
-                                        <option value="Mrs">Mrs.</option>
-                                        <option value="Miss">Miss</option>
-                                        <option value="Ms">Ms</option>
+                                        <?php
+                                            //This widget creates select options for designations
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "designations_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
                                     </select>
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("designation") ?>

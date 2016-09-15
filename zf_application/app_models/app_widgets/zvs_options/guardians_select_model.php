@@ -10,7 +10,7 @@ class guardians_select_Model extends Zf_Model {
     //This method is responsoble for building language codes.
     public function zvs_buildGuardianCode() {
         
-        $zf_selectGuardians = Zf_QueryGenerator::BuildSQLSelect('zvs_student_guardians');
+        $zf_selectGuardians = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_guardians');
 
         if(!$this->Zf_QueryGenerator->Query($zf_selectGuardians)){
                 

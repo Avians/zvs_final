@@ -227,6 +227,26 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="control-label col-md-4">Designation:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control select2me guardianDesignation" id="guardianDesignation" name="guardianguardianDesignation" data-placeholder="Dr., Mr., Mrs., Miss.,..."  value="<?php echo $zf_formHandler->zf_getFormValue("guardianDesignation"); ?>">
+                                        <?php
+                                            //This widget creates select options for religions
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "designations_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("guardianDesignation") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="control-label col-md-4">First Name:</label>
                                 <div class="col-md-8">
                                     <input type="text" name="guardianFirstName" class="form-control" placeholder="First Name" value="<?php echo $zf_formHandler->zf_getFormValue("guardianFirstName"); ?>">
@@ -596,9 +616,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Designation:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="physicianDesignation" class="form-control studentPhysician" placeholder="Designation" value="<?php echo $zf_formHandler->zf_getFormValue("physicianDesignation"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("physicianFDesignation"); ?>
+                                    <select class="form-control select2me physicianDesignation studentPhysician" id="physicianDesignation" name="physicianDesignation" data-placeholder="Dr., Mr., Mrs., Miss, ....."  value="<?php echo $zf_formHandler->zf_getFormValue("physicianDesignation"); ?>">
+                                        <?php
+                                            //This widget creates select options for designations
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "designations_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("physicianDesignation") ?>
                                     </span>
                                 </div>
                             </div>
@@ -859,11 +885,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Year of Study:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="currentYearOfStudy" class="form-control" placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("currentYearOfStudy"); ?>">
+                                    <select class="form-control select2me" name="studentYearOfStudy" class="form-control" placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("studentYearOfStudy"); ?>">
                                         <option value=""></option>
                                         <?php Zf_Core_Functions::Zf_GenerateYearOption($currentYear-10, $currentYear);?>
                                         <span class="help-block server-side-error" >
-                                            <?php echo $zf_formHandler->zf_getFormError("currentYearOfStud") ?>
+                                            <?php echo $zf_formHandler->zf_getFormError("studentYearOfStudy") ?>
                                         </span>
                                     </select>
                                 </div>
