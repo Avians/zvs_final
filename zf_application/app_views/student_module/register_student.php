@@ -26,6 +26,11 @@
         <!-- END PAGE HEADER-->
 
         <div class="clearfix"></div>
+        <?php
+            //This is the pop up indicator that shows a success or a failure in creating a new class.
+            $zf_widgetFolder = "indicators"; $zf_widgetFile = "student_module_indicator.php";
+            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+        ?> 
 
         <!-- BEGIN INNER CONTENT -->
         <div class="row">
@@ -39,6 +44,17 @@
                     <div class="z-content-inner" style="margin-bottom: 10px !important;">
                         <div>
                             <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="portlet-body form" >
+                                            Student Overview Goes here.
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
                                 <?php
                                     //Here we fetch all class details
                                     //$zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
@@ -50,17 +66,6 @@
                                                 //This is the form for registering new student into a given school.
                                                 Zf_ApplicationWidgets::zf_load_widget("student_module", "new_student_form.php");
                                             ?>
-                                        </div>
-                                    </div>          
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="portlet-body form" >
-                                            Actual Student Registration form will go here in.
                                         </div>
                                     </div>          
                                 </div>

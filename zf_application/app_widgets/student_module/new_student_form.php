@@ -10,6 +10,9 @@
     
     //echo $currentYear;
     
+    //echo $identificationCode."<br/>_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k";
+    
+    $registeredBy = $identificationCode;
 ?>
 
 <form action="<?php Zf_GenerateLinks::basic_internal_link("student_module", "newStudentRegistration", $new_student); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_stream_form">
@@ -1038,6 +1041,12 @@
                     <!--/row-->
                     <!-- END LOGIN DETAILS-->
                     
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" name="registeredBy" class="form-control" value="<?php echo $registeredBy; ?>">
+                        </div>
+                    </div>
+                    
                 </div>
                 <!-- END OF ADMINL SETUP FORM-->
                 
@@ -1109,3 +1118,7 @@
         </div>
     </div>
 </form>
+<?php
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
+?>
