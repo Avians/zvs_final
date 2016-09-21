@@ -46,112 +46,169 @@ class newStudentRegistration_Model extends Zf_Model {
         
         //In this section we chain all student personal data
         $this->zf_formController->zf_postFormData('studentFirstName')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student First Name')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Student First Name')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student First Name')
                 
                                 ->zf_postFormData('studentMiddleName')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student Middle Name')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Student Middle Name')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Middle Name')
                 
                                 ->zf_postFormData('studentLastName')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student Last Name')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Student Last Name')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Last Name')
                 
                                 ->zf_postFormData('studentGender')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Gender')
                 
                                 ->zf_postFormData('studentDateOfBirth')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Date of Birth')
                 
                                 ->zf_postFormData('studentReligion')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Religion')
                 
                                 ->zf_postFormData('studentCountry')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Country')
                 
                                 ->zf_postFormData('studentLocality')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Locality')
                 
                                 ->zf_postFormData('studentBoxAddress')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student Box Address')
                 
                                 ->zf_postFormData('studentPhoneNumber')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student Phone Number')
                 
-                                ->zf_postFormData('studentLanguage');
+                                ->zf_postFormData('studentLanguage')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student Language')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Student Language');
         
         
         
         //In this section we chain all guardian related data
         $this->zf_formController->zf_postFormData('guardianDesignation')
-                    
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Country')
+                
                                 ->zf_postFormData('guardianFirstName')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Guardian First Name')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Guardian First Name')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian First Name')
                     
                                 ->zf_postFormData('guardianMiddleName')//not required field
-                
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Guardian Middle Name')
+                                
                                 ->zf_postFormData('guardianLastName')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Guardian Last Name')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Guardian Last Name')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Last Name')
                 
                                 ->zf_postFormData('guardianGender')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Gender')
                 
                                 ->zf_postFormData('guardianDateOfBirth')//not required field
                 
                                 ->zf_postFormData('guardianReligion')//not required field
                 
                                 ->zf_postFormData('guardianCountry')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Country')
         
                                 ->zf_postFormData('guardianLocality')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Locality')
                     
                                 ->zf_postFormData('guardianBoxAddress')//not required field
                 
-                                ->zf_postFormData('guardianPhoneNumber')//not required field
+                                ->zf_postFormData('guardianPhoneNumber')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Phone Number')
                 
                                 ->zf_postFormData('guardianRelation')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Relation')
                 
                                 ->zf_postFormData('guardianOccupation')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 120, 'Guardian Occupation')
                 
-                                ->zf_postFormData('guardianLanguage');
+                                ->zf_postFormData('guardianLanguage')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Language');
         
         
         
         //In this section we chain all student medical data
         $this->zf_formController->zf_postFormData('isStudentBloodGroup')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('studentBloodGroup')//not required field
         
                                 ->zf_postFormData('isStudentDisable')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('studentDisability')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 500, 'Student disability details')
         
                                 ->zf_postFormData('isStudentMedicated')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('studentMedication')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 500, 'Student current medication details')
         
                                 ->zf_postFormData('isStudentAllergic')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('studentAllergic')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 500, 'Student allergy details')
         
                                 ->zf_postFormData('isStudentTreatment')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('studentTreatment')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 500, 'Student special treatment details')
         
                                 ->zf_postFormData('isStudentPhysician')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('physicianDesignation')//not required field
         
                                 ->zf_postFormData('physicianFirstName')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Physician First Name')
         
                                 ->zf_postFormData('physicianLastName')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Physician Last Name')
         
                                 ->zf_postFormData('1stMobileNumber')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Physician 1st Mobile Number')
         
                                 ->zf_postFormData('2ndMobileNumber')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Physician 2nd Mobile Number')
         
                                 ->zf_postFormData('physicianEmailAddress')//not required field
+                                ->zf_validateFormData('zf_checkEmail', 'physicianEmailAddress')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Physician Email Address')
         
                                 ->zf_postFormData('physicianBoxAddress')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Physician Box Address')
         
                                 ->zf_postFormData('physicianCountry')//not required field
         
                                 ->zf_postFormData('physicianLocality')//not required field
         
                                 ->zf_postFormData('isStudentHospital')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'One Option')
         
                                 ->zf_postFormData('hospitalName')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Hospital Name')
         
                                 ->zf_postFormData('1stHospitalNumber')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Hospital 1st Mobile Number')
         
                                 ->zf_postFormData('2ndHospitalNumber')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Hospital 2nd Mobile Number')
         
                                 ->zf_postFormData('hospitalEmailAddress')//not required field
+                                ->zf_validateFormData('zf_checkEmail', 'hospitalEmailAddress')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Hospital Email Address')
         
                                 ->zf_postFormData('hospitalBoxAddress')//not required field
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Hospital Box Address')
         
                                 ->zf_postFormData('hospitalCountry')//not required field
         
@@ -161,30 +218,52 @@ class newStudentRegistration_Model extends Zf_Model {
         
         //In this section we chain all student class data
         $this->zf_formController->zf_postFormData('studentClassCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Class')
         
                                 ->zf_postFormData('studentStreamCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Stream')
         
                                 ->zf_postFormData('studentYearOfStudy')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Year of Study')
         
-                                ->zf_postFormData('studentAdmissionNumber');
+                                ->zf_postFormData('studentAdmissionNumber')
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Student Admission Number')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Student Admission Number')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Admission Number');
         
         
         
         //In this section we chain all student login data
         $this->zf_formController->zf_postFormData('studentEmailAddress')
+                                ->zf_validateFormData('zf_maximumLength', 120, 'Student Email Address')
+                                ->zf_validateFormData('zf_minimumLength', 6, 'Student Email Address')
+                                ->zf_validateFormData('zf_checkEmail', 'studentEmailAddress')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Email Address')
                 
                                 ->zf_postFormData('studentPassword')
+                                ->zf_validateFormData('zf_maximumLength', 120, 'Student Password')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Student Password')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Password')
         
-                                ->zf_postFormData('studentSchoolRole');
+                                ->zf_postFormData('studentSchoolRole')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student Role');
         
         
         
         //In this section we chain all student login data
         $this->zf_formController->zf_postFormData('guardianEmailAddress')
+                                ->zf_validateFormData('zf_maximumLength', 120, 'Guardian Email Address')
+                                ->zf_validateFormData('zf_minimumLength', 6, 'Guardian Email Address')
+                                ->zf_validateFormData('zf_checkEmail', 'guardianEmailAddress')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Email Address')
         
                                 ->zf_postFormData('guardianPassword')
+                                ->zf_validateFormData('zf_maximumLength', 120, 'Guardian Password')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Guardian Password')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Password')
         
-                                ->zf_postFormData('guardianSchoolRole');
+                                ->zf_postFormData('guardianSchoolRole')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian Role');
         
         
         
@@ -410,6 +489,7 @@ class newStudentRegistration_Model extends Zf_Model {
                                             //3. Student guardian details
                                             $studentGuardianDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
                                             $studentGuardianDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
+                                            $studentGuardianDetails['guardianDesignation'] = Zf_QueryGenerator::SQLValue($guardianDesignation);
                                             $studentGuardianDetails['guardianFirstName'] = Zf_QueryGenerator::SQLValue($guardianFirstName);
                                             $studentGuardianDetails['guardianMiddleName'] = Zf_QueryGenerator::SQLValue($guardianMiddleName);
                                             $studentGuardianDetails['guardianLastName'] = Zf_QueryGenerator::SQLValue($guardianLastName);
@@ -480,37 +560,30 @@ class newStudentRegistration_Model extends Zf_Model {
                                             
                                             //1. Insert student application user details
                                             $insertStudentApplicationUserDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_application_users', $studentApplicationUserDetails);
-                                            echo $insertStudentApplicationUserDetails."<br/><br/>";
                                             //$executeInsertStudentApplicationUserDetails = $this->Zf_AdoDB->Execute($insertStudentApplicationUserDetails);
                                             
                                             //2. Insert guardian application user details
                                             $insertGuardianApplicationUserDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_application_users", $guardianApplicationUserDetails);
-                                            echo $insertGuardianApplicationUserDetails."<br/><br/>";
                                             //$executeInsertGuardianApplicationUserDetails = $this->Zf_AdoDB->Execute($insertGuardianApplicationUserDetails);
                                             
                                             //3. Insert student personal detials
                                             $insertStudentPersonalDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_personal_details", $studentPersonalDetails);
-                                            echo $insertStudentPersonalDetails."<br/><br/>";
                                             //$executeInsertStudentPersonalDetails = $this->Zf_AdoDB->Execute($insertStudentPersonalDetails);
                                             
                                             //4. Insert student guardian details
                                             $insertStudentGuardianDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_guardian_details", $studentGuardianDetails);
-                                            echo $insertStudentGuardianDetails."<br/><br/>";
                                             //$executeInsertStudentGuardianDetails = $this->Zf_AdoDB->Execute($insertStudentGuardianDetails);
                                             
                                             //5. Insert student medical details
                                             $insertStudentMedicalDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_medical_details", $studentMedicalDetails);
-                                            echo $insertStudentMedicalDetails."<br/><br/>";
                                             //$executeInsertStudentMedicalDetails = $this->Zf_AdoDB->Execute($insertStudentMedicalDetails);
                                             
                                             //6. Insert student class details
                                             $insertStudentClassDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_class_details", $studentClassDetails);
-                                            echo $insertStudentClassDetails."<br/><br/>";
                                             //$executeInsertStudentClassDetails = $this->Zf_AdoDB->Execute($insertStudentClassDetails);
                                             
                                             //7. Insert student-guardian mapper details
                                             $insertStudentGuardianMapper = Zf_QueryGenerator::BuildSQLInsert("zvs_students_guardian_mapper", $studentGuardianMapperDetails);
-                                            echo $insertStudentGuardianMapper."<br/><br/>";
                                             //$executeInsertStudentGuardianMapper = $this->Zf_AdoDB->Execute($insertStudentGuardianMapper);
                                             
                                             

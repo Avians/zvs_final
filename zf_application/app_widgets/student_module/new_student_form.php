@@ -293,6 +293,9 @@
                                         <input type="radio" name="guardianGender" value="Male" checked data-title="Male"> Male </label>
                                         <label class="radio-inline">
                                         <input type="radio" name="guardianGender" value="Female"  data-title="Female"> Female </label>
+                                        <span class="help-block server-side-error">
+                                            <?php echo $zf_formHandler->zf_getFormError("guardianGender") ?>
+                                        </span>
                                     </div>
 				</div>
                             </div>
@@ -457,6 +460,11 @@
                                         <input id="studentBloodGroupYes" type="radio" name="isStudentBloodGroup" value="Yes"> Yes </label>
                                         <label class="radio-inline">
                                         <input id="studentBloodGroupNo" type="radio" name="isStudentBloodGroup" value="No" > No </label>
+                                    </div>
+                                    <div>
+                                        <span class="help-block server-side-error">
+                                            <?php echo $zf_formHandler->zf_getFormError("isStudentBloodGroup") ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -888,13 +896,13 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Year of Study:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="studentYearOfStudy" class="form-control" placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("studentYearOfStudy"); ?>">
+                                    <select class="form-control select2me" name="studentYearOfStudy" class="form-control" data-placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("studentYearOfStudy"); ?>">
                                         <option value=""></option>
                                         <?php Zf_Core_Functions::Zf_GenerateYearOption($currentYear-10, $currentYear);?>
-                                        <span class="help-block server-side-error" >
-                                            <?php echo $zf_formHandler->zf_getFormError("studentYearOfStudy") ?>
-                                        </span>
                                     </select>
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("studentYearOfStudy") ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
