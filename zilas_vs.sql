@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 15, 2016 at 03:04 AM
+-- Generation Time: Sep 21, 2016 at 05:20 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -885,7 +885,7 @@ CREATE TABLE `zvs_school_roles` (
   `dateModified` date DEFAULT NULL,
   `assignStatus` tinyint(1) unsigned zerofill NOT NULL,
   `roleStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_roles`
@@ -894,7 +894,8 @@ CREATE TABLE `zvs_school_roles` (
 INSERT INTO `zvs_school_roles` (`id`, `systemSchoolCode`, `schoolRoleCode`, `schoolRoleName`, `schoolRoleAlias`, `schoolRoleId`, `dateCreated`, `dateModified`, `assignStatus`, `roleStatus`) VALUES
 (1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'Principal', 'Principal', 'Principal', '2016-08-18', NULL, 1, 0),
 (2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-09-10', NULL, 1, 1),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Student', 'Student', 'Student', 'Student', '2016-09-11', NULL, 0, 0);
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Student', 'Student', 'Student', 'Student', '2016-09-11', NULL, 0, 1),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Parent', 'Parent', 'Parent', 'Parent', '2016-09-17', NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -989,11 +990,13 @@ INSERT INTO `zvs_school_sub_departments` (`id`, `systemSchoolCode`, `schoolDepar
 
 CREATE TABLE `zvs_students_class_details` (
   `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
   `studentClassCode` varchar(240) NOT NULL,
   `studentStreamCode` varchar(240) NOT NULL,
   `studentYearOfStudy` varchar(4) NOT NULL,
   `studentAdmissionNumber` varchar(30) NOT NULL,
+  `registeredBy` varchar(240) NOT NULL,
   `studentClassStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1018,6 +1021,7 @@ CREATE TABLE `zvs_students_guardians_mapper` (
 
 CREATE TABLE `zvs_students_guardian_details` (
   `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
   `guardianFirstName` varchar(60) NOT NULL,
   `guardianMiddleName` varchar(60) NOT NULL,
@@ -1032,6 +1036,7 @@ CREATE TABLE `zvs_students_guardian_details` (
   `guardianRelation` varchar(60) NOT NULL,
   `guardianOccupation` varchar(120) NOT NULL,
   `guardianLanguage` varchar(60) NOT NULL,
+  `registeredBy` varchar(240) NOT NULL,
   `guardianStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1043,6 +1048,7 @@ CREATE TABLE `zvs_students_guardian_details` (
 
 CREATE TABLE `zvs_students_medical_details` (
   `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
   `studentIdentificationCode` varchar(240) NOT NULL,
   `isStudentBloodGroup` varchar(5) NOT NULL,
   `studentBloodGroup` text NOT NULL,
@@ -1072,6 +1078,7 @@ CREATE TABLE `zvs_students_medical_details` (
   `hospitalEmailAddress` varchar(60) NOT NULL,
   `hospitalCountry` varchar(15) NOT NULL,
   `hospitalLocality` varchar(30) NOT NULL,
+  `registeredBy` varchar(240) NOT NULL,
   `studentStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1083,6 +1090,7 @@ CREATE TABLE `zvs_students_medical_details` (
 
 CREATE TABLE `zvs_students_personal_details` (
   `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
   `studentFirstName` varchar(60) NOT NULL,
   `studentMiddleName` varchar(60) NOT NULL,
@@ -1095,6 +1103,7 @@ CREATE TABLE `zvs_students_personal_details` (
   `studentBoxAddress` varchar(60) NOT NULL,
   `studentPhoneNumber` varchar(60) NOT NULL,
   `studentLanguage` varchar(60) NOT NULL,
+  `registeredBy` varchar(240) NOT NULL,
   `studentStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1422,7 +1431,7 @@ ALTER TABLE `zvs_school_locality`
 -- AUTO_INCREMENT for table `zvs_school_roles`
 --
 ALTER TABLE `zvs_school_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `zvs_school_streams`
 --
