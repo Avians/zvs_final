@@ -5,19 +5,7 @@
 $(document).ready(function() {
     
     //Manage Classes
-    NewClassFormWizard.init();
-    NewStreamFormWizard.init();
-    
-    //Manage Departments
-    NewDepartmentFormWizard.init();
-    NewSubDepartmentFormWizard.init();
-    
-    //Manage Hostels
-    NewHostelFormWizard.init();
- 
-    //Manage Role
-    NewRoleFormWizard.init();
-    EditModuleFormWizard.init();
+    NewStudentFormWizard.init();
     
     //Components Picker
     ComponentsPickers.init();
