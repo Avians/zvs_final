@@ -679,7 +679,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-4">2<sup>nd</sup> Mobile No:</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="2ndMobileNumber" class="form-control studentPhysician" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("secondPhysicianMobileNumber"); ?>">
+                                        <input type="text" name="secondPhysicianMobileNumber" class="form-control studentPhysician" placeholder="0711111111" value="<?php echo $zf_formHandler->zf_getFormValue("secondPhysicianMobileNumber"); ?>">
                                         <span class="help-block server-side-error" >
                                             <?php echo $zf_formHandler->zf_getFormError("secondPhysicianMobileNumber"); ?>
                                         </span>
@@ -1077,8 +1077,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">First Name:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">First Name:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentFirstName"></p>
                                                 </div>
                                             </div>
@@ -1086,8 +1086,8 @@
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Middle Name:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Middle Name:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result"  data-display="studentMiddleName"></p>
                                                 </div>
                                             </div>
@@ -1099,8 +1099,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Last Name:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Last Name:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentLastName"></p>
                                                 </div>
                                             </div>
@@ -1108,8 +1108,8 @@
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Gender:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Gender:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentGender"></p>
                                                 </div>
                                             </div>
@@ -1121,8 +1121,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Date of Birth:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Date of Birth:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentDateOfBirth"></p>
                                                 </div>
                                             </div>
@@ -1130,8 +1130,8 @@
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Religion:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Religion:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentReligion"></p>
                                                 </div>
                                             </div>
@@ -1143,8 +1143,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Country:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Country:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentCountry"></p>
                                                 </div>
                                             </div>
@@ -1152,8 +1152,8 @@
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Locality:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Locality:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentLocality"></p>
                                                 </div>
                                             </div>
@@ -1165,8 +1165,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Address:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Address:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentBoxAddress"></p>
                                                 </div>
                                             </div>
@@ -1174,8 +1174,8 @@
                                         <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Phone No.:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Phone No.:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentPhoneNumber"></p>
                                                 </div>
                                             </div>
@@ -1187,8 +1187,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student Language:</label>
-                                                <div class="col-md-8">
+                                                <label class="control-label col-md-5">Student Language:</label>
+                                                <div class="col-md-7">
                                                     <p class="form-control-static confirm-form-result" data-display="studentLanguage"></p>
                                                 </div>
                                             </div>
@@ -1391,7 +1391,7 @@
                                         <!--/span-->
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student disability details:</label>
+                                                <label class="control-label col-md-4">Disability details:</label>
                                                 <div class="col-md-8">
                                                     <p class="form-control-static confirm-form-result" data-display="studentDisability"></p>
                                                 </div>
@@ -1413,7 +1413,7 @@
                                         <!--/span-->
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student medical details:</label>
+                                                <label class="control-label col-md-4">Medication details:</label>
                                                 <div class="col-md-8">
                                                     <p class="form-control-static confirm-form-result" data-display="studentMedication"></p>
                                                 </div>
@@ -1435,7 +1435,7 @@
                                         <!--/span-->
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student allergy details:</label>
+                                                <label class="control-label col-md-4">Allergy details:</label>
                                                 <div class="col-md-8">
                                                     <p class="form-control-static confirm-form-result" data-display="studentAllergic"></p>
                                                 </div>
@@ -1457,7 +1457,7 @@
                                         <!--/span-->
                                         <div class="col-md-8">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">Student treatment details:</label>
+                                                <label class="control-label col-md-4">Treatment details:</label>
                                                 <div class="col-md-8">
                                                     <p class="form-control-static confirm-form-result" data-display="studentTreatment"></p>
                                                 </div>

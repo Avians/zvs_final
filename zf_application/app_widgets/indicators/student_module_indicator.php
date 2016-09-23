@@ -3,19 +3,20 @@
         <button class="close" data-dismiss="alert"></button>
         You have some errors in your student registration form. Please check in <strong>"Add New Student"</strong> section and rectify the form errors!!
     </div>
-<?php
-}else if(Zf_SessionHandler::zf_getSessionVariable('hostel_setup') == 'existent_hostel_error'){ 
-?>
+<?php }else if(Zf_SessionHandler::zf_getSessionVariable('student_registration') == 'existent_student_email'){ ?>    
     <div class="alert alert-danger display-none error-fadeout">
         <button class="close" data-dismiss="alert"></button>
-        You have some errors in your hostel setup form. A similar hostel has already been registered. Check in <strong>"Add a hostel/dormitory"</strong> section!!
+        This email address has already been registered for another user. Check in <strong>"Add New Student"</strong> section!!
+    </div>  
+<?php } else if(Zf_SessionHandler::zf_getSessionVariable('student_registration') == 'existent_admission_number'){ ?>
+    <div class="alert alert-danger display-none error-fadeout">
+        <button class="close" data-dismiss="alert"></button>
+        A similar admission number has already been registered. Check in <strong>"Add New Student"</strong> section!!
     </div>
-<?php  
-}else if(Zf_SessionHandler::zf_getSessionVariable('hostel_setup') == 'hostel_setup_success'){
-?>
+<?php  }else if(Zf_SessionHandler::zf_getSessionVariable('student_registration') == 'student_registration_success'){ ?>
     <div class="alert alert-success display-none success-fadeout">
         <button class="close" data-dismiss="alert"></button>
-        You successfully created a new hostel/dormitory. You can now have an overview.
+        You successfully registered a new student. You can now have an overview of school students.
     </div> 
 <?php
 }

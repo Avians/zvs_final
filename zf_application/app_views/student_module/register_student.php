@@ -46,8 +46,10 @@
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="portlet-body form" >
-                                            Student Overview Goes here.
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <?php echo $zf_generateTable; ?>
+                                            </div>
                                         </div>
                                     </div>          
                                 </div>

@@ -40,9 +40,7 @@ class newStudentRegistration_Model extends Zf_Model {
     public function registerNewStudent($identificationCode){
         
         
-        //echo "We are here!!";
-        
-         //Here we chain all form data.
+        //Here we chain all form data.
         
         //In this section we chain all student personal data
         $this->zf_formController->zf_postFormData('studentFirstName')
@@ -183,7 +181,6 @@ class newStudentRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_maximumLength', 30, 'Physician 2nd mobile number')
         
                                 ->zf_postFormData('physicianEmailAddress')//not required field
-                                ->zf_validateFormData('zf_checkEmail', 'physicianEmailAddress')
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Physician email address')
         
                                 ->zf_postFormData('physicianBoxAddress')//not required field
@@ -206,7 +203,6 @@ class newStudentRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_maximumLength', 30, 'Hospital 2nd mobile number')
         
                                 ->zf_postFormData('hospitalEmailAddress')//not required field
-                                ->zf_validateFormData('zf_checkEmail', 'hospitalEmailAddress')
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Hospital email address')
         
                                 ->zf_postFormData('hospitalBoxAddress')//not required field
@@ -372,233 +368,285 @@ class newStudentRegistration_Model extends Zf_Model {
                 
                 //1. Check if a similar student has already been registered in the same school. 
                 //Hint: Each Zilas user must have a unique email address, so check using the email address.
-                    $studentEmailValue['email'] = Zf_QueryGenerator::SQLValue($studentEmailAddress);
-                    $studentEmailColumn = array("email");
-                    
-                    $zvs_studentEmailSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $studentEmailValue, $studentEmailColumn);
-                    $zvs_executeStudentEmailSqlQuery = $this->Zf_AdoDB->Execute($zvs_studentEmailSqlQuery);
-                    
-                    if(!$zvs_executeStudentEmailSqlQuery){
-                        
-                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-                        
+                $studentEmailValue['email'] = Zf_QueryGenerator::SQLValue($studentEmailAddress);
+                $studentEmailColumn = array("email");
+
+                $zvs_studentEmailSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $studentEmailValue, $studentEmailColumn);
+                $zvs_executeStudentEmailSqlQuery = $this->Zf_AdoDB->Execute($zvs_studentEmailSqlQuery);
+
+                if(!$zvs_executeStudentEmailSqlQuery){
+
+                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                }else{
+
+                    //Check if a similar user exists.
+                    if($zvs_executeStudentEmailSqlQuery->RecordCount() > 0){
+
+                        //This student 
+                        Zf_SessionHandler::zf_setSessionVariable("student_registration", "existent_student_email");
+
+                        $zf_errorData = array("zf_fieldName" => "studentEmailAddress", "zf_errorMessage" => "* This student email address is already registered!!");
+                        Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                        Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
+                        exit();
+
                     }else{
-                        
-                        //Check if a similar user exists.
-                        if($zvs_executeStudentEmailSqlQuery->RecordCount() > 0){
-                            
-                            //This student 
-                            Zf_SessionHandler::zf_setSessionVariable("student_registration", "existent_student_email");
 
-                            $zf_errorData = array("zf_fieldName" => "studentEmailAddress", "zf_errorMessage" => "* This student email address is already registered!!");
-                            Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                            Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
-                            exit();
-                        
+                        //Check if a similar student has already been registered in the same school
+                        //Hint: Each student within the school MUST have a unique admission number: check the istudent admission number.
+                        $studentAdmissionNumberValue['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                        $studentAdmissionNumberValue['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
+                        $studentAdmissionNumberColumn = array("studentAdmissionNumber");
+
+                        $zvs_studentAdmissionNumberSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $studentAdmissionNumberValue, $studentAdmissionNumberColumn);
+
+                        $zvs_executeStudentAdmissionNumberSqlQuery = $this->Zf_AdoDB->Execute($zvs_studentAdmissionNumberSqlQuery); 
+
+                        if(!$zvs_executeStudentAdmissionNumberSqlQuery){
+
+                            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
                         }else{
-                            
-                            //Check if a similar student has already been registered in the same school
-                            //Hint: Each student within the school MUST have a unique admission number: check the istudent admission number.
-                            $studentAdmissionNumberValue['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                            $studentAdmissionNumberValue['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
-                            $studentAdmissionNumberColumn = array("studentAdmissionNumber");
 
-                            $zvs_studentAdmissionNumberSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $studentAdmissionNumberValue, $studentAdmissionNumberColumn);
-                            
-                            $zvs_executeStudentAdmissionNumberSqlQuery = $this->Zf_AdoDB->Execute($zvs_studentAdmissionNumberSqlQuery); 
-                            
-                            if(!$zvs_executeStudentAdmissionNumberSqlQuery){
-                                
-                                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-                                
+                            //Check if a similar admission number exists
+                            if($zvs_executeStudentAdmissionNumberSqlQuery->RecordCount() > 0){
+
+                                Zf_SessionHandler::zf_setSessionVariable("student_registration", "existent_admission_number");
+
+                                $zf_errorData = array("zf_fieldName" => "studentAdmissionNumber", "zf_errorMessage" => "* This admission number is already registered!!");
+                                Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                                Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
+                                exit();
+
                             }else{
-                                
-                                //Check if a similar admission number exists
-                                if($zvs_executeStudentAdmissionNumberSqlQuery->RecordCount() > 0){
-                                    
-                                    Zf_SessionHandler::zf_setSessionVariable("student_registration", "existent_admission_number");
-                                    
-                                    $zf_errorData = array("zf_fieldName" => "studentAdmissionNumber", "zf_errorMessage" => "* This admission number is already registered!!");
-                                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                                    Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
-                                    exit();
-                                    
+
+                                //Check if a similar guardian email address has already been registered into the school
+                                $guardianEmailValue['email'] = Zf_QueryGenerator::SQLValue($guardianEmailAddress);
+                                $guardianEmailColumn = array("email");
+
+                                $zvs_guardianEmailSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $guardianEmailValue, $guardianEmailColumn);
+                                $zvs_executeGuardianEmailSqlQuery = $this->Zf_AdoDB->Execute($zvs_guardianEmailSqlQuery);
+
+                                if(!$zvs_executeGuardianEmailSqlQuery){
+
+                                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
                                 }else{
-                                    
-                                    //Check if a similar guardian email address has already been registered into the school
-                                    $guardianEmailValue['email'] = Zf_QueryGenerator::SQLValue($guardianEmailAddress);
-                                    $guardianEmailColumn = array("email");
 
-                                    $zvs_guardianEmailSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $guardianEmailValue, $guardianEmailColumn);
-                                    $zvs_executeGuardianEmailSqlQuery = $this->Zf_AdoDB->Execute($zvs_guardianEmailSqlQuery);
+                                    //Check if a similar user exists.
+                                    if($zvs_executeGuardianEmailSqlQuery->RecordCount() > 0){
 
-                                    if(!$zvs_executeGuardianEmailSqlQuery){
+                                        //This student 
+                                        Zf_SessionHandler::zf_setSessionVariable("student_registration", "existent_guardian_email");
 
-                                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+                                        $zf_errorData = array("zf_fieldName" => "guardianEmailAddress", "zf_errorMessage" => "* This guardian email address is already registered!!");
+                                        Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                                        Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
+                                        exit();
 
                                     }else{
 
-                                        //Check if a similar user exists.
-                                        if($zvs_executeGuardianEmailSqlQuery->RecordCount() > 0){
+                                        //THREE VALIDATION CHECKS ACCOMPLISHED:
+                                        //1. A similar student email address hasn't been registered into the system
+                                        //2. A similar student admission number hasn't been registered into the system for the same school
+                                        //3. A simial guardian email address hasn't been registered into the system
 
-                                            //This student 
-                                            Zf_SessionHandler::zf_setSessionVariable("student_registration", "existent_guardian_email");
+                                        //PREPARE ALL STUDENT  DATA FOR INSERTION
 
-                                            $zf_errorData = array("zf_fieldName" => "guardianEmailAddress", "zf_errorMessage" => "* This guardian email address is already registered!!");
-                                            Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                                            Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
-                                            exit();
+                                        //1. Application user details
+                                        $studentApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($studentEmailAddress);
+                                        $studentApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($studentPassword));
+                                        $studentApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+
+                                        $guardianApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($guardianEmailAddress);
+                                        $guardianApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($guardianPassword));
+                                        $guardianApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
+                                        $guardianApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+
+                                        //2. Student personal detiails
+                                        $studentPersonalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                                        $studentPersonalDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentPersonalDetails['studentFirstName'] = Zf_QueryGenerator::SQLValue($studentFirstName);
+                                        $studentPersonalDetails['studentMiddleName'] = Zf_QueryGenerator::SQLValue($studentMiddleName);
+                                        $studentPersonalDetails['studentLastName'] = Zf_QueryGenerator::SQLValue($studentLastName);
+                                        $studentPersonalDetails['studentGender'] = Zf_QueryGenerator::SQLValue($studentGender);
+                                        $studentPersonalDetails['studentDateOfBirth'] = Zf_QueryGenerator::SQLValue($studentDateOfBirth);
+                                        $studentPersonalDetails['studentReligion'] = Zf_QueryGenerator::SQLValue($studentReligion);
+                                        $studentPersonalDetails['studentCountry'] = Zf_QueryGenerator::SQLValue($studentCountry);
+                                        $studentPersonalDetails['studentLocality'] = Zf_QueryGenerator::SQLValue($studentLocality);
+                                        $studentPersonalDetails['studentBoxAddress'] = Zf_QueryGenerator::SQLValue($studentBoxAddress);
+                                        $studentPersonalDetails['studentPhoneNumber'] = Zf_QueryGenerator::SQLValue($studentPhoneNumber);
+                                        $studentPersonalDetails['studentLanguage'] = Zf_QueryGenerator::SQLValue($studentLanguage);
+                                        $studentPersonalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
+                                        $studentPersonalDetails['studentStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+                                        //3. Student guardian details
+                                        $studentGuardianDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                                        $studentGuardianDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
+                                        $studentGuardianDetails['guardianDesignation'] = Zf_QueryGenerator::SQLValue($guardianDesignation);
+                                        $studentGuardianDetails['guardianFirstName'] = Zf_QueryGenerator::SQLValue($guardianFirstName);
+                                        $studentGuardianDetails['guardianMiddleName'] = Zf_QueryGenerator::SQLValue($guardianMiddleName);
+                                        $studentGuardianDetails['guardianLastName'] = Zf_QueryGenerator::SQLValue($guardianLastName);
+                                        $studentGuardianDetails['guardianGender'] = Zf_QueryGenerator::SQLValue($guardianGender);
+                                        $studentGuardianDetails['guardianDateOfBirth'] = Zf_QueryGenerator::SQLValue($guardianDateOfBirth);
+                                        $studentGuardianDetails['guardianReligion'] = Zf_QueryGenerator::SQLValue($guardianReligion);
+                                        $studentGuardianDetails['guardianCountry'] = Zf_QueryGenerator::SQLValue($guardianCountry);
+                                        $studentGuardianDetails['guardianLocality'] = Zf_QueryGenerator::SQLValue($guardianLocality);
+                                        $studentGuardianDetails['guardianBoxAddress'] = Zf_QueryGenerator::SQLValue($guardianBoxAddress);
+                                        $studentGuardianDetails['guardianPhoneNumber'] = Zf_QueryGenerator::SQLValue($guardianPhoneNumber);
+                                        $studentGuardianDetails['guardianRelation'] = Zf_QueryGenerator::SQLValue($guardianRelation);
+                                        $studentGuardianDetails['guardianOccupation'] = Zf_QueryGenerator::SQLValue($guardianOccupation);
+                                        $studentGuardianDetails['guardianLanguage'] = Zf_QueryGenerator::SQLValue($guardianLanguage);
+                                        $studentGuardianDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
+                                        $studentGuardianDetails['guardianStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+                                        //4. Student medical details
+                                        $studentMedicalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                                        $studentMedicalDetails['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentMedicalDetails['isStudentBloodGroup'] = Zf_QueryGenerator::SQLValue($isStudentBloodGroup);
+                                        $studentMedicalDetails['studentBloodGroup'] = Zf_QueryGenerator::SQLValue($studentBloodGroup);
+                                        $studentMedicalDetails['isStudentDisable'] = Zf_QueryGenerator::SQLValue($isStudentDisable);
+                                        $studentMedicalDetails['studentDisability'] = Zf_QueryGenerator::SQLValue($studentDisability);
+                                        $studentMedicalDetails['isStudentMedicated'] = Zf_QueryGenerator::SQLValue($isStudentMedicated);
+                                        $studentMedicalDetails['studentMedication'] = Zf_QueryGenerator::SQLValue($studentMedication);
+                                        $studentMedicalDetails['isStudentAllergic'] = Zf_QueryGenerator::SQLValue($isStudentAllergic);
+                                        $studentMedicalDetails['studentAllergic'] = Zf_QueryGenerator::SQLValue($studentAllergic);
+                                        $studentMedicalDetails['isStudentTreatment'] = Zf_QueryGenerator::SQLValue($isStudentTreatment);
+                                        $studentMedicalDetails['studentTreatment'] = Zf_QueryGenerator::SQLValue($studentTreatment);
+                                        $studentMedicalDetails['isStudentPhysician'] = Zf_QueryGenerator::SQLValue($isStudentPhysician);
+                                        $studentMedicalDetails['physicianDesignation'] = Zf_QueryGenerator::SQLValue($physicianDesignation);
+                                        $studentMedicalDetails['physicianFirstName'] = Zf_QueryGenerator::SQLValue($physicianFirstName);
+                                        $studentMedicalDetails['physicianLastName'] = Zf_QueryGenerator::SQLValue($physicianLastName);
+                                        $studentMedicalDetails['firstPhysicianMobileNumber'] = Zf_QueryGenerator::SQLValue($firstMobileNumber);
+                                        $studentMedicalDetails['secondPhysicianMobileNumber'] = Zf_QueryGenerator::SQLValue($secondMobileNumber);
+                                        $studentMedicalDetails['physicianEmailAddress'] = Zf_QueryGenerator::SQLValue($physicianEmailAddress);
+                                        $studentMedicalDetails['physicianBoxAddress'] = Zf_QueryGenerator::SQLValue($physicianBoxAddress);
+                                        $studentMedicalDetails['physicianCountry'] = Zf_QueryGenerator::SQLValue($physicianCountry);
+                                        $studentMedicalDetails['physicianLocality'] = Zf_QueryGenerator::SQLValue($physicianLocality);
+                                        $studentMedicalDetails['isStudentHospital'] = Zf_QueryGenerator::SQLValue($isStudentHospital);
+                                        $studentMedicalDetails['hospitalName'] = Zf_QueryGenerator::SQLValue($hospitalName);
+                                        $studentMedicalDetails['firstHospitalNumber'] = Zf_QueryGenerator::SQLValue($firstHospitalNumber);
+                                        $studentMedicalDetails['secondHospitalNumber'] = Zf_QueryGenerator::SQLValue($secondHospitalNumber);
+                                        $studentMedicalDetails['hospitalBoxAddress'] = Zf_QueryGenerator::SQLValue($hospitalBoxAddress);
+                                        $studentMedicalDetails['hospitalEmailAddress'] = Zf_QueryGenerator::SQLValue($hospitalEmailAddress);
+                                        $studentMedicalDetails['hospitalCountry'] = Zf_QueryGenerator::SQLValue($hospitalCountry);
+                                        $studentMedicalDetails['hospitalLocality'] = Zf_QueryGenerator::SQLValue($hospitalLocality);
+                                        $studentMedicalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
+                                        $studentMedicalDetails['studentStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+                                        //5. Student class details
+                                        $studentClassDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                                        $studentClassDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentClassDetails['studentClassCode'] = Zf_QueryGenerator::SQLValue($studentClassCode);
+                                        $studentClassDetails['studentStreamCode'] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+                                        $studentClassDetails['studentYearOfStudy'] = Zf_QueryGenerator::SQLValue($studentYearOfStudy);
+                                        $studentClassDetails['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
+                                        $studentClassDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
+                                        $studentClassDetails['studentClassStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+                                        //6. Student-Guardian mapper
+                                        $studentGuardianMapperDetails['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentGuardianMapperDetails['guardianIdentificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
+                                        $studentGuardianMapperDetails['recordStatus'] = Zf_QueryGenerator::SQLValue(1);
+
+
+                                        //Since all data has been prepared for database, build the INSERTION SQL quries
+
+                                        //1. Insert student application user details
+                                        $insertStudentApplicationUserDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_application_users', $studentApplicationUserDetails);
+                                        $executeInsertStudentApplicationUserDetails = $this->Zf_AdoDB->Execute($insertStudentApplicationUserDetails);
+                                        if(!$executeInsertStudentApplicationUserDetails){
+
+                                            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
 
                                         }else{
 
-                                            //THREE VALIDATION CHECKS ACCOMPLISHED:
-                                            //1. A similar student email address hasn't been registered into the system
-                                            //2. A similar student admission number hasn't been registered into the system for the same school
-                                            //3. A simial guardian email address hasn't been registered into the system
-                                            
-                                            //PREPARE ALL STUDENT  DATA FOR INSERTION
-                                            
-                                            //1. Application user details
-                                            $studentApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($studentEmailAddress);
-                                            $studentApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue($studentPassword);
-                                            $studentApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                                            $studentApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            
-                                            $guardianApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($guardianEmailAddress);
-                                            $guardianApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue($guardianPassword);
-                                            $guardianApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
-                                            $guardianApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            
-                                            //2. Student personal detiails
-                                            $studentPersonalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                                            $studentPersonalDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                                            $studentPersonalDetails['studentFirstName'] = Zf_QueryGenerator::SQLValue($studentFirstName);
-                                            $studentPersonalDetails['studentMiddleName'] = Zf_QueryGenerator::SQLValue($studentMiddleName);
-                                            $studentPersonalDetails['studentLastName'] = Zf_QueryGenerator::SQLValue($studentLastName);
-                                            $studentPersonalDetails['studentGender'] = Zf_QueryGenerator::SQLValue($studentGender);
-                                            $studentPersonalDetails['studentDateOfBirth'] = Zf_QueryGenerator::SQLValue($studentDateOfBirth);
-                                            $studentPersonalDetails['studentReligion'] = Zf_QueryGenerator::SQLValue($studentReligion);
-                                            $studentPersonalDetails['studentCountry'] = Zf_QueryGenerator::SQLValue($studentCountry);
-                                            $studentPersonalDetails['studentLocality'] = Zf_QueryGenerator::SQLValue($studentLocality);
-                                            $studentPersonalDetails['studentBoxAddress'] = Zf_QueryGenerator::SQLValue($studentBoxAddress);
-                                            $studentPersonalDetails['studentPhoneNumber'] = Zf_QueryGenerator::SQLValue($studentPhoneNumber);
-                                            $studentPersonalDetails['studentLanguage'] = Zf_QueryGenerator::SQLValue($studentLanguage);
-                                            $studentPersonalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
-                                            $studentPersonalDetails['studentStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            //3. Student guardian details
-                                            $studentGuardianDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                                            $studentGuardianDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
-                                            $studentGuardianDetails['guardianDesignation'] = Zf_QueryGenerator::SQLValue($guardianDesignation);
-                                            $studentGuardianDetails['guardianFirstName'] = Zf_QueryGenerator::SQLValue($guardianFirstName);
-                                            $studentGuardianDetails['guardianMiddleName'] = Zf_QueryGenerator::SQLValue($guardianMiddleName);
-                                            $studentGuardianDetails['guardianLastName'] = Zf_QueryGenerator::SQLValue($guardianLastName);
-                                            $studentGuardianDetails['guardianGender'] = Zf_QueryGenerator::SQLValue($guardianGender);
-                                            $studentGuardianDetails['guardianDateOfBirth'] = Zf_QueryGenerator::SQLValue($guardianDateOfBirth);
-                                            $studentGuardianDetails['guardianReligion'] = Zf_QueryGenerator::SQLValue($guardianReligion);
-                                            $studentGuardianDetails['guardianCountry'] = Zf_QueryGenerator::SQLValue($guardianCountry);
-                                            $studentGuardianDetails['guardianLocality'] = Zf_QueryGenerator::SQLValue($guardianLocality);
-                                            $studentGuardianDetails['guardianBoxAddress'] = Zf_QueryGenerator::SQLValue($guardianBoxAddress);
-                                            $studentGuardianDetails['guardianPhoneNumber'] = Zf_QueryGenerator::SQLValue($guardianPhoneNumber);
-                                            $studentGuardianDetails['guardianRelation'] = Zf_QueryGenerator::SQLValue($guardianRelation);
-                                            $studentGuardianDetails['guardianOccupation'] = Zf_QueryGenerator::SQLValue($guardianOccupation);
-                                            $studentGuardianDetails['guardianLanguage'] = Zf_QueryGenerator::SQLValue($guardianLanguage);
-                                            $studentGuardianDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
-                                            $studentGuardianDetails['guardianStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            //4. Student medical details
-                                            $studentMedicalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                                            $studentMedicalDetails['studentIdentificationCOde'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                                            $studentMedicalDetails['isStudentBloodGroup'] = Zf_QueryGenerator::SQLValue($isStudentBloodGroup);
-                                            $studentMedicalDetails['studentBloodGroup'] = Zf_QueryGenerator::SQLValue($studentBloodGroup);
-                                            $studentMedicalDetails['isStudentDisable'] = Zf_QueryGenerator::SQLValue($isStudentDisable);
-                                            $studentMedicalDetails['studentDisability'] = Zf_QueryGenerator::SQLValue($studentDisability);
-                                            $studentMedicalDetails['isStudentMedicated'] = Zf_QueryGenerator::SQLValue($isStudentMedicated);
-                                            $studentMedicalDetails['studentMedication'] = Zf_QueryGenerator::SQLValue($studentMedication);
-                                            $studentMedicalDetails['isStudentAllergic'] = Zf_QueryGenerator::SQLValue($isStudentAllergic);
-                                            $studentMedicalDetails['studentAllergic'] = Zf_QueryGenerator::SQLValue($studentAllergic);
-                                            $studentMedicalDetails['isStudentTreatment'] = Zf_QueryGenerator::SQLValue($isStudentTreatment);
-                                            $studentMedicalDetails['studentTreatment'] = Zf_QueryGenerator::SQLValue($studentTreatment);
-                                            $studentMedicalDetails['isStudentPhysician'] = Zf_QueryGenerator::SQLValue($isStudentPhysician);
-                                            $studentMedicalDetails['physicianDesignation'] = Zf_QueryGenerator::SQLValue($physicianDesignation);
-                                            $studentMedicalDetails['physicianFirstName'] = Zf_QueryGenerator::SQLValue($physicianFirstName);
-                                            $studentMedicalDetails['physicianLastName'] = Zf_QueryGenerator::SQLValue($physicianLastName);
-                                            $studentMedicalDetails['1stMobileNumber'] = Zf_QueryGenerator::SQLValue($firstMobileNumber);
-                                            $studentMedicalDetails['2ndMobileNumber'] = Zf_QueryGenerator::SQLValue($secondMobileNumber);
-                                            $studentMedicalDetails['physicianEmailAddress'] = Zf_QueryGenerator::SQLValue($physicianEmailAddress);
-                                            $studentMedicalDetails['physicianBoxAddress'] = Zf_QueryGenerator::SQLValue($physicianBoxAddress);
-                                            $studentMedicalDetails['physicianCountry'] = Zf_QueryGenerator::SQLValue($physicianCountry);
-                                            $studentMedicalDetails['physicianLocality'] = Zf_QueryGenerator::SQLValue($physicianLocality);
-                                            $studentMedicalDetails['isStudentHospital'] = Zf_QueryGenerator::SQLValue($isStudentHospital);
-                                            $studentMedicalDetails['hospitalName'] = Zf_QueryGenerator::SQLValue($hospitalName);
-                                            $studentMedicalDetails['1stHospitalNumber'] = Zf_QueryGenerator::SQLValue($firstHospitalNumber);
-                                            $studentMedicalDetails['2ndHospitalNumber'] = Zf_QueryGenerator::SQLValue($secondHospitalNumber);
-                                            $studentMedicalDetails['hospitalBoxAddress'] = Zf_QueryGenerator::SQLValue($hospitalBoxAddress);
-                                            $studentMedicalDetails['hospitalEmailAddress'] = Zf_QueryGenerator::SQLValue($hospitalEmailAddress);
-                                            $studentMedicalDetails['hospitalCountry'] = Zf_QueryGenerator::SQLValue($hospitalCountry);
-                                            $studentMedicalDetails['hospitalLocality'] = Zf_QueryGenerator::SQLValue($hospitalLocality);
-                                            $studentMedicalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
-                                            $studentMedicalDetails['studentStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            //5. Student class details
-                                            $studentClassDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                                            $studentClassDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                                            $studentClassDetails['studentClassCode'] = Zf_QueryGenerator::SQLValue($studentClassCode);
-                                            $studentClassDetails['studentStreamCode'] = Zf_QueryGenerator::SQLValue($studentStreamCode);
-                                            $studentClassDetails['studentYearOfStudy'] = Zf_QueryGenerator::SQLValue($studentYearOfStudy);
-                                            $studentClassDetails['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
-                                            $studentClassDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
-                                            $studentClassDetails['studentClassStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            //6. Student-Guardian mapper
-                                            $studentGuardianMapperDetails['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                                            $studentGuardianMapperDetails['guardianIdentificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
-                                            $studentGuardianMapperDetails['recordStatus'] = Zf_QueryGenerator::SQLValue(1);
-                                            
-                                            
-                                            //Since all data has been prepared for database, build the INSERTION SQL quries
-                                            
-                                            //1. Insert student application user details
-                                            $insertStudentApplicationUserDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_application_users', $studentApplicationUserDetails);
-                                            //$executeInsertStudentApplicationUserDetails = $this->Zf_AdoDB->Execute($insertStudentApplicationUserDetails);
-                                            
                                             //2. Insert guardian application user details
                                             $insertGuardianApplicationUserDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_application_users", $guardianApplicationUserDetails);
-                                            //$executeInsertGuardianApplicationUserDetails = $this->Zf_AdoDB->Execute($insertGuardianApplicationUserDetails);
-                                            
-                                            //3. Insert student personal detials
-                                            $insertStudentPersonalDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_personal_details", $studentPersonalDetails);
-                                            //$executeInsertStudentPersonalDetails = $this->Zf_AdoDB->Execute($insertStudentPersonalDetails);
-                                            
-                                            //4. Insert student guardian details
-                                            $insertStudentGuardianDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_guardian_details", $studentGuardianDetails);
-                                            //$executeInsertStudentGuardianDetails = $this->Zf_AdoDB->Execute($insertStudentGuardianDetails);
-                                            
-                                            //5. Insert student medical details
-                                            $insertStudentMedicalDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_medical_details", $studentMedicalDetails);
-                                            //$executeInsertStudentMedicalDetails = $this->Zf_AdoDB->Execute($insertStudentMedicalDetails);
-                                            
-                                            //6. Insert student class details
-                                            $insertStudentClassDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_class_details", $studentClassDetails);
-                                            //$executeInsertStudentClassDetails = $this->Zf_AdoDB->Execute($insertStudentClassDetails);
-                                            
-                                            //7. Insert student-guardian mapper details
-                                            $insertStudentGuardianMapper = Zf_QueryGenerator::BuildSQLInsert("zvs_students_guardian_mapper", $studentGuardianMapperDetails);
-                                            //$executeInsertStudentGuardianMapper = $this->Zf_AdoDB->Execute($insertStudentGuardianMapper);
-                                            
-                                            
-                                            exit();
+                                            $executeInsertGuardianApplicationUserDetails = $this->Zf_AdoDB->Execute($insertGuardianApplicationUserDetails);
+                                            if(!$executeInsertGuardianApplicationUserDetails){
+
+                                                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
+
+                                            }else{
+
+                                                //3. Insert student personal detials
+                                                $insertStudentPersonalDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_personal_details", $studentPersonalDetails);
+                                                $executeInsertStudentPersonalDetails = $this->Zf_AdoDB->Execute($insertStudentPersonalDetails);
+                                                if(!$executeInsertStudentPersonalDetails){
+
+                                                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
+
+                                                }else{
+
+                                                    //4. Insert student guardian details
+                                                    $insertStudentGuardianDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_guardian_details", $studentGuardianDetails);
+                                                    $executeInsertStudentGuardianDetails = $this->Zf_AdoDB->Execute($insertStudentGuardianDetails);
+                                                    if(!$executeInsertStudentGuardianDetails){
+
+                                                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
+
+                                                    }else{
+
+                                                        //5. Insert student medical details
+                                                        $insertStudentMedicalDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_medical_details", $studentMedicalDetails);
+                                                        $executeInsertStudentMedicalDetails = $this->Zf_AdoDB->Execute($insertStudentMedicalDetails);
+                                                        if(!$executeInsertStudentMedicalDetails){
+
+                                                            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
+
+                                                        }else{
+
+                                                            //6. Insert student class details
+                                                            $insertStudentClassDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_class_details", $studentClassDetails);
+                                                            $executeInsertStudentClassDetails = $this->Zf_AdoDB->Execute($insertStudentClassDetails);
+                                                            if(!$executeInsertStudentClassDetails){
+
+                                                                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
+
+                                                            }else{
+
+                                                                //7. Insert student-guardian mapper details
+                                                                $insertStudentGuardianMapper = Zf_QueryGenerator::BuildSQLInsert("zvs_students_guardians_mapper", $studentGuardianMapperDetails);
+                                                                $executeInsertStudentGuardianMapper = $this->Zf_AdoDB->Execute($insertStudentGuardianMapper);
+                                                                if(!$executeInsertStudentGuardianMapper){
+
+                                                                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
+
+                                                                }else{
+
+                                                                    //Redirect to the platform users overview
+                                                                    Zf_SessionHandler::zf_setSessionVariable("student_registration", "student_registration_success");
+                                                                    Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
+                                                                    exit();
+
+                                                                }
+
+                                                            }
+
+                                                        }
+
+                                                    }
+
+                                                }
+
+                                            }
+
                                         }
+
                                     }
-                                    
                                 }
-                                 
+
                             }
-                            
+
                         }
+
                     }
+                }
             
         }else{
             

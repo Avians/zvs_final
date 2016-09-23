@@ -198,9 +198,7 @@ var NewStudentFormWizard = function () {
                 
                     //Student Blood Group
                     studentBloodGroup: {
-                        maxlength: 500,
-                        minlength: 5,
-                        required: false
+                         required: false
                     },
                 
                     //Is Student Disable
