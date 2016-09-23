@@ -402,3 +402,79 @@ This is the styling for the zozo tabs and accordion
 .data-danger{
     color: #a94442 !important;
 }
+
+
+
+
+
+
+/*This is a special style for styling the header of the data grids.*/
+.ui-widget-header {
+    border: 1px solid #71ceef;
+    font-family: Oswald-Light !important; font-size: 15px !important; letter-spacing: 1px; font-weight: lighter;
+
+    background: #21B4E2 !important; /* Old browsers */
+    
+    border-top:1px solid #71ceef; border-bottom:1px solid #71ceef;
+    -moz-border-radius:0px !important; -webkit-border-radius:0px !important; border-radius:0px !important;
+}
+
+.ui-jqgrid {
+    border: 1px solid #71ceef !important; box-shadow: 0 0 10px #cccccc;
+}
+
+.ui-jqgrid, .ui-widget, .ui-jqdialog {
+    font-size: 12px !important;
+    font-family: Ubuntu-L,'Droid Sans',"tahoma","verdana","arial" !important;
+}
+
+.ui-jqgrid .ui-jqgrid-htable th div {
+    font-size: 12px !important; color: #3b3b3b !important; font-weight: normal !important; letter-spacing: 0.05em !important;
+    font-family: Oswald-Regular,'Droid Sans',"tahoma","verdana","arial" !important; 
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+    border-bottom: 1px solid #71ceef  !important;
+}
+
+.ui-th-column{
+    border-bottom: 1px solid #71ceef !important;
+}
+
+.ui-jqdialog{
+    left: 35% !important; top: 60% !important;
+    
+}
+
+.ui-jqgrid-view, .ui-jqgrid-titlebar, .ui-jqgrid-hdiv, .ui-jqgrid-pager{ 
+    width: 100% !important; 
+}
+
+.form-view-label{
+   width: 50% !important;
+}
+
+.ui-th-column input{
+    border: 1px solid #71ceef !important; height: 65% !important; color: #71ceef !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;
+}
+
+.DataTD input{
+    border: 1px solid #71ceef !important; height: 75% !important; margin: auto !important; color: #71ceef !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;
+}
+
+.ui-pg-input{
+    border: 1px solid #71ceef !important; width: 40px !important; height: 75% !important; margin: auto !important; color: #71ceef !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;
+}
+
+.ui-pg-selbox{
+    border: 1px solid #71ceef !important; height: 75% !important; margin: auto !important; color: #71ceef !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;
+}
+
+.jqgrow input{
+    border: 1px solid #71ceef !important; height: 75% !important; margin: auto !important; color: #71ceef !important;
+    border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;
+}

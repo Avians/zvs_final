@@ -38,10 +38,13 @@ class student_moduleController extends Zf_Controller {
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
+        //$systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2]
+                
+        echo $zf_actionData; exit();
         
         $tableData = array();
-        $tableData['tableTitle'] = "List of all students";
-        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details";
+        $tableData['tableTitle'] = "List of all school students";
+        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '' ";
         
         $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData);
         
@@ -108,10 +111,10 @@ class student_moduleController extends Zf_Controller {
     /**
      * This is the action that generates the transaction table
      */
-    public function actionGenerateStudentsTable($tableData, $zf_subGrid = NULL, $exclude = NULL){
+    public function actionGenerateStudentsTable($tableData, $zf_subGrid = NULL){
         
         //This holds the name of the database table that is being accessed.
-        $zf_phpGridSettings['zf_tableName'] = 'zvss_new_transaction'; 
+        $zf_phpGridSettings['zf_tableName'] = 'zvs_students_personal_details'; 
         
         //This is the title of the table as it will appear on the user view
         $tableTitle = $tableData['tableTitle'];
@@ -125,43 +128,27 @@ class student_moduleController extends Zf_Controller {
         //This array holds all the data related to required grid columns
         $zf_gridColumns = array();
 
-        $transactionOutlet = array("title"=>"First Name", "name"=>"studentFirstName", "width"=>20, "editable"=>false); 
-        $zf_gridColumns[] = $transactionOutlet;
+        $admissionNumber = array("title"=>"Adm Number", "name"=>"studentAdmissionNumber", "width"=>20, "editable"=>false);
+        $zf_gridColumns[] = $admissionNumber;
         
-        $transactionFirstName = array("title"=>"Middle Name", "name"=>"studentMiddleName", "width"=>20, "editable"=>true);
-        $zf_gridColumns[] = $transactionFirstName;
+        $studentFirstName = array("title"=>"First Name", "name"=>"studentFirstName", "width"=>20, "editable"=>true); 
+        $zf_gridColumns[] = $studentFirstName;
         
-        $transactionLastName = array("title"=>"Last Name", "name"=>"studentLastName", "width"=>20, "editable"=>true);
-        $zf_gridColumns[] = $transactionLastName;
+        $studentMiddleName = array("title"=>"Middle Name", "name"=>"studentMiddleName", "width"=>20, "editable"=>true);
+        $zf_gridColumns[] = $studentMiddleName;
         
-//        $transactionIdNo = array("title"=>"ID/PP Number", "name"=>"transactionIdNumber", "width"=>20, "editable"=>true);
-//        $zf_gridColumns[] = $transactionIdNo;
+        $studentLastName = array("title"=>"Last Name", "name"=>"studentLastName", "width"=>20, "editable"=>true);
+        $zf_gridColumns[] = $studentLastName;
         
-//        $transactionMobile = array("title"=>"Mobile Number", "name"=>"transactionMobileNumber", "width"=>20, "editable"=>false);
-//        $zf_gridColumns[] = $transactionMobile;
-//        
-//        $transactionAmount = array("title"=>"Amount", "name"=>"transactionAmount", "width"=>15, "editable"=>true);
-//        $zf_gridColumns[] = $transactionAmount;
-//        
-//        $transactionCommission = array("title"=>"Commission", "name"=>"transactionCommission", "width"=>15, "editable"=>true);
-//        $zf_gridColumns[] = $transactionCommission;
-//        
-//        $transactionCode = array("title"=>"Transaction Code", "name"=>"transactionReference", "width"=>25, "editable"=>false); 
-//        $zf_gridColumns[] = $transactionCode;
-//        
-//        $transactionEntity = array("title"=>"Transacting Vendor", "name"=>"transactingEntity", "width"=>25, "editable"=>true);
-//        $zf_gridColumns[] = $transactionEntity;
-//        
-//        $transactionType = array("title"=>"Transaction Type", "name"=>"transactionType", "width"=>25, "editable"=>true);
-//        $zf_gridColumns[] = $transactionType;
-//        
-//        if($exclude != 1){
-//            $transactionDate = array("title"=>"Trans. Date", "name"=>"transactionDate", "width"=>15, "editable"=>true);
-//            $zf_gridColumns[] = $transactionDate;
-//        }
+        
+        $studentPhoneNumber = array("title"=>"Mobile Number", "name"=>"studentPhoneNumber", "width"=>20, "editable"=>false);
+        $zf_gridColumns[] = $studentPhoneNumber;
+        
+        $studentGender = array("title"=>"Gender", "name"=>"studentGender", "width"=>15, "editable"=>false);
+        $zf_gridColumns[] = $studentGender;
         
         //This action column of the table 
-        $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);
+        $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>false);
         $zf_gridColumns[] = $action;
 
         $zf_phpGridSettings['zf_gridColumns'] = $zf_gridColumns;
