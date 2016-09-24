@@ -316,6 +316,12 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
    padding-top: 0.3em !important; padding-left: 0.3em !important; padding-right: 0.8em !important;
 }
 
+.zvs-chart-blocks {
+   height: 280px !important;  max-height: 280px !important; border: 1px solid #E1E1E1 !important;
+   padding-top: 0.3em !important; padding-left: 0.3em !important; padding-right: 0.8em !important;
+   margin-bottom: 5px !important;
+}
+
 .zvs-body-contents{
     height: 400px !important;  max-height: 400px !important; border: 1px solid #E1E1E1 !important;
    padding-top: 0.3em !important; padding-left: 0.3em !important; padding-right: 0.8em !important;

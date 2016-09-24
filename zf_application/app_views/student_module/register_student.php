@@ -1,7 +1,7 @@
 <?php
 
-    //Here we load class module model for viewing classes
-    $zf_controller->Zf_loadModel("student_module", "registerStudent");
+    //Here we load model that will pull student data into this view.
+    $zf_controller->Zf_loadModel("student_module", "studentsStatistics");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -44,10 +44,64 @@
                     <div class="z-content-inner" style="margin-bottom: 10px !important;">
                         <div>
                             <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="portlet-empty table-responsive" style="margin-right: 4% !important;">
                                             <div style="margin-right: 5px !important;"><?php echo $zf_generateTable; ?></div>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="zvs-content-titles">
+                                            <h3 class="">Gender Ratio</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-chart-blocks">
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByGenderPie(); ?>
+                                            </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="zvs-content-titles">
+                                            <h3 class="">Class Segmentation</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-chart-blocks">
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByClassPie(); ?>
+                                            </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="zvs-content-titles">
+                                            <h3 class="">Blood Groups Segmentation</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-chart-blocks">
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByBloodPie(); ?>
+                                            </div>
+                                        </div>
+                                    </div>          
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="zvs-content-titles">
+                                            <h3 class="">Guardian Segmentation</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-chart-blocks" >
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByGuardianPie(); ?>
+                                            </div>
                                         </div>
                                     </div>          
                                 </div>
