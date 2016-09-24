@@ -119,14 +119,14 @@ class zf_phpGridConfigurations {
     public static function Zf_PhpGridActions(){
         
         self::$zf_gridActions = array(
-            "add"=>false,
-            "edit"=>false,
-            "delete"=>false,
+            "add"=>true,
+            "edit"=>true,
+            "delete"=>true,
             "view"=>true,
             "rowactions"=>true,
+            "export_csv"=>true, // show/hide export to pdf option - must set pdf params
             "export_excel"=>true, // show/hide export to excel option - must set export xlsx params
             "export_pdf"=>true, // show/hide export to pdf option - must set pdf params
-            //"export_csv"=>true, // show/hide export to pdf option - must set pdf params
             "autofilter" => true,
             "search" => "advance", //simple or advance
             "inlineadd" => false,

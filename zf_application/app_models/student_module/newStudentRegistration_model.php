@@ -470,6 +470,7 @@ class newStudentRegistration_Model extends Zf_Model {
                                         //2. Student personal detiails
                                         $studentPersonalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
                                         $studentPersonalDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentPersonalDetails['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
                                         $studentPersonalDetails['studentFirstName'] = Zf_QueryGenerator::SQLValue($studentFirstName);
                                         $studentPersonalDetails['studentMiddleName'] = Zf_QueryGenerator::SQLValue($studentMiddleName);
                                         $studentPersonalDetails['studentLastName'] = Zf_QueryGenerator::SQLValue($studentLastName);
@@ -507,6 +508,7 @@ class newStudentRegistration_Model extends Zf_Model {
                                         //4. Student medical details
                                         $studentMedicalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
                                         $studentMedicalDetails['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentMedicalDetails['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
                                         $studentMedicalDetails['isStudentBloodGroup'] = Zf_QueryGenerator::SQLValue($isStudentBloodGroup);
                                         $studentMedicalDetails['studentBloodGroup'] = Zf_QueryGenerator::SQLValue($studentBloodGroup);
                                         $studentMedicalDetails['isStudentDisable'] = Zf_QueryGenerator::SQLValue($isStudentDisable);

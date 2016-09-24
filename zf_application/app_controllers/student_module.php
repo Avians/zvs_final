@@ -38,13 +38,11 @@ class student_moduleController extends Zf_Controller {
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
-        //$systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2]
-                
-        echo $zf_actionData; exit();
+        $systemSchoolCode = $this->Zf_GetUserData($zf_actionData)[2];
         
         $tableData = array();
         $tableData['tableTitle'] = "List of all school students";
-        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '' ";
+        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '$systemSchoolCode' ";
         
         $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData);
         
@@ -148,7 +146,7 @@ class student_moduleController extends Zf_Controller {
         $zf_gridColumns[] = $studentGender;
         
         //This action column of the table 
-        $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>false);
+        $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);
         $zf_gridColumns[] = $action;
 
         $zf_phpGridSettings['zf_gridColumns'] = $zf_gridColumns;
@@ -158,6 +156,23 @@ class student_moduleController extends Zf_Controller {
         $zf_phpGridSettings['zf_gridQuery'] = $tableData['tableQuery'];
         
         return $zf_phpGridSettings;
+        
+    }
+    
+    
+    
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE METHOD FOR DECODING THE IDENIFICATION CODE INTO AN 
+     * ARRAY
+     * -------------------------------------------------------------------------
+     */
+    public function Zf_GetUserData($identificationCode){
+        
+        $zf_idenificationArray = explode(ZVSS_CONNECT , Zf_SecureData::zf_decode_data(Zf_SecureData::zf_decode_data($identificationCode)));
+        
+        return $zf_idenificationArray;
         
     }
     
