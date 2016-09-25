@@ -66,7 +66,7 @@ class Zf_View {
        
        if($zf_applicationDefaults['application_fusioncharts'] == 'enabled'){ 
            
-            @require_once ZF_PLUGINS.'zf_fusioncharts'.DS.'php'.DS.'FusionCharts.php';
+            @require_once ZF_PLUGINS.'zf_fusion_charts'.DS.'fusioncharts_php'.DS.'fusioncharts.php';
        
        }
        

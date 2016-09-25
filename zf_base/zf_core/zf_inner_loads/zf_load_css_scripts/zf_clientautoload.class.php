@@ -805,7 +805,7 @@ final class Zf_ClientAutoload extends Zf_MobileDetect{
         
         if($zf_applicationDefaults['application_fusioncharts'] == 'enabled'){
             
-            include_once ZF_PLUGINS.'zf_fusioncharts'.DS.'js-css'.DS.'zf_fusioncharts_js_css.php';
+            include_once ZF_PLUGINS.'zf_fusion_charts'.DS.'js-css'.DS.'zf_fusioncharts_js_css.php';
             
         }
         

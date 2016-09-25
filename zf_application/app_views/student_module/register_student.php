@@ -60,7 +60,7 @@
                                             <h3 class="">Gender Ratio</h3>
                                         </div>
                                         <div class="portlet-body">
-                                            <div class="zvs-chart-blocks">
+                                            <div class="zvs-chart-blocks" id="studentsGender">
                                                 <?php $zf_controller->zf_targetModel->AllStudentsByGenderPie(); ?>
                                             </div>
                                         </div>
@@ -87,7 +87,7 @@
                                             <h3 class="">Blood Groups Segmentation</h3>
                                         </div>
                                         <div class="portlet-body">
-                                            <div class="zvs-chart-blocks">
+                                            <div class="zvs-chart-blocks" id="studentsBloodGroups">
                                                 <?php $zf_controller->zf_targetModel->AllStudentsByBloodPie(); ?>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                             <h3 class="">Guardian Segmentation</h3>
                                         </div>
                                         <div class="portlet-body">
-                                            <div class="zvs-chart-blocks" >
+                                            <div class="zvs-chart-blocks" id="studentsGuardians">
                                                 <?php $zf_controller->zf_targetModel->AllStudentsByGuardianPie(); ?>
                                             </div>
                                         </div>

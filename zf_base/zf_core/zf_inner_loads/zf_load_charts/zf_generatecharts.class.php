@@ -39,17 +39,26 @@ class Zf_GenerateCharts{
      * PARAMETORS.
      * -------------------------------------------------------------------------
      */
-    public static function zf_generate_chart($zf_chartParameters, $chartPosition = NULL){
+    public static function zf_generate_chart($chartSettings, $chartProperties, $chartData){
         
-        if(!empty($chartPosition) && $chartPosition != NULL && $chartPosition == "inline"){
-            
-            @require_once ZF_PLUGINS.'zf_fusioncharts'.DS.'php'.DS.'FusionCharts.php';
-            
-        }
+        $chartType = $chartSettings["ChartType"];
+        $chartId = $chartSettings["ChartID"];
+        $chartWidth = $chartSettings["ChartWidth"];
+        $chartHeight = $chartSettings["ChartHeight"];
+        $chartContainer = $chartSettings["ChartContainer"];
+        $chartDataFormat = $chartSettings["ChartDataFormat"];
+     
+
+
         
-        FC_SetRenderer("javascript"); FC_SetDataFormat("xml");
-        echo renderChart( ZF_ROOT_PATH.APP_PLUGINS."zf_fusioncharts".DS."{$zf_chartParameters['chartType']}.swf", "", $zf_chartParameters['chartData'], $zf_chartParameters['chartId'], $zf_chartParameters['chartWidth'], $zf_chartParameters['chartHeight'], $zf_chartParameters['chartDebug'], $zf_chartParameters['registerJavacript'],$zf_chartParameters['chartTransparency']);
-        
+        @require_once ZF_PLUGINS.'zf_fusion_charts'.DS.'fusioncharts_php'.DS.'fusioncharts.php';
+       
+        //$zf_charts = new FusionCharts("type of chart", "unique chart id", "width of chart", "height of chart", "div id to render the chart", "type of data", "actual data");
+        $zf_charts = new FusionCharts($chartType, $chartId, $chartWidth, $chartHeight, $chartContainer, $chartDataFormat, "{".$chartProperties." ,".$chartData."}");
+       
+        // Render the chart
+        $zf_charts->render();
+
     }
 
     
