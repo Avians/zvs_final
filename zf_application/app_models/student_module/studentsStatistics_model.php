@@ -164,6 +164,8 @@ class studentsStatistics_Model extends Zf_Model {
                                 "rotatevalues": "1",
                                 "valueFontColor": "#ffffff",
                                 "useDataPlotColorForLabels": "1",
+                                "labelDisplay": "rotate",
+                                "slantLabels": "1",
                                 "labelDistance": "1",
                                 "slicingDistance": "10",
                                 "theme": "ocean"
@@ -269,6 +271,7 @@ class studentsStatistics_Model extends Zf_Model {
                                 "useDataPlotColorForLabels": "1",
                                 "labelDistance": "1",
                                 "labelDisplay": "rotate",
+                                "slantLabels": "1",
                                 "slicingDistance": "10",
                                 "theme": "ocean"
                             }
