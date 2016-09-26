@@ -6,6 +6,8 @@
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
     
+    $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+    
 ?>
     
 <!-- BEGIN CONTENT -->
@@ -61,7 +63,7 @@
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-chart-blocks" id="studentsGender">
-                                                <?php $zf_controller->zf_targetModel->AllStudentsByGenderPie(); ?>
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByGenderPie($systemSchoolCode); ?>
                                             </div>
                                         </div>
                                     </div>          
@@ -72,8 +74,8 @@
                                             <h3 class="">Class Segmentation</h3>
                                         </div>
                                         <div class="portlet-body">
-                                            <div class="zvs-chart-blocks">
-                                                <?php $zf_controller->zf_targetModel->AllStudentsByClassPie(); ?>
+                                            <div class="zvs-chart-blocks" id="studentsClass">
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByClassPie($systemSchoolCode); ?>
                                             </div>
                                         </div>
                                     </div>          
@@ -88,7 +90,7 @@
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-chart-blocks" id="studentsBloodGroups">
-                                                <?php $zf_controller->zf_targetModel->AllStudentsByBloodPie(); ?>
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByBloodPie($systemSchoolCode); ?>
                                             </div>
                                         </div>
                                     </div>          
@@ -100,7 +102,7 @@
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-chart-blocks" id="studentsGuardians">
-                                                <?php $zf_controller->zf_targetModel->AllStudentsByGuardianPie(); ?>
+                                                <?php $zf_controller->zf_targetModel->AllStudentsByGuardianPie($systemSchoolCode); ?>
                                             </div>
                                         </div>
                                     </div>          

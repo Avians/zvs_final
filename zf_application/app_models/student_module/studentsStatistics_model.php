@@ -35,16 +35,14 @@ class studentsStatistics_Model extends Zf_Model {
   
   
     /**
-     * This method is used to select Admin localities
+     * This method is used to render students gender chart
      */
-    public function AllStudentsByGenderPie($systemSchoolCode = NULL){
-        
-        $chartSettings = ""; $chartProperties = ""; $chartData = "";
+    public function AllStudentsByGenderPie($systemSchoolCode){
         
         //These are the initial chart settings
         $chartSettings = array(
             "ChartType" => "Pie3D",
-            "ChartID" => "ex1",
+            "ChartID" => 'gender',
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "270",
             "ChartContainer" => "studentsGender",
@@ -59,6 +57,8 @@ class studentsStatistics_Model extends Zf_Model {
                             "chart":{  
                                 "caption": "Total Students",
                                 "subCaption": "Male vs Female",
+                                "captionFontSize": "11",
+                                "subcaptionFontSize": "8",
                                 "showPercentValues": "1",
                                 "showPercentInTooltip": "0",
                                 "pieRadius": "100",
@@ -84,8 +84,8 @@ class studentsStatistics_Model extends Zf_Model {
         $zvs_table = "zvs_students_personal_details";
 
 
-        $getMaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Male' "; //die();
-        $getFemaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Female' "; //die();
+        $getMaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Male' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getFemaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Female' AND systemSchoolCode = '".$systemSchoolCode."'  "; //die();
 
 
         $executeMaleStudents   = $this->Zf_AdoDB->Execute($getMaleStudents);
@@ -108,13 +108,14 @@ class studentsStatistics_Model extends Zf_Model {
             
                 "data":[  
                   {  
-                     "label":"Male Students",
-                     "value":"'.$maleCount.'",
-                     "tooltext": "Quarter 1{br}Total Sale: $195K{br}Rank: 1"
+                    "label":"Male Students",
+                    "value":"'.$maleCount.'",
+                    "tooltext": "Total Male Students: '.$maleCount.'"
                   },
                   {  
-                     "label":"Female Students",
-                     "value":"'.$femaleCount.'"
+                    "label":"Female Students",
+                    "value":"'.$femaleCount.'",
+                    "tooltext": "Total Female Students: '.$femaleCount.'"
                   }
                 ]
                             
@@ -127,87 +128,110 @@ class studentsStatistics_Model extends Zf_Model {
     
     
     
+    
     /**
-     * This method is used to select Admin localities
+     * This method is used to render students class chart
      */
-    public function AllStudentsByClassPie($systemSchoolCode = NULL){
+    public function AllStudentsByClassPie($systemSchoolCode){
         
-        $zvs_table = "zvs_students_personal_details";
-
-
-        $getMaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Male' "; //die();
-        $getFemaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Female' "; //die();
-
-
-        $executeMaleStudents   = $this->Zf_AdoDB->Execute($getMaleStudents);
-        $executeFemaleStudents = $this->Zf_AdoDB->Execute($getFemaleStudents);
-
-        if (!$executeMaleStudents){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            $maleCount = $executeMaleStudents->RecordCount();
-
-        }
-
-        if (!$executeFemaleStudents){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            $femaleCount = $executeFemaleStudents->RecordCount();
-
-        }
-        
-        
-        
-        $strXML  = "";
-        $strXML .= "<chart bgColor='transparent' bgAlpha='50' showBorder='0' canvasBgColor='transparent'
-            canvasBorderColor='efefef' canvasBorderThickness='1' canvasBorderAlpha='80' canvasBorder='0'
-            xAxisName='Gender' yAxisName='Total Count' showValues='1' formatNumberScale='0' palette='1'
-            showlegend='1' enablesmartlabels='0' showlabels='0' showpercentvalues='1' pieRadius='100' legendPosition='BOTTOM'
-            paletteColors='0F4E74,ffb848,28b779' paletteThemeColor='ffb848' showToolTip='1' showToolTipShadow='1'>";
-        $strXML .= "<set label='Male Students' value=' ".$maleCount." ' tooltext=' Total male students: ".$maleCount.",{br}Click for a detailed{br}information '  link=' ".Zf_GenerateLinks::zf_fusionCharts_link('platform_data', 'customer_data', 'gender_data/male/'.$dataRange)." ' />";
-        $strXML .= "<set label='Female Students' value=' ".$femaleCount." ' tooltext='Total female students: ".$femaleCount.",{br}Click for a detailed{br}information '  link=' ".Zf_GenerateLinks::zf_fusionCharts_link('platform_data', 'customer_data', 'gender_data/female/'.$dataRange)." ' />";
-        $strXML .= "
-                    <styles>
-                        <definition>
-                              <style name='myToolTipFont' type='font' font='ProximaNova-Light' size='11' color='87b6d9'/>
-                        </definition>
-                        <application>
-                              <apply toObject='ToolTip' styles='myToolTipFont' />
-                        </application>
-                    </styles> 
-
-                   ";
-        $strXML .= "</chart>";
-
-        $zf_chartData = array(
-
-            "chartData"         => "$strXML",
-            "chartType"         => "Pie3D",
-            "chartId"           => "studentsClasses",
-            "chartWidth"        => "100%",
-            "chartHeight"       => 270,
-            "chartDebug"        => "false",
-            "registerJavacript" => "true",
-            "chartTransparency" => ""
-
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Column2D",
+            "ChartID" => "class",
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "270",
+            "ChartContainer" => "studentsClass",
+            "ChartDataFormat" =>  "json",
         );
+        
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{  
+                                "caption": "Students Per Class",
+                                "captionFontSize": "11",
+                                "xAxisName": "School Classes",
+                                "yAxisName": "No. of Students",
+                                "bgColor": "#ffffff",
+                                "palettecolors": "#2A5653, #40888F, #73A99B, #8AC59D, #4D871F",
+                                "borderAlpha": "20",
+                                "exportenabled": "1",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "1",
+                                "rotatevalues": "1",
+                                "valueFontColor": "#ffffff",
+                                "useDataPlotColorForLabels": "1",
+                                "labelDistance": "1",
+                                "slicingDistance": "10",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+         
+        
+       //Fetch class details for the school in question
+        $fetchClassDetails = $this->fetchClassDetails($systemSchoolCode);
+        
+        
+        if($fetchClassDetails == 0){
+            
+            echo "No Class Data!!";
+            
+        }else{
+            
+            $chartData = "";
+            
+            $zvs_table = "zvs_students_class_details";
+            
+            $chartData .= '"data":[';
+            
+            foreach($fetchClassDetails as $classValues){
+                 
+                $zvs_className = $classValues['schoolClassName']; $schoolClassCode =  $classValues['schoolClassCode']; 
 
-        Zf_GenerateCharts::zf_generate_chart($zf_chartData, $chartPosition = "inline"); 
+                $classQuery = "SELECT * FROM " . $zvs_table . " WHERE studentClassCode ='".$schoolClassCode."' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+
+                $executeClassQuery   = $this->Zf_AdoDB->Execute($classQuery);
+
+                if (!$executeClassQuery){
+
+                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                }else{
+
+                    $classCount = $executeClassQuery->RecordCount();
+
+                }
+                
+                $chartData .= '{  
+                    "label":"'.$zvs_className.'",
+                    "value":"'.$classCount.'",
+                    "tooltext": "'.$classCount.' Students in '.$zvs_className.'"
+                  },';
+                
+             
+                 
+            }
+            
+            $chartData .=']';  
+            
+            
+            Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+            
+        }
         
     }
     
     
     
+    
     /**
-     * This method is used to select Admin localities
+     * This method is used render students blood group chart
      */
-    public function AllStudentsByBloodPie($systemSchoolCode = NULL){
+    public function AllStudentsByBloodPie($systemSchoolCode){
         
         
         $chartSettings = ""; $chartProperties = ""; $chartData = "";
@@ -229,7 +253,7 @@ class studentsStatistics_Model extends Zf_Model {
             
                             "chart":{  
                                 "caption": "Students Blood Groups",
-                                "showPercentValues": "1",
+                                "captionFontSize": "11",
                                 "xAxisName": "Type of Blood Groups",
                                 "yAxisName": "No. of Students",
                                 "exportenabled": "1",
@@ -244,6 +268,7 @@ class studentsStatistics_Model extends Zf_Model {
                                 "valueFontColor": "#ffffff",
                                 "useDataPlotColorForLabels": "1",
                                 "labelDistance": "1",
+                                "labelDisplay": "rotate",
                                 "slicingDistance": "10",
                                 "theme": "ocean"
                             }
@@ -253,14 +278,15 @@ class studentsStatistics_Model extends Zf_Model {
         $zvs_table = "zvs_students_medical_details";
 
 
-        $getBloodGroupABpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB+' "; //die();
-        $getBloodGroupABnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB-' "; //die();
-        $getBloodGroupApositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A+' "; //die();
-        $getBloodGroupAnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A-' "; //die();
-        $getBloodGroupBpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B+' "; //die();
-        $getBloodGroupBnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B-' "; //die();
-        $getBloodGroupOpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O+' "; //die();
-        $getBloodGroupOnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O-' "; //die();
+        $getBloodGroupABpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupABnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupApositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupAnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupBpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupBnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupOpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupOnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupNotKnown = "SELECT * FROM " . $zvs_table . " WHERE isStudentBloodGroup ='No' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
 
 
         $executeBloodGroupABpositive   = $this->Zf_AdoDB->Execute($getBloodGroupABpositive);
@@ -271,8 +297,9 @@ class studentsStatistics_Model extends Zf_Model {
         $executeBloodGroupBnegative   = $this->Zf_AdoDB->Execute($getBloodGroupBnegative);
         $executeBloodGroupOpositive   = $this->Zf_AdoDB->Execute($getBloodGroupOpositive);
         $executeBloodGroupOnegative   = $this->Zf_AdoDB->Execute($getBloodGroupOnegative);
+        $executeBloodGroupNotKnown   = $this->Zf_AdoDB->Execute($getBloodGroupNotKnown);
 
-        if (!$executeBloodGroupABpositive || !$executeBloodGroupABnegative || !$executeBloodGroupApositive || !$executeBloodGroupAnegative || !$executeBloodGroupBpositive || !$executeBloodGroupBnegative || !$executeBloodGroupOpositive || !$executeBloodGroupOnegative){
+        if (!$executeBloodGroupABpositive || !$executeBloodGroupABnegative || !$executeBloodGroupApositive || !$executeBloodGroupAnegative || !$executeBloodGroupBpositive || !$executeBloodGroupBnegative || !$executeBloodGroupOpositive || !$executeBloodGroupOnegative || !$executeBloodGroupNotKnown){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
@@ -286,6 +313,7 @@ class studentsStatistics_Model extends Zf_Model {
             $BnegativeCount = $executeBloodGroupBnegative->RecordCount();
             $OpositiveCount = $executeBloodGroupOpositive->RecordCount();
             $OnegativeCount = $executeBloodGroupOnegative->RecordCount();
+            $NotKnownCount = $executeBloodGroupNotKnown->RecordCount();
 
         }
         
@@ -295,41 +323,50 @@ class studentsStatistics_Model extends Zf_Model {
             
                 "data":[  
                   {  
-                     "label":"AB +ve",
-                     "value":"'.$ABpositiveCount.'",
-                     "tooltext": "Quarter 1{br}Total Sale: $195K{br}Rank: 1"
+                    "label":"AB +ve",
+                    "value":"'.$ABpositiveCount.'",
+                    "tooltext": "Blood Group AB +ve: '.$ABpositiveCount.'"
                   },
                   {  
-                     "label":"AB -ve",
-                     "value":"'.$ABnegativeCount.'"
+                    "label":"AB -ve",
+                    "value":"'.$ABnegativeCount.'",
+                    "tooltext": "Blood Group AB -ve: '.$ABnegativeCount.'"
                   },
                   {  
-                     "label":"A +ve",
-                     "value":"'.$ApositiveCount.'",
-                     "tooltext": "Quarter 1{br}Total Sale: $195K{br}Rank: 1"
+                    "label":"A +ve",
+                    "value":"'.$ApositiveCount.'",
+                    "tooltext": "Blood Group A +ve: '.$ApositiveCount.'"
                   },
                   {  
-                     "label":"A -ve",
-                     "value":"'.$AnegativeCount.'"
+                    "label":"A -ve",
+                    "value":"'.$AnegativeCount.'",
+                    "tooltext": "Blood Group A -ve: '.$AnegativeCount.'"
                   },
                   {  
-                     "label":"B +ve",
-                     "value":"'.$BpositiveCount.'",
-                     "tooltext": "Quarter 1{br}Total Sale: $195K{br}Rank: 1"
+                    "label":"B +ve",
+                    "value":"'.$BpositiveCount.'",
+                    "tooltext": "Blood Group B +ve: '.$BpositiveCount.'"
                   },
                   {  
-                     "label":"B -ve",
-                     "value":"'.$BnegativeCount.'"
+                    "label":"B -ve",
+                    "value":"'.$BnegativeCount.'",
+                    "tooltext": "Blood Group B -ve: '.$BnegativeCount.'"
                   },
                   {  
-                     "label":"O +ve",
-                     "value":"'.$OpositiveCount.'",
-                     "tooltext": "Quarter 1{br}Total Sale: $195K{br}Rank: 1"
+                    "label":"O +ve",
+                    "value":"'.$OpositiveCount.'",
+                    "tooltext": "Blood Group O +ve: '.$OpositiveCount.'"
                   },
                   {  
-                     "label":"O -ve",
-                     "value":"'.$OnegativeCount.'"
-                  }
+                    "label":"O -ve",
+                    "value":"'.$OnegativeCount.'",
+                    "tooltext": "Blood Group O -ve: '.$OnegativeCount.'"
+                  },
+                  {  
+                    "label":"Not Known",
+                    "value":"'.$NotKnownCount.'",
+                    "tooltext": "Blood Group Not Known: '.$OnegativeCount.'"
+                  },
                 ]
                             
                     ';
@@ -341,10 +378,11 @@ class studentsStatistics_Model extends Zf_Model {
     
     
     
+    
     /**
-     * This method is used to select Admin localities
+     * This method is used to render students guardian chart
      */
-    public function AllStudentsByGuardianPie($systemSchoolCode = NULL){
+    public function AllStudentsByGuardianPie($systemSchoolCode){
         
         //These are the initial chart settings
         $chartSettings = array(
@@ -363,8 +401,8 @@ class studentsStatistics_Model extends Zf_Model {
             
                             "chart":{  
                                 "caption": "Student Guardians",
-                                "showPercentValues": "1",
-                                "xAxisName": "Type of Guardian",
+                                "captionFontSize": "11",
+                                "xAxisName": "Type of Guardians",
                                 "yAxisName": "No. of Guardians",
                                 "exportenabled": "1",
                                 "bgColor": "#ffffff",
@@ -388,15 +426,15 @@ class studentsStatistics_Model extends Zf_Model {
         $zvs_table = "zvs_students_guardian_details";
 
 
-        $getParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Parent' "; //die();
-        $getAdoptiveParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Adoptive Parent' "; //die();
-        $getGrandParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Grandparent' "; //die();
-        $getUncleAunt = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Uncle or Aunt' "; //die();
-        $getCousin = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Cousin' "; //die();
-        $getNephewNiece = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Nephew or Niece' "; //die();
-        $getSponsor = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Sponsor' "; //die();
-        $getFamilyFriend = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Family Friend' "; //die();
-        $getOthers = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Others' "; //die();
+        $getParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Parent' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getAdoptiveParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Adoptive Parent' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getGrandParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Grandparent' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getUncleAunt = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Uncle or Aunt' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getCousin = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Cousin' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getNephewNiece = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Nephew or Niece' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getSponsor = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Sponsor' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getFamilyFriend = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Family Friend' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getOthers = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Others' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
 
 
         $executeGetParent   = $this->Zf_AdoDB->Execute($getParent);
@@ -441,42 +479,42 @@ class studentsStatistics_Model extends Zf_Model {
                   {  
                      "label":"Adoptive Parents",
                      "value":"'.$adoptiveParentCount.'",
-                     "tooltext": "Total Parents: '.$adoptiveParentCount.'"
+                     "tooltext": "Total Adoptive Parents: '.$adoptiveParentCount.'"
                   },
                   {  
                      "label":"Grandparents",
                      "value":"'.$grandParentCount.'",
-                     "tooltext": "Total Parents: '.$grandParentCount.'"
+                     "tooltext": "Total Grandparents: '.$grandParentCount.'"
                   },
                   {  
                      "label":"Uncles/Aunts",
                      "value":"'.$uncleAuntCount.'",
-                     "tooltext": "Total Parents: '.$uncleAuntCount.'"
+                     "tooltext": "Total Uncles or Aunts: '.$uncleAuntCount.'"
                   },
                   {  
                      "label":"Cousins",
                      "value":"'.$cousinCount.'",
-                     "tooltext": "Total Parents: '.$cousinCount.'"
+                     "tooltext": "Total Cousins: '.$cousinCount.'"
                   },
                   {  
-                     "label":"Nephew/Nieces",
+                     "label":"Nephews/Nieces",
                      "value":"'.$nephewNieceCount.'",
-                     "tooltext": "Total Parents: '.$nephewNieceCount.'"
+                     "tooltext": "Total Nephews or Nieces: '.$nephewNieceCount.'"
                   },
                   {  
                      "label":"Sponsors",
                      "value":"'.$sponsorCount.'",
-                     "tooltext": "Total Parents: '.$sponsorCount.'"
+                     "tooltext": "Total Sponsors: '.$sponsorCount.'"
                   },
                   {  
                      "label":"Family Friends",
                      "value":"'.$familyFriendCount.'",
-                     "tooltext": "Total Parents: '.$familyFriendCount.'"
+                     "tooltext": "Total Family Friends: '.$familyFriendCount.'"
                   },
                   {  
                      "label":"Others",
                      "value":"'.$othersCount.'",
-                     "tooltext": "Total Parents: '.$othersCount.'"
+                     "tooltext": "Total Others: '.$othersCount.'"
                   },
                   
                 ]
@@ -486,6 +524,46 @@ class studentsStatistics_Model extends Zf_Model {
         //Here we generate the actual chart
         Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
        
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method is essential in fetching all call details
+     */
+    private function fetchClassDetails($systemSchoolCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        $fetchSchoolClasses = Zf_QueryGenerator::BuildSQLSelect('zvs_school_classes', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolClasses= $this->Zf_AdoDB->Execute($fetchSchoolClasses);
+
+        if(!$zf_executeFetchSchoolClasses){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolClasses->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolClasses->EOF){
+                    
+                    $results = $zf_executeFetchSchoolClasses->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
         
     }
     

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Sep 21, 2016 at 05:20 AM
+-- Generation Time: Sep 26, 2016 at 05:24 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -32,7 +32,7 @@ CREATE TABLE `zvs_application_users` (
   `password` varchar(120) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
   `userStatus` tinyint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_application_users`
@@ -51,7 +51,17 @@ INSERT INTO `zvs_application_users` (`id`, `email`, `password`, `identificationC
 (10, 'principal@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (11, 'elvis@migtech.co.ke', 'FbCzkk2c9C-_e5VO8EM4amH_hpi5CRKpz3z-PbMkSe0', 'Gx09RceJmKjyZXazBudPOO_0lmmHibkZqheh3XE3xNFHCgacBK7zIJNL_36pylAiliQ3UT2L5Q5O7rF-xHE6AbE3vObQAP46tnDEhUvPg7RWXr8zOy5f2AvMTXf0Kuow', 1),
 (12, 'bursar@kangaschool.ac.ke', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKyw-N5NqEiU3LcvotPg2TBx6_zGrL-XOE_QiZHy6f3lhuZLHGyrtbRyJjrRU18pIybtpLOc66TIhTUzYuMTAXj0', 1),
-(13, 'tonyiha@gmail.com', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '-VTXy54DNq-q9DS5pIYdP0a_4HiLKYH8cec11LCh3l539WT6-ZP62JtpkOG7D3hkKhtTPomkzaVP0W7Y5ZvbKosxff2L7bWm6xqr2QZKvAaLG-0K3_HnKn8Bx1oKGOxh', 1);
+(13, 'tonyiha@gmail.com', '-Ehl7B6z-kmxchfs5X0J9syfbjr5U3HOEs_ZGemaD5w', '-VTXy54DNq-q9DS5pIYdP0a_4HiLKYH8cec11LCh3l539WT6-ZP62JtpkOG7D3hkKhtTPomkzaVP0W7Y5ZvbKosxff2L7bWm6xqr2QZKvAaLG-0K3_HnKn8Bx1oKGOxh', 1),
+(14, 'athias@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3S3LQ4PJY1qawziESx1Lh6cv-FAKY8W-7uEjcFz2PUAz', 1),
+(15, 'george@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CVdVRlHEsWYSlQIBHExsOyZ-_QMe4fIznNN-yToz2EmBMfJ0qbn1tpjv9MKIc3DbmV2f42fAVAQSowDIb_FOw6P', 1),
+(16, 'regan@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ19tlmK8AtLL13CxFHJo3ecqxgTNonZMCoiN0Q7HWHjF', 1),
+(17, 'wasabi@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7rLptgW3USq1nyAawK6NhLkbZ3F2gtQR3jio4F9Vc_tHn5Ax4_kg8i6AOBKaVZHAA0huUG_TndqdI59uNQwbWXy', 1),
+(18, 'frida@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', '2gL1f93cu0uUa-rb_GvQRihjbrz9ixEm2zLsVxEaaAtxUvUuKrCzbRCOIa_tYsk7U671GMtmTMwUQEpdbcGKsrPLY3bjvkHNjvwN4-1HAlYdzjudhvKjVCOVXYYZ5D-2', 1),
+(19, 'george3@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', 'vdEWiFSBc93Ntq7Eicl1WcARo52lypUga60kcbygnMLLptgW3USq1nyAawK6NhLkbZ3F2gtQR3jio4F9Vc_tHn5Ax4_kg8i6AOBKaVZHAA0huUG_TndqdI59uNQwbWXy', 1),
+(20, 'gendi@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3VQGCmTny9he1NaH7w6cxxtngI3nwmnjCbvwIulppdZc', 1),
+(21, 'abongo@kangaschool.ac.ke', 'xNxg0vxrehl-cVvEgeilFeSkHZi2xifvZcUe9-T68mI', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CVdVRlHEsWYSlQIBHExsOyZ-_QMe4fIznNN-yToz2EmBNGDsRD7mIhsz3rxGiSG_j4weNLHBqcMHW27UfIekYLI', 1),
+(22, 'jane@gmail.com', 'g04VBsMIYHPrCybCW0DGqH2XoUcDIRi-rLJKWenyjmY', 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 1),
+(23, 'emily@gmail.com', 'g04VBsMIYHPrCybCW0DGqH2XoUcDIRi-rLJKWenyjmY', 'UASfVHRTsCrz1l_I05OHDPmVo6-VF7QgvstaWawIjjFmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 1);
 
 -- --------------------------------------------------------
 
@@ -317,7 +327,7 @@ CREATE TABLE `zvs_resource_role_mapper` (
   `schoolRoleId` varchar(100) NOT NULL,
   `schoolResourceId` varchar(45) DEFAULT NULL,
   `resourceCategory` varchar(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_resource_role_mapper`
@@ -385,7 +395,7 @@ CREATE TABLE `zvs_school_classes` (
   `dateCreated` date DEFAULT NULL,
   `dateModified` date NOT NULL,
   `classStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_classes`
@@ -409,7 +419,8 @@ INSERT INTO `zvs_school_classes` (`id`, `systemSchoolCode`, `schoolClassCode`, `
 (15, '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK', '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK[`^`]FormOne', 'Form One', 'Form 1', '2016-05-24', '0000-00-00', 0),
 (16, '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK', '7EYpZNOA@kQ$9V1X2W&Cmgu!jwl4hK[`^`]FormTwo', 'Form Two', 'Form 2', '2016-05-24', '0000-00-00', 0),
 (17, '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne', 'Form One', 'Form 1', '2016-07-11', '0000-00-00', 0),
-(18, '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormTwo', 'Form Two', 'Form Two', '2016-07-11', '0000-00-00', 0);
+(18, '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormTwo', 'Form Two', 'Form Two', '2016-07-11', '0000-00-00', 0),
+(19, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFive', 'Form Five', 'Form 5', '2016-09-25', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -894,7 +905,7 @@ CREATE TABLE `zvs_school_roles` (
 INSERT INTO `zvs_school_roles` (`id`, `systemSchoolCode`, `schoolRoleCode`, `schoolRoleName`, `schoolRoleAlias`, `schoolRoleId`, `dateCreated`, `dateModified`, `assignStatus`, `roleStatus`) VALUES
 (1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'Principal', 'Principal', 'Principal', '2016-08-18', NULL, 1, 0),
 (2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-09-10', NULL, 1, 1),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Student', 'Student', 'Student', 'Student', '2016-09-11', NULL, 0, 1),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Student', 'Student', 'Student', 'Student', '2016-09-11', NULL, 1, 1),
 (4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Parent', 'Parent', 'Parent', 'Parent', '2016-09-17', NULL, 0, 1);
 
 -- --------------------------------------------------------
@@ -998,7 +1009,18 @@ CREATE TABLE `zvs_students_class_details` (
   `studentAdmissionNumber` varchar(30) NOT NULL,
   `registeredBy` varchar(240) NOT NULL,
   `studentClassStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_students_class_details`
+--
+
+INSERT INTO `zvs_students_class_details` (`id`, `systemSchoolCode`, `identificationCode`, `studentClassCode`, `studentStreamCode`, `studentYearOfStudy`, `studentAdmissionNumber`, `registeredBy`, `studentClassStatus`) VALUES
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3S3LQ4PJY1qawziESx1Lh6cv-FAKY8W-7uEjcFz2PUAz', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2016', '0001', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ19tlmK8AtLL13CxFHJo3ecqxgTNonZMCoiN0Q7HWHjF', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]West', '2016', '0002', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '2gL1f93cu0uUa-rb_GvQRihjbrz9ixEm2zLsVxEaaAtxUvUuKrCzbRCOIa_tYsk7U671GMtmTMwUQEpdbcGKsrPLY3bjvkHNjvwN4-1HAlYdzjudhvKjVCOVXYYZ5D-2', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormTwo', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormTwo[`^`]East', '2016', '2371', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3VQGCmTny9he1NaH7w6cxxtngI3nwmnjCbvwIulppdZc', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]North', '2016', '0003', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormThree', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormThree[`^`]West', '2012', '6578', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
 
 -- --------------------------------------------------------
 
@@ -1011,7 +1033,18 @@ CREATE TABLE `zvs_students_guardians_mapper` (
   `studentIdentificationCode` varchar(240) NOT NULL,
   `guardianIdentificationCode` varchar(240) NOT NULL,
   `recordStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_students_guardians_mapper`
+--
+
+INSERT INTO `zvs_students_guardians_mapper` (`id`, `studentIdentificationCode`, `guardianIdentificationCode`, `recordStatus`) VALUES
+(1, 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3S3LQ4PJY1qawziESx1Lh6cv-FAKY8W-7uEjcFz2PUAz', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CVdVRlHEsWYSlQIBHExsOyZ-_QMe4fIznNN-yToz2EmBMfJ0qbn1tpjv9MKIc3DbmV2f42fAVAQSowDIb_FOw6P', 1),
+(2, '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ19tlmK8AtLL13CxFHJo3ecqxgTNonZMCoiN0Q7HWHjF', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7rLptgW3USq1nyAawK6NhLkbZ3F2gtQR3jio4F9Vc_tHn5Ax4_kg8i6AOBKaVZHAA0huUG_TndqdI59uNQwbWXy', 1),
+(3, '2gL1f93cu0uUa-rb_GvQRihjbrz9ixEm2zLsVxEaaAtxUvUuKrCzbRCOIa_tYsk7U671GMtmTMwUQEpdbcGKsrPLY3bjvkHNjvwN4-1HAlYdzjudhvKjVCOVXYYZ5D-2', 'vdEWiFSBc93Ntq7Eicl1WcARo52lypUga60kcbygnMLLptgW3USq1nyAawK6NhLkbZ3F2gtQR3jio4F9Vc_tHn5Ax4_kg8i6AOBKaVZHAA0huUG_TndqdI59uNQwbWXy', 1),
+(4, 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3VQGCmTny9he1NaH7w6cxxtngI3nwmnjCbvwIulppdZc', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CVdVRlHEsWYSlQIBHExsOyZ-_QMe4fIznNN-yToz2EmBNGDsRD7mIhsz3rxGiSG_j4weNLHBqcMHW27UfIekYLI', 1),
+(5, 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 'UASfVHRTsCrz1l_I05OHDPmVo6-VF7QgvstaWawIjjFmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 1);
 
 -- --------------------------------------------------------
 
@@ -1023,22 +1056,34 @@ CREATE TABLE `zvs_students_guardian_details` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(240) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
+  `guardianDesignation` varchar(10) NOT NULL,
   `guardianFirstName` varchar(60) NOT NULL,
-  `guardianMiddleName` varchar(60) NOT NULL,
+  `guardianMiddleName` varchar(60) DEFAULT NULL,
   `guardianLastName` varchar(60) NOT NULL,
   `guardianGender` varchar(15) NOT NULL,
   `guardianDateOfBirth` varchar(15) NOT NULL,
-  `guardianReligion` varchar(15) NOT NULL,
+  `guardianReligion` varchar(15) DEFAULT NULL,
   `guardianCountry` varchar(15) NOT NULL,
   `guardianLocality` varchar(60) NOT NULL,
-  `guardianBoxAddress` varchar(60) NOT NULL,
+  `guardianBoxAddress` varchar(60) DEFAULT NULL,
   `guardianPhoneNumber` varchar(60) NOT NULL,
   `guardianRelation` varchar(60) NOT NULL,
-  `guardianOccupation` varchar(120) NOT NULL,
+  `guardianOccupation` varchar(120) DEFAULT NULL,
   `guardianLanguage` varchar(60) NOT NULL,
   `registeredBy` varchar(240) NOT NULL,
   `guardianStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_students_guardian_details`
+--
+
+INSERT INTO `zvs_students_guardian_details` (`id`, `systemSchoolCode`, `identificationCode`, `guardianDesignation`, `guardianFirstName`, `guardianMiddleName`, `guardianLastName`, `guardianGender`, `guardianDateOfBirth`, `guardianReligion`, `guardianCountry`, `guardianLocality`, `guardianBoxAddress`, `guardianPhoneNumber`, `guardianRelation`, `guardianOccupation`, `guardianLanguage`, `registeredBy`, `guardianStatus`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CVdVRlHEsWYSlQIBHExsOyZ-_QMe4fIznNN-yToz2EmBMfJ0qbn1tpjv9MKIc3DbmV2f42fAVAQSowDIb_FOw6P', 'Mr', 'George', 'Otieno', 'Abong''o', 'Male', '23-09-2016', 'Christian', '+254', '17', 'P.O Box 73619 -00100', '0703334363', 'Parent', 'Accountant', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7rLptgW3USq1nyAawK6NhLkbZ3F2gtQR3jio4F9Vc_tHn5Ax4_kg8i6AOBKaVZHAA0huUG_TndqdI59uNQwbWXy', 'Mr', 'Wasabi', 'Ombaka', 'Anene', 'Male', '23-09-2016', 'Christian', '+254', '3', 'P.O Box 73619 -00100', '0703334363', 'Parent', 'Farmer', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'vdEWiFSBc93Ntq7Eicl1WcARo52lypUga60kcbygnMLLptgW3USq1nyAawK6NhLkbZ3F2gtQR3jio4F9Vc_tHn5Ax4_kg8i6AOBKaVZHAA0huUG_TndqdI59uNQwbWXy', 'Mr', 'George', 'Otieno', 'Abong''o', 'Male', '23-09-2016', 'Christian', '+254', '1', 'P.O Box 73619 -00100', '0703334363', 'Parent', 'Accountant', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CVdVRlHEsWYSlQIBHExsOyZ-_QMe4fIznNN-yToz2EmBNGDsRD7mIhsz3rxGiSG_j4weNLHBqcMHW27UfIekYLI', 'Mr', 'George', 'Otieno', 'Abong''o', 'Male', '24-09-2016', 'Christian', '+254', '17', 'P.O Box 73619 -00100', '0703334363', 'Parent', 'Accountant', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'UASfVHRTsCrz1l_I05OHDPmVo6-VF7QgvstaWawIjjFmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 'Mr', 'Wairimu', NULL, 'Wamatee', 'Male', '28-08-2011', 'Christian', '+254', '4', '34351', '07245678', 'Parent', 'teacher', 'French', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
 
 -- --------------------------------------------------------
 
@@ -1050,37 +1095,49 @@ CREATE TABLE `zvs_students_medical_details` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(240) NOT NULL,
   `studentIdentificationCode` varchar(240) NOT NULL,
+  `studentAdmissionNumber` varchar(30) NOT NULL,
   `isStudentBloodGroup` varchar(5) NOT NULL,
-  `studentBloodGroup` text NOT NULL,
+  `studentBloodGroup` text,
   `isStudentDisable` varchar(5) NOT NULL,
-  `studentDisability` text NOT NULL,
+  `studentDisability` text,
   `isStudentMedicated` varchar(5) NOT NULL,
-  `studentMedication` text NOT NULL,
+  `studentMedication` text,
   `isStudentAllergic` varchar(5) NOT NULL,
-  `studentAllergic` text NOT NULL,
+  `studentAllergic` text,
   `isStudentTreatment` varchar(5) NOT NULL,
-  `studentTreatment` text NOT NULL,
+  `studentTreatment` text,
   `isStudentPhysician` varchar(5) NOT NULL,
-  `physicianDesignation` varchar(5) NOT NULL,
-  `physicianFirstName` varchar(60) NOT NULL,
-  `physicianLastName` varchar(60) NOT NULL,
-  `1stMobileNumber` varchar(30) NOT NULL,
-  `2ndMobileNumber` varchar(30) NOT NULL,
-  `physicianEmailAddress` varchar(60) NOT NULL,
-  `physicianBoxAddres` varchar(60) NOT NULL,
-  `physicianCountry` varchar(15) NOT NULL,
-  `physicianLocality` varchar(30) NOT NULL,
+  `physicianDesignation` varchar(5) DEFAULT NULL,
+  `physicianFirstName` varchar(60) DEFAULT NULL,
+  `physicianLastName` varchar(60) DEFAULT NULL,
+  `firstPhysicianMobileNumber` varchar(30) DEFAULT NULL,
+  `secondPhysicianMobileNumber` varchar(30) DEFAULT NULL,
+  `physicianEmailAddress` varchar(60) DEFAULT NULL,
+  `physicianBoxAddress` varchar(60) DEFAULT NULL,
+  `physicianCountry` varchar(15) DEFAULT NULL,
+  `physicianLocality` varchar(30) DEFAULT NULL,
   `isStudentHospital` varchar(5) NOT NULL,
-  `hospitalName` varchar(60) NOT NULL,
-  `1stHospitalNumber` varchar(30) NOT NULL,
-  `2ndHospitalNumber` varchar(30) NOT NULL,
-  `hospitalBoxAddress` varchar(60) NOT NULL,
-  `hospitalEmailAddress` varchar(60) NOT NULL,
-  `hospitalCountry` varchar(15) NOT NULL,
-  `hospitalLocality` varchar(30) NOT NULL,
+  `hospitalName` varchar(60) DEFAULT NULL,
+  `firstHospitalNumber` varchar(30) DEFAULT NULL,
+  `secondHospitalNumber` varchar(30) DEFAULT NULL,
+  `hospitalBoxAddress` varchar(60) DEFAULT NULL,
+  `hospitalEmailAddress` varchar(60) DEFAULT NULL,
+  `hospitalCountry` varchar(15) DEFAULT NULL,
+  `hospitalLocality` varchar(30) DEFAULT NULL,
   `registeredBy` varchar(240) NOT NULL,
   `studentStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_students_medical_details`
+--
+
+INSERT INTO `zvs_students_medical_details` (`id`, `systemSchoolCode`, `studentIdentificationCode`, `studentAdmissionNumber`, `isStudentBloodGroup`, `studentBloodGroup`, `isStudentDisable`, `studentDisability`, `isStudentMedicated`, `studentMedication`, `isStudentAllergic`, `studentAllergic`, `isStudentTreatment`, `studentTreatment`, `isStudentPhysician`, `physicianDesignation`, `physicianFirstName`, `physicianLastName`, `firstPhysicianMobileNumber`, `secondPhysicianMobileNumber`, `physicianEmailAddress`, `physicianBoxAddress`, `physicianCountry`, `physicianLocality`, `isStudentHospital`, `hospitalName`, `firstHospitalNumber`, `secondHospitalNumber`, `hospitalBoxAddress`, `hospitalEmailAddress`, `hospitalCountry`, `hospitalLocality`, `registeredBy`, `studentStatus`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3S3LQ4PJY1qawziESx1Lh6cv-FAKY8W-7uEjcFz2PUAz', '', 'Yes', 'O+', 'Yes', 'My ears are so big, I hear everything.', 'Yes', 'I had a tooth recently extracted and I am still on medication', 'Yes', 'I formulate goose pimples when it gets cold', 'Yes', 'At night, I usually get scared', 'Yes', 'Dr', 'Michael', 'Ocholla', '0711111111', '0722222222', 'ocholla@gmail.com', 'P.O Box 25555 - 001111', '+254', '17', 'Yes', 'Aga Khan', '071111111', '07111111', 'P.O Box 7777 - 00100', 'admin@agakhan.com', '+254', '17', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ19tlmK8AtLL13CxFHJo3ecqxgTNonZMCoiN0Q7HWHjF', '', 'Yes', 'AB+', 'Yes', 'My ears are so big, I hear everything.', 'Yes', 'I had a tooth recently extracted and I am still on medication', 'Yes', 'I formulate goose pimples when it gets cold', 'Yes', 'At night, I usually get scared', 'Yes', 'Dr', 'Michael', 'Ocholla', '0711111111', '0722222222', 'ocholla@gmail.com', 'P.O Box 25555 - 001111', '+254', NULL, 'Yes', 'Aga Khan', '071111111', '07111111', 'P.O Box 7777 - 00100', 'admin@agakhan.com', '+254', NULL, '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '2gL1f93cu0uUa-rb_GvQRihjbrz9ixEm2zLsVxEaaAtxUvUuKrCzbRCOIa_tYsk7U671GMtmTMwUQEpdbcGKsrPLY3bjvkHNjvwN4-1HAlYdzjudhvKjVCOVXYYZ5D-2', '2371', 'No', NULL, 'Yes', NULL, 'No', NULL, 'No', NULL, 'Yes', 'At night, I usually get scared', 'Yes', 'Dr', 'Michael', 'Ocholla', '0711111111', '0722222222', 'ocholla@gmail.com', 'P.O Box 25555 - 001111', '+254', NULL, 'Yes', 'Aga Khan', '071111111', '07111111', 'P.O Box 7777 - 00100', 'admin@agakhan.com', '+254', NULL, '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3VQGCmTny9he1NaH7w6cxxtngI3nwmnjCbvwIulppdZc', '0003', 'Yes', 'O+', 'Yes', 'My ears are so big, I hear everything.', 'Yes', 'I had a tooth recently extracted and I am still on medication', 'Yes', 'I formulate goose pimples when it gets cold', 'Yes', 'At night, I usually get scared', 'Yes', 'Dr', 'Michael', 'Ocholla', '0711111111', '0722222222', 'ocholla@gmail.com', 'P.O Box 25555 - 001111', '+254', NULL, 'Yes', 'Aga Khan', '071111111', '07111111', 'P.O Box 7777 - 00100', 'admin@agakhan.com', '+254', NULL, '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', '6578', 'Yes', 'A+', 'No', NULL, 'No', NULL, 'No', NULL, 'No', NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
 
 -- --------------------------------------------------------
 
@@ -1092,12 +1149,13 @@ CREATE TABLE `zvs_students_personal_details` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(240) NOT NULL,
   `identificationCode` varchar(240) NOT NULL,
+  `studentAdmissionNumber` varchar(30) NOT NULL,
   `studentFirstName` varchar(60) NOT NULL,
   `studentMiddleName` varchar(60) NOT NULL,
   `studentLastName` varchar(60) NOT NULL,
   `studentGender` varchar(60) NOT NULL,
   `studentDateOfBirth` varchar(15) NOT NULL,
-  `studentReligiom` varchar(60) NOT NULL,
+  `studentReligion` varchar(30) NOT NULL,
   `studentCountry` varchar(15) NOT NULL,
   `studentLocality` varchar(100) NOT NULL,
   `studentBoxAddress` varchar(60) NOT NULL,
@@ -1105,7 +1163,18 @@ CREATE TABLE `zvs_students_personal_details` (
   `studentLanguage` varchar(60) NOT NULL,
   `registeredBy` varchar(240) NOT NULL,
   `studentStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_students_personal_details`
+--
+
+INSERT INTO `zvs_students_personal_details` (`id`, `systemSchoolCode`, `identificationCode`, `studentAdmissionNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentGender`, `studentDateOfBirth`, `studentReligion`, `studentCountry`, `studentLocality`, `studentBoxAddress`, `studentPhoneNumber`, `studentLanguage`, `registeredBy`, `studentStatus`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3S3LQ4PJY1qawziESx1Lh6cv-FAKY8W-7uEjcFz2PUAz', '0001', 'Mathew', 'Juma', 'Otieno', 'Male', '23-09-2016', 'Christian', '+254', '17', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ19tlmK8AtLL13CxFHJo3ecqxgTNonZMCoiN0Q7HWHjF', '0002', 'Regan', 'Inganji', 'Mulembe', 'Male', '23-09-2016', 'Christian', '+254', '3', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '2gL1f93cu0uUa-rb_GvQRihjbrz9ixEm2zLsVxEaaAtxUvUuKrCzbRCOIa_tYsk7U671GMtmTMwUQEpdbcGKsrPLY3bjvkHNjvwN4-1HAlYdzjudhvKjVCOVXYYZ5D-2', '2371', 'Frida', 'Mukei', 'Mulili', 'Female', '22-12-1992', 'Christian', '+254', '23', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'e6mAOGO__zw3LClVBU0ne-9apgJVhiOFCsQVUW856CUzLsZ1SIP3jYbQqsy4O5nuWxt14oO7FK6nEVfHXEJZ3VQGCmTny9he1NaH7w6cxxtngI3nwmnjCbvwIulppdZc', '0003', 'Marsellah', 'Ogendo', 'Otieno', 'Female', '24-09-2016', 'Christian', '+254', '17', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', '6578', 'Mary', 'Emily', 'Jane', 'Female', '30-07-2012', 'Hindu', '+254', '7', '2431', '0700222222', 'French', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
 
 -- --------------------------------------------------------
 
@@ -1341,7 +1410,7 @@ ALTER TABLE `zvs_super_admin`
 -- AUTO_INCREMENT for table `zvs_application_users`
 --
 ALTER TABLE `zvs_application_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `zvs_blood_groups`
 --
@@ -1386,7 +1455,7 @@ ALTER TABLE `zvs_resource_categories`
 -- AUTO_INCREMENT for table `zvs_resource_role_mapper`
 --
 ALTER TABLE `zvs_resource_role_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `zvs_school_admin`
 --
@@ -1396,7 +1465,7 @@ ALTER TABLE `zvs_school_admin`
 -- AUTO_INCREMENT for table `zvs_school_classes`
 --
 ALTER TABLE `zvs_school_classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `zvs_school_country`
 --
@@ -1446,27 +1515,27 @@ ALTER TABLE `zvs_school_sub_departments`
 -- AUTO_INCREMENT for table `zvs_students_class_details`
 --
 ALTER TABLE `zvs_students_class_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `zvs_students_guardians_mapper`
 --
 ALTER TABLE `zvs_students_guardians_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_students_guardian_details`
 --
 ALTER TABLE `zvs_students_guardian_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_students_medical_details`
 --
 ALTER TABLE `zvs_students_medical_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_students_personal_details`
 --
 ALTER TABLE `zvs_students_personal_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_super_admin`
 --
