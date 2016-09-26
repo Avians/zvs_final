@@ -41,7 +41,7 @@ class studentsStatistics_Model extends Zf_Model {
         
         //These are the initial chart settings
         $chartSettings = array(
-            "ChartType" => "Pie3D",
+            "ChartType" => "Pie2D",
             "ChartID" => 'gender',
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "270",
@@ -61,7 +61,7 @@ class studentsStatistics_Model extends Zf_Model {
                                 "subcaptionFontSize": "8",
                                 "showPercentValues": "1",
                                 "showPercentInTooltip": "0",
-                                "pieRadius": "100",
+                                "pieRadius": "80",
                                 "exportenabled": "1",
                                 "decimals": "1",
                                 "enableSmartLabels": "1",
