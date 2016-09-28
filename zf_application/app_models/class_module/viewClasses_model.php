@@ -71,32 +71,91 @@ class viewClasses_Model extends Zf_Model {
              
          }else{
              
+             
              foreach($zvs_classDetails as $classValues){
+                 
+                $activeURL = Zf_Core_Functions::Zf_URLSanitize();
+
+                $absolutePath = ZF_ROOT_PATH; $separator = DS; $connector = ZVSS_CONNECT;
                  
                 $zvs_className = $classValues['schoolClassName']; $schoolClassCode =  $classValues['schoolClassCode'];
 
                 $chartContainer = explode(ZVSS_CONNECT, $schoolClassCode)[1];
+                
+                $currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
+                
+                $yearsDiv = $chartContainer."Years";
 
                 $zvs_classGridView .='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                              <div class="zvs-content-titles">
-                                                 <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
-                                                     <h3 style="padding-left: 10px !important;">'.$zvs_className.'</h3>
-                                                 </div>
-                                                 <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
-                                                     <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_class_details'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolClassCode).' " title="View '.$zvs_className.'" ><i class="fa fa-list"></i></a></h3>
-                                                 </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
+                                                    <div style="padding-top: 5px;"><h3 style="padding-left: 10px !important;">'.$zvs_className.'</h3></div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
+                                                    <h3 style="text-align: right !important; padding-right: 10px !important;"> Class Year:&nbsp;<span>'.
+                                                            $this->zvs_buildYearsOption($yearsDiv)
+                                                    .'</span></h3>
+                                                </div>
                                              </div>
                                              <div class="portlet-body">
-                                                 <div class="zvs-chart-blocks" id="'.$chartContainer.'">';
+                                                 <div class="zvs-chart-blocks" id="'.$chartContainer.'Dynamic">';
+                                                        
+                                                    
+                
+                        $zvs_classGridView .='   </div>
+                                                 <div class="zvs-chart-blocks" id="'.$chartContainer.'Static">';
                  
-                                                //This is the function that generates the chart.
-                                                $zvs_classGridView .= $this->zvs_drawClassChart($schoolClassCode, $zvs_className, $chartContainer);
+                                                    //This is the function that generates the chart.
+                                                    $zvs_classGridView .= $this->zvs_drawClassChart($schoolClassCode, $zvs_className, $chartContainer);
                                                 
                         $zvs_classGridView .='   </div>
                                             </div>
                                         </div>
-                                    </div>';
+                                    </div>
+                                    <script type="text/javascript">
+                                    
+                                        $("#'.$chartContainer.'Static").show();
+                                        $("#'.$chartContainer.'Dynamic").hide();
+                                             
+                                        $("#'.$yearsDiv.'").change(function(){
+                                            
+                                            //This is value of the selected year
+                                            var selectedClassYear = $("#'.$yearsDiv.'").val();
+                                            
+                                            
+                                            $("#'.$chartContainer.'Static").remove();
+                                            $("#'.$chartContainer.'Dynamic").show();
+
+                                            var zvs_absolutePath = "'.$absolutePath.'";
+                                            var zvs_separator = "'.$separator.'";
+                                            var zvs_connector = "'.$connector.'";
+                                            var zvs_controller = "class_module";
+
+                                            var classCode = "'.$schoolClassCode.'";
+                                            var className = "'.$zvs_className.'";
+                                            var chartContainer = "'.$chartContainer.'";
+
+                                            var postedClassValues = selectedClassYear + zvs_connector + classCode + zvs_connector + className;
+
+                                            //The absloute path to chart processing model
+                                            var processClassChart = zvs_absolutePath + zvs_controller + zvs_separator + "processClassChart" + zvs_separator + selectedClassYear;
+
+                                            //Here we run ajax task
+                                            $.ajax({
+                                                type: "POST",
+                                                url: processClassChart,
+                                                data: {postedClassValues : postedClassValues},
+                                                cache: false,
+                                                success: function(html) {
+                                                   $("#'.$chartContainer.'Dynamic").html(html);
+                                                }
+                                            });
+                                            
+
+                                        });
+                                    
+                                    </script>';
                  
                  
                  
@@ -143,10 +202,10 @@ class viewClasses_Model extends Zf_Model {
             //These are the initial chart settings
             $chartSettings = array(
                 "ChartType" => "Column2D",
-                "ChartID" => $schoolClassCode,
+                "ChartID" => $schoolClassCode."Static",
                 "ChartWidth" =>  "100%",
                 "ChartHeight" =>  "270",
-                "ChartContainer" => $chartContainer,
+                "ChartContainer" => $chartContainer."Static",
                 "ChartDataFormat" =>  "json",
             );
         
@@ -298,7 +357,7 @@ class viewClasses_Model extends Zf_Model {
     /**
      * This method returns the options for selecting year of study
      */
-    private function zvs_buildYearsOption(){
+    private function zvs_buildYearsOption($yearsDiv){
         
         $currentDate = Zf_Core_Functions::Zf_CurrentDate();
     
@@ -306,21 +365,25 @@ class viewClasses_Model extends Zf_Model {
         
         $option = "";
         
-        $option .='<select>';
+        $option .='<select class="select2me" style="width: 80px !important;"  id="'.$yearsDiv.'">';
 
             for($year=$startYear; $year < date('Y')+1; $year++){
                 
                 if(!empty($endYear) && $endYear != NULL){
                     
-                    if($year < $endYear || $year == $endYear){
+                    if($year < $endYear){
                         
-                        $option .= '<option value="'.$year.'">'.$year.'</option>';
+                        $option .= '<option value="'.$year.'"><b>'.$year.'</b></option>';
                        
+                    }else if($year == $endYear){
+                        
+                        $option .= '<option value="'.$year.'" selected ><b>'.$year.'</b></option>';
+                        
                     }
                     
                 }else{
                     
-                    $option .= '<option value="'.$year.'">'.$year.'</option>';
+                    $option .= '<option value="'.$year.'"><b>'.$year.'</b></option>';
  
                     
                 }
@@ -328,7 +391,7 @@ class viewClasses_Model extends Zf_Model {
             }
             
             
-            $option .= '<option value="all" selected>All Years</option>';
+            $option .= '<option value="all_years">All Years</option>';
             
             
         $option .='</select>';

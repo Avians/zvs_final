@@ -40,6 +40,18 @@ class class_moduleController extends Zf_Controller {
         Zf_View::zf_displayView('view_classes', $zf_actionData);
         
     }
+    
+    
+    
+    //This method is vital is processing class charts
+    public function actionProcessClassChart($zvs_parameter){
+        
+        //Get the locality related to any student registration data
+        $this->zf_targetModel->plotClassChart();
+        
+    }
+    
+    
 
     
     //This controller executes the class profile view.
