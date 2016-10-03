@@ -178,10 +178,10 @@ class viewClasses_Model extends Zf_Model {
     /**
      * This method plots the actual call graph
      */
-    public function zvs_drawClassChart($schoolClassCode, $zvs_className, $chartContainer){
+    public function zvs_drawClassChart($studentClassCode, $zvs_className, $chartContainer){
         
         
-        $zvs_streamDetails = $this->zvs_fetchStreamDetails($schoolClassCode);
+        $zvs_streamDetails = $this->zvs_fetchStreamDetails($studentClassCode);
         
         $classChartData = "";
         
@@ -202,7 +202,7 @@ class viewClasses_Model extends Zf_Model {
             //These are the initial chart settings
             $chartSettings = array(
                 "ChartType" => "Column2D",
-                "ChartID" => $schoolClassCode."Static",
+                "ChartID" => $studentClassCode."Static",
                 "ChartWidth" =>  "100%",
                 "ChartHeight" =>  "270",
                 "ChartContainer" => $chartContainer."Static",
@@ -233,7 +233,8 @@ class viewClasses_Model extends Zf_Model {
                                 "slantLabels": "1",
                                 "labelDistance": "1",
                                 "slicingDistance": "10",
-                                "theme": "ocean"
+                                "theme": "ocean",
+                                "anchorHoverAlpha":1
                             }
 
                         ';
@@ -245,12 +246,34 @@ class viewClasses_Model extends Zf_Model {
                     
                     $streamName = $streamValues['schoolStreamName']; 
                     $streamOccupancy = $streamValues['schoolStreamOccupancy'];
-                    $streamCode = $streamValues['schoolStreamCode'];
+                    $studentStreamCode = $streamValues['schoolStreamCode'];
+                    $currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
                 
                     $chartData .= '{  
                                 "label":"'.$streamName.'",
-                                "value":"'.$streamOccupancy.'",
-                                "tooltext": "'.$streamOccupancy.' Students in '.strtolower($zvs_className).', '.strtolower($streamName).'"
+                                "labelFont":"ProximaNova-Light",';
+                   
+                    
+                    $zvs_table = "zvs_students_class_details";
+                    $studentsStreamCount = "SELECT * FROM " . $zvs_table . " WHERE studentClassCode ='".$studentClassCode."' AND studentStreamCode = '".$studentStreamCode."' AND studentYearOfStudy = '".$currentYear."' "; //die();
+                    
+                    //echo $studentsStreamCount; exit();
+                    
+                    $executeStudentsStreamCount  = $this->Zf_AdoDB->Execute($studentsStreamCount);
+                    if (!$executeStudentsStreamCount){
+
+                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                    }else{
+
+                        $totalStreamStudents = $executeStudentsStreamCount->RecordCount();
+                        $chartData .= ' "value":"'.$totalStreamStudents.'", ';
+
+                    }
+                        
+
+                    $chartData .= '"tooltext": "'.$totalStreamStudents.' students in '.strtolower($zvs_className.', '.$streamName).' - '.$currentYear.'",
+                                "link":"#"
                             },';
                 
                 }

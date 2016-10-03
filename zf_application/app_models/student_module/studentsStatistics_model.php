@@ -41,7 +41,7 @@ class studentsStatistics_Model extends Zf_Model {
         
         //These are the initial chart settings
         $chartSettings = array(
-            "ChartType" => "Pie2D",
+            "ChartType" => "Pie3D",
             "ChartID" => 'gender',
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "270",
@@ -136,7 +136,7 @@ class studentsStatistics_Model extends Zf_Model {
         
         //These are the initial chart settings
         $chartSettings = array(
-            "ChartType" => "Column2D",
+            "ChartType" => "Line",
             "ChartID" => "class",
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "270",
@@ -559,7 +559,7 @@ class studentsStatistics_Model extends Zf_Model {
                 }
                 
                 return $results;
-
+                
                 
             }else{
                 

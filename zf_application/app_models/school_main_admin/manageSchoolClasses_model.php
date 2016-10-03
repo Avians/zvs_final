@@ -95,7 +95,7 @@ class manageSchoolClasses_Model extends Zf_Model {
                                        if($zvs_streamDetails == 0){
 
                                            $zvs_classGridView .='<div class="portlet-body">
-                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 13% !important;">
+                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 13% !important; height: 380px !important;">
                                                                         <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
                                                                         <span class="content-view-errors" >
                                                                             &nbsp;There are no streams in '.strtolower($zvs_className).' yet! <br>You need to add atleast one stream to have an overview.

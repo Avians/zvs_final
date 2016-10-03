@@ -43,16 +43,8 @@ class processClassChart_Model extends Zf_Model {
         
         $postedClassValues = $_POST['postedClassValues'];
         
-        $classValuesArray = explode(ZVSS_CONNECT, $postedClassValues);
         
-        $zvs_classYear = $classValuesArray[0]; $schooClassCode = $classValuesArray[1].ZVSS_CONNECT.$classValuesArray[2];
-        $zvs_className = $classValuesArray[3]; $chartContainer = $classValuesArray[2];
-       
-        //echo $zvs_classYear."<br>".$schooClassCode."<br>".$zvs_className."<br>".$chartContainer;
-        
-        $this->zvs_renderClassChart($schooClassCode, $zvs_className, $chartContainer);
-        
-        //echo $zvs_classChart;
+        $this->zvs_renderClassChart($postedClassValues);
         
         
     }
@@ -62,10 +54,15 @@ class processClassChart_Model extends Zf_Model {
     /**
      * This method plots the actual call graph
      */
-    private function zvs_renderClassChart($schoolClassCode, $zvs_className, $chartContainer){
+    private function zvs_renderClassChart($postedClassValues){
         
+        $classValuesArray = explode(ZVSS_CONNECT, $postedClassValues);
         
-        $zvs_streamDetails = $this->zvs_fetchStreamDetails($schoolClassCode);
+        $zvs_classYear = $classValuesArray[0]; $studentClassCode = $classValuesArray[1].ZVSS_CONNECT.$classValuesArray[2];
+        $zvs_className = $classValuesArray[3]; $chartContainer = $classValuesArray[2];
+        
+        //Here we pull all the stream details
+        $zvs_streamDetails = $this->zvs_fetchStreamDetails($studentClassCode);
         
         $classChartData = "";
         
@@ -85,8 +82,8 @@ class processClassChart_Model extends Zf_Model {
             
             //These are the initial chart settings
             $chartSettings = array(
-                "ChartType" => "Pie2D",
-                "ChartID" => $schoolClassCode."Dynamic",
+                "ChartType" => "Column2D",
+                "ChartID" => $zvs_className.$zvs_classYear,
                 "ChartWidth" =>  "100%",
                 "ChartHeight" =>  "270",
                 "ChartContainer" => $chartContainer."Dynamic",
@@ -128,23 +125,37 @@ class processClassChart_Model extends Zf_Model {
                 foreach ($zvs_streamDetails as $streamValues) {
                     
                     $streamName = $streamValues['schoolStreamName']; 
-                    $streamOccupancy = $streamValues['schoolStreamOccupancy'];
-                    $streamCode = $streamValues['schoolStreamCode'];
+                    $studentStreamCode = $streamValues['schoolStreamCode'];
                 
                     $chartData .= '{  
-                                "label":"'.$streamName.'",
-                                "value":"'.$streamOccupancy.'",
-                                "tooltext": "'.$streamOccupancy.' Students in '.strtolower($zvs_className).', '.strtolower($streamName).'"
+                                "label":"'.$streamName.'",';
+                    
+                    
+                    $zvs_table = "zvs_students_class_details";
+                    $studentsStreamCount = "SELECT * FROM " . $zvs_table . " WHERE studentClassCode ='".$studentClassCode."' AND studentStreamCode = '".$studentStreamCode."' AND studentYearOfStudy = '".$zvs_classYear."' "; //die();
+                    
+                    //echo $studentsStreamCount; exit();
+                    
+                    $executeStudentsStreamCount  = $this->Zf_AdoDB->Execute($studentsStreamCount);
+                    if (!$executeStudentsStreamCount){
+
+                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                    }else{
+
+                        $totalStreamStudents = $executeStudentsStreamCount->RecordCount();
+                        $chartData .= ' "value":"'.$totalStreamStudents.'", ';
+
+                    }
+                    
+                    $chartData .= '"tooltext": "'.$totalStreamStudents.' students in '.strtolower($zvs_className.', '.$streamName).' - '.$zvs_classYear.'",
+                                "link":"#"
                             },';
+                    
+                    
                 
                 }
-                
-                
                 $chartData .= ']';
-        
-        
-        
-        
         
                 $classChartData .= Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
         
@@ -201,9 +212,9 @@ class processClassChart_Model extends Zf_Model {
     /**
      * This method checks and counts, then returns all stream details for all classess in the school.
      */
-    private function zvs_fetchStreamDetails($schoolClassCode){
+    private function zvs_fetchStreamDetails($studentClassCode){
         
-        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($studentClassCode);
         
         $fetchSchoolStreams = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zvs_sqlValue);
         

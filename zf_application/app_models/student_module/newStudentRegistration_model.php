@@ -602,6 +602,10 @@ class newStudentRegistration_Model extends Zf_Model {
                                                             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>"; exit();
 
                                                         }else{
+                                                            
+                                                            //Pull Class and stream details
+                                                            $updateStreamDetails = $this->zvs_updateStreamDetails($studentClassCode, $studentStreamCode);
+                                                            
 
                                                             //6. Insert student class details
                                                             $insertStudentClassDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_students_class_details", $studentClassDetails);
@@ -662,6 +666,60 @@ class newStudentRegistration_Model extends Zf_Model {
             
         }
        
+        
+    }
+    
+    
+    
+    //This private method updates the stream data by adding the student to the existing occupancy.
+    private function zvs_updateStreamDetails($studentClassCode, $studentStreamCode) {
+        
+        //Pull a stream with the specified class and stream codes.
+        
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($studentClassCode);
+        $zvs_sqlValue["schoolStreamCode"] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+        
+        $fetchSchoolStream = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolStream = $this->Zf_AdoDB->Execute($fetchSchoolStream);
+
+        if(!$zf_executeFetchSchoolStream){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolStream->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolStream->EOF){
+                    
+                    $results = $zf_executeFetchSchoolStream->GetRows();
+                    
+                }
+                
+                $currentOccupancy = $results[0]['schoolStreamOccupancy'];
+                    
+                    $newOccupancy = $currentOccupancy + 1;
+                    
+                    //update the database value
+                    
+                    $zvs_sqlValue["schoolStreamOccupancy"] = Zf_QueryGenerator::SQLValue($newOccupancy);
+                    
+                    $zvs_sqlColumns["schoolClassCode"] = Zf_QueryGenerator::SQLValue($studentClassCode);
+                    $zvs_sqlColumns["schoolStreamCode"] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+                    
+                    $updateStreamOccupancy = Zf_QueryGenerator::BuildSQLUpdate('zvs_school_streams', $zvs_sqlValue, $zvs_sqlColumns);
+                    
+                    $zf_executeUpdateStreamOccupancy = $this->Zf_AdoDB->Execute($updateStreamOccupancy);
+                    
+                    if(!$zf_executeUpdateStreamOccupancy){
+                        
+                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+                        
+                    }
+                
+            }
+        }
         
     }
     
