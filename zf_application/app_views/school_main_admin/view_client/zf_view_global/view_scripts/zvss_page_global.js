@@ -8,6 +8,12 @@ $(document).ready(function() {
     NewClassFormWizard.init();
     NewStreamFormWizard.init();
     
+    //Manage Subjects
+    NewSubjectFormWizard.init();
+    
+    //Manage Exams
+    NewExamFormWizard.init();
+    
     //Manage Departments
     NewDepartmentFormWizard.init();
     NewSubDepartmentFormWizard.init();

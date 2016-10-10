@@ -503,6 +503,25 @@ class School_main_adminController extends Zf_Controller {
     
     
     /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A HOSTEL.
+     */
+    public function actionNewSubjectRegistration($zvs_parameter){
+       
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_subject"){
+            
+            //Register a new subject to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewSubject();
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
      * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR CREATION OF NEW ROLES AND MAPPING RESOURCES TO THOSE ROLES
      */
     
