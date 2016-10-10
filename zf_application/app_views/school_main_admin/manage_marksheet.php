@@ -58,7 +58,10 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="portlet-body form" >
-                                            
+                                            <?php
+                                                //This is the form for registering platform super administrators
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_marksheet_form.php");
+                                            ?>
                                         </div>
                                     </div>          
                                 </div>
