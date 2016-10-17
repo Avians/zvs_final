@@ -361,6 +361,14 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     background-color: #32B9E3 !important;
 }
 
+.radio-labels {
+    color: #787878 !important;
+    font-family: Cuprum-Regular !important;
+    font-size: 15px !important;
+    letter-spacing: 0.05em !important;
+    margin-left: 10% !important;
+}
+
 /**
 This is the styling for the zozo tabs and accordion
 */

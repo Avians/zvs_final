@@ -27,7 +27,7 @@
         };
         
         
-        //Here we process all class details.
+        //Here we process all department details.
         var departmentDetails = function ($absolute_path, $separator){
             
             //Process the locality of a super administrator
@@ -50,6 +50,36 @@
                
         };
         
+        //Here we process all fee form data
+        var feesDetails = function (){
+            
+            //Hide both general and class fee forms
+            $("#classSpecificFees").hide();
+            
+            //Show general fees form
+            $("#generalFeesButton").click(function(){
+                
+                $("#classSpecificFees").hide();
+                
+                $("#generalSchoolFees").fadeIn(1000, function(){
+                    
+                });
+                
+            });
+            
+            //Show class fees form
+            $("#classFeesButton").click(function(){
+                
+                $("#generalSchoolFees").hide();
+                
+                $("#classSpecificFees").fadeIn(1000, function(){
+                    
+                });
+                
+            });
+            
+        };
+        
         
         //Here we initialize all the above functions
         return { 
@@ -63,6 +93,10 @@
                 }if($current_view === "manage_department"){
                     
                     departmentDetails($absolute_path, $separator);
+                    
+                }if($current_view === "manage_fees"){
+                    
+                    feesDetails();
                     
                 }
 

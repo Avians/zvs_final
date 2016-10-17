@@ -296,7 +296,11 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /*-webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
+    color: #787878 !important;
+    font-family: helvetica neue !important;
+    font-size: 12px !important;
+    letter-spacing: 0.07em;
 }
 
 .select2-results ul.select2-result-sub {

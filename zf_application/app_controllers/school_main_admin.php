@@ -505,6 +505,25 @@ class School_main_adminController extends Zf_Controller {
     /**
      * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A SUBJECT.
      */
+    public function actionNewFeeItemRegistration($zvs_parameter){
+       
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_feeItem"){
+            
+            //Register a new subject to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewFeeItem();
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A SUBJECT.
+     */
     public function actionNewSubjectRegistration($zvs_parameter){
        
         $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
@@ -533,6 +552,24 @@ class School_main_adminController extends Zf_Controller {
             //Register a new exam to a school on Zilas Virtual Schools platform 
             $this->zf_targetModel->registerNewExam();
             
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF AN MARKSHEET.
+     */
+    public function actionNewMarksheetRegistration($zvs_parameter){
+       
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_marksheet"){
+            
+            //Register a new exam to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewMarksheet();
         }
         
     }

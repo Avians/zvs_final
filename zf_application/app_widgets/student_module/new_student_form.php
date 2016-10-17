@@ -100,9 +100,9 @@
                                     <label class="control-label col-md-4">Student Gender:</label>
                                     <div class="col-md-8">
                                         <div class="radio-list">
-                                            <label class="radio-inline">
+                                            <label class="radio-inline radio-labels">
                                             <input type="radio" name="studentGender" value="Male" checked data-title="Male"> Male </label>
-                                            <label class="radio-inline">
+                                            <label class="radio-inline radio-labels">
                                             <input type="radio" name="studentGender" value="Female"  data-title="Female"> Female </label>
                                         </div>
                                     </div>

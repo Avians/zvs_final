@@ -1,7 +1,7 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolSubjects");
+    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolMarksheet");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);

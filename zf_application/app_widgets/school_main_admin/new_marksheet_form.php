@@ -2,31 +2,31 @@
     //Get the identfication code held in a session variable.
     $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
     
-    $new_hostel = "new_hostel";
+    $new_marksheet = "new_marksheet";
     
 ?>
 
-<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newHostelRegistration", $new_hostel); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_hostel_form">
-    <div class="form-wizard" id="newHostel">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newMarksheetRegistration", $new_marksheet); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_marksheet_form">
+    <div class="form-wizard" id="newMarksheet">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">
                 <li>
-                    <a href="#newHostelInfo" data-toggle="tab" class="step active">
+                    <a href="#newMarksheetInfo" data-toggle="tab" class="step active">
                         <span class="number">
                             1
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> New Hostel/Dormitory Setup
+                            <i class="fa fa-check"></i> Marksheet Setup
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#confirmNewHostelInfo" data-toggle="tab" class="step">
+                    <a href="#confirmNewMarksheetInfo" data-toggle="tab" class="step">
                         <span class="number">
                             2
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> Confirm Hostel/Dormitory Details
+                            <i class="fa fa-check"></i> Confirm Marksheet Details
                         </span>
                     </a>
                 </li>
@@ -46,28 +46,28 @@
                 
                 
                 <!-- START OF ADMIN SETUP FORM-->
-                <div class="tab-pane" id="newHostelInfo">
-                    <h3 class="form-section form-title">New Hostel/Dormitory Information</h3>
+                <div class="tab-pane" id="newMarksheetInfo">
+                    <h3 class="form-section form-title">New Marksheet Information</h3>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Name:</label>
+                                <label class="control-label col-md-4">Grade Label:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="hostelName" class="form-control" placeholder="Mara, Amboseli, Java, JF Kenedy, ..." value="<?php echo $zf_formHandler->zf_getFormValue("hostelName"); ?>">
+                                    <input type="text" name="gradeLabel" class="form-control" placeholder="A,  A-,  B+,  B,  B-, ..." value="<?php echo $zf_formHandler->zf_getFormValue("gradeLabel"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("hostelName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("gradeLabel"); ?>
                                     </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Alias:</label>
+                                <label class="control-label col-md-4">Grade Alias:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="hostelAlias" class="form-control" placeholder="Any alias name" value="<?php echo $zf_formHandler->zf_getFormValue("hostelAlias"); ?>">
+                                    <input type="text" name="gradeAlias" class="form-control" placeholder="A plain, B plus, B plain, ...." value="<?php echo $zf_formHandler->zf_getFormValue("gradeAlias"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("hostelAlias"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("gradeAlias"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -78,15 +78,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Gender:</label>
+                                <label class="control-label col-md-4">Grade Points:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me" name="hostelGender" data-placeholder="Male, Female, ...." value="<?php echo $zf_formHandler->zf_getFormValue("hostelGender"); ?>">
-                                        <option value=""></option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
+                                    <input type="text" name="gradePoints" class="form-control" placeholder="12, 10, 8, 6, ...." value="<?php echo $zf_formHandler->zf_getFormValue("gradePoints"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("hostelGender") ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("gradePoints") ?>
                                     </span>
                                 </div>
                             </div>
@@ -94,11 +90,11 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Capacity:</label>
+                                <label class="control-label col-md-4">Grade Comments:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="hostelCapacity" class="form-control" placeholder="150, 200, 300, ..." value="<?php echo $zf_formHandler->zf_getFormValue("hostelCapacity"); ?>">
+                                    <textarea type="text" name="gradeComments" class="form-control" placeholder="Excellent, Good, Fair, Pass, ..." value="<?php echo $zf_formHandler->zf_getFormValue("gradeComments");?>" rows="1" ></textarea>
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("hostelCapacity"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("gradeComments"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -112,26 +108,26 @@
                 <!-- END OF ADMINL SETUP FORM-->
                 
                 <!-- START OF CONFIRM SETUP SECTION-->
-                <div class="tab-pane" id="confirmNewHostelInfo">
+                <div class="tab-pane" id="confirmNewMarksheetInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
-                    <h4 class="form-section confirm-inner-title">Hostel/Dormitory Setup Information</h4>
+                    <h4 class="form-section confirm-inner-title">Marksheet Setup Information</h4>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Name:</label>
+                                <label class="control-label col-md-4">Grade Label:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="hostelName"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="gradeLabel"></p>
                                 </div>
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Alias:</label>
+                                <label class="control-label col-md-4">Grade Alias:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result"  data-display="hostelAlias"></p>
+                                    <p class="form-control-static confirm-form-result"  data-display="gradeAlias"></p>
                                 </div>
                             </div>
                         </div>
@@ -141,18 +137,18 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Gender:</label>
+                                <label class="control-label col-md-4">Grade Points:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="hostelGender"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="gradePoints"></p>
                                 </div>
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Hostel Capacity:</label>
+                                <label class="control-label col-md-4">Grade Comments:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result"  data-display="hostelCapacity"></p>
+                                    <p class="form-control-static confirm-form-result"  data-display="gradeComments"></p>
                                 </div>
                             </div>
                         </div>

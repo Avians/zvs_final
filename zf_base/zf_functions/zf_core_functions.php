@@ -137,7 +137,9 @@ class Zf_Core_Functions {
     public static function Zf_GenerateYearOption($startYear = NULL, $endYear = NULL){
         
         $option = "";
-
+        
+        if($startYear <= $endYear){
+            
             for($year=$startYear; $year < date('Y')+1; $year++){
                 
                 if(!empty($endYear) && $endYear != NULL){
@@ -155,6 +157,30 @@ class Zf_Core_Functions {
                 }
                 
             }
+            
+        }else if($startYear > $endYear){
+            
+            for($year=$startYear; $year > date('Y')-1; $year--){
+                
+                if(!empty($endYear) && $endYear != NULL){
+                    
+                    if($year > $endYear || $year == $endYear){
+                        $option = '<option value="'.$year.'">'.$year.'</option>';
+                        echo  $option; 
+                    }
+                    
+                }else{
+                    
+                    $option = '<option value="'.$year.'">'.$year.'</option>';
+                    echo  $option; 
+                    
+                }
+                
+            }
+            
+        }
+
+            
         
     }
     

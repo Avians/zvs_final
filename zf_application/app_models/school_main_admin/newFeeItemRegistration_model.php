@@ -6,14 +6,13 @@
 /*
  * ---------------------------------------------------------------------
  * |                                                                   |
- * |  This the Model which is responsible responsible for handling all |
- * |  logic that is related to registration of a new exam onto the     |
- * |  platform.                                                        |
+ * |  This the Model which is responsible for registration of a new    |
+ * |  Marksheet into the school.                                       |
  * |                                                                   |
  * ---------------------------------------------------------------------
  */
 
-class newExamRegistration_Model extends Zf_Model {
+class newFeeItemRegistration_Model extends Zf_Model {
     
 
     private $_errorResult = array();
@@ -38,26 +37,34 @@ class newExamRegistration_Model extends Zf_Model {
    /**
     * Register a new hostel within a valid school
     */
-    public function registerNewExam(){
+    public function registerNewFeeItem(){
         
         //In this section we chain class data, posted from the form.
-        $this->zf_formController->zf_postFormData('examName')
-                                ->zf_validateFormData('zf_maximumLength', 60, 'Exam name')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Exam name')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Exam name')
+        $this->zf_formController->zf_postFormData('feeItemYear')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Fee item year')
 
-                                ->zf_postFormData('examAlias')
-                                ->zf_validateFormData('zf_maximumLength', 60, 'Exam alias')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Exam alias')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Exam alias')
+                                ->zf_postFormData('feeCategory')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Fee category')
+
+                                ->zf_postFormData('schoolClassCode')
                 
-                                ->zf_postFormData('percentageProportion')
-                                ->zf_validateFormData('zf_maximumLength', 3, 'Percentage Proportion')
-                                ->zf_validateFormData('zf_minimumLength', 1, 'Percentage Proportion')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Percentage Proportion')
+                                ->zf_postFormData('feeItem')
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Fee item')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Fee item')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Fee item')
                 
-                                ->zf_postFormData('examSubject')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Exam subject')
+                                ->zf_postFormData('itemAlias')
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Item alias')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Item alias')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Item alias')
+                
+                                ->zf_postFormData('feeProportion')
+                                ->zf_validateFormData('zf_maximumLength', 3, 'Percentage proportion')
+                                ->zf_validateFormData('zf_minimumLength', 1, 'Percentage proportion')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Percentage proportion')
+                
+                                ->zf_postFormData('itemStatus')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Item status')
                 
                                 ->zf_postFormData('adminIdentificationCode');
         
@@ -69,7 +76,7 @@ class newExamRegistration_Model extends Zf_Model {
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
         //This of debugging purposes only.
-        echo "<pre>All Exam Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        echo "<pre>New Fee Item Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
        
         $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['adminIdentificationCode']);
         

@@ -1752,6 +1752,15 @@ input[type="date"] {
   font-weight: normal;
   cursor: pointer;
 }
+
+.radio-inline{
+    color: #787878 !important;
+    font-family: Cuprum-Regular !important;
+    font-size: 15px !important;
+    letter-spacing: 0.05em !important;
+    /*margin-left: 10% !important;*/
+}
+
 .radio input[type="radio"],
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
