@@ -87,6 +87,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Subject Status:</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="subjectStatus" value="1" data-title="Active"> Active </label>
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="subjectStatus" value="0" checked  data-title="Inactive"> Inactive </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!--/row-->
                     
@@ -128,6 +141,15 @@
                                 <label class="control-label col-md-4">Subject Code:</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static confirm-form-result"  data-display="subjectCode"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Subject Status:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="subjectStatus"></p>
                                 </div>
                             </div>
                         </div>

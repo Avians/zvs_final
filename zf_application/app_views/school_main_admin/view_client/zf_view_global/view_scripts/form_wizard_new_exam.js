@@ -58,7 +58,7 @@ var NewExamFormWizard = function () {
                     },
                     
                     //Exam Subject
-                    examSubject: {
+                    schoolSubjectCode: {
                         required: true
                     }
                 
@@ -120,10 +120,15 @@ var NewExamFormWizard = function () {
             var displayConfirm = function() {
                 $('#confirmNewExamInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
+                    if (input.is(":radio")) {
+                        input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
+                    }
                     if (input.is(":text") || input.is("textarea")) {
                         $(this).html(input.val());
                     } else if (input.is("select")) {
                         $(this).html(input.find('option:selected').text());
+                    } else if (input.is(":radio") && input.is(":checked")) {
+                        $(this).html(input.attr("data-title"));
                     }
                 });
             }

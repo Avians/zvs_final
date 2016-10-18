@@ -12,7 +12,7 @@
  * ---------------------------------------------------------------------
  */
 
-class manageSchoolExams_Model extends Zf_Model {
+class manageSchoolMarksheet_Model extends Zf_Model {
     
     private $zvs_controller;
 

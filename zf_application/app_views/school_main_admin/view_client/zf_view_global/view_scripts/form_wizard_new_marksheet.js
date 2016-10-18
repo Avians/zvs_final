@@ -39,8 +39,8 @@ var NewMarksheetFormWizard = function () {
                     //THESE RULES GOVERN THE VALIDATION OF SCHOOL REGISTRTAION FORM
                     
                     //Grade Label
-                    gradeLabel: {
-                        maxlength: 2,
+                    gradeName: {
+                        maxlength: 3,
                         minlength: 1,
                         required: true
                     },
@@ -60,8 +60,8 @@ var NewMarksheetFormWizard = function () {
                     
                     //Grade Comments
                     gradeComments: {
-                        maxlength: 30,
-                        minlength: 5,
+                        maxlength: 45,
+                        minlength: 2,
                         required: true
                     }
                 
@@ -123,10 +123,15 @@ var NewMarksheetFormWizard = function () {
             var displayConfirm = function() {
                 $('#confirmNewMarksheetInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
+                    if (input.is(":radio")) {
+                        input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
+                    }
                     if (input.is(":text") || input.is("textarea")) {
                         $(this).html(input.val());
                     } else if (input.is("select")) {
                         $(this).html(input.find('option:selected').text());
+                    } else if (input.is(":radio") && input.is(":checked")) {
+                        $(this).html(input.attr("data-title"));
                     }
                 });
             }

@@ -89,10 +89,10 @@ class viewClasses_Model extends Zf_Model {
                 $zvs_classGridView .='<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                              <div class="zvs-content-titles">
-                                                <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
+                                                <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5">
                                                     <div style="padding-top: 5px;"><h3 style="padding-left: 10px !important;">'.$zvs_className.'</h3></div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
+                                                <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
                                                     <h3 style="text-align: right !important; padding-right: 10px !important;"> Class Year:&nbsp;<span>'.
                                                             $this->zvs_buildYearsOption($yearsDiv)
                                                     .'</span></h3>
@@ -388,7 +388,7 @@ class viewClasses_Model extends Zf_Model {
         
         $option = "";
         
-        $option .='<select class="select2me" style="width: 80px !important;"  id="'.$yearsDiv.'">';
+        $option .='<select class="select2me" style="width: 87px !important;"  id="'.$yearsDiv.'">';
 
             for($year=$startYear; $year < date('Y')+1; $year++){
                 

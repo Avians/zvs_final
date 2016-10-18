@@ -29,8 +29,8 @@
         <div class="clearfix"></div>
         <?php
             //This is the pop up indicator that shows a success or a failure in creating a new class.
-            //$zf_widgetFolder = "indicators"; $zf_widgetFile = "subject_setup_indicator.php";
-            //Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+            $zf_widgetFolder = "indicators"; $zf_widgetFile = "fee_setup_indicator.php";
+            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
         ?>    
         <!-- BEGIN INNER CONTENT -->
         <div class="row">

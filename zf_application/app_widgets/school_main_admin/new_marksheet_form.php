@@ -54,9 +54,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Grade Label:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="gradeLabel" class="form-control" placeholder="A,  A-,  B+,  B,  B-, ..." value="<?php echo $zf_formHandler->zf_getFormValue("gradeLabel"); ?>">
+                                    <input type="text" name="gradeName" class="form-control" placeholder="A,  A-,  B+,  B,  B-, ..." value="<?php echo $zf_formHandler->zf_getFormValue("gradeName"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("gradeLabel"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("gradeName"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -102,6 +102,23 @@
                     </div>
                     <!--/row-->
                     
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Grade Status:</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="gradeStatus" value="1" data-title="Active"> Active </label>
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="gradeStatus" value="0" checked  data-title="Inactive"> Inactive </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
                     <input type="hidden" class="form-control" name="adminIdentificationCode" value="<?php echo $identificationCode; ?>">
                     
                 </div>
@@ -118,7 +135,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Grade Label:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="gradeLabel"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="gradeName"></p>
                                 </div>
                             </div>
                         </div>
@@ -149,6 +166,18 @@
                                 <label class="control-label col-md-4">Grade Comments:</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static confirm-form-result"  data-display="gradeComments"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Grade Status:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="gradeStatus"></p>
                                 </div>
                             </div>
                         </div>

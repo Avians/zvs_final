@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">% Proportion:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="percentageProportion" class="form-control" placeholder="15%, 30%, 50%" value="<?php echo $zf_formHandler->zf_getFormValue("percentageProportion"); ?>">
+                                    <input type="text" name="percentageProportion" class="form-control" placeholder="15, 30, 50" value="<?php echo $zf_formHandler->zf_getFormValue("percentageProportion"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("percentageProportion"); ?>
                                     </span>
@@ -92,10 +92,33 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Exam Subject:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="examSubject" class="form-control" placeholder="Mathematics, English, Biology, ..." value="<?php echo $zf_formHandler->zf_getFormValue("examSubject"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("examSubject"); ?>
+                                    <select class="form-control select2me" name="schoolSubjectCode" data-placeholder="Mathematics, English, Biology, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolSubjectCode"); ?>">
+                                        <?php
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "subject_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("schoolSubjectCode") ?>
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Exam Status:</label>
+                                <div class="col-md-8">
+                                    <div class="radio-list">
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="examStatus" value="1" data-title="Active"> Active </label>
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="examStatus" value="0" checked  data-title="Inactive"> Inactive </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +171,20 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4">Exam Subject:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result"  data-display="examSubject"></p>
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolSubjectCode"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">Exam Status:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="examStatus"></p>
                                 </div>
                             </div>
                         </div>

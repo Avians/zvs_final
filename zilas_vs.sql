@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.4.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 17, 2016 at 05:26 AM
+-- Generation Time: Oct 18, 2016 at 07:59 PM
 -- Server version: 5.5.42
--- PHP Version: 5.6.10
+-- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `zilas_vs`
@@ -99,6 +99,59 @@ INSERT INTO `zvs_blood_groups` (`id`, `bloodGroupCode`, `bloodGroupName`, `blood
 (6, 'B-', 'B - (Negative)', 1),
 (7, 'O+', 'O + (Positive)', 1),
 (8, 'O-', 'O - (Negative)', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_class_school_fees`
+--
+
+CREATE TABLE `zvs_class_school_fees` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(200) NOT NULL,
+  `schoolClassCode` varchar(200) NOT NULL,
+  `systemFeeCode` varchar(240) NOT NULL,
+  `feeItem` varchar(30) NOT NULL,
+  `itemAlias` varchar(30) NOT NULL,
+  `itemAmount` decimal(10,0) NOT NULL,
+  `feeItemYear` varchar(5) NOT NULL,
+  `itemStatus` tinyint(1) NOT NULL,
+  `dateCreated` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_class_school_fees`
+--
+
+INSERT INTO `zvs_class_school_fees` (`id`, `systemSchoolCode`, `schoolClassCode`, `systemFeeCode`, `feeItem`, `itemAlias`, `itemAmount`, `feeItemYear`, `itemStatus`, `dateCreated`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2016', 'Tuition', 'Tuition', '30', '2016', 1, '2016-10-18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_general_school_fees`
+--
+
+CREATE TABLE `zvs_general_school_fees` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(200) NOT NULL,
+  `systemFeeCode` varchar(240) NOT NULL,
+  `feeItem` varchar(30) NOT NULL,
+  `itemAlias` varchar(30) NOT NULL,
+  `itemAmount` decimal(10,0) NOT NULL,
+  `feeItemYear` varchar(5) NOT NULL,
+  `itemStatus` tinyint(1) NOT NULL,
+  `dateCreated` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_general_school_fees`
+--
+
+INSERT INTO `zvs_general_school_fees` (`id`, `systemSchoolCode`, `systemFeeCode`, `feeItem`, `itemAlias`, `itemAmount`, `feeItemYear`, `itemStatus`, `dateCreated`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2016', 'Tuition', 'Tuition', '25', '2016', 1, '0000-00-00'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Medical[`^`]2016', 'Medical', 'Medical', '10', '2016', 1, '2016-10-18'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2017', 'Tuition', 'Tuition', '25', '2017', 0, '2016-10-18');
 
 -- --------------------------------------------------------
 
@@ -780,12 +833,64 @@ INSERT INTO `zvs_school_details` (`id`, `systemSchoolCode`, `schoolCode`, `regis
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `zvs_school_examinations`
+--
+
+CREATE TABLE `zvs_school_examinations` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(200) NOT NULL,
+  `systemExamCode` varchar(200) NOT NULL,
+  `examName` varchar(30) NOT NULL,
+  `examAlias` varchar(30) NOT NULL,
+  `percentageProportion` varchar(3) NOT NULL,
+  `schoolSubjectCode` varchar(200) NOT NULL,
+  `examStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_examinations`
+--
+
+INSERT INTO `zvs_school_examinations` (`id`, `systemSchoolCode`, `systemExamCode`, `examName`, `examAlias`, `percentageProportion`, `schoolSubjectCode`, `examStatus`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Mathematics[`^`]CatOne', 'Cat One', 'Cat 1', '15', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Mathematics', 1),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]English[`^`]CatOne', 'Cat One', 'Cat 1', '15', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]English', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `zvs_school_general_admins`
 --
 
 CREATE TABLE `zvs_school_general_admins` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_school_grades`
+--
+
+CREATE TABLE `zvs_school_grades` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(200) NOT NULL,
+  `systemGradeCode` varchar(200) NOT NULL,
+  `gradeName` varchar(4) NOT NULL,
+  `gradeAlias` varchar(10) NOT NULL,
+  `gradePoints` int(3) NOT NULL,
+  `gradeComments` varchar(120) NOT NULL,
+  `gradeStatus` tinyint(1) NOT NULL,
+  `dateCreated` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_grades`
+--
+
+INSERT INTO `zvs_school_grades` (`id`, `systemSchoolCode`, `systemGradeCode`, `gradeName`, `gradeAlias`, `gradePoints`, `gradeComments`, `gradeStatus`, `dateCreated`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]A', 'A', 'A Plain', 12, 'Excellent', 1, '0000-00-00'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]A-', 'A -', 'A Minus', 11, 'Very Good', 1, '0000-00-00'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]B+', 'B +', 'B Plus', 10, 'Great', 1, '2016-10-18');
 
 -- --------------------------------------------------------
 
@@ -973,6 +1078,30 @@ INSERT INTO `zvs_school_streams` (`id`, `systemSchoolCode`, `schoolClassCode`, `
 (30, '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne', '9$DKnOwP%FUlkgHfLVIcyQ@iM*oC#d[`^`]FormOne[`^`]East', 'East', 50, 0, '2016-07-11', '0000-00-00', 0),
 (31, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]South', 'South', 65, 0, '2016-09-11', '0000-00-00', 0),
 (32, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormTwo', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormTwo[`^`]Hero', 'Hero', 50, 0, '2016-10-13', '0000-00-00', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_school_subjects`
+--
+
+CREATE TABLE `zvs_school_subjects` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(200) NOT NULL,
+  `systemSubjectCode` varchar(200) NOT NULL,
+  `subjectName` varchar(30) NOT NULL,
+  `subjectAlias` varchar(30) NOT NULL,
+  `subjectCode` varchar(10) NOT NULL,
+  `subjectStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_subjects`
+--
+
+INSERT INTO `zvs_school_subjects` (`id`, `systemSchoolCode`, `systemSubjectCode`, `subjectName`, `subjectAlias`, `subjectCode`, `subjectStatus`) VALUES
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Mathematics', 'Mathematics', 'Mathematics', '101', 1),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]English', 'English', 'Eng', '102', 1);
 
 -- --------------------------------------------------------
 
@@ -1265,6 +1394,20 @@ ALTER TABLE `zvs_blood_groups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `zvs_class_school_fees`
+--
+ALTER TABLE `zvs_class_school_fees`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `systemFeeCode` (`systemFeeCode`);
+
+--
+-- Indexes for table `zvs_general_school_fees`
+--
+ALTER TABLE `zvs_general_school_fees`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `systemFeeCode` (`systemFeeCode`);
+
+--
 -- Indexes for table `zvs_platform_admin`
 --
 ALTER TABLE `zvs_platform_admin`
@@ -1358,10 +1501,24 @@ ALTER TABLE `zvs_school_details`
   ADD PRIMARY KEY (`id`,`systemSchoolCode`);
 
 --
+-- Indexes for table `zvs_school_examinations`
+--
+ALTER TABLE `zvs_school_examinations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `systemExamCode` (`systemExamCode`);
+
+--
 -- Indexes for table `zvs_school_general_admins`
 --
 ALTER TABLE `zvs_school_general_admins`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `zvs_school_grades`
+--
+ALTER TABLE `zvs_school_grades`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `systemGradeCode` (`systemGradeCode`);
 
 --
 -- Indexes for table `zvs_school_hostels`
@@ -1390,6 +1547,13 @@ ALTER TABLE `zvs_school_roles`
 ALTER TABLE `zvs_school_streams`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `schoolStreamCode` (`schoolStreamCode`);
+
+--
+-- Indexes for table `zvs_school_subjects`
+--
+ALTER TABLE `zvs_school_subjects`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `systemSubjectCode` (`systemSubjectCode`);
 
 --
 -- Indexes for table `zvs_school_sub_departments`
@@ -1452,6 +1616,16 @@ ALTER TABLE `zvs_application_users`
 --
 ALTER TABLE `zvs_blood_groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `zvs_class_school_fees`
+--
+ALTER TABLE `zvs_class_school_fees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `zvs_general_school_fees`
+--
+ALTER TABLE `zvs_general_school_fees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `zvs_platform_admin`
 --
@@ -1523,6 +1697,16 @@ ALTER TABLE `zvs_school_department_heads`
 ALTER TABLE `zvs_school_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `zvs_school_examinations`
+--
+ALTER TABLE `zvs_school_examinations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `zvs_school_grades`
+--
+ALTER TABLE `zvs_school_grades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `zvs_school_hostels`
 --
 ALTER TABLE `zvs_school_hostels`
@@ -1542,6 +1726,11 @@ ALTER TABLE `zvs_school_roles`
 --
 ALTER TABLE `zvs_school_streams`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+--
+-- AUTO_INCREMENT for table `zvs_school_subjects`
+--
+ALTER TABLE `zvs_school_subjects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `zvs_school_sub_departments`
 --

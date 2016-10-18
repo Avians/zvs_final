@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4"> Fee Item:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="feeItem" class="form-control" placeholder="Tution, Medical, Accommodation, ...." value="<?php echo $zf_formHandler->zf_getFormValue("feeItem"); ?>">
+                                    <input type="text" name="feeItem" class="form-control" placeholder="Tuition, Medical, Accommodation, ...." value="<?php echo $zf_formHandler->zf_getFormValue("feeItem"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("feeItem") ?>
                                     </span>
@@ -134,7 +134,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4"> Item Alias:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="itemAlias" class="form-control" placeholder="Tution, Medical, Accommodation, ...." value="<?php echo $zf_formHandler->zf_getFormValue("itemAlias"); ?>">
+                                    <input type="text" name="itemAlias" class="form-control" placeholder="Tuition, Medical, Accommodation, ...." value="<?php echo $zf_formHandler->zf_getFormValue("itemAlias"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("itemAlias") ?>
                                     </span>
@@ -145,11 +145,11 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">% Proportion:</label>
+                                <label class="control-label col-md-4">Fee Amount:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="feeProportion" class="form-control" placeholder="50%, 20%, 30%, ...." value="<?php echo $zf_formHandler->zf_getFormValue("feeProportion"); ?>">
+                                    <input type="text" name="itemAmount" class="form-control" placeholder="2500, 3000.50, 7000,...." value="<?php echo $zf_formHandler->zf_getFormValue("itemAmount"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("feeProportion") ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("itemAmount") ?>
                                     </span>
                                 </div>
                             </div>
@@ -161,9 +161,9 @@
                                 <div class="col-md-8">
                                     <div class="radio-list">
                                         <label class="radio-inline radio-labels">
-                                        <input type="radio" name="itemStatus" value="Active" checked data-title="Active"> Active </label>
+                                        <input type="radio" name="itemStatus" value="1" data-title="Active"> Active </label>
                                         <label class="radio-inline radio-labels">
-                                        <input type="radio" name="itemStatus" value="Inactive"  data-title="Inactive"> Inactive </label>
+                                        <input type="radio" name="itemStatus" value="0"  checked data-title="Inactive"> Inactive </label>
                                     </div>
                                 </div>
                             </div>
@@ -228,9 +228,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">% Proportion:</label>
+                                <label class="control-label col-md-4">Fee Amount:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="feeProportion"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="itemAmount"></p>
                                 </div>
                             </div>
                         </div>

@@ -361,9 +361,17 @@ class Zf_Core_Functions {
      * @param none
      * @return string current date
      */
-    public static function Zf_CurrentDate(){
+    public static function Zf_CurrentDate($dateFormat = NULL){
         
-       $zf_currentDateTime = date("d-m-Y");
+        if(empty($dateFormat) || $dateFormat == ""){
+            
+            $zf_currentDateTime = date("d-m-Y");
+            
+        }else{
+            
+            $zf_currentDateTime = date($dateFormat);
+            
+        }
        
        return $zf_currentDateTime;
         

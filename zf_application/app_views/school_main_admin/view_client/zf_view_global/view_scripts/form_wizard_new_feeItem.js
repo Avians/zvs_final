@@ -57,8 +57,8 @@ var NewFeeItemFormWizard = function () {
                     },
                     
                     //Fee Proportion
-                    feeProportion: {
-                        maxlength: 2,
+                    feeAmount: {
+                        maxlength: 10,
                         minlength: 1,
                         required: true
                     },
