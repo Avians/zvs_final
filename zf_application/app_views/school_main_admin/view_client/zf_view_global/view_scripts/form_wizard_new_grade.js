@@ -1,4 +1,4 @@
-var NewMarksheetFormWizard = function () {
+var NewGradeFormWizard = function () {
 
 
     return {
@@ -23,7 +23,7 @@ var NewMarksheetFormWizard = function () {
                 }
             });
 
-            var form = $('#new_marksheet_form');
+            var form = $('#new_grade_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -121,7 +121,7 @@ var NewMarksheetFormWizard = function () {
             
 
             var displayConfirm = function() {
-                $('#confirmNewMarksheetInfo .form-control-static', form).each(function(){
+                $('#confirmNewGradeInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":radio")) {
                         input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
@@ -140,33 +140,33 @@ var NewMarksheetFormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#newMarksheet')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#newGrade')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
-                jQuery('li', $('#newMarksheet')).removeClass("done");
+                jQuery('li', $('#newGrade')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
-                    $('#newMarksheet').find('.button-previous').hide();
+                    $('#newGrade').find('.button-previous').hide();
                 } else {
-                    $('#newMarksheet').find('.button-previous').show();
+                    $('#newGrade').find('.button-previous').show();
                 }
 
                 if (current >= total) {
-                    $('#newMarksheet').find('.button-next').hide();
-                    $('#newMarksheet').find('.button-submit').show();
+                    $('#newGrade').find('.button-next').hide();
+                    $('#newGrade').find('.button-submit').show();
                     displayConfirm();
                 } else {
-                    $('#newMarksheet').find('.button-next').show();
-                    $('#newMarksheet').find('.button-submit').hide();
+                    $('#newGrade').find('.button-next').show();
+                    $('#newGrade').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
-            $('#new_marksheet_form').bootstrapWizard({
+            $('#new_grade_form').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -197,14 +197,14 @@ var NewMarksheetFormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#newMarksheet').find('.progress-bar').css({
+                    $('#newGrade').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#new_marksheet_form').find('.button-previous').hide();
-            $('#new_marksheet_form .button-submit').click(function () {
+            $('#new_grade_form').find('.button-previous').hide();
+            $('#new_grade_form .button-submit').click(function () {
                 
                 //form.submit();
                 

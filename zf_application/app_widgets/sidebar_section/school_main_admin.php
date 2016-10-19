@@ -147,11 +147,11 @@ $main_menu = array(
     ),
 
     
-    //Manage Marksheet
-    "manage_marksheet" => array(
-        'name' => '<i class="fa fa-check-square-o"></i> Manage Marksheet ',
+    //Manage Grades
+    "manage_grades" => array(
+        'name' => '<i class="fa fa-check-square-o"></i> Manage Grades ',
         'controller' => $zvs_controller,
-        'action' => 'manage_marksheet',
+        'action' => 'manage_grades',
         'parameter' => $identificationCode,
         'title' => '',
         'style' => '',
@@ -303,12 +303,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS School Entities-->
-<li class="<?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_marksheet") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-th-list"></i>
         <span class="title"> School Entities </span>
-        <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_marksheet") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_marksheet") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <li class="<?php if ($zvs_action == "manage_fees") { echo "active";} ?>">
@@ -320,8 +320,8 @@ $main_menu = array(
         <li class="<?php if ($zvs_action == "manage_exams") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_exams']); ?>
         </li>
-        <li class="<?php if ($zvs_action == "manage_marksheet") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_marksheet']); ?>
+        <li class="<?php if ($zvs_action == "manage_grades") { echo "active";} ?>">
+            <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_grades']); ?>
         </li>
     </ul>
 </li>

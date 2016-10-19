@@ -73,8 +73,8 @@ class newExamRegistration_Model extends Zf_Model {
         //This of debugging purposes only.
         //echo "<pre>All Exam Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
         
-        $identificatioCode = $this->_validResult['adminIdentificationCode'];
-        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificatioCode);
+        $identificationCode = $this->_validResult['adminIdentificationCode'];
+        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
         
 
         if(empty($this->_errorResult)){
@@ -138,7 +138,7 @@ class newExamRegistration_Model extends Zf_Model {
                         
                         //Insertion successful
                          Zf_SessionHandler::zf_setSessionVariable("exam_setup", "exam_setup_success");
-                         Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_exams',$identificationCode);
+                         Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_exams', $identificationCode);
                          exit();
                         
                     }

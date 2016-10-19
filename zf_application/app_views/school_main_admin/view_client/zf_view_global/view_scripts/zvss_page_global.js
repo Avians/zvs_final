@@ -17,8 +17,8 @@ $(document).ready(function() {
     //Manage Exams
     NewExamFormWizard.init();
     
-    //Manage Marksheet
-    NewMarksheetFormWizard.init();
+    //Manage Grades
+    NewGradeFormWizard.init();
     
     //Manage Departments
     NewDepartmentFormWizard.init();

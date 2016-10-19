@@ -2,8 +2,8 @@
 
 /**
  * -----------------------------------------------------------------------------
- * THIS IS THE MARKSHEET MODULE CONTROLLER, ESSENTIAL FOR ROUTING AND EXECUTING 
- * ALL ACTIONS THAT RELATE TO MARKSHEET MODULE MODELS AND VIEWS.
+ * THIS IS THE GRADES MODULE CONTROLLER, ESSENTIAL FOR ROUTING AND EXECUTING 
+ * ALL ACTIONS THAT RELATE TO GRADES MODULE MODELS AND VIEWS.
  * -----------------------------------------------------------------------------
  *
  * @author Mathew Juma O. (ATHIAS AVIANS) <mathew@headsafrica.com>
@@ -16,7 +16,7 @@
  * 
  */
 
-class marksheet_moduleController extends Zf_Controller {
+class grade_moduleController extends Zf_Controller {
    
     
     public $zf_defaultAction = "index";

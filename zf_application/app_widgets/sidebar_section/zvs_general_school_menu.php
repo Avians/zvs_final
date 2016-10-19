@@ -111,10 +111,10 @@ $zvs_allowedResources = $zf_model_data->zvs_fetchUserResources($identificationCo
     }
 
 
-    //11. Marksheet Module(MrkMod) ==> zvs_marksheet
-    if(Zf_Core_Functions::Zf_recursiveArray(MARKSHEET_MODULE, $zvs_allowedResources)){ 
+    //11. Grade Module(GrdMod) ==> zvs_grade
+    if(Zf_Core_Functions::Zf_recursiveArray(GRADE_MODULE, $zvs_allowedResources)){ 
         
-        Zf_ApplicationWidgets::zf_load_widget("modules_section", "marksheet_module.php", $zvs_allowedResources);
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "grade_module.php", $zvs_allowedResources);
     
     }
 

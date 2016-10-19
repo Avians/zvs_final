@@ -269,8 +269,8 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     
     
     //Marksheet Module and resources
-    defined('MRKMOD') ? null : define('MRKMOD' , 'marksheet_module');
-    defined('MARKSHEET_MODULE') ? null : define('MARKSHEET_MODULE' , 'MrkMod');
+    defined('GRDMOD') ? null : define('GRDMOD' , 'grade_module');
+    defined('GRADE_MODULE') ? null : define('GRADE_MODULE' , 'GrdMod');
     
     
     //Timetable Module and resources

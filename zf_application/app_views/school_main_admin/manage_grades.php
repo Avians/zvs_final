@@ -1,7 +1,7 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolMarksheet");
+    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolGrades");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">Manage Marksheet</h3>
+                <h3 class="page-title">Manage Grades</h3>
                 <div class="page-breadcrumb breadcrumb">
                     <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
@@ -48,8 +48,8 @@
                         <div>
                             <div class="row margin-top-10">
                                 <?php
-                                    //Here we fetch all hostel details
-                                    //$zf_controller->zf_targetModel->fetchHostelDetails($identificationCode);
+                                    //Here we fetch all grades details
+                                    $zf_controller->zf_targetModel->fetchGradeDetails($identificationCode);
                                 ?>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform super administrators
-                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_marksheet_form.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_grade_form.php");
                                             ?>
                                         </div>
                                     </div>          

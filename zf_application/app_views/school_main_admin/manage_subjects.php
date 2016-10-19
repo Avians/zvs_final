@@ -47,7 +47,7 @@
                             <div class="row margin-top-10">
                                 <?php
                                     //Here we fetch all hostel details
-                                    //$zf_controller->zf_targetModel->fetchHostelDetails($identificationCode);
+                                    $zf_controller->zf_targetModel->fetchSubjectDetails($identificationCode);
                                 ?>
                             </div>
                         </div>

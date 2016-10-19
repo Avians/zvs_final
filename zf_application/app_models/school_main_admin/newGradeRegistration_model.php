@@ -12,7 +12,7 @@
  * ---------------------------------------------------------------------
  */
 
-class newMarksheetRegistration_Model extends Zf_Model {
+class newGradeRegistration_Model extends Zf_Model {
     
 
     private $_errorResult = array();
@@ -35,9 +35,9 @@ class newMarksheetRegistration_Model extends Zf_Model {
     
     
    /**
-    * Register a new hostel within a valid school
+    * Register a new grade within a valid school
     */
-    public function registerNewMarksheet(){
+    public function registerNewGrade(){
         
         //In this section we chain class data, posted from the form.
         $this->zf_formController->zf_postFormData('gradeName')
@@ -108,7 +108,7 @@ class newMarksheetRegistration_Model extends Zf_Model {
                     
                     $zf_errorData = array("zf_fieldName" => "gradeName", "zf_errorMessage" => "* This grade already exists!!.");
                     Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                    Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_marksheet', $identificationCode);
+                    Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_grades', $identificationCode);
                     exit();
                     
                 }else{
@@ -138,7 +138,7 @@ class newMarksheetRegistration_Model extends Zf_Model {
                         
                         //Insertion successful
                          Zf_SessionHandler::zf_setSessionVariable("grade_setup", "grade_setup_success");
-                         Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_marksheet',$identificationCode);
+                         Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_grades',$identificationCode);
                          exit();
                         
                     }
@@ -151,7 +151,7 @@ class newMarksheetRegistration_Model extends Zf_Model {
             
             Zf_SessionHandler::zf_setSessionVariable("grade_setup", "grade_setup_error");
             Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
-            Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_marksheet',$identificationCode);
+            Zf_GenerateLinks::zf_header_location('school_main_admin', 'manage_grades',$identificationCode);
             exit();
             
         }

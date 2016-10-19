@@ -2,31 +2,31 @@
     //Get the identfication code held in a session variable.
     $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
     
-    $new_marksheet = "new_marksheet";
+    $new_grade = "new_grade";
     
 ?>
 
-<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newMarksheetRegistration", $new_marksheet); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_marksheet_form">
-    <div class="form-wizard" id="newMarksheet">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newGradeRegistration", $new_grade); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_grade_form">
+    <div class="form-wizard" id="newGrade">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">
                 <li>
-                    <a href="#newMarksheetInfo" data-toggle="tab" class="step active">
+                    <a href="#newGradeInfo" data-toggle="tab" class="step active">
                         <span class="number">
                             1
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> Marksheet Setup
+                            <i class="fa fa-check"></i> Grade Setup
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#confirmNewMarksheetInfo" data-toggle="tab" class="step">
+                    <a href="#confirmNewGradeInfo" data-toggle="tab" class="step">
                         <span class="number">
                             2
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> Confirm Marksheet Details
+                            <i class="fa fa-check"></i> Confirm Grade Details
                         </span>
                     </a>
                 </li>
@@ -46,8 +46,8 @@
                 
                 
                 <!-- START OF ADMIN SETUP FORM-->
-                <div class="tab-pane" id="newMarksheetInfo">
-                    <h3 class="form-section form-title">New Marksheet Information</h3>
+                <div class="tab-pane" id="newGradeInfo">
+                    <h3 class="form-section form-title">New Grade Information</h3>
                     
                     <div class="row">
                         <div class="col-md-6">
@@ -125,10 +125,10 @@
                 <!-- END OF ADMINL SETUP FORM-->
                 
                 <!-- START OF CONFIRM SETUP SECTION-->
-                <div class="tab-pane" id="confirmNewMarksheetInfo">
+                <div class="tab-pane" id="confirmNewGradeInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
-                    <h4 class="form-section confirm-inner-title">Marksheet Setup Information</h4>
+                    <h4 class="form-section confirm-inner-title">Grade Setup Information</h4>
                     
                     <div class="row">
                         <div class="col-md-6">

@@ -1,7 +1,7 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolSubjects");
+    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolExams");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -46,8 +46,8 @@
                         <div>
                             <div class="row margin-top-10">
                                 <?php
-                                    //Here we fetch all hostel details
-                                    //$zf_controller->zf_targetModel->fetchHostelDetails($identificationCode);
+                                    //Here we fetch all exam details
+                                    $zf_controller->zf_targetModel->fetchExamDetails($identificationCode);
                                 ?>
                             </div>
                         </div>

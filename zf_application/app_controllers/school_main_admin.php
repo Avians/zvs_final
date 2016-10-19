@@ -212,9 +212,11 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage fees view
      */
-    public function actionManage_fees(){
+    public function actionManage_fees($identificationCode){
         
-        Zf_View::zf_displayView('manage_fees');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_fees', $zf_actionData);
         
     }
    
@@ -224,9 +226,11 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage subjects view
      */
-    public function actionManage_subjects(){
+    public function actionManage_subjects($identificationCode){
         
-        Zf_View::zf_displayView('manage_subjects');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_subjects', $zf_actionData);
         
     }
    
@@ -236,9 +240,11 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage exams view
      */
-    public function actionManage_exams(){
+    public function actionManage_exams($identificationCode){
         
-        Zf_View::zf_displayView('manage_exams');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_exams', $zf_actionData);
         
     }
    
@@ -248,9 +254,11 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage marksheet view
      */
-    public function actionManage_marksheet(){
+    public function actionManage_grades($identificationCode){
         
-        Zf_View::zf_displayView('manage_marksheet');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('manage_grades', $zf_actionData);
         
     }
    
@@ -562,14 +570,15 @@ class School_main_adminController extends Zf_Controller {
     /**
      * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF AN MARKSHEET.
      */
-    public function actionNewMarksheetRegistration($zvs_parameter){
+    public function actionNewGradeRegistration($zvs_parameter){
        
         $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
         
-        if($filterDataUrl == "new_marksheet"){
+        if($filterDataUrl == "new_grade"){
             
-            //Register a new exam to a school on Zilas Virtual Schools platform 
-            $this->zf_targetModel->registerNewMarksheet();
+            //Register a new grade to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewGrade();
+            
         }
         
     }
