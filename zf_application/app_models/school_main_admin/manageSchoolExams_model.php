@@ -106,7 +106,7 @@ class manageSchoolExams_Model extends Zf_Model {
                                                                              <table class="table table-striped table-hover">
                                                                                  <thead>
                                                                                      <tr>
-                                                                                         <th style="width: 50%;">Exam Name</th><th style="width: 25%; text-align:left!important;">% Proportion</th><th style="width: 15%;">Status</th><th></th>
+                                                                                         <th style="width: 45%;">Exam Name</th><th style="width: 25%; text-align:left!important;">% Proportion</th><th style="width: 15%;">Status</th><th style="width: 15%;">Edit</th>
                                                                                      </tr>
                                                                                  </thead>
                                                                                  <tbody>';
