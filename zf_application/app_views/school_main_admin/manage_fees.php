@@ -44,11 +44,47 @@
 
                     <div class="z-content-inner">
                         <div>
+                            <!--This is the section for general school fees-->
                             <div class="row margin-top-10">
-                                <?php
-                                    //Here we fetch all hostel details
-                                    //$zf_controller->zf_targetModel->fetchHostelDetails($identificationCode);
-                                ?>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="min-height: 30px !important;">
+                                                General School Fees 
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 right" style="min-height: 30px !important;">
+                                                Select Year:
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 300px !important;">Percentage Representation</div>
+                                            <div class="col-md-6">Actual Item Amounts</div>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                            
+                            <!--This is the section for class school fees-->
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="min-height: 30px !important;">
+                                                Class School Fees 
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 right" style="min-height: 30px !important;">
+                                                Select Class:
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 right" style="min-height: 30px !important;">
+                                                Select Year:
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 300px !important;">Percentage Representation</div>
+                                            <div class="col-md-6">Actual Item Amounts</div>
+                                        </div>
+                                    </div>          
+                                </div>
                             </div>
                         </div>
                         <div>
