@@ -49,16 +49,28 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="min-height: 30px !important;">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 30px !important; font-weight: 900;">
                                                 General School Fees 
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 right" style="min-height: 30px !important;">
-                                                Select Year:
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles"  style="min-height: 30px !important; text-align: right !important;">
+                                                Select Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("generalFeesYearsSelector");?>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 300px !important;">Percentage Representation</div>
-                                            <div class="col-md-6">Actual Item Amounts</div>
+                                            <div class="col-md-6" id="generalFeesStaticPieChart" style="border-right: 1px solid #efefef; min-height: 300px !important;">
+                                                <?php
+                                                    //Here we fetch general fee datails for the school in a pie chart
+                                                    $zf_controller->zf_targetModel->fetchGeneralFeesPieChart($identificationCode);
+                                                ?>
+                                            </div>
+                                            <div class="col-md-6" id="generalFeesDynamicPieChart" style="border-right: 1px solid #efefef; min-height: 300px !important;"></div>
+                                            <div class="col-md-6" id="generalFeesStaticBarChart">
+                                                <?php
+                                                    //Here we fetch general fee datails for the school in a bar chart
+                                                    $zf_controller->zf_targetModel->fetchGeneralFeesBarChart($identificationCode);
+                                                ?>
+                                            </div>
+                                            <div class="col-md-6" id="generalFeesDynamicBarChart"></div>
                                         </div>
                                     </div>          
                                 </div>
@@ -69,19 +81,33 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="min-height: 30px !important;">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
                                                 Class School Fees 
                                             </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 right" style="min-height: 30px !important;">
-                                                Select Class:
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: center !important;">
+                                                Select Class: <?=$zf_controller->zf_targetModel->zvs_buildClassOption($identificationCode,"activeClassSelector");?>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 right" style="min-height: 30px !important;">
-                                                Select Year:
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">
+                                                Select Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("classFeesYearsSelector");?>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 300px !important;">Percentage Representation</div>
-                                            <div class="col-md-6">Actual Item Amounts</div>
+                                            <div class="col-md-6" id="classFeesStaticPieChart" style="border-right: 1px solid #efefef; min-height: 300px !important;">
+                                                <?php
+                                                    //Here we fetch class fee datails for the school in a pie chart
+                                                    $zf_controller->zf_targetModel->fetchClassFeesPieChart($identificationCode);
+                                                ?>
+                                            </div>
+                                            <div class="col-md-6" id="classFeesDynamicPieChart" style="border-right: 1px solid #efefef; min-height: 300px !important;">
+                                                
+                                            </div>
+                                            <div class="col-md-6" id="classFeesStaticBarChart">
+                                                <?php
+                                                    //Here we fetch class fee datails for the school in a bar chart
+                                                    $zf_controller->zf_targetModel->fetchClassFeesBarChart($identificationCode);
+                                                ?>
+                                            </div>
+                                            <div class="col-md-6" id="classFeesDynamicBarChart"></div>
                                         </div>
                                     </div>          
                                 </div>

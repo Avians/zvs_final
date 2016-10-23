@@ -641,6 +641,37 @@ class School_main_adminController extends Zf_Controller {
     }
     
     
+    
+    //This method process dynamic fee charts
+    public function actionProcessDynamicFeesCharts($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_data($zvs_parameter);
+        
+        if($filteredData == "generalPieChart"){
+            
+            //This method plots the dynamic pie chart for general school fees
+            $this->zf_targetModel->plotDynamicGeneralPieChart();
+        
+        }else if($filteredData == "generalBarChart"){
+            
+            //This method plots the dynamic bar chart for general school fees
+            $this->zf_targetModel->plotDynamicGeneralBarChart();
+            
+        }else if($filteredData == "classPieChart"){
+            
+            //This method plots the dynamic pie chart for class school fees
+            $this->zf_targetModel->plotDynamicClassPieChart();
+            
+        }else if($filteredData == "classBarChart"){
+            
+            //This method plots the dynamic bar chart for class school fees
+            $this->zf_targetModel->plotDynamicClassBarChart();
+            
+        }
+        
+    }
+    
+    
 
 }
 ?>

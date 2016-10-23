@@ -6,16 +6,19 @@
 /*
  * ---------------------------------------------------------------------
  * |                                                                   |
- * |  This the Model which is responsible responsible for handling all |
- * |  logic that is related to management of school hostels .          |
+ * |  This the model is responsible for fetching data about location   |
+ * |  of a newly registered student.                                   |
  * |                                                                   |
  * ---------------------------------------------------------------------
  */
 
-class manageSchoolFees_Model extends Zf_Model {
+class processDynamicFeesCharts_Model extends Zf_Model {
     
-    private $zvs_controller;
 
+    private $_errorResult = array();
+    private $_validResult = array();
+    
+    private $userIdentificationCode;
 
     /*
     * --------------------------------------------------------------------------------------
@@ -26,33 +29,32 @@ class manageSchoolFees_Model extends Zf_Model {
     */
     public function __construct() {
         
-        parent::__construct();
-
-        $activeURL = Zf_Core_Functions::Zf_URLSanitize();
-
-        //This is the active controller
-        $this->zvs_controller = $activeURL[0];
+         parent::__construct();
          
+         $this->userIdentificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
+  
     }
     
     
     
+    
     /**
-     * This method returns all general fee details for a school in a pie chart
+     * This method is used to select Admin localities
      */
-    public function fetchGeneralFeesPieChart($identificationCode){
+    public function plotDynamicGeneralPieChart(){
         
-         
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-         
-         
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->userIdentificationCode)[2];
+        
+        $selectedYear = $_POST['postedChartValues'];
+        
+        
          //These are the initial chart settings
         $chartSettings = array(
             "ChartType" => "Pie2D",
-            "ChartID" => 'generalFeesPie',
+            "ChartID" => "generalFeesDynamicPie".$selectedYear,
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "350",
-            "ChartContainer" => "generalFeesStaticPieChart",
+            "ChartContainer" => "generalFeesDynamicPieChart",
             "ChartDataFormat" =>  "json",
         );
 
@@ -85,11 +87,10 @@ class manageSchoolFees_Model extends Zf_Model {
                             
                         ';
         
-
-        
-        
         //Pull all general school fees items
-        $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode);
+        $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode, $selectedYear);
+        
+        //print_r($zvs_generalSchoolFeesItems); exit();
         
         $chartData = ' "data":[ ';
         
@@ -117,21 +118,23 @@ class manageSchoolFees_Model extends Zf_Model {
     
     
     
+    
     /**
-     * This method returns all general fee details for a school in a bar chart
+     * This method is used to select Admin localities
      */
-    public function fetchGeneralFeesBarChart($identificationCode){
+    public function plotDynamicGeneralBarChart(){
         
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-         
-         
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->userIdentificationCode)[2];
+        
+        $selectedYear = $_POST['postedChartValues'];
+        
         //These are the initial chart settings
         $chartSettings = array(
             "ChartType" => "Column2D",
-            "ChartID" => 'generalFeesBar',
+            "ChartID" => "generalFeesDynamicBar".$selectedYear,
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "350",
-            "ChartContainer" => "generalFeesStaticBarChart",
+            "ChartContainer" => "generalFeesDynamicBarChart",
             "ChartDataFormat" =>  "json",
         );
 
@@ -150,8 +153,8 @@ class manageSchoolFees_Model extends Zf_Model {
                                 "exportenabled": "1",
                                 "bgColor": "#ffffff",
                                 "borderAlpha": "20",
-                                "canvasBorderAlpha": "0",
                                 "formatNumberScale": "0",
+                                "canvasBorderAlpha": "0",
                                 "usePlotGradientColor": "0",
                                 "plotBorderAlpha": "10",
                                 "placevaluesInside": "1",
@@ -170,7 +173,9 @@ class manageSchoolFees_Model extends Zf_Model {
         
         
         //Pull all general school fees items
-        $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode);
+        $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode,$selectedYear);
+        
+        //print_r($zvs_generalSchoolFeesItems); exit();
         
         $chartData = ' "data":[ ';
         
@@ -183,166 +188,7 @@ class manageSchoolFees_Model extends Zf_Model {
             
                 "label":"'.$feeItem.'",
                 "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', actual value"
-                        
-            },';
-            
-        }
-        
-        $chartData .= ']';
-        
-        //Here we generate the actual chart
-        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
-        
-    }
-    
-    
-    
-    /**
-     * This method returns all class fee details for a school in a pie chart
-     */
-    public function fetchClassFeesPieChart($identificationCode){
-        
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-         
-         
-         //These are the initial chart settings
-        $chartSettings = array(
-            "ChartType" => "Pie2D",
-            "ChartID" => 'classFeesPie',
-            "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "350",
-            "ChartContainer" => "classFeesStaticPieChart",
-            "ChartDataFormat" =>  "json",
-        );
-
-        
-        
-        //These chart properties add to the beauty of the chart
-        $chartProperties .= '
-            
-                            "chart":{  
-                                "caption": "Percentage Representation",
-                                "subCaption": "of class school fees items",
-                                "captionFontSize": "11",
-                                "subcaptionFontSize": "8",
-                                "showPercentValues": "1",
-                                "showPercentInTooltip": "0",
-                                "pieRadius": "90",
-                                "exportenabled": "1",
-                                "decimals": "1",
-                                "enableSmartLabels": "1",
-                                "use3DLighting": "1",
-                                "useDataPlotColorForLabels": "1",
-                                "smartLineColor": "#d11b2d",
-                                "smartLineThickness": "2",
-                                "smartLineAlpha": "75",
-                                "isSmartLineSlanted": "0",
-                                "labelDistance": "1",
-                                "slicingDistance": "10",
-                                "theme": "ocean"
-                            }
-                            
-                        ';
-        
-
-        
-        
-        //Pull all general school fees items
-        $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode);
-        
-        $chartData = ' "data":[ ';
-        
-        foreach ($zvs_generalSchoolFeesItems as $zvs_feeItems) {
-            
-            $feeItem = $zvs_feeItems['feeItem']; $itemAmount = $zvs_feeItems['itemAmount'];
-            
-            //This is the actual chart data in JSON format
-            $chartData .= '{
-            
-                "label":"'.$feeItem.'",
-                "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', percentage representation"
-                        
-            },';
-            
-        }
-        
-        $chartData .= ']';
-        
-        //Here we generate the actual chart
-        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
-        
-    }
-    
-    
-    
-    /**
-     * This method returns all class fee details for a school in a bar chart
-     */
-    public function fetchClassFeesBarChart($identificationCode){
-        
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-         
-         
-        //These are the initial chart settings
-        $chartSettings = array(
-            "ChartType" => "Column2D",
-            "ChartID" => 'classFeesBar',
-            "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "350",
-            "ChartContainer" => "classFeesStaticBarChart",
-            "ChartDataFormat" =>  "json",
-        );
-
-        
-        
-        //These chart properties add to the beauty of the chart
-        $chartProperties .= '
-            
-                            "chart":{  
-                                "caption": "Actual Amounts",
-                                "subCaption": "of class school fees items",
-                                "captionFontSize": "11",
-                                "subcaptionFontSize": "8",
-                                "xAxisName": "Fee Items",
-                                "yAxisName": "Amount of Money",
-                                "exportenabled": "1",
-                                "formatNumberScale": "0",
-                                "bgColor": "#ffffff",
-                                "borderAlpha": "20",
-                                "canvasBorderAlpha": "0",
-                                "usePlotGradientColor": "0",
-                                "plotBorderAlpha": "10",
-                                "placevaluesInside": "1",
-                                "rotatevalues": "1",
-                                "valueFontColor": "#ffffff",
-                                "useDataPlotColorForLabels": "1",
-                                "labelDistance": "1",
-                                "labelDisplay": "rotate",
-                                "slantLabels": "1",
-                                "slicingDistance": "10",
-                                "theme": "ocean"
-                            }
-                            
-                        ';
-        
-        
-        //Pull all general school fees items
-        $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode);
-        
-        $chartData = ' "data":[ ';
-        
-        foreach ($zvs_generalSchoolFeesItems as $zvs_feeItems) {
-            
-            $feeItem = $zvs_feeItems['feeItem']; $itemAmount = $zvs_feeItems['itemAmount'];
-            
-            //This is the actual chart data in JSON format
-            $chartData .= '{
-            
-                "label":"'.$feeItem.'",
-                "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', percentage representation"
+                "tooltext": "'.$feeItem.', actual value = '.$itemAmount.'"
                         
             },';
             
@@ -361,14 +207,14 @@ class manageSchoolFees_Model extends Zf_Model {
     /**
      * This private method returns all general school fees items
      */
-    private function fetchGeneralFeeItems($systemSchoolCode) {
-        
-        $currentDate = Zf_Core_Functions::Zf_CurrentDate(); $currentYear = explode("-", $currentDate)[2];
+    private function fetchGeneralFeeItems($systemSchoolCode, $selectedYear) {
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValue["feeItemYear"] = Zf_QueryGenerator::SQLValue($currentYear);
+        $zvs_sqlValue["feeItemYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
         
         $fetchGeneralFeeItems = Zf_QueryGenerator::BuildSQLSelect('zvs_general_school_fees', $zvs_sqlValue);
+        
+        //echo $fetchGeneralFeeItems; exit();
         
         $zf_executeFetchGeneralFeeItems= $this->Zf_AdoDB->Execute($fetchGeneralFeeItems);
 
@@ -401,32 +247,203 @@ class manageSchoolFees_Model extends Zf_Model {
     
     
     
+    /**
+     * This method is used to plot class pie chart
+     */
+    public function plotDynamicClassPieChart(){
+        
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->userIdentificationCode)[2];
+        
+        $postedChartValues = $_POST['postedChartValues'];
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Pie2D",
+            "ChartID" => "classFeesDynamicPie".$postedChartValues,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "350",
+            "ChartContainer" => "classFeesDynamicPieChart",
+            "ChartDataFormat" =>  "json",
+        );
+
+        
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{  
+                                "caption": "Percentage Representation",
+                                "subCaption": "of class school fees items",
+                                "captionFontSize": "11",
+                                "subcaptionFontSize": "8",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "pieRadius": "90",
+                                "exportenabled": "1",
+                                "decimals": "1",
+                                "enableSmartLabels": "1",
+                                "use3DLighting": "1",
+                                "useDataPlotColorForLabels": "1",
+                                "smartLineColor": "#d11b2d",
+                                "smartLineThickness": "2",
+                                "smartLineAlpha": "75",
+                                "isSmartLineSlanted": "0",
+                                "labelDistance": "1",
+                                "slicingDistance": "10",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        //Pull all class school fees items
+        $zvs_classSchoolFeesItems = $this->fetchClassFeeItems($postedChartValues);
+        
+        //print_r($zvs_generalSchoolFeesItems); exit();
+        
+        $chartData = ' "data":[ ';
+        
+        foreach ($zvs_classSchoolFeesItems as $zvs_feeItems) {
+            
+            $feeItem = $zvs_feeItems['feeItem']; $itemAmount = $zvs_feeItems['itemAmount'];
+            
+            //This is the actual chart data in JSON format
+            $chartData .= '{
+            
+                "label":"'.$feeItem.'",
+                "value":"'.$itemAmount.'",
+                "tooltext": "'.$feeItem.', percentage representation"
+                        
+            },';
+            
+        }
+        
+        $chartData .= ']';
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+    }
+    
+    
+    
     
     /**
-     * This private method returns all class based school fees items
+     * This method is used to plot class bar chart
      */
-    private function fetchClassFeeItems($systemSchoolCode) {
+    public function plotDynamicClassBarChart(){
         
-        $currentDate = Zf_Core_Functions::Zf_CurrentDate(); $currentYear = explode("-", $currentDate)[2];
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->userIdentificationCode)[2];
+        
+        $postedChartValues = $_POST['postedChartValues'];
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Column2D",
+            "ChartID" => "classFeesDynamicBar".$postedChartValues,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "350",
+            "ChartContainer" => "classFeesDynamicBarChart",
+            "ChartDataFormat" =>  "json",
+        );
+
+        
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{  
+                                "caption": "Actual Amounts",
+                                "subCaption": "of class school fees items",
+                                "captionFontSize": "11",
+                                "subcaptionFontSize": "8",
+                                "xAxisName": "Fee Items",
+                                "yAxisName": "Amount of Money",
+                                "exportenabled": "1",
+                                "bgColor": "#ffffff",
+                                "borderAlpha": "20",
+                                "formatNumberScale": "0",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "1",
+                                "rotatevalues": "1",
+                                "valueFontColor": "#ffffff",
+                                "useDataPlotColorForLabels": "1",
+                                "labelDistance": "1",
+                                "labelDisplay": "rotate",
+                                "slantLabels": "1",
+                                "maxLabelHeight": "40",
+                                "slicingDistance": "10",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        //Pull all general school fees items
+        $zvs_classSchoolFeesItems = $this->fetchClassFeeItems($postedChartValues);
+        
+        //print_r($zvs_generalSchoolFeesItems); exit();
+        
+        $chartData = ' "data":[ ';
+        
+        foreach ($zvs_classSchoolFeesItems as $zvs_feeItems) {
+            
+            $feeItem = $zvs_feeItems['feeItem']; $itemAmount = $zvs_feeItems['itemAmount'];
+            
+            //This is the actual chart data in JSON format
+            $chartData .= '{
+            
+                "label":"'.$feeItem.'",
+                "value":"'.$itemAmount.'",
+                "tooltext": "'.$feeItem.', actual value = '.$itemAmount.'"
+                        
+            },';
+            
+        }
+        
+        $chartData .= ']';
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method returns all general school fees items
+     */
+    private function fetchClassFeeItems($postedChartValues) {
+        
+        $postedChartData = explode(ZVSS_CONNECT, $postedChartValues);
+        
+        $selectedYear = $postedChartData[0];
+        $systemSchoolCode = $postedChartData[1];
+        $schoolClassCode = $postedChartData[1].ZVSS_CONNECT.$postedChartData[2];
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValue["feeItemYear"] = Zf_QueryGenerator::SQLValue($currentYear);
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        $zvs_sqlValue["feeItemYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
         
-        $fetchClassFeeItems = Zf_QueryGenerator::BuildSQLSelect('zvs_class_school_fees', $zvs_sqlValue);
+        $fetchGeneralFeeItems = Zf_QueryGenerator::BuildSQLSelect('zvs_class_school_fees', $zvs_sqlValue);
         
-        $zf_executeFetchClassFeeItems= $this->Zf_AdoDB->Execute($fetchClassFeeItems);
+        //echo $fetchGeneralFeeItems; exit();
+        
+        $zf_executeFetchGeneralFeeItems= $this->Zf_AdoDB->Execute($fetchGeneralFeeItems);
 
-        if(!$zf_executeFetchClassFeeItems){
+        if(!$zf_executeFetchGeneralFeeItems){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
-            if($zf_executeFetchClassFeeItems->RecordCount() > 0){
+            if($zf_executeFetchGeneralFeeItems->RecordCount() > 0){
 
-                while(!$zf_executeFetchClassFeeItems->EOF){
+                while(!$zf_executeFetchGeneralFeeItems->EOF){
                     
-                    $results = $zf_executeFetchClassFeeItems->GetRows();
+                    $results = $zf_executeFetchGeneralFeeItems->GetRows();
                     
                 }
                 
@@ -441,104 +458,6 @@ class manageSchoolFees_Model extends Zf_Model {
         }
         
     }
-    
-    
-    
-    /**
-     * This method returns the options for selecting year of study
-     */
-    public function zvs_buildYearsOption($yearsDiv){
-        
-        $currentDate = Zf_Core_Functions::Zf_CurrentDate();
-    
-        $endYear = explode("-", $currentDate)[2]; $startYear = $endYear-2;
-        
-        $option = "";
-        
-        $option .='<select class="select2me" style="width: 87px !important;"  id="'.$yearsDiv.'">';
-
-            for($year=$startYear; $year < $endYear+2; $year++){
-                
-                if(!empty($startYear) && $startYear != NULL){
-                    
-                    if(($year > $startYear || $year == $startYear) && $year != $endYear){
-                        
-                        $option .= '<option value="'.$year.'">'.$year.'</option>';
-                        
-                    }if($year == $endYear){
-                        
-                        $option .= '<option value="'.$year.'" selected>'.$year.'</option>';
-                        
-                    }
-                    
-                }else{
-                    
-                    $option .= '<option value="'.$year.'">'.$year.'</option>';
-                    
-                }
-                
-            }
-            
-            
-        $option .='</select>';
-            
-            
-        return $option;
- 
-        
-    }
-    
-    
-    
-    
-    /**
-     * This method returns the options for selecting year of study
-     */
-    public function zvs_buildClassOption($identificationCode, $classSelectDiv){
-        
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-        
-        
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        
-        $zf_selectClasses = Zf_QueryGenerator::BuildSQLSelect('zvs_school_classes', $zvs_sqlValue);
-
-        if(!$this->Zf_QueryGenerator->Query($zf_selectClasses)){
-                
-            $message = "Query execution failed.<br><br>";
-            $message.= "The failed Query is : <b><i>{$zf_selectClasses}.</i></b>";
-            echo $message; exit();
-
-        }else{
-            
-            $option = "";
-        
-            $option .='<select class="select2me" style="width: 130px !important;"  id="'.$classSelectDiv.'">';
-            
-            $resultCount = $this->Zf_QueryGenerator->RowCount();
-            if($resultCount > 0){
-
-                $this->Zf_QueryGenerator->MoveFirst();
-                
-                $option .='<option value=""></option>';
-                
-                while(!$this->Zf_QueryGenerator->EndOfSeek()){
-
-                    $fetchRow = $this->Zf_QueryGenerator->Row();
-                    $option .='<option value="'.$fetchRow->schoolClassCode.'" >'.$fetchRow->schoolClassName.'</option>';
-
-                }
-
-            }
-            
-            $option .='</select>';
-            
-            echo $option;
-        }
-        
- 
-    }
-    
     
 }
 

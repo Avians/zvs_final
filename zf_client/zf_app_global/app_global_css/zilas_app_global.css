@@ -290,6 +290,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     border: 1px solid #E1E1E1;
 }
 
+.portlet-titles{
+    color: #3c3c3c !important; font-family: ProximaNova-Semibold !important; font-size: 13px !important; line-height: 14px;
+    font-weight: bold; letter-spacing: 0.05em !important; text-align: left !important; margin-bottom: 10px;
+}
+
 .zvs-content-titles h3{
     padding: 5px 0px 0px 25px !important; color: #3C3C3C !important; font-family: ProximaNova-Semibold !important; font-size: 13px !important;
     font-weight: bold; letter-spacing: 0.05em !important;
