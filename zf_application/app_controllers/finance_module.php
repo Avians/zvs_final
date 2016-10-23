@@ -66,9 +66,11 @@ class finance_moduleController extends Zf_Controller {
     
     
     //This controller executes the fee structure view
-    public function actionFee_structure(){
+    public function actionFee_structure($identificationCode){
         
-        Zf_View::zf_displayView('fee_structure');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('fee_structure', $zf_actionData);
         
     }
    
