@@ -92,7 +92,7 @@ class processFeeStructure_Model extends Zf_Model {
            
        }else{
            
-           $feeStructureView .='<div class="zvs-table-blocks scroller" data-always-visible="1" data-rail-visible="0">
+           $feeStructureView .='<div class="zvs-table-blocks scroller" data-always-visible="1" data-rail-visible="1">
                                      <div class="table-responsive">
                                          <table class="table table-striped table-hover">
                                              <thead>
