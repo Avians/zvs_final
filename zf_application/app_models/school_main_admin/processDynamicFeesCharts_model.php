@@ -188,7 +188,7 @@ class processDynamicFeesCharts_Model extends Zf_Model {
             
                 "label":"'.$feeItem.'",
                 "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', actual value = '.$itemAmount.'"
+                "tooltext": "'.$feeItem.', actual value = '.number_format($itemAmount).'"
                         
             },';
             
@@ -396,7 +396,7 @@ class processDynamicFeesCharts_Model extends Zf_Model {
             
                 "label":"'.$feeItem.'",
                 "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', actual value = '.$itemAmount.'"
+                "tooltext": "'.$feeItem.', actual value = '.number_format($itemAmount).'"
                         
             },';
             

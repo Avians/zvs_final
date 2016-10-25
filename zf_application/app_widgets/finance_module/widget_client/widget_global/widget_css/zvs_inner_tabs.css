@@ -1,0 +1,15 @@
+<style type="text/css" rel="stylesheet">
+body {
+    background: #fff;
+}
+.container {
+    width: auto;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 768px) {
+    #container {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+</style>

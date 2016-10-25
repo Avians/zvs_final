@@ -89,6 +89,32 @@ class finance_moduleController extends Zf_Controller {
         Zf_View::zf_displayView('fee_refunds');
         
     }
+    
+    
+    
+    //This method process dynamic fee charts
+    public function actionProcessFeeStructure($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_data($zvs_parameter);
+        
+        if($filteredData == "classFeeStructure"){
+            
+            //This method generates a class fee structure
+            $this->zf_targetModel->generateClassFeeStructure();
+            
+        }else if($filteredData == "classFeeSummary"){
+            
+            //This method generates a class fee summary
+            $this->zf_targetModel->generateClassFeeSummary();
+            
+        }else if($filteredData == "feeClassTitle"){
+            
+            //This method generates class title
+            $this->zf_targetModel->generateClassTitle();
+            
+        }
+        
+    }
 
 }
 ?>

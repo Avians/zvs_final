@@ -44,7 +44,8 @@
                                     <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
-                                                Fees Structure
+                                                <div id="feeDefaultTitle">Fees Structure</div>
+                                                <div id="feeClassTitle" style="color: #21b4e2 !important; padding-top: 3px;"></div>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: center !important;">
                                                 Select Class: <?=$zf_controller->zf_targetModel->zvs_buildClassOption($identificationCode,"activeClassSelector");?>
@@ -53,13 +54,14 @@
                                                 Select Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("classFeesYearsSelector");?>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" id="feeStructureSplashScreen">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" min-height: 300px !important;">
-                                                <div id="feeStructureSplashScreen">
-                                                    <?=$zf_controller->zf_targetModel->feeStructureSplashScreen();?>
-                                                </div>
-                                                
+                                                <?=$zf_controller->zf_targetModel->feeStructureSplashScreen();?> 
                                             </div>
+                                        </div>
+                                        <div class="row" id="feeStructureData">
+                                            <div class="col-md-6" id="classFeeStructure" style="border-right: 1px solid #efefef; min-height: 300px !important;"></div>
+                                            <div class="col-md-6" id="classFeeSummary" ></div>
                                         </div>
                                     </div>          
                                 </div>
@@ -80,11 +82,11 @@
         //Here we are generating the applications absolute path.
         var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
         var $separator = "<?= DS; ?>";
-        var $current_view = "manage_fees";
+        var $current_view = "fee_structure";
 
-        //ManageForms.init($current_view, $absolute_path, $separator );
+        FinanceModule.init($current_view, $absolute_path, $separator );
 
 
     });
-</script> 
+</script>  
 

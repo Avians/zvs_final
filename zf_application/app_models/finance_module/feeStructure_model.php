@@ -46,7 +46,12 @@ class feeStructure_Model extends Zf_Model {
         
         $pageInformation = "";
         
-        $pageInformation .="We are about to load fee structure";
+        $pageInformation .='<div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
+                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br/>
+                                <span class="content-view-errors" >
+                                    <b>&nbsp;You will need to select a class and a related year so as to have a view of its fee structure.</b>
+                                </span>
+                            </div>';
         
         echo $pageInformation;
         

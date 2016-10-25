@@ -105,6 +105,9 @@ class newFeeItemRegistration_Model extends Zf_Model {
             $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
             $zvs_sqlValues['systemFeeCode'] = Zf_QueryGenerator::SQLValue($systemFeeCode);
             $zvs_sqlValues['feeItem'] = Zf_QueryGenerator::SQLValue($feeItem);
+            if($feeCategory == "classFees"){
+                $zvs_sqlValues['schoolClassCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['schoolClassCode']);
+            }
             
             //Here we prepare target column
             $zvs_sqlColumns = array('systemFeeCode','feeItem');

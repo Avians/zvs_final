@@ -1,4 +1,4 @@
-<?php
+e<?php
 
     //Access to pull all administrator information.
     $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolFees");
