@@ -102,14 +102,14 @@ class processFeeStructure_Model extends Zf_Model {
                                              </thead>
                                              <tbody>';
 
-                                             $genralTotalAmount; $classTotalAmount;
+                                             $generalTotalAmount; $classTotalAmount;
 
                                              foreach ($generalFeeDetails as $generalFeeValues) {
 
                                                  $itemName = $generalFeeValues['feeItem']; $itemAmount = $generalFeeValues['itemAmount'];
                                                  $feeStructureView .='<tr><td>'.$itemName.'</td><td style="text-align: right; padding-right: 10px;">'.number_format($itemAmount, 2).'</td></tr>';
 
-                                                 $genralTotalAmount = $genralTotalAmount + $itemAmount;
+                                                 $generalTotalAmount = $generalTotalAmount + $itemAmount;
 
                                              }
 
@@ -122,7 +122,7 @@ class processFeeStructure_Model extends Zf_Model {
 
                                              }
 
-                                             $totalAmount = $genralTotalAmount + $classTotalAmount;
+                                             $totalAmount = $generalTotalAmount + $classTotalAmount;
 
                     $feeStructureView .='   <tfooter>
                                              <tr>
@@ -152,6 +152,37 @@ class processFeeStructure_Model extends Zf_Model {
         
        $postedFeeValues = $_POST['postedFeeValues'];
        
+       $schoolClassCode = explode(ZVSS_CONNECT, $postedFeeValues)[0].ZVSS_CONNECT.explode(ZVSS_CONNECT, $postedFeeValues)[1];
+       
+       $generalFeeDetails = $this->pullGeneralFeeDetails($postedFeeValues);
+       
+       $classFeeDetails = $this->pullClassFeeDetails($postedFeeValues);
+       
+       $fechClassDetails = $this->pullClassDetails($schoolClassCode);
+       
+       $generalTotalAmount; $classTotalAmount;
+
+        foreach ($generalFeeDetails as $generalFeeValues) {
+
+            $itemAmount = $generalFeeValues['itemAmount']; $generalTotalAmount = $generalTotalAmount + $itemAmount;
+
+        }
+
+        foreach ($classFeeDetails as $classFeeValues) {
+
+            $itemAmount = $classFeeValues['itemAmount']; $classTotalAmount = $classTotalAmount + $itemAmount;
+
+        }
+        
+        foreach ($fechClassDetails as $classValue) {
+            
+            $className = strtolower($classValue['schoolClassName']);
+            
+        }
+        
+        
+       $totalAmount = $generalTotalAmount + $classTotalAmount;
+       
        $feeSummaryView = '<div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="dashboard-stat blue">
@@ -160,14 +191,14 @@ class processFeeStructure_Model extends Zf_Model {
                                     </div>
                                     <div class="details">
                                         <div class="number">
-                                           KES: 13,700.00
+                                           KES: '.number_format($totalAmount, 2).'
                                         </div>
                                         <div class="desc">
                                             Total School Fees
                                         </div>
                                     </div>
                                     <div class="more" style="height: 40px;" href="#">
-                                        Total annual school fees payable by form one students
+                                        Total annual school fees payable by '.$className.' students
                                     </div>
                                 </div>
                             </div>    
@@ -176,7 +207,7 @@ class processFeeStructure_Model extends Zf_Model {
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 100px !important;"></div>
+                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 150px !important;"></div>
                             <div class="col-md-6" ></div>
                         </div>';
        
