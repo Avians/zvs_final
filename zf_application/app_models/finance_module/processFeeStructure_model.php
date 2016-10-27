@@ -92,47 +92,47 @@ class processFeeStructure_Model extends Zf_Model {
            
        }else{
            
-           $feeStructureView .='<div class="zvs-table-blocks scroller" data-always-visible="1" data-rail-visible="1">
-                                     <div class="table-responsive">
-                                         <table class="table table-striped table-hover">
-                                             <thead>
-                                                 <tr>
-                                                     <th  style="width: 60%;"> Fee Item Name</th><th style="width: 35%; text-align: right; padding-right: 10px;">Amount</th>
-                                                 </tr>
-                                             </thead>
-                                             <tbody>';
+           $feeStructureView .='<div class="zvs-table-blocks-inner scroller" data-always-visible="1" data-rail-visible="0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th  style="width: 60%;"> Fee Item Name</th><th style="width: 35%; text-align: right; padding-right: 10px;">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>';
 
-                                             $generalTotalAmount; $classTotalAmount;
+                                                    $generalTotalAmount; $classTotalAmount;
 
-                                             foreach ($generalFeeDetails as $generalFeeValues) {
+                                                    foreach ($generalFeeDetails as $generalFeeValues) {
 
-                                                 $itemName = $generalFeeValues['feeItem']; $itemAmount = $generalFeeValues['itemAmount'];
-                                                 $feeStructureView .='<tr><td>'.$itemName.'</td><td style="text-align: right; padding-right: 10px;">'.number_format($itemAmount, 2).'</td></tr>';
+                                                        $itemName = $generalFeeValues['feeItem']; $itemAmount = $generalFeeValues['itemAmount'];
+                                                        $feeStructureView .='<tr><td>'.$itemName.'</td><td style="text-align: right; padding-right: 10px;">'.number_format($itemAmount, 2).'</td></tr>';
 
-                                                 $generalTotalAmount = $generalTotalAmount + $itemAmount;
+                                                        $generalTotalAmount = $generalTotalAmount + $itemAmount;
 
-                                             }
+                                                    }
 
-                                             foreach ($classFeeDetails as $classFeeValues) {
+                                                    foreach ($classFeeDetails as $classFeeValues) {
 
-                                                 $itemName = $classFeeValues['feeItem']; $itemAmount = $classFeeValues['itemAmount'];
-                                                 $feeStructureView .='<tr><td>'.$itemName.'</td><td style="text-align: right; padding-right: 10px;">'.number_format($itemAmount, 2).'</td></tr>';
+                                                        $itemName = $classFeeValues['feeItem']; $itemAmount = $classFeeValues['itemAmount'];
+                                                        $feeStructureView .='<tr><td>'.$itemName.'</td><td style="text-align: right; padding-right: 10px;">'.number_format($itemAmount, 2).'</td></tr>';
 
-                                                 $classTotalAmount = $classTotalAmount + $itemAmount;
+                                                        $classTotalAmount = $classTotalAmount + $itemAmount;
 
-                                             }
+                                                    }
 
-                                             $totalAmount = $generalTotalAmount + $classTotalAmount;
+                                                    $totalAmount = $generalTotalAmount + $classTotalAmount;
 
-                    $feeStructureView .='   <tfooter>
-                                             <tr>
-                                                 <th  style="width: 60%;"> Totals</th><th style="width: 35%; text-align: right; padding-right: 10px;">'.number_format($totalAmount, 2).'</th>
-                                             </tr>
-                                         </tfooter>
-                                     </tbody>
-                                 </table>
-                             </div>
-                         </div>';
+                           $feeStructureView .='</tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th  style="width: 60%;"> Totals</th><th style="width: 35%; text-align: right; padding-right: 10px;">'.number_format($totalAmount, 2).'</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                               </div>';
            
        }
        
