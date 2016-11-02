@@ -50,6 +50,8 @@
                
         };
         
+        
+        
         //Here we process all fee form data
         var feesDetails = function ($absolute_path, $separator){
             
@@ -176,6 +178,74 @@
                 
             });
             
+            
+            //Process the fee payment periods based on selected year
+            $('.paymentYear').change(function(){
+                
+                var processPaymentYear = $absolute_path + "school_main_admin" + $separator + "newFeeItemRegistration" + $separator + "process_year";
+                var paymentYear = $("#paymentYear").val();
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processPaymentYear,
+                    data: {paymentYear: paymentYear},
+                    cache: false,
+                    success: function(html) {
+                       $("#paymentPeriod").html(html);
+                    }
+                });
+
+            });
+            
+        };
+        
+        
+        
+        //Here we process all attendance data
+        var attendanceDetails = function ($absolute_path, $separator){
+            
+            $('#activeAttendanceSchedule').hide();
+            
+            $('#activeAttendanceYear').change(function(){
+                
+                var selectedYear = $('#activeAttendanceYear').val();
+                
+                if(selectedYear == "Select year"){
+                    
+                     $('#attendanceSplashScreen').show();
+                     $('#activeAttendanceSchedule').hide();
+                    
+                }else{
+                    
+                    $('#attendanceSplashScreen').hide();
+                    $('#activeAttendanceSchedule').show();
+                    
+                    $('#feeDefaultTitle').hide(); $('#feeClassTitle').show();
+                    //Model variables
+                    var targetController = "school_main_admin";
+                    var targetAction = "processAttendanceSchedule";
+                    var attendanceSchedule = "attendanceSchedule";
+
+                    var processAttendanceValues = $absolute_path + targetController + $separator + targetAction + $separator + attendanceSchedule;
+
+                    //Here we run ajax task for attendance schedule
+                    $.ajax({
+                        type: "POST",
+                        url: processAttendanceValues,
+                        data: {postedValues : selectedYear},
+                        cache: false,
+                        success: function(html) {
+                           $("#activeAttendanceSchedule").html(html);
+                        }
+                    });
+                    
+                }
+                
+                
+                
+            });
+            
         };
         
         
@@ -195,6 +265,10 @@
                 }if($current_view === "manage_fees"){
                     
                     feesDetails($absolute_path, $separator);
+                    
+                }if($current_view === "configure_attendance"){
+                    
+                    attendanceDetails($absolute_path, $separator);
                     
                 }
 

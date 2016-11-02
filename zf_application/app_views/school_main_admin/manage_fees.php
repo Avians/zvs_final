@@ -38,7 +38,8 @@ e<?php
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
                         <li><a>School fees overview</a></li>
-                        <li><a><i class="fa fa-plus-square"></i> School fees setup</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Configure school fees</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Configure payment schedule</a></li>
                         <li><a><i class="fa fa-edit"></i> Edit School fees</a></li>
                     </ul>
 
@@ -119,8 +120,22 @@ e<?php
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="portlet-body form" >
                                             <?php
-                                                //This is the form for registering platform super administrators
+                                                //This is the form for school fee setup
                                                 Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "fees_setup_form.php");
+                                            ?>
+                                        </div>
+                                    </div>          
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="portlet-body form" >
+                                            <?php
+                                                //This is the form for school fee setup
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "payment_schedule_form.php");
                                             ?>
                                         </div>
                                     </div>          

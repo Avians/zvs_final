@@ -117,9 +117,7 @@ class studentInformation_Model extends Zf_Model {
             
         }
         
-        
-                
-                
+               
         echo $select_options;
         
         

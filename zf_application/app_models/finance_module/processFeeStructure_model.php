@@ -207,8 +207,12 @@ class processFeeStructure_Model extends Zf_Model {
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 150px !important;"></div>
-                            <div class="col-md-6" ></div>
+                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 180px !important;">
+                                <div class="col-md-12 portlet-titles" style="text-align: center;">Payment Schedule</div>
+                            </div>
+                            <div class="col-md-6" >
+                                <div class="col-md-12 portlet-titles" style="text-align: center;">Payment Proportion</div>
+                            </div>
                         </div>';
        
        echo $feeSummaryView;

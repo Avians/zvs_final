@@ -41,7 +41,7 @@ $main_menu = array(
     
     //Manage Classess
     "manage_classes" => array(
-        'name' => '<i class="fa fa-building-o"></i> Manage Classes',
+        'name' => '<i class="fa fa-building-o"></i> Configure Classes',
         'controller' => $zvs_controller,
         'action' => 'manage_classes',
         'parameter' => $identificationCode,
@@ -53,7 +53,7 @@ $main_menu = array(
     
     //Manage Departments
     "manage_departments" => array(
-        'name' => '<i class="fa fa-sitemap"></i> Manage Departments ',
+        'name' => '<i class="fa fa-sitemap"></i> Configure Departments ',
         'controller' => $zvs_controller,
         'action' => 'manage_departments',
         'parameter' => $identificationCode,
@@ -65,7 +65,7 @@ $main_menu = array(
     
     //Manage Hostels
     "manage_hostels" => array(
-        'name' => '<i class="fa fa-hospital-o"></i> Manage Hostels ',
+        'name' => '<i class="fa fa-hospital-o"></i> Configure Hostels ',
         'controller' => $zvs_controller,
         'action' => 'manage_hostels',
         'parameter' => $identificationCode,
@@ -77,7 +77,7 @@ $main_menu = array(
     
     //Manage Teachers
     "manage_teachers" => array(
-        'name' => '<i class="fa fa-group"></i> Manage Teachers ',
+        'name' => '<i class="fa fa-group"></i> Configure Teachers ',
         'controller' => $zvs_controller,
         'action' => 'manage_teachers',
         'parameter' => $identificationCode,
@@ -89,7 +89,7 @@ $main_menu = array(
     
     //Manage Students
     "manage_students" => array(
-        'name' => '<i class="fa fa-graduation-cap"></i> Manage Students ',
+        'name' => '<i class="fa fa-graduation-cap"></i> Configure Students ',
         'controller' => $zvs_controller,
         'action' => 'manage_students',
         'parameter' => $identificationCode,
@@ -101,7 +101,7 @@ $main_menu = array(
     
     //Manage Sub Staff
     "manage_substaff" => array(
-        'name' => '<i class="fa fa-male"></i> Manage Sub-Staff ',
+        'name' => '<i class="fa fa-male"></i> Configure Sub-Staff ',
         'controller' => $zvs_controller,
         'action' => 'manage_substaff',
         'parameter' => $identificationCode,
@@ -113,7 +113,7 @@ $main_menu = array(
     
     //Manage Fees
     "manage_fees" => array(
-        'name' => '<i class="fa fa-money"></i> Manage Fees ',
+        'name' => '<i class="fa fa-money"></i> Configure Fees ',
         'controller' => $zvs_controller,
         'action' => 'manage_fees',
         'parameter' => $identificationCode,
@@ -125,7 +125,7 @@ $main_menu = array(
     
     //Manage Subjects
     "manage_subjects" => array(
-        'name' => '<i class="fa fa-book"></i> Manage Subjects ',
+        'name' => '<i class="fa fa-book"></i> Configure Subjects ',
         'controller' => $zvs_controller,
         'action' => 'manage_subjects',
         'parameter' => $identificationCode,
@@ -137,7 +137,7 @@ $main_menu = array(
     
     //Manage Exams
     "manage_exams" => array(
-        'name' => '<i class="fa fa-print"></i> Manage Examination ',
+        'name' => '<i class="fa fa-print"></i> Configure Examination ',
         'controller' => $zvs_controller,
         'action' => 'manage_exams',
         'parameter' => $identificationCode,
@@ -149,9 +149,21 @@ $main_menu = array(
     
     //Manage Grades
     "manage_grades" => array(
-        'name' => '<i class="fa fa-check-square-o"></i> Manage Grades ',
+        'name' => '<i class="fa fa-check-square-o"></i> Configure Grades ',
         'controller' => $zvs_controller,
         'action' => 'manage_grades',
+        'parameter' => $identificationCode,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+
+    //Manage Attendance
+    "configure_attendance" => array(
+        'name' => '<i class="fa fa-calendar"></i> Configure Attendance ',
+        'controller' => $zvs_controller,
+        'action' => 'configure_attendance',
         'parameter' => $identificationCode,
         'title' => '',
         'style' => '',
@@ -161,7 +173,7 @@ $main_menu = array(
     
     //Manage Timetable
     "manage_timetable" => array(
-        'name' => '<i class="fa fa-clock-o"></i> Manage Timetable ',
+        'name' => '<i class="fa fa-clock-o"></i> Configure Timetable ',
         'controller' => $zvs_controller,
         'action' => 'manage_timetable',
         'parameter' => $identificationCode,
@@ -173,7 +185,7 @@ $main_menu = array(
     
     //Manage Notice Board
     "manage_notice_board" => array(
-        'name' => '<i class="fa fa-comments-o"></i> Manage Notice Board ',
+        'name' => '<i class="fa fa-comments-o"></i> Configure NoticeBoard ',
         'controller' => $zvs_controller,
         'action' => 'manage_notice_board',
         'parameter' => $identificationCode,
@@ -185,7 +197,7 @@ $main_menu = array(
     
     //Manage Calender
     "manage_calendar" => array(
-        'name' => '<i class="fa fa-calendar"></i> Manage Calendar ',
+        'name' => '<i class="fa fa-calendar"></i> Configure Calendar ',
         'controller' => $zvs_controller,
         'action' => 'manage_calendar',
         'parameter' => $identificationCode,
@@ -197,7 +209,7 @@ $main_menu = array(
     
     //Manage Roles
     "manage_roles" => array(
-        'name' => '<i class="fa fa-user-plus"></i> Manage Roles',
+        'name' => '<i class="fa fa-user-plus"></i> Configure Roles',
         'controller' => $zvs_controller,
         'action' => 'manage_roles',
         'parameter' => $identificationCode,
@@ -209,7 +221,7 @@ $main_menu = array(
     
     //Manage Resources
     "manage_resources" => array(
-        'name' => '<i class="fa fa-sliders"></i> Manage Resources ',
+        'name' => '<i class="fa fa-sliders"></i> Configure Resources ',
         'controller' => $zvs_controller,
         'action' => 'manage_resources',
         'parameter' => $identificationCode,
@@ -221,7 +233,7 @@ $main_menu = array(
     
     //Manage Affiliates
     "manage_affiliates" => array(
-        'name' => '<i class="fa fa-share-square-o"></i> Manage Affiliates ',
+        'name' => '<i class="fa fa-share-square-o"></i> Configure Affiliates ',
         'controller' => $zvs_controller,
         'action' => 'manage_affiliates',
         'parameter' => $identificationCode,
@@ -303,12 +315,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS School Entities-->
-<li class="<?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-th-list"></i>
         <span class="title"> School Entities </span>
-        <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <li class="<?php if ($zvs_action == "manage_fees") { echo "active";} ?>">
@@ -322,6 +334,9 @@ $main_menu = array(
         </li>
         <li class="<?php if ($zvs_action == "manage_grades") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_grades']); ?>
+        </li>
+        <li class="<?php if ($zvs_action == "configure_attendance") { echo "active";} ?>">
+            <?php Zf_GenerateLinks::zf_internal_link($main_menu['configure_attendance']); ?>
         </li>
     </ul>
 </li>

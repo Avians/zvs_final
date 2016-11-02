@@ -10,6 +10,7 @@ $(document).ready(function() {
     
     //Manage School Fees
     NewFeeItemFormWizard.init();
+    PaymentScheduleFormWizard.init();
     
     //Manage Subjects
     NewSubjectFormWizard.init();
@@ -19,6 +20,9 @@ $(document).ready(function() {
     
     //Manage Grades
     NewGradeFormWizard.init();
+    
+    //Configure Attendance
+    NewAttendanceFormWizard.init();
     
     //Manage Departments
     NewDepartmentFormWizard.init();

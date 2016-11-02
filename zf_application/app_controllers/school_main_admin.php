@@ -266,6 +266,20 @@ class School_main_adminController extends Zf_Controller {
 
     
     /**
+     * This action executes the configuration of school attendance
+     */
+    public function actionConfigure_attendance($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('configure_attendance', $zf_actionData);
+        
+    }
+   
+    
+
+    
+    /**
      * This action executes the manage timetable view
      */
     public function actionManage_timetable(){
@@ -516,11 +530,22 @@ class School_main_adminController extends Zf_Controller {
     public function actionNewFeeItemRegistration($zvs_parameter){
        
         $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
         
         if($filterDataUrl == "new_feeItem"){
             
             //Register a new subject to a school on Zilas Virtual Schools platform 
             $this->zf_targetModel->registerNewFeeItem();
+            
+        }else if($filterDataUrl == 'fee_payment_schedule'){
+            
+            //Register a new fee payment schedule
+            $this->zf_targetModel->registerFeePaymentSchedule();
+            
+        }else if($filterDataVariable == 'process_year'){
+            
+            //Get the periods related to the selected year for the school
+            $this->zf_targetModel->getPeriodDetails();
             
         }
         
@@ -578,6 +603,25 @@ class School_main_adminController extends Zf_Controller {
             
             //Register a new grade to a school on Zilas Virtual Schools platform 
             $this->zf_targetModel->registerNewGrade();
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A NEW ATTENDANCE.
+     */
+    public function actionNewAttendanceRegistration($zvs_parameter){
+       
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_attendance"){
+            
+            //Register a new attendance to a school on Zilas Virtual Schools platform 
+            $this->zf_targetModel->registerNewAttendance();
             
         }
         
@@ -669,6 +713,22 @@ class School_main_adminController extends Zf_Controller {
             
         }
         
+    }
+    
+    
+    
+    
+    //This method process dynamic fee charts
+    public function actionProcessAttendanceSchedule($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_data($zvs_parameter);
+        
+        if($filteredData == "attendanceSchedule"){
+            
+            //This method processes annual attendance schedule
+            $this->zf_targetModel->processAnnualAttendanceSchedule();
+        
+        }
     }
     
     
