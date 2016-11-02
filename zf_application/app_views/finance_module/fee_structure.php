@@ -60,8 +60,8 @@
                                             </div>
                                         </div>
                                         <div class="row" id="feeStructureData">
-                                            <div class="col-md-6" id="classFeeStructure" style="border-right: 1px solid #efefef; min-height: 330px !important; height: auto !important;"></div>
-                                            <div class="col-md-6" id="classFeeSummary" ></div>
+                                            <div class="col-md-5 col-sm-12 col-xs-12" id="classFeeStructure" style="border-right: 1px solid #efefef; min-height: 330px !important; height: auto !important;"></div>
+                                            <div class="col-md-7 col-sm-12 col-xs-12" id="classFeeSummary" ></div>
                                         </div>
                                     </div>          
                                 </div>

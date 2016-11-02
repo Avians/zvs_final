@@ -158,9 +158,11 @@ class processFeeStructure_Model extends Zf_Model {
        
        $classFeeDetails = $this->pullClassFeeDetails($postedFeeValues);
        
-       $fechClassDetails = $this->pullClassDetails($schoolClassCode);
+       $fetchClassDetails = $this->pullClassDetails($schoolClassCode);
        
-       $generalTotalAmount; $classTotalAmount;
+       $pullPaymentSchedule = $this->feePaymentSchedule($postedFeeValues);
+       
+       $generalTotalAmount; $classTotalAmount; $totalProportion;
 
         foreach ($generalFeeDetails as $generalFeeValues) {
 
@@ -174,11 +176,19 @@ class processFeeStructure_Model extends Zf_Model {
 
         }
         
-        foreach ($fechClassDetails as $classValue) {
+        foreach ($fetchClassDetails as $classValue) {
             
             $className = strtolower($classValue['schoolClassName']);
             
         }
+        
+        foreach ($pullPaymentSchedule as $paymentProportionValue){
+            
+            $paymentScheduleProportion = $paymentProportionValue['paymentScheduleProportion']; $totalProportion = $totalProportion + $paymentScheduleProportion;
+            
+        }
+        
+        
         
         
        $totalAmount = $generalTotalAmount + $classTotalAmount;
@@ -208,10 +218,42 @@ class processFeeStructure_Model extends Zf_Model {
                         </div>
                         <div class="row">
                             <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 180px !important;">
-                                <div class="col-md-12 portlet-titles" style="text-align: center;">Payment Schedule</div>
+                                <div class="col-md-12 portlet-titles" style="text-align: center !important;">Payment Schedule</div>
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;">Schedule Name</th><th style="width: 35%; text-align: left; padding-left: 10px;">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>';
+                                                
+                                                if($pullPaymentSchedule == 0){
+                                                    
+                                                   $feeSummaryView .= '<tr><td colspan="2">No schedules for selected year yet!!</td></tr>'; 
+                                                    
+                                                }else{
+                                                    foreach ($pullPaymentSchedule as $paymentValues) {
+
+                                                        $paymentName = $paymentValues['paymentScheduleName']; $paymentProportion = $paymentValues['paymentScheduleProportion'];
+                                                        $totalPaymentValue = ($paymentProportion/$totalProportion)*$totalAmount;
+                                                        $feeSummaryView .= '<tr><td style="text-align: right; padding-right: 10px;">'.$paymentName.':</td><td style="text-align: left; padding-left: 10px;">'.number_format($totalPaymentValue, 2).'</td></tr>';
+                                                    }
+                                                }
+                                                
+                          $feeSummaryView .= '<tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;"> Totals:</th><th style="width: 35%; text-align: right; padding-right: 10px;">'.number_format($totalAmount, 2).'</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6" >
-                                <div class="col-md-12 portlet-titles" style="text-align: center;">Payment Proportion</div>
+                                <div class="col-md-12 portlet-titles" style="text-align: center !important;">Payment Proportion</div>
                             </div>
                         </div>';
        
@@ -356,11 +398,56 @@ class processFeeStructure_Model extends Zf_Model {
                 return 0;
                 
             }
+            
         }
-        
-        
+         
     }
     
+    
+    
+    /**
+     * This private method pulls all fee payment schedule for a selected year
+     */
+    private function feePaymentSchedule($formValues){
+        
+        $feeData = explode(ZVSS_CONNECT, $formValues);
+        
+        $systemSchoolCode = $feeData[0]; $selectedYear = $feeData[2];
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
+        
+        $fetchFeePaymentSchedule = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_schedule', $zvs_sqlValue);
+        
+        //echo $fetchClassFeeItems; exit();
+        
+        $zf_executeFetchFeePaymentSchedule = $this->Zf_AdoDB->Execute($fetchFeePaymentSchedule);
+
+        if(!$zf_executeFetchFeePaymentSchedule){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchFeePaymentSchedule->RecordCount() > 0){
+
+                while(!$zf_executeFetchFeePaymentSchedule->EOF){
+                    
+                    $results = $zf_executeFetchFeePaymentSchedule->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
     
     
 }
