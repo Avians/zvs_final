@@ -40,7 +40,7 @@ e<?php
                         <li><a>School fees overview</a></li>
                         <li><a><i class="fa fa-plus-square"></i> Configure school fees</a></li>
                         <li><a><i class="fa fa-plus-square"></i> Configure payment schedule</a></li>
-                        <li><a><i class="fa fa-edit"></i> Edit School fees</a></li>
+                        <li><a>Payment schedule overview</a></li>
                     </ul>
 
                     <div class="z-content-inner">
