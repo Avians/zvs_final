@@ -332,7 +332,7 @@ class manageSchoolFees_Model extends Zf_Model {
         $zvs_generalSchoolFeesItems = $this->fetchGeneralFeeItems($systemSchoolCode);
         
         $chartData = ' "data":[ ';
-        
+      
         foreach ($zvs_generalSchoolFeesItems as $zvs_feeItems) {
             
             $feeItem = $zvs_feeItems['feeItem']; $itemAmount = $zvs_feeItems['itemAmount'];

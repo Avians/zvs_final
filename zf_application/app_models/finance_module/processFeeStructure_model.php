@@ -153,6 +153,7 @@ class processFeeStructure_Model extends Zf_Model {
        $postedFeeValues = $_POST['postedFeeValues'];
        
        $schoolClassCode = explode(ZVSS_CONNECT, $postedFeeValues)[0].ZVSS_CONNECT.explode(ZVSS_CONNECT, $postedFeeValues)[1];
+       $selectedYear = explode(ZVSS_CONNECT, $postedFeeValues)[2];
        
        $generalFeeDetails = $this->pullGeneralFeeDetails($postedFeeValues);
        
@@ -161,6 +162,7 @@ class processFeeStructure_Model extends Zf_Model {
        $fetchClassDetails = $this->pullClassDetails($schoolClassCode);
        
        $pullPaymentSchedule = $this->feePaymentSchedule($postedFeeValues);
+      
        
        $generalTotalAmount; $classTotalAmount; $totalProportion;
 
@@ -224,7 +226,7 @@ class processFeeStructure_Model extends Zf_Model {
                                         <table class="table table-striped table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;">Schedule Name</th><th style="width: 35%; text-align: left; padding-left: 10px;">Amount</th>
+                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;">Schedule Name</th><th style="width: 35%; text-align: left; padding-left: 10px;">Amount(Kes)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -234,6 +236,7 @@ class processFeeStructure_Model extends Zf_Model {
                                                    $feeSummaryView .= '<tr><td colspan="2">No schedules for selected year yet!!</td></tr>'; 
                                                     
                                                 }else{
+                                                    
                                                     foreach ($pullPaymentSchedule as $paymentValues) {
 
                                                         $paymentName = $paymentValues['paymentScheduleName']; $paymentProportion = $paymentValues['paymentScheduleProportion'];
@@ -245,7 +248,7 @@ class processFeeStructure_Model extends Zf_Model {
                           $feeSummaryView .= '<tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;"> Totals:</th><th style="width: 35%; text-align: right; padding-right: 10px;">'.number_format($totalAmount, 2).'</th>
+                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;"> Total Fees:</th><th style="width: 35%; text-align: left; padding-left: 10px;">'.number_format($totalAmount, 2).'</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -254,6 +257,11 @@ class processFeeStructure_Model extends Zf_Model {
                             </div>
                             <div class="col-md-6" >
                                 <div class="col-md-12 portlet-titles" style="text-align: center !important;">Payment Proportion</div>
+                                    <div class="col-md-12" id="feesScheduleChart">';
+                          
+                                        $feeSummaryView .= $this->plotFeesProportionPieChart($postedFeeValues);
+                                        
+                $feeSummaryView .= '</div>
                             </div>
                         </div>';
        
@@ -403,6 +411,95 @@ class processFeeStructure_Model extends Zf_Model {
          
     }
     
+   
+    /**
+     * This method returns all general fee details for a school in a pie chart
+     */
+    private function plotFeesProportionPieChart($postedValues){
+        
+        $selectedYear = explode(ZVSS_CONNECT, $postedValues)[2];
+         
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Pie2D",
+            "ChartID" => "feePaymentCharts".$selectedYear,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "200",
+            "ChartContainer" => "feesScheduleChart",
+            "ChartDataFormat" =>  "json",
+        );
+
+        
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{
+                                "bgColor": "#ffffff",
+                                "pieRadius": "60",
+                                "showBorder": "0",
+                                "use3DLighting": "0",
+                                "showShadow": "0",
+                                "showLabels": "0", 
+                                "showValues": "0",
+                                "startingAngle": "0",
+                                "slicingDistance" : "10",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "decimals": "1",
+                                "captionFontSize": "14",
+                                "subcaptionFontSize": "14",
+                                "subcaptionFontBold": "0",
+                                "toolTipColor": "#ffffff",
+                                "toolTipBorderThickness": "0",
+                                "toolTipBgColor": "#000000",
+                                "toolTipBgAlpha": "80",
+                                "toolTipBorderRadius": "2",
+                                "toolTipPadding": "5",
+                                "showHoverEffect": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": "0",
+                                "legendShadow": "0",
+                                "legendItemFontSize": "9",
+                                "legendItemFontColor": "#666666",
+                                "useDataPlotColorForLabels": "1",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+
+        
+        
+        //Pull all fee proportion items
+        
+        $feePaymentSchedule = $this->feePaymentSchedule($postedValues);
+        
+        
+        
+        $chartData = '"data":[ ';
+        
+        foreach ($feePaymentSchedule as $paymentValues) {
+            
+            $paymentName = $paymentValues['paymentScheduleName']; $paymentProportion = $paymentValues['paymentScheduleProportion'];
+            
+            $chartData .= ' {
+
+                "label":"'.$paymentName.'",
+                "value": "'.$paymentProportion.'",
+                "tooltext": "'.$paymentName.', '.$paymentProportion.'%"
+
+            },';
+            
+        }
+        
+        $chartData .= ']';
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+    }
     
     
     /**
