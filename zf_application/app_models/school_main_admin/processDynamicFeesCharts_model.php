@@ -81,6 +81,13 @@ class processDynamicFeesCharts_Model extends Zf_Model {
                                 "smartLineAlpha": "75",
                                 "isSmartLineSlanted": "0",
                                 "labelDistance": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": "0",
+                                "legendShadow": "0",
+                                "legendItemFontSize": "10",
+                                "legendItemFontColor": "#666666",
+                                "useDataPlotColorForLabels": "1",
                                 "slicingDistance": "10",
                                 "theme": "ocean"
                             }
@@ -289,6 +296,13 @@ class processDynamicFeesCharts_Model extends Zf_Model {
                                 "smartLineAlpha": "75",
                                 "isSmartLineSlanted": "0",
                                 "labelDistance": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": "0",
+                                "legendShadow": "0",
+                                "legendItemFontSize": "10",
+                                "legendItemFontColor": "#666666",
+                                "useDataPlotColorForLabels": "1",
                                 "slicingDistance": "10",
                                 "theme": "ocean"
                             }

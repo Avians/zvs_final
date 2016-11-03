@@ -219,14 +219,14 @@ class processFeeStructure_Model extends Zf_Model {
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 180px !important;">
+                            <div class="col-md-6" style="border-right: 1px solid #efefef; min-height: 230px !important;">
                                 <div class="col-md-12 portlet-titles" style="text-align: center !important;">Payment Schedule</div>
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" style="margin-top: 5px !important;">
                                         <table class="table table-striped table-hover">
                                             <thead>
-                                                <tr>
-                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;">Schedule Name</th><th style="width: 35%; text-align: left; padding-left: 10px;">Amount(Kes)</th>
+                                                <tr style="font-weight: bold !important; font-size: 11px !important;">
+                                                    <th style="width: 55%;text-align: right; padding-right: 10px;">Schedule Name</th><th style="width: 45%; text-align: left; padding-left: 10px;">Amount (Kes)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>';
@@ -241,14 +241,14 @@ class processFeeStructure_Model extends Zf_Model {
 
                                                         $paymentName = $paymentValues['paymentScheduleName']; $paymentProportion = $paymentValues['paymentScheduleProportion'];
                                                         $totalPaymentValue = ($paymentProportion/$totalProportion)*$totalAmount;
-                                                        $feeSummaryView .= '<tr><td style="text-align: right; padding-right: 10px;">'.$paymentName.':</td><td style="text-align: left; padding-left: 10px;">'.number_format($totalPaymentValue, 2).'</td></tr>';
+                                                        $feeSummaryView .= '<tr style="font-weight: bold !important; font-size: 11px !important;"><td style="text-align: right; padding-right: 10px;">'.$paymentName.':</td><td style="text-align: left; padding-left: 10px;">'.number_format($totalPaymentValue, 2).'</td></tr>';
                                                     }
                                                 }
                                                 
                           $feeSummaryView .= '<tbody>
                                             <tfoot>
-                                                <tr>
-                                                    <th  style="width: 60%;text-align: right; padding-right: 10px;"> Total Fees:</th><th style="width: 35%; text-align: left; padding-left: 10px;">'.number_format($totalAmount, 2).'</th>
+                                                <tr style="font-weight: bold !important; font-size: 13px !important;">
+                                                    <th style="width: 55%;text-align: right; padding-right: 10px;"> Total Fees:</th><th style="width: 45%; text-align: left; padding-left: 10px;">'.number_format($totalAmount, 2).'</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -424,7 +424,7 @@ class processFeeStructure_Model extends Zf_Model {
             "ChartType" => "Pie2D",
             "ChartID" => "feePaymentCharts".$selectedYear,
             "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "200",
+            "ChartHeight" =>  "230",
             "ChartContainer" => "feesScheduleChart",
             "ChartDataFormat" =>  "json",
         );
@@ -443,7 +443,7 @@ class processFeeStructure_Model extends Zf_Model {
                                 "showLabels": "0", 
                                 "showValues": "0",
                                 "startingAngle": "0",
-                                "slicingDistance" : "10",
+                                "slicingDistance" : "8",
                                 "showPercentValues": "1",
                                 "showPercentInTooltip": "0",
                                 "decimals": "1",
@@ -461,9 +461,10 @@ class processFeeStructure_Model extends Zf_Model {
                                 "legendBgColor": "#ffffff",
                                 "legendBorderAlpha": "0",
                                 "legendShadow": "0",
-                                "legendItemFontSize": "9",
+                                "legendItemFontSize": "10",
                                 "legendItemFontColor": "#666666",
                                 "useDataPlotColorForLabels": "1",
+                                "use3DLighting": "1",
                                 "theme": "ocean"
                             }
                             
