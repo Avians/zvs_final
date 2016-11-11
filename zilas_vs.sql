@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.1.1
+-- version 4.4.10
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 02, 2016 at 09:32 PM
+-- Generation Time: Nov 10, 2016 at 05:39 AM
 -- Server version: 5.5.42
--- PHP Version: 5.6.7
+-- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `zilas_vs`
@@ -117,22 +117,18 @@ CREATE TABLE `zvs_class_school_fees` (
   `feeItemYear` varchar(5) NOT NULL,
   `itemStatus` tinyint(1) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_class_school_fees`
 --
 
 INSERT INTO `zvs_class_school_fees` (`id`, `systemSchoolCode`, `schoolClassCode`, `systemFeeCode`, `feeItem`, `itemAlias`, `itemAmount`, `feeItemYear`, `itemStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2017', 'Tuition', 'Tuition', '2392', '2017', 1, '2016-10-23'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]LTT[`^`]2017', 'LT & T', 'LT & T', '1621', '2017', 1, '2016-10-23'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]AdmissionCost[`^`]2017', 'Admission Cost', 'ADM Cost', '2516', '2017', 1, '2016-10-23'),
-(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]EWC[`^`]2017', 'EWC', 'EWC', '6302', '2017', 1, '2016-10-23'),
-(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Activity[`^`]2017', 'Activity', 'Activity', '798', '2017', 1, '2016-10-23'),
-(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]P/Emoluments[`^`]2017', 'P/Emoluments', 'P/Emoluments', '5972', '2017', 0, '2016-10-23'),
-(7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Insurance[`^`]2017', 'Insurance', 'Insurance', '1060', '2017', 1, '2016-10-23'),
-(8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Boarding[`^`]2017', 'Boarding', 'Boarding', '32385', '2017', 1, '2016-10-23'),
-(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]AcademicTrip[`^`]2017', 'Academic Trip', 'Academic Trip', '6000', '2017', 1, '2016-10-29');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]R.M.I[`^`]2017', 'R.M.I', 'R.M.I', '2392', '2017', 1, '2016-11-03'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]LTT[`^`]2017', 'L T & T', 'L T & T', '1621', '2017', 1, '2016-11-03'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Admission[`^`]2017', 'Admission', 'Admission', '2516', '2017', 1, '2016-11-03'),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]EWC[`^`]2017', 'EWC', 'EWC', '6302', '2017', 1, '2016-11-03'),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]P/Emoluments[`^`]2017', 'P / Emoluments', 'P / Emoluments', '5972', '2017', 1, '2016-11-03');
 
 -- --------------------------------------------------------
 
@@ -149,16 +145,15 @@ CREATE TABLE `zvs_fees_payment_schedule` (
   `paymentScheduleProportion` varchar(5) NOT NULL,
   `paymentScheduleStatus` tinyint(1) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_fees_payment_schedule`
 --
 
 INSERT INTO `zvs_fees_payment_schedule` (`id`, `systemSchoolCode`, `systemPaymentCode`, `paymentScheduleName`, `paymentScheduleYear`, `paymentScheduleProportion`, `paymentScheduleStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '50', 1, '2016-11-02'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '30', 1, '2016-11-02'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2017', 'Third Term', '2017', '20', 1, '2016-11-02');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '80', 1, '2016-11-03'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '20', 1, '2016-11-03');
 
 -- --------------------------------------------------------
 
@@ -176,15 +171,17 @@ CREATE TABLE `zvs_general_school_fees` (
   `feeItemYear` varchar(5) NOT NULL,
   `itemStatus` tinyint(1) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_general_school_fees`
 --
 
 INSERT INTO `zvs_general_school_fees` (`id`, `systemSchoolCode`, `systemFeeCode`, `feeItem`, `itemAlias`, `itemAmount`, `feeItemYear`, `itemStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Medical[`^`]2017', 'Medical', 'Medical', '508', '2017', 0, '2016-10-23'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2016', 'Tuition', 'Tuition', '4500', '2016', 1, '2016-10-28');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]BoardingFees[`^`]2017', 'Boarding Fees', 'Bording Fees', '32385', '2017', 1, '2016-11-03'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Activity[`^`]2017', 'Activity', 'Activity', '798', '2017', 1, '2016-11-03'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Medical[`^`]2017', 'Medical', 'Medical', '508', '2017', 1, '2016-11-03'),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Insurance[`^`]2017', 'Insurance', 'Insurance', '1060', '2017', 1, '2016-11-03');
 
 -- --------------------------------------------------------
 
@@ -502,9 +499,9 @@ CREATE TABLE `zvs_school_attendance_schedule` (
 --
 
 INSERT INTO `zvs_school_attendance_schedule` (`id`, `systemSchoolCode`, `systemAttendanceCode`, `attendanceName`, `attendanceYear`, `attendanceStartDate`, `attendanceEndDate`, `attendanceStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '2017-01-09', '2017-04-07', 1, '2016-11-02'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '2017-05-01', '2017-08-04', 1, '2016-11-02'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2017', 'Third Term', '2017', '2017-09-04', '2017-11-03', 1, '2016-11-02');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '2017-01-09', '2017-04-07', 1, '2016-11-03'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '2017-05-01', '2017-08-04', 1, '2016-11-03'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2017', 'Third Term', '2017', '2017-09-04', '2017-11-03', 1, '2016-11-03');
 
 -- --------------------------------------------------------
 
@@ -1696,17 +1693,17 @@ ALTER TABLE `zvs_blood_groups`
 -- AUTO_INCREMENT for table `zvs_class_school_fees`
 --
 ALTER TABLE `zvs_class_school_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_fees_payment_schedule`
 --
 ALTER TABLE `zvs_fees_payment_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `zvs_general_school_fees`
 --
 ALTER TABLE `zvs_general_school_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `zvs_platform_admin`
 --

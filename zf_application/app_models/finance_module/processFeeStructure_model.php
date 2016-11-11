@@ -210,7 +210,7 @@ class processFeeStructure_Model extends Zf_Model {
                                         </div>
                                     </div>
                                     <div class="more" style="height: 40px;" href="#">
-                                        Total annual school fees payable by '.$className.' students
+                                        Total annual school fees payable by '.$className.' students in '.$selectedYear.'
                                     </div>
                                 </div>
                             </div>    

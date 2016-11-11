@@ -42,9 +42,11 @@ class finance_moduleController extends Zf_Controller {
     
     
     //This controller executes collect fees view
-    public function actionCollect_fees(){
+    public function actionCollect_fees($identificationCode){
         
-        Zf_View::zf_displayView('collect_fees');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('collect_fees',$zf_actionData);
         
     }
     
