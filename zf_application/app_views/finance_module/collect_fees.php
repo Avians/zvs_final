@@ -40,6 +40,12 @@
                             <!--This is the section for class school fees-->
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="alert alert-info">
+                                        <button class="close" data-dismiss="alert"></button>
+                                        <b>In order to collect student school fees, select a class, then select an associated stream. From the populated student list, select the name of the student whose fees is to be collected.</b>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="portlet zvs-content-blocks" style="min-height: 150px !important;">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 160px !important; height: auto !important;">
@@ -102,7 +108,9 @@
                                     </div>          
                                 </div>
                             </div>
-                            <div class="row">
+                            
+                            <!--This section holds information about the students fee details-->
+                            <div class="row" id="feesHistoryContainer">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
                                         <div class="row">
@@ -117,7 +125,9 @@
                                     </div>          
                                 </div>
                             </div>
-                            <div class="row">
+                            
+                            <!--This section holds the form that is used collect school fees-->
+                            <div class="row" id="collectFeesContainer">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
                                         Here we go

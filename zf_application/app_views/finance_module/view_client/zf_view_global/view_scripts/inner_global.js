@@ -7,7 +7,7 @@
 var FinanceModule = function(){
 
 
-    //Here we process all class details.
+    //Here we process all fee structure.
     var feeStructure = function ($absolute_path, $separator){
 
         $('#feeStructureData, #feeClassTitle').hide();
@@ -99,6 +99,14 @@ var FinanceModule = function(){
         });
 
     };
+    
+    
+    //Here we process all fee collection details
+    var collectFees = function ($absolute_path, $separator){
+        
+        //$('#feesHistoryContainer, #collectFeesContainer').hide();
+        
+    };
 
 
 
@@ -111,6 +119,10 @@ var FinanceModule = function(){
 
                 feeStructure($absolute_path, $separator);
 
+            }else if($current_view === "collect_fees"){
+                
+                collectFees($absolute_path, $separator);
+                
             }
 
         }
