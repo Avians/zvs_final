@@ -104,7 +104,80 @@ var FinanceModule = function(){
     //Here we process all fee collection details
     var collectFees = function ($absolute_path, $separator){
         
-        //$('#feesHistoryContainer, #collectFeesContainer').hide();
+        $('#feesHistoryContainer, #collectFeesContainer').hide();
+        
+        
+        //Process the streams within the selected class
+        $('.studentClassCode').change(function(){
+
+            var processStreams = $absolute_path + "finance_module" + $separator + "ProcessFeeInformation" + $separator + "process_streams";
+            var studentClassCode = $("#studentClassCode").val();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processStreams,
+                data: {studentClassCode: studentClassCode},
+                cache: false,
+                success: function(html) {
+                   $("#studentStreamCode").html(html);
+                }
+            });
+
+        });
+        
+        
+        
+        
+        //Process the streams within the selected class
+        $('.studentStreamCode').change(function(){
+
+            var processStudentsList = $absolute_path + "finance_module" + $separator + "ProcessFeeInformation" + $separator + "process_students_list";
+            var studentStreamCode = $("#studentStreamCode").val();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processStudentsList,
+                data: {studentStreamCode: studentStreamCode},
+                cache: false,
+                success: function(html) {
+                   $("#studentsListDetails").html(html);
+                }
+            });
+
+        });
+        
+        
+        
+        
+        //Process the streams within the selected class
+        $('.studentsListDetails, #feesHistoryYear').change(function(){
+            
+            $('#feesHistoryContainer').fadeIn(1000, function(){
+                
+                $('#feesHistoryDetails').show();
+                
+                var zvs_connect = "[`^`]";
+                var processFeeHistory = $absolute_path + "finance_module" + $separator + "ProcessFeeInformation" + $separator + "process_fee_history";
+                var identificationCode = $("#studentsListDetails").val();
+                var feesHistoryYear = $("#feesHistoryYear").val();
+                var feesHistoryIdentifier = identificationCode+zvs_connect+feesHistoryYear;
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processFeeHistory,
+                    data: {feesHistoryIdentifier: feesHistoryIdentifier},
+                    cache: false,
+                    success: function(html) {
+                       $("#feesHistoryDetails").html(html);
+                    }
+                });
+                
+            });
+            
+        });
         
     };
 

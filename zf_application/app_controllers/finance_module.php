@@ -41,6 +41,8 @@ class finance_moduleController extends Zf_Controller {
     }
     
     
+    
+    
     //This controller executes collect fees view
     public function actionCollect_fees($identificationCode){
         
@@ -51,6 +53,8 @@ class finance_moduleController extends Zf_Controller {
     }
     
     
+    
+    
     //This controller executes the finance status view
     public function actionFinance_status(){
         
@@ -59,12 +63,16 @@ class finance_moduleController extends Zf_Controller {
     }
     
     
+    
+    
     //This controller executes the assign finances view
     public function actionAssign_finances(){
         
         Zf_View::zf_displayView('assign_finances');
         
     }
+    
+    
     
     
     //This controller executes the fee structure view
@@ -77,6 +85,8 @@ class finance_moduleController extends Zf_Controller {
     }
    
     
+    
+    
     //This controller executes the fee defaulters view
     public function actionFee_defaulters(){
         
@@ -85,12 +95,15 @@ class finance_moduleController extends Zf_Controller {
     }
 
     
+    
+    
     //This controller executes the fee refunds view
     public function actionFee_refunds(){
         
         Zf_View::zf_displayView('fee_refunds');
         
     }
+    
     
     
     
@@ -117,6 +130,33 @@ class finance_moduleController extends Zf_Controller {
         }
         
     }
+    
+    
+   
+    
+    //This methhod processes fees information for fee collection purpose
+    public function actionProcessFeeInformation($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+         
+        if($filterDataVariable == 'process_streams'){
 
+           //Get the streams related a selected class
+           $this->zf_targetModel->getStreamDetails();
+            
+        }else if($filterDataVariable == 'process_students_list'){
+
+           //Get the streams related a selected class
+           $this->zf_targetModel->getStudentsList();
+            
+        }else if($filterDataVariable == 'process_fee_history'){
+
+           //Get fee history for the selected student and the selected year
+           $this->zf_targetModel->getFeesHistory();
+            
+        }
+        
+    }
 }
 ?>

@@ -93,11 +93,11 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-4">Name/Admn No:</label>
                                                             <div class="col-md-8">
-                                                                <select class="form-control select2me studentStreamCode" id="studentStreamCode" name="studentStreamCode" data-placeholder="East, West, North, South, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentStreamCode"); ?>">
+                                                                <select class="form-control select2me studentsListDetails" id="studentsListDetails" name="studentsListDetails" data-placeholder="Athias Avians - 2373, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentsListDetails"); ?>">
                                                                     <option value=""></option>
                                                                 </select>
                                                                 <span class="help-block server-side-error" >
-                                                                    <?php echo $zf_formHandler->zf_getFormError("studentStreamCode") ?>
+                                                                    <?php echo $zf_formHandler->zf_getFormError("studentsListDetails") ?>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -115,14 +115,15 @@
                                     <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
-                                                <div id="feeDefaultTitle">Student Fee History</div>
+                                                <div id="feeDefaultTitle">Fee Payment History</div>
                                                 <div id="feeClassTitle" style="color: #21b4e2 !important; padding-top: 3px;"></div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">
-                                                Select Year: 
+                                                Select Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("feesHistoryYear");?>
                                             </div>
                                         </div>
-                                    </div>          
+                                        <div class="row" id="feesHistoryDetails"></div>
+                                    </div>
                                 </div>
                             </div>
                             
