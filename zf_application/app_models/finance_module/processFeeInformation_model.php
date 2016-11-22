@@ -149,7 +149,7 @@ class processFeeInformation_Model extends Zf_Model {
         
         $studentDetails = $this->zvs_fetchStudentsPersonalDetails($identificationCode);
         $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $identificationCode);
-        $feeDetails = $this->zvs_fetchFeesDetails($identificationCode, $feesHistoryYear);
+        //$feeDetails = $this->zvs_fetchFeesDetails($identificationCode, $feesHistoryYear);
         
         $feesHistoryDetails = "";
         
@@ -169,9 +169,9 @@ class processFeeInformation_Model extends Zf_Model {
             
         }
         
-        $classDetails = $this->zvs_fetchClassDetails($systemSchoolCode, $studentClassCode);
-        $streamDetails = $this->zvs_fetchStreamDetails($systemSchoolCode, $studentStreamCode);
-        $feeDetails = $this->zvs_fetchClassFeesDetails($systemSchoolCode, $studentClassCode);
+        $classDetails = $this->zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode);
+        $streamDetails = $this->zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode);
+        $classFeesAmount = $this->generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
         
         $feesHistoryDetails .= '<div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
                                     <div class="portlet-titles">Student Details</div>
@@ -201,9 +201,9 @@ class processFeeInformation_Model extends Zf_Model {
                                                 <table class="table table-striped table-condensed table-responsive table-hover">
                                                     <tbody>
                                                         <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Admission No:</td><td>'.$studentAdmissionNumber.'</td></tr>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Class:</td><td>'.$studentFirstName.' '.$studentMiddleName.' '.$studentLastName.'</td></tr>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Stream:</td><td>'.$studentPhoneNumber.'</td></tr>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Total Fees:</td><td>'.$studentBoxAddress.'</td></tr>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Class:</td><td>'.$classDetails.'</td></tr>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Stream:</td><td>'.$streamDetails.'</td></tr>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Total Fees:</td><td>'.$classFeesAmount.'</td></tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -351,31 +351,206 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     
-    private function zvs_fetchClassDetails($identificationCode, $feesHistoryYear) {
+    private function zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode) {
+        
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($studentClassCode);
+        
+        $fetchClassDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_classes', $zvs_sqlValue);
+        
+        //$zf_executeFetchClassDetails = $this->Zf_AdoDB->Execute($fetchClassDetails);
+
+        if(!$this->Zf_QueryGenerator->Query($fetchClassDetails)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$fetchClassDetails}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $className = $this->Zf_QueryGenerator->Row()->schoolClassName;
+                    
+                    return $className;
+                }
+
+            }
+        }
         
     }
     
     
     
     
-    private function zvs_fetchStreamDetails($identificationCode, $feesHistoryYear) {
+    private function zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode) {
+        
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($studentClassCode);
+        $zvs_sqlValue["schoolStreamCode"] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+        
+        $fetchStreamDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zvs_sqlValue);
+        
+        //$zf_executeFetchClassDetails = $this->Zf_AdoDB->Execute($fetchClassDetails);
+
+        if(!$this->Zf_QueryGenerator->Query($fetchStreamDetails)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$fetchStreamDetails}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $className = $this->Zf_QueryGenerator->Row()->schoolStreamName;
+                    
+                    return $className;
+                }
+
+            }
+        }
+        
+    }
+    
+    
+    
+    /**
+     * This method is vital in loading splash screen for fee structure page
+     */
+    private function generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $selectedYear){
+
+       
+       $generalFeeDetails = $this->pullGeneralFeeDetails($systemSchoolCode, $selectedYear);
+       
+       $classFeeDetails = $this->pullClassFeeDetails($systemSchoolCode, $schoolClassCode, $selectedYear);
+       
+       
+       $generalTotalAmount; $classTotalAmount; $totalProportion;
+
+        foreach ($generalFeeDetails as $generalFeeValues) {
+
+            $itemAmount = $generalFeeValues['itemAmount']; $generalTotalAmount = $generalTotalAmount + $itemAmount;
+
+        }
+
+        foreach ($classFeeDetails as $classFeeValues) {
+
+            $itemAmount = $classFeeValues['itemAmount']; $classTotalAmount = $classTotalAmount + $itemAmount;
+
+        }
+        
+        
+        $totalAmount = $generalTotalAmount + $classTotalAmount;
+        
+        return number_format($totalAmount, 2);
         
     }
     
     
     
     
-    private function zvs_fetchClassFeesDetails($identificationCode, $feesHistoryYear) {
+    /**
+     * This private function pulls general fee details
+     */
+    private function pullGeneralFeeDetails($systemSchoolCode, $selectedYear){
+        
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["feeItemYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
+        
+        $fetchGeneralFeeItems = Zf_QueryGenerator::BuildSQLSelect('zvs_general_school_fees', $zvs_sqlValue);
+        
+        //echo $fetchGeneralFeeItems;
+        
+        $zf_executeFetchGeneralFeeItems= $this->Zf_AdoDB->Execute($fetchGeneralFeeItems);
+
+        if(!$zf_executeFetchGeneralFeeItems){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchGeneralFeeItems->RecordCount() > 0){
+
+                while(!$zf_executeFetchGeneralFeeItems->EOF){
+                    
+                    $results = $zf_executeFetchGeneralFeeItems->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
         
     }
     
     
     
     
-    //This private method fetches a student's fee payment history for a given year.
-    private function zvs_fetchStudentFeesDetails($identificationCode, $feesHistoryYear) {
+    /**
+     * This private function pulls class fee details
+     */
+    private function pullClassFeeDetails($systemSchoolCode, $schoolClassCode, $selectedYear){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        $zvs_sqlValue["feeItemYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
+        
+        $fetchClassFeeItems = Zf_QueryGenerator::BuildSQLSelect('zvs_class_school_fees', $zvs_sqlValue);
+        
+        //echo $fetchClassFeeItems; exit();
+        
+        $zf_executeFetchClassFeeItems= $this->Zf_AdoDB->Execute($fetchClassFeeItems);
+
+        if(!$zf_executeFetchClassFeeItems){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchClassFeeItems->RecordCount() > 0){
+
+                while(!$zf_executeFetchClassFeeItems->EOF){
+                    
+                    $results = $zf_executeFetchClassFeeItems->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
         
     }
+    
     
     
     
