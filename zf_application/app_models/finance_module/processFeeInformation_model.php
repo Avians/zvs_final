@@ -169,7 +169,9 @@ class processFeeInformation_Model extends Zf_Model {
             
         }
         
-        //$classDetails = $this->
+        $classDetails = $this->zvs_fetchClassDetails($systemSchoolCode, $studentClassCode);
+        $streamDetails = $this->zvs_fetchStreamDetails($systemSchoolCode, $studentStreamCode);
+        $feeDetails = $this->zvs_fetchClassFeesDetails($systemSchoolCode, $studentClassCode);
         
         $feesHistoryDetails .= '<div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
                                     <div class="portlet-titles">Student Details</div>
@@ -348,8 +350,30 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     
+    
+    private function zvs_fetchClassDetails($identificationCode, $feesHistoryYear) {
+        
+    }
+    
+    
+    
+    
+    private function zvs_fetchStreamDetails($identificationCode, $feesHistoryYear) {
+        
+    }
+    
+    
+    
+    
+    private function zvs_fetchClassFeesDetails($identificationCode, $feesHistoryYear) {
+        
+    }
+    
+    
+    
+    
     //This private method fetches a student's fee payment history for a given year.
-    private function zvs_fetchFeesDetails($identificationCode, $feesHistoryYear) {
+    private function zvs_fetchStudentFeesDetails($identificationCode, $feesHistoryYear) {
         
     }
     
