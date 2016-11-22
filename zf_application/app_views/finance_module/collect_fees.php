@@ -112,7 +112,7 @@
                             <!--This section holds information about the students fee details-->
                             <div class="row" id="feesHistoryContainer">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
+                                    <div class="portlet zvs-content-blocks" style="min-height: 300px !important;">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
                                                 <div id="feeDefaultTitle">Fee Payment History</div>

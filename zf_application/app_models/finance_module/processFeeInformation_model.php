@@ -148,14 +148,65 @@ class processFeeInformation_Model extends Zf_Model {
         $feesHistoryYear = explode(ZVSS_CONNECT, $feesHistoryIdentifier)[1];
         
         $studentDetails = $this->zvs_fetchStudentsPersonalDetails($identificationCode);
+        $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $identificationCode);
         $feeDetails = $this->zvs_fetchFeesDetails($identificationCode, $feesHistoryYear);
         
         $feesHistoryDetails = "";
         
         
-        $feesHistoryDetails .= '<div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 330px !important; height: auto !important;">
+        foreach ($studentDetails as $studentValue) {
+            
+            $studentFirstName = $studentValue['studentFirstName'];$studentMiddleName = $studentValue['studentMiddleName']; 
+            $studentLastName = $studentValue['studentLastName'];$studentGender = $studentValue['studentGender'];
+            $studentPhoneNumber = $studentValue['studentPhoneNumber'];$studentBoxAddress = $studentValue['studentBoxAddress'];
+            
+        }
+        
+        foreach ($studentClassDetails as $classValue) {
+            
+            $systemSchoolCode = $classValue['systemSchoolCode']; $studentClassCode = $classValue['studentClassCode']; $studentStreamCode = $classValue['studentStreamCode'];
+            $studentYearOfStudy = $classValue['studentYearOfStudy']; $studentAdmissionNumber = $classValue['studentAdmissionNumber'];
+            
+        }
+        
+        //$classDetails = $this->
+        
+        $feesHistoryDetails .= '<div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
                                     <div class="portlet-titles">Student Details</div>
-                                    <div class="row" style="margin-top: 20px !important;">'.$identificationCode.'</div>
+                                    <div class="row portlet-body" style="margin-top: 20px !important; min-height: 80px !important;">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
+                                            <div class="zvs-circular">   
+                                                <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-condensed table-responsive table-hover">
+                                                    <tbody>
+                                                        <tr><td><i class="fa fa-user zvs-user-profile"></i></td><td>'.$studentFirstName.' '.$studentMiddleName.' '.$studentLastName.'</td></tr>
+                                                        <tr><td><i class="fa fa-phone zvs-user-profile"></i></td><td>'.$studentPhoneNumber.'</td></tr>
+                                                        <tr><td><i class="fa fa-envelope zvs-user-profile"></i></td><td>'.$studentBoxAddress.'</td></tr>
+                                                        <tr><td><i class="fa fa-transgender zvs-user-profile"></i></td><td>'.$studentGender.'</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-titles">Class Details</div>
+                                    <div class="row portlet-body" style="min-height: 80px !important;">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-condensed table-responsive table-hover">
+                                                    <tbody>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Admission No:</td><td>'.$studentAdmissionNumber.'</td></tr>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Class:</td><td>'.$studentFirstName.' '.$studentMiddleName.' '.$studentLastName.'</td></tr>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Stream:</td><td>'.$studentPhoneNumber.'</td></tr>
+                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Total Fees:</td><td>'.$studentBoxAddress.'</td></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="portlet-titles">Fees Payment Details</div>
@@ -171,12 +222,22 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     //This private method fetches student class detials for a given selected stream.
-    private function zvs_fetchStudentsClassDetails($studentsStreamCode){
+    private function zvs_fetchStudentsClassDetails($studentsStreamCode = NULL, $identificationCode = NULL){
         
         $currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
         
-        $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentsStreamCode);
-        $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($currentYear);
+        if(empty($identificationCode) || $identificationCode == ""){
+            
+            $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentsStreamCode);
+            $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($currentYear);
+            
+        }else{
+            
+            $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+            
+        }
+        
+        
         
         $fetchStudentClassDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $zvs_sqlValue);
         
