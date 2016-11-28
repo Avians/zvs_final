@@ -432,7 +432,7 @@ class processFeeStructure_Model extends Zf_Model {
         
         
         //These chart properties add to the beauty of the chart
-        $chartProperties .= '
+        $chartProperties = '
             
                             "chart":{
                                 "bgColor": "#ffffff",
@@ -498,9 +498,11 @@ class processFeeStructure_Model extends Zf_Model {
         $chartData .= ']';
         
         //Here we generate the actual chart
-        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        return Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
         
     }
+    
+    
     
     
     /**

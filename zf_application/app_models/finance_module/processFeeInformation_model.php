@@ -149,7 +149,7 @@ class processFeeInformation_Model extends Zf_Model {
         
         $studentDetails = $this->zvs_fetchStudentsPersonalDetails($identificationCode);
         $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $identificationCode);
-        //$feeDetails = $this->zvs_fetchFeesDetails($identificationCode, $feesHistoryYear);
+        
         
         $feesHistoryDetails = "";
         
@@ -171,7 +171,8 @@ class processFeeInformation_Model extends Zf_Model {
         
         $classDetails = $this->zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode);
         $streamDetails = $this->zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode);
-        $classFeesAmount = $this->generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
+        $classFeesAmount = $this->zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
+        $studentPaidFees = $this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode);
         
         $feesHistoryDetails .= '<div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
                                     <div class="portlet-titles">Student Details</div>
@@ -212,8 +213,32 @@ class processFeeInformation_Model extends Zf_Model {
                                 </div>
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="portlet-titles">Fees Payment Details</div>
-                                    <div class="row" style="margin-top: 20px !important;">'.$feesHistoryYear.'</div>
-                                </div>';
+                                    <div class="row" style="margin-top: 20px !important;">
+                                        <div class="col-md-12" id="feesPaymentDataChart">';
+                          
+                                        $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear);
+                                        
+                $feesHistoryDetails .= '</div>
+                                        <div class="col-md-12"><hr></div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <button id="feesCollectionButton" type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
+                                                Collect School Fees
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                
+                                    //A click on this button loads the fee collection form
+                                    $("#feesCollectionButton").click(function(){
+                                        
+                                        $("#collectFeesContainer").fadeIn(1000, function(){
+                                        
+                                        });
+
+                                    });
+                                
+                                </script>';
         
        
         echo $feesHistoryDetails;
@@ -429,10 +454,11 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     
+    
     /**
      * This method is vital in loading splash screen for fee structure page
      */
-    private function generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $selectedYear){
+    private function zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $selectedYear){
 
        
        $generalFeeDetails = $this->pullGeneralFeeDetails($systemSchoolCode, $selectedYear);
@@ -553,6 +579,169 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     
+    
+    /**
+     * This private methods works out the amount of fees paid by a selected student for a selected year
+     */
+    private function zvs_fetchFeesPaymentDetails($systemSchoolCode, $schoolClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["studentClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+        $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($feesHistoryYear);
+        
+        $fetchFeePaymentAmounts = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_detials', $zvs_sqlValue);
+        
+        $studentFeesPaymentDetails = $this->zvs_fetchFeesDetails($fetchFeePaymentAmounts);
+        
+        
+        $totalFeesPaid;
+
+        foreach ($studentFeesPaymentDetails as $feesPaymentValues) {
+
+            $paymentAmount = $feesPaymentValues['paymentAmount']; $totalFeesPaid = $totalFeesPaid + $paymentAmount;
+
+        }
+        
+        return number_format($totalFeesPaid, 2);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private works out pulls the actual fees payment details
+     */
+    private function zvs_fetchFeesDetails($studentFeesQuery){
+        
+        $zf_executeFetchFeesPaymentAmounts = $this->Zf_AdoDB->Execute($studentFeesQuery);
+
+        if(!$zf_executeFetchFeesPaymentAmounts){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchFeesPaymentAmounts->RecordCount() > 0){
+
+                while(!$zf_executeFetchFeesPaymentAmounts->EOF){
+                    
+                    $results = $zf_executeFetchFeesPaymentAmounts->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        } 
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method plots the pie charts that shows how the student has paid school fees.
+     */
+    private function plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear){
+        
+        //$totalFees = filter_var($classFeesAmount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        //$paidFees = filter_var($studentPaidFees, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $totalFees = 46000.00;
+        $paidFees = 23000.00;
+        $dueFees = $totalFees - $paidFees;
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Doughnut2D",
+            "ChartID" => "feePaymentCharts".$feesHistoryYear,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "270",
+            "ChartContainer" => "feesPaymentDataChart",
+            "ChartDataFormat" =>  "json",
+        );
+        
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties = '
+            
+                            "chart":{
+                                "bgColor": "#ffffff",
+                                "pieRadius": "90",
+                                "showBorder": "0",
+                                "use3DLighting": "0",
+                                "showShadow": "0",
+                                "showLabels": "1", 
+                                "enableSmartLabels": "1",
+                                "showValues": "1",
+                                "startingAngle": "0",
+                                "slicingDistance" : "8",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "defaultCenterLabel": "Total Fees Kshs:<br>'.number_format($totalFees, 2).'",
+                                "centerLabel": "$label $value",
+                                "centerLabelBold": "1",
+                                "decimals": "0",
+                                "captionFontSize": "14",
+                                "subcaptionFontSize": "14",
+                                "subcaptionFontBold": "0",
+                                "toolTipColor": "#ffffff",
+                                "toolTipBorderThickness": "0",
+                                "toolTipBgColor": "#000000",
+                                "toolTipBgAlpha": "80",
+                                "toolTipBorderRadius": "10",
+                                "toolTipPadding": "5",
+                                "showHoverEffect": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": "0",
+                                "legendShadow": "0",
+                                "legendItemFontSize": "10",
+                                "legendItemFontColor": "#666666",
+                                "legendPosition": "right",
+                                "legendCaptionAlignment": "left",
+                                "useDataPlotColorForLabels": "1",
+                                "numberPrefix": " Kshs: ",
+                                "formatNumberScale": "0",
+                                "decimalSeparator": ".",
+                                "thousandSeparator": ",",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        $chartData = '
+                    "data": [
+                    
+                        {
+                            "label": "Paid Fees",
+                            "value": "'.$paidFees.'",
+                            "color": "#73A99B"
+                        },
+                        {
+                            "label": "Due Fees",
+                            "value": "'.$dueFees.'",
+                            "color": "#2A5653"   
+                        }
+                        
+                    ]   
+                ';
+        
+        
+        //Here we generate the actual chart
+        return Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+        //return $feesHistoryYear;
+    }
     
 }
 
