@@ -155,6 +155,15 @@ class finance_moduleController extends Zf_Controller {
            //Get fee history for the selected student and the selected year
            $this->zf_targetModel->getFeesHistory();
             
+        }else if($filterDataVariable == 'collect_school_fees'){
+            
+            $this->zf_targetModel->generateStudentForm();
+            
+        }else if($filterDataVariable == 'process_payment_period'){
+            
+            //Get the periods related to the selected year for the school
+            $this->zf_targetModel->getPeriodDetails();
+            
         }
         
     }

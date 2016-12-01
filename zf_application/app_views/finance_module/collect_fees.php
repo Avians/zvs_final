@@ -35,8 +35,8 @@
                         <li><a>Collect school fees</a></li>
                     </ul>
 
-                    <div class="z-content-inner">
-                        <div>
+                    <div class="z-content-inner" style="background-color: #EFEFEF !important;">
+                        <div style="margin-bottom: -10px !important;">
                             <!--This is the section for class school fees-->
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -129,9 +129,14 @@
                             
                             <!--This section holds the form that is used collect school fees-->
                             <div class="row" id="collectFeesContainer">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
-                                        Here we go
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important; margin-bottom: 0px !important;">
+                                        <div class="portlet-body form">
+                                            <?php
+                                                //This is the form for school fee setup
+                                                Zf_ApplicationWidgets::zf_load_widget("finance_module", "collect_school_fees_form.php", $studentIdentificationCode);
+                                            ?>
+                                        </div>
                                     </div>          
                                 </div>
                             </div>

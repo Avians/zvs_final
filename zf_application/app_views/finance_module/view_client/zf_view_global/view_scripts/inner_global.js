@@ -154,6 +154,8 @@ var FinanceModule = function(){
         //Process the streams within the selected class
         $('.studentsListDetails, #feesHistoryYear').change(function(){
             
+            $('#collectFeesContainer').hide();
+            
             $('#feesHistoryContainer').fadeIn(1000, function(){
                 
                 $('#feesHistoryDetails').show();
@@ -177,6 +179,46 @@ var FinanceModule = function(){
                 
             });
             
+        });
+        
+        
+        $('.studentsListDetails').change(function(){
+            
+            var collectSchoolFees = $absolute_path + "finance_module" + $separator + "ProcessFeeInformation" + $separator + "collect_school_fees";
+            var studentIdentificationCode = $("#studentsListDetails").val();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: collectSchoolFees,
+                data: {studentIdentificationCode: studentIdentificationCode},
+                cache: false,
+                success: function(html) {
+                   $("#studentformData").html(html);
+                }
+            });
+            
+        });
+        
+        
+        
+        //Process the fee payment periods based on selected year
+        $('.paymentYear').change(function(){
+            
+            var processPaymentPeriod = $absolute_path + "finance_module" + $separator + "ProcessFeeInformation" + $separator + "process_payment_period";
+            var paymentYear = $("#paymentYear").val();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processPaymentPeriod,
+                data: {paymentYear: paymentYear},
+                cache: false,
+                success: function(html) {
+                   $("#paymentPeriod").html(html);
+                }
+            });
+
         });
         
     };

@@ -15,7 +15,9 @@
 class processFeeInformation_Model extends Zf_Model {
     
     private $zvs_controller;
-
+    
+    //This is the user identification code
+    private $userIdentificationCode;
 
     /*
     * --------------------------------------------------------------------------------------
@@ -33,6 +35,9 @@ class processFeeInformation_Model extends Zf_Model {
         //This is the active controller
         $this->zvs_controller = $activeURL[0];
          
+        //Here we assign the current user's identification code
+        $this->userIdentificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
+        
     }
   
     
@@ -151,6 +156,7 @@ class processFeeInformation_Model extends Zf_Model {
         $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $identificationCode);
         
         
+        
         $feesHistoryDetails = "";
         
         
@@ -219,11 +225,13 @@ class processFeeInformation_Model extends Zf_Model {
                                         $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear);
                                         
                 $feesHistoryDetails .= '</div>
-                                        <div class="col-md-12"><hr></div>
+                                        <div class="col-md-12" id="dividerLine"><hr></div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <button id="feesCollectionButton" type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
-                                                Collect School Fees
-                                            </button>
+                                            <a href="#feesPaymentDataChart" style="text-decoration: none !important;">
+                                                <button id="feesCollectionButton" type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
+                                                    Collect School Fees
+                                                </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -232,12 +240,19 @@ class processFeeInformation_Model extends Zf_Model {
                                     //A click on this button loads the fee collection form
                                     $("#feesCollectionButton").click(function(){
                                         
-                                        $("#collectFeesContainer").fadeIn(1000, function(){
+                                        $("#collectFeesContainer").fadeIn(2000, function(){
                                         
                                         });
 
                                     });
-                                
+                                    
+                                    
+        
+        
+                                    $("#button-next").click(function() {
+                                        $.scrollTo($("#confirmCollectFeesInfo"), 1000);
+                                    });
+
                                 </script>';
         
        
@@ -723,12 +738,12 @@ class processFeeInformation_Model extends Zf_Model {
                     "data": [
                     
                         {
-                            "label": "Paid Fees",
+                            "label": "Fees Paid",
                             "value": "'.$paidFees.'",
                             "color": "#73A99B"
                         },
                         {
-                            "label": "Due Fees",
+                            "label": "Fees Due",
                             "value": "'.$dueFees.'",
                             "color": "#2A5653"   
                         }
@@ -741,6 +756,178 @@ class processFeeInformation_Model extends Zf_Model {
         return Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
         
         //return $feesHistoryYear;
+    }
+    
+    
+    
+    
+    /**
+     * This method generates a prefilled form with student details
+     */
+    public function generateStudentForm() {
+        
+        $studentIdentificationCode = $_POST['studentIdentificationCode'];
+        
+        $studentDetails = $this->zvs_fetchStudentsPersonalDetails($studentIdentificationCode);
+        $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $studentIdentificationCode);
+        
+        
+        
+        $studentPrefilledForm = "";
+        
+        
+        foreach ($studentDetails as $studentValue) {
+            
+            $studentFullName = $studentValue['studentFirstName']." ".$studentValue['studentMiddleName']." ".$studentValue['studentLastName'];
+            
+        }
+        
+        foreach ($studentClassDetails as $classValue) {
+            
+            $systemSchoolCode = $classValue['systemSchoolCode']; $studentClassCode = $classValue['studentClassCode']; $studentStreamCode = $classValue['studentStreamCode'];
+            $studentYearOfStudy = $classValue['studentYearOfStudy']; $studentAdmissionNumber = $classValue['studentAdmissionNumber'];
+            
+        }
+        
+        $classDetails = $this->zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode);
+        $streamDetails = $this->zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode);
+        
+        
+        $studentPrefilledForm .='
+            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Full Name:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="studentFullName" class="form-control" readonly value="'.$studentFullName.'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Admission No:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="studentAdmissionNumber" class="form-control" readonly value="'.$studentAdmissionNumber.'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Student Class:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="studentClassName" class="form-control" readonly value="'.$classDetails.'">
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Student Stream:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="studentStreamName" class="form-control" readonly value="'.$streamDetails.'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
+                            
+                            <!--These are hidden fields with students class data-->
+                            <input type="hidden" class="form-control" name="studentIdentificationCode" value="'.$studentIdentificationCode.'">
+                            <input type="hidden" class="form-control" name="studentClassCode" value="'.$studentClassCode.'">
+                            <input type="hidden" class="form-control" name="studentStreamCode" value="'.$studentStreamCode.'">
+                            
+                        ';
+        
+        echo $studentPrefilledForm;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method is used to select Admin localities
+     */
+    public function getPeriodDetails(){
+        
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->userIdentificationCode)[2];
+        
+        $paymentYear = $_POST['paymentYear'];
+        
+        
+        //Here we have all related stream data
+        $periodDetails = $this->zvs_fetchPeriodDetails($systemSchoolCode, $paymentYear);
+        
+        $select_options = '';
+        
+        
+        if($periodDetails == 0){
+            
+            $select_options .= '<option value="">No payment periods for '.$paymentYear.'!!</option>';
+            
+        }else{
+            
+            foreach ($periodDetails as $periodValue) {
+                
+                $paymentScheduleName = $periodValue['paymentScheduleName']; $systemPaymentCode = $periodValue['systemPaymentCode'];
+                
+                $select_options .= '<option value="'.$systemPaymentCode.ZVSS_CONNECT.$paymentScheduleName.'">'.$paymentScheduleName.'</option>';
+                
+            }
+            
+        }
+        
+               
+        echo $select_options;
+        
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method fetches all attendance schedule data
+     */
+    private function zvs_fetchPeriodDetails($systemSchoolCode, $selectedYear){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
+        
+        $fetchAttendanceSchedule = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_schedule', $zvs_sqlValue);
+        
+        $zf_executeFetchAttendanceSchedule = $this->Zf_AdoDB->Execute($fetchAttendanceSchedule);
+
+        if(!$zf_executeFetchAttendanceSchedule){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchAttendanceSchedule->RecordCount() > 0){
+
+                while(!$zf_executeFetchAttendanceSchedule->EOF){
+                    
+                    $results = $zf_executeFetchAttendanceSchedule->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
     }
     
 }
