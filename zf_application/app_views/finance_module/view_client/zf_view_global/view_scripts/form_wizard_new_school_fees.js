@@ -38,33 +38,23 @@ var CollectSchoolFeesFormWizard = function () {
                     
                     //THESE RULES GOVERN THE VALIDATION OF FEE ITEM SETUP FORM
                     
-                    //Fee ItemYear
-                    feeItemYear: {
-                      required: true  
+                    //THESE RULES GOVERN THE VALIDATION OF FEE ITEM SETUP FORM
+                    
+                    //Payment Schedule Year
+                    paymentScheduleYear: {
+                        required: true  
                     },
                     
-                    //Fee Item
-                    feeItem: {
-                        maxlength: 30,
-                        minlength: 2,
+                    //Payment Schedule Name
+                    paymentScheduleName: {
                         required: true
                     },
                     
-                    //Item Alias
-                    itemAlias: {
-                        maxlength: 30,
-                        required: true
-                    },
-                    
-                    //Fee Proportion
-                    feeAmount: {
+                    //Payment Amount
+                    paymentAmount: {
                         maxlength: 10,
                         minlength: 1,
-                        required: true
-                    },
-                    
-                    //Item Status
-                    itemStatus: {
+                        digits: true,
                         required: true
                     }
                 

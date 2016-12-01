@@ -142,27 +142,33 @@ class finance_moduleController extends Zf_Controller {
          
         if($filterDataVariable == 'process_streams'){
 
-           //Get the streams related a selected class
-           $this->zf_targetModel->getStreamDetails();
+            //Gets the streams related a selected class
+            $this->zf_targetModel->getStreamDetails();
             
         }else if($filterDataVariable == 'process_students_list'){
 
-           //Get the streams related a selected class
-           $this->zf_targetModel->getStudentsList();
+            //Gets the students related a selected stream
+            $this->zf_targetModel->getStudentsList();
             
         }else if($filterDataVariable == 'process_fee_history'){
 
-           //Get fee history for the selected student and the selected year
-           $this->zf_targetModel->getFeesHistory();
+            //Get fee history for the selected student and the selected year
+            $this->zf_targetModel->getFeesHistory();
             
         }else if($filterDataVariable == 'collect_school_fees'){
             
+            //Generates a prefilled form for the selected student
             $this->zf_targetModel->generateStudentForm();
             
         }else if($filterDataVariable == 'process_payment_period'){
             
             //Get the periods related to the selected year for the school
             $this->zf_targetModel->getPeriodDetails();
+            
+        }else if($filterDataUrl == 'collect_fees'){
+            
+            //Posts the collected fees data for storage
+            $this->zf_targetModel->collectSchoolFees();
             
         }
         

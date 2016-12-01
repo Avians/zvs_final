@@ -14,6 +14,9 @@
 
 class processFeeInformation_Model extends Zf_Model {
     
+    private $_errorResult = array();
+    private $_validResult = array();
+    
     private $zvs_controller;
     
     //This is the user identification code
@@ -500,6 +503,46 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     /**
+     * This private method pulls all fee payment schedule for a selected year
+     */
+    private function feePaymentSchedule($systemSchoolCode, $systemPaymentCode, $selectedYear){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["systemPaymentCode"] = Zf_QueryGenerator::SQLValue($systemPaymentCode);
+        $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
+        
+        $fetchFeePaymentSchedule = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_schedule', $zvs_sqlValue);
+        
+        if(!$this->Zf_QueryGenerator->Query($fetchFeePaymentSchedule)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$fetchFeePaymentSchedule}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $paymentProportion = $this->Zf_QueryGenerator->Row()->paymentScheduleProportion;
+                    
+                    return $paymentProportion;
+                }
+
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    /**
      * This private function pulls general fee details
      */
     private function pullGeneralFeeDetails($systemSchoolCode, $selectedYear){
@@ -592,14 +635,19 @@ class processFeeInformation_Model extends Zf_Model {
     /**
      * This private methods works out the amount of fees paid by a selected student for a selected year
      */
-    private function zvs_fetchFeesPaymentDetails($systemSchoolCode, $schoolClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode){
+    private function zvs_fetchFeesPaymentDetails($systemSchoolCode, $schoolClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode, $paymentPeriod = NULL){
         
+      
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         $zvs_sqlValue["studentClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
         $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentStreamCode);
         $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($feesHistoryYear);
+        if($paymentPeriod != NULL && !empty($paymentPeriod) ){
+            
+            $zvs_sqlValue["paymentScheduleName"] = Zf_QueryGenerator::SQLValue($paymentPeriod);
+            
+        }
         
         $fetchFeePaymentAmounts = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_detials', $zvs_sqlValue);
         
@@ -833,6 +881,7 @@ class processFeeInformation_Model extends Zf_Model {
                             
                             <!--These are hidden fields with students class data-->
                             <input type="hidden" class="form-control" name="studentIdentificationCode" value="'.$studentIdentificationCode.'">
+                            <input type="hidden" class="form-control" name="systemSchoolCode" value="'.$systemSchoolCode.'">
                             <input type="hidden" class="form-control" name="studentClassCode" value="'.$studentClassCode.'">
                             <input type="hidden" class="form-control" name="studentStreamCode" value="'.$studentStreamCode.'">
                             
@@ -871,7 +920,7 @@ class processFeeInformation_Model extends Zf_Model {
                 
                 $paymentScheduleName = $periodValue['paymentScheduleName']; $systemPaymentCode = $periodValue['systemPaymentCode'];
                 
-                $select_options .= '<option value="'.$systemPaymentCode.ZVSS_CONNECT.$paymentScheduleName.'">'.$paymentScheduleName.'</option>';
+                $select_options .= '<option value="'.$systemPaymentCode.'">'.$paymentScheduleName.'</option>';
                 
             }
             
@@ -920,6 +969,128 @@ class processFeeInformation_Model extends Zf_Model {
                 return 0;
                 
             }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    /**
+     * This public method records information about the collected school fees.
+     */
+    public function collectSchoolFees(){
+        
+        //In this section we chain class data, posted from the form.
+        $this->zf_formController->zf_postFormData('studentFullName')
+
+                                ->zf_postFormData('studentAdmissionNumber')
+                
+                                ->zf_postFormData('studentClassName')
+                
+                                ->zf_postFormData('studentStreamName')
+                
+                                ->zf_postFormData('studentClassName')
+                
+                                ->zf_postFormData('paymentScheduleYear')
+                
+                                ->zf_postFormData('paymentScheduleName')
+                
+                                ->zf_postFormData('paymentScheduleName')
+                
+                                ->zf_postFormData('paymentAmount')
+                
+                                //This is hidden form data    
+                                ->zf_postFormData('systemSchoolCode')
+                                ->zf_postFormData('studentClassCode')
+                                ->zf_postFormData('studentStreamCode')
+                                ->zf_postFormData('studentIdentificationCode')
+                                ->zf_postFormData('adminIdentificationCode');
+        
+
+        //This array holds all error data
+        $this->_errorResult = $this->zf_formController->zf_fetchErrorData();
+
+        //This array holds all valid data. 
+        $this->_validResult = $this->zf_formController->zf_fetchValidData();
+        
+        //This of debugging purposes only.
+        echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
+        
+        
+        $adminIdentificationCode = $this->_validResult['adminIdentificationCode'];
+        $adminIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($adminIdentificationCode);
+        
+        //$formatedStartDate =  Zf_Core_Functions::Zf_FomartDate("Y-m-d", $this->_validResult['attendanceStartDate']);
+        //$formatedEndDate =  Zf_Core_Functions::Zf_FomartDate("Y-m-d", $this->_validResult['attendanceEndDate']);
+        
+        if(empty($this->_errorResult)){
+            
+            $systemSchoolCode = $this->_validResult['systemSchoolCode'];
+            $schoolClassCode = $this->_validResult['studentClassCode'];
+            $systemStreamCode = $this->_validResult['studentStreamCode'];
+            $paymentScheduleYear = $this->_validResult['paymentScheduleYear'];
+            $paymentScheduleName = $this->_validResult['paymentScheduleName'];
+            $studentIdentificationCode = $this->_validResult['studentIdentificationCode'];
+            $paymentAmount = $this->_validResult['paymentAmount'];
+            
+            
+            /**
+             * We are about to record the collected fees. But before, we have to conduct a seven step logical check 
+             *to ensure that the fees is paid correctly for the select year and payment period
+             */
+            
+            //0. Get the fees payment percentage proportion for the selected year and the selected payment period
+            $feePaymentProportion = ($this->feePaymentSchedule($systemSchoolCode, $paymentScheduleName, $paymentScheduleYear)/100);
+            echo $feePaymentProportion."<br>";
+            
+            
+            //1. Get the fees supposed to be paid for the selected year and the selected payment period, say X
+            $totalFeesAmount = (filter_var($this->zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $paymentScheduleYear), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)*$feePaymentProportion);
+            echo $totalFeesAmount."<br>";
+            
+            //2. Get the fees already paid by the student for the selected year and the selected payment period, say Y
+            $amountAlreadyPaid = filter_var($this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $schoolClassCode, $studentStreamCode, $paymentScheduleYear, $studentIdentificationCode, $paymentScheduleName), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            echo $amountAlreadyPaid."<br>";
+            
+            
+            //3. Work out the fees balance for the paying student by calculating X-Y = Z
+            $feesBalance  = $totalFeesAmount - $amountAlreadyPaid;
+            echo $feesBalance; exit();
+            
+            //4. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
+            if($totalFeesAmount == $amountAlreadyPaid){
+                
+                
+            }
+            
+            //5. If the balance Z is more than 0, compare the balance Z and the paid amount W.
+            else{
+                
+                //6. If the paid amount is more than the the balance i.e W > Z, return a flag about the students remaining balance for the selected year and payment period
+                if($paymentAmount > $feesBalance){
+                    
+                    
+                    
+                }
+                //7. If the paid amount is equal to or less than the balance i.e W == Z || W < Z, insert the record for the paid fees against the selected year and payment period.
+                else if($paymentAmount == $feesBalance || $paymentAmount < $feesBalance){
+                    
+                    
+                    
+                }
+                
+                
+            }
+            
+        }else{
+            
+            Zf_SessionHandler::zf_setSessionVariable("configure_attendance", "attendance_setup_error");
+            Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
+            Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+            exit();
+
         }
         
     }
