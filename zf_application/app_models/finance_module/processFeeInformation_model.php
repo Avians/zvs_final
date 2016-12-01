@@ -246,12 +246,6 @@ class processFeeInformation_Model extends Zf_Model {
 
                                     });
                                     
-                                    
-        
-        
-                                    $("#button-next").click(function() {
-                                        $.scrollTo($("#confirmCollectFeesInfo"), 1000);
-                                    });
 
                                 </script>';
         
