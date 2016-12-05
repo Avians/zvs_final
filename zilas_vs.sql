@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.4.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Nov 10, 2016 at 05:39 AM
+-- Generation Time: Dec 05, 2016 at 05:55 AM
 -- Server version: 5.5.42
--- PHP Version: 5.6.10
+-- PHP Version: 5.6.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `zilas_vs`
@@ -117,18 +117,40 @@ CREATE TABLE `zvs_class_school_fees` (
   `feeItemYear` varchar(5) NOT NULL,
   `itemStatus` tinyint(1) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `zvs_class_school_fees`
+-- Table structure for table `zvs_fees_payment_detials`
 --
 
-INSERT INTO `zvs_class_school_fees` (`id`, `systemSchoolCode`, `schoolClassCode`, `systemFeeCode`, `feeItem`, `itemAlias`, `itemAmount`, `feeItemYear`, `itemStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]R.M.I[`^`]2017', 'R.M.I', 'R.M.I', '2392', '2017', 1, '2016-11-03'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]LTT[`^`]2017', 'L T & T', 'L T & T', '1621', '2017', 1, '2016-11-03'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Admission[`^`]2017', 'Admission', 'Admission', '2516', '2017', 1, '2016-11-03'),
-(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]EWC[`^`]2017', 'EWC', 'EWC', '6302', '2017', 1, '2016-11-03'),
-(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormFour', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]P/Emoluments[`^`]2017', 'P / Emoluments', 'P / Emoluments', '5972', '2017', 1, '2016-11-03');
+CREATE TABLE `zvs_fees_payment_detials` (
+  `id` int(11) NOT NULL,
+  `studentIdentificationCode` varchar(240) NOT NULL,
+  `studentAdmissionNumber` varchar(30) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
+  `studentClassCode` varchar(240) NOT NULL,
+  `studentStreamCode` varchar(240) NOT NULL,
+  `paymentScheduleName` varchar(240) NOT NULL,
+  `paymentScheduleYear` year(4) NOT NULL,
+  `paymentAmount` decimal(15,0) NOT NULL,
+  `createdBy` varchar(240) NOT NULL,
+  `paymentDate` datetime NOT NULL,
+  `approvedBy` varchar(240) NOT NULL DEFAULT 'Not yet approved',
+  `approvalDate` datetime NOT NULL,
+  `feesStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_fees_payment_detials`
+--
+
+INSERT INTO `zvs_fees_payment_detials` (`id`, `studentIdentificationCode`, `studentAdmissionNumber`, `systemSchoolCode`, `studentClassCode`, `studentStreamCode`, `paymentScheduleName`, `paymentScheduleYear`, `paymentAmount`, `createdBy`, `paymentDate`, `approvedBy`, `approvalDate`, `feesStatus`) VALUES
+(1, 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', '2274', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2016', 2016, '18350', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', '2016-12-02 12:23:31', 'Not yet approved', '0000-00-00 00:00:00', 0),
+(2, 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', '2274', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2016', 2016, '9175', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', '2016-12-02 12:25:12', 'Not yet approved', '0000-00-00 00:00:00', 0),
+(3, 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', '2274', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2016', 2016, '9000', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', '2016-12-02 12:27:34', 'Not yet approved', '0000-00-00 00:00:00', 0),
+(4, 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', '2274', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2016', 2016, '175', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', '2016-12-04 12:09:43', 'Not yet approved', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -140,20 +162,24 @@ CREATE TABLE `zvs_fees_payment_schedule` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(240) NOT NULL,
   `systemPaymentCode` varchar(240) NOT NULL,
-  `paymentScheduleName` varchar(30) NOT NULL,
+  `paymentScheduleName` varchar(60) NOT NULL,
   `paymentScheduleYear` varchar(4) NOT NULL,
   `paymentScheduleProportion` varchar(5) NOT NULL,
   `paymentScheduleStatus` tinyint(1) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_fees_payment_schedule`
 --
 
 INSERT INTO `zvs_fees_payment_schedule` (`id`, `systemSchoolCode`, `systemPaymentCode`, `paymentScheduleName`, `paymentScheduleYear`, `paymentScheduleProportion`, `paymentScheduleStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '80', 1, '2016-11-03'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '20', 1, '2016-11-03');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2016', 'First Term', '2016', '50', 1, '2016-12-02'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2016', 'Second Term', '2016', '25', 1, '2016-12-02'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2016', 'Third Term', '2016', '25', 1, '2016-12-02'),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '50', 1, '2016-12-02'),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '35', 1, '2016-12-02'),
+(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2017', 'Third Term', '2017', '15', 1, '2016-12-02');
 
 -- --------------------------------------------------------
 
@@ -171,17 +197,23 @@ CREATE TABLE `zvs_general_school_fees` (
   `feeItemYear` varchar(5) NOT NULL,
   `itemStatus` tinyint(1) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_general_school_fees`
 --
 
 INSERT INTO `zvs_general_school_fees` (`id`, `systemSchoolCode`, `systemFeeCode`, `feeItem`, `itemAlias`, `itemAmount`, `feeItemYear`, `itemStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]BoardingFees[`^`]2017', 'Boarding Fees', 'Bording Fees', '32385', '2017', 1, '2016-11-03'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Activity[`^`]2017', 'Activity', 'Activity', '798', '2017', 1, '2016-11-03'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Medical[`^`]2017', 'Medical', 'Medical', '508', '2017', 1, '2016-11-03'),
-(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Insurance[`^`]2017', 'Insurance', 'Insurance', '1060', '2017', 1, '2016-11-03');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2016', 'Tuition', 'Tuition', '4500', '2016', 1, '2016-12-02'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Boarding[`^`]2016', 'Boarding', 'Boarding', '30000', '2016', 1, '2016-12-02'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Insurance[`^`]2016', 'Insurance', 'Insurance', '1000', '2016', 1, '2016-12-02'),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Medical[`^`]2016', 'Medical', 'Medical', '500', '2016', 1, '2016-12-02'),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Activity[`^`]2016', 'Activity', 'Activity', '700', '2016', 1, '2016-12-02'),
+(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Tuition[`^`]2017', 'Tuition', 'Tuition', '4792', '2017', 1, '2016-12-02'),
+(7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Boarding[`^`]2017', 'Boarding', 'Boarding', '32385', '2017', 1, '2016-12-02'),
+(8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Insurance[`^`]2017', 'Insurance', 'Insurance', '1060', '2017', 1, '2016-12-02'),
+(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Medical[`^`]2017', 'Medical', 'Medical', '508', '2017', 1, '2016-12-02'),
+(10, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Activity[`^`]2017', 'Activity', 'Activity', '798', '2017', 1, '2016-12-02');
 
 -- --------------------------------------------------------
 
@@ -335,39 +367,41 @@ CREATE TABLE `zvs_platform_resources` (
   `resourceId` varchar(45) NOT NULL,
   `resourceName` varchar(100) NOT NULL,
   `resourceCategory` varchar(100) NOT NULL,
+  `resourceDescription` text NOT NULL,
   `dateCreated` date NOT NULL,
   `dateModified` date DEFAULT NULL,
   `resourceStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_platform_resources`
 --
 
-INSERT INTO `zvs_platform_resources` (`id`, `resourceId`, `resourceName`, `resourceCategory`, `dateCreated`, `dateModified`, `resourceStatus`) VALUES
-(1, 'ClsMod[`^`]ViewClasses', 'View Classes', 'Class', '2016-07-03', NULL, 1),
-(2, 'ClsMod[`^`]ClassProfile', 'Class Profile', 'Class', '2016-07-03', NULL, 0),
-(3, 'ClsMod[`^`]ViewStreams', 'View Streams', 'Class', '2016-07-03', NULL, 0),
-(4, 'ClsMod[`^`]StreamProfile', 'Stream Profile', 'Class', '2016-07-03', NULL, 0),
-(5, 'DepMod[`^`]ViewDepartments', 'View Departments', 'Department', '2016-07-03', NULL, 0),
-(6, 'DepMod[`^`]DepartmentProfile', 'Department Profile', 'Department', '2016-07-03', NULL, 0),
-(7, 'DepMod[`^`]ViewSubDepartments', 'View Sub Departments', 'Department', '2016-07-03', NULL, 0),
-(8, 'DepMod[`^`]SubDepartmentProfile', 'Sub Department Profile', 'Department', '2016-07-03', NULL, 0),
-(9, 'FinMod[`^`]CreateFees', 'Create Fees', 'Finance', '2016-07-03', NULL, 0),
-(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '2016-07-03', NULL, 0),
-(11, 'FinMod[`^`]CollectFees', 'Collect Fees', 'Finance', '2016-07-03', NULL, 1),
-(12, 'FinMod[`^`]FinanceStatus', 'Finance Status', 'Finance', '2016-07-03', NULL, 0),
-(13, 'FinMod[`^`]FeeStructure', 'Fee Structure', 'Finance', '2016-07-03', NULL, 1),
-(14, 'FinMod[`^`]FeeDefaulters', 'Fee Defaulters', 'Finance', '2016-07-03', NULL, 0),
-(15, 'FinMod[`^`]FeeRefunds', 'Fee Refunds', 'Finance', '2016-07-03', NULL, 0),
-(16, 'StuMod[`^`]RegisterStudent', 'Register Student', 'Student', '2016-07-03', NULL, 1),
-(17, 'StuMod[`^`]ViewStudents', 'View Students', 'Student', '2016-07-03', NULL, 0),
-(18, 'StuMod[`^`]StudentProfile', 'Student Profile', 'Student', '2016-07-03', NULL, 0),
-(19, 'StuMod[`^`]StudentExamResults', 'Student Exam Results', 'Student', '2016-07-03', NULL, 0),
-(20, 'StuMod[`^`]StudentFeeDetails', 'Student Fee Details', 'Student', '2016-07-03', NULL, 0),
-(21, 'StuMod[`^`]StudentSubjectDetails', 'Student Subject Details', 'Student', '2016-07-03', NULL, 0),
-(22, 'StuMod[`^`]StudentMedicalHistory', 'Student Medical History', 'Student', '2016-07-03', NULL, 0),
-(23, 'StuMod[`^`]StudentChatBox', 'Student Chat Box', 'Student', '2016-07-03', NULL, 0);
+INSERT INTO `zvs_platform_resources` (`id`, `resourceId`, `resourceName`, `resourceCategory`, `resourceDescription`, `dateCreated`, `dateModified`, `resourceStatus`) VALUES
+(1, 'ClsMod[`^`]ViewClasses', 'View Classes', 'Class', 'This resource helps in viewing class details for a selected class year. Through this resource, you can have a graphical representation of the number of students in each stream of a given class for the selected year for the entire school.', '2016-07-03', NULL, 1),
+(2, 'ClsMod[`^`]ClassProfile', 'Class Profile', 'Class', '', '2016-07-03', NULL, 0),
+(3, 'ClsMod[`^`]ViewStreams', 'View Streams', 'Class', '', '2016-07-03', NULL, 0),
+(4, 'ClsMod[`^`]StreamProfile', 'Stream Profile', 'Class', '', '2016-07-03', NULL, 0),
+(5, 'DepMod[`^`]ViewDepartments', 'View Departments', 'Department', '', '2016-07-03', NULL, 0),
+(6, 'DepMod[`^`]DepartmentProfile', 'Department Profile', 'Department', '', '2016-07-03', NULL, 0),
+(7, 'DepMod[`^`]ViewSubDepartments', 'View Sub Departments', 'Department', '', '2016-07-03', NULL, 0),
+(8, 'DepMod[`^`]SubDepartmentProfile', 'Sub Department Profile', 'Department', '', '2016-07-03', NULL, 0),
+(9, 'FinMod[`^`]CreateFees', 'Create Fees', 'Finance', '', '2016-07-03', NULL, 0),
+(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '', '2016-07-03', NULL, 0),
+(11, 'FinMod[`^`]CollectFees', 'Collect Fees', 'Finance', 'This resource helps its consumers to collect and record school fees. The resource consumer searches for a student from a selected class and stream, then will be able to see the student''s fee history and subsequently collect fees being paid by the same student.', '2016-07-03', NULL, 1),
+(12, 'FinMod[`^`]FinanceStatus', 'Finance Status', 'Finance', '', '2016-07-03', NULL, 0),
+(13, 'FinMod[`^`]FeeStructure', 'Fee Structure', 'Finance', 'This resource is useful in presenting fees structure to its consumers. The consumers are able to select a given class and a corresponding year, for which they would like to view a fees structure. The resource draws a fees structure, percentage representations and more.', '2016-07-03', NULL, 1),
+(14, 'FinMod[`^`]FeeDefaulters', 'Fee Defaulters', 'Finance', '', '2016-07-03', NULL, 0),
+(15, 'FinMod[`^`]FeeRefunds', 'Fee Refunds', 'Finance', '', '2016-07-03', NULL, 0),
+(16, 'StuMod[`^`]RegisterStudent', 'Register Student', 'Student', '', '2016-07-03', NULL, 1),
+(17, 'StuMod[`^`]ViewStudents', 'View Students', 'Student', '', '2016-07-03', NULL, 0),
+(18, 'StuMod[`^`]StudentProfile', 'Student Profile', 'Student', '', '2016-07-03', NULL, 0),
+(19, 'StuMod[`^`]StudentExamResults', 'Student Exam Results', 'Student', '', '2016-07-03', NULL, 0),
+(20, 'StuMod[`^`]StudentFeeDetails', 'Student Fee Details', 'Student', '', '2016-07-03', NULL, 0),
+(21, 'StuMod[`^`]StudentSubjectDetails', 'Student Subject Details', 'Student', '', '2016-07-03', NULL, 0),
+(22, 'StuMod[`^`]StudentMedicalHistory', 'Student Medical History', 'Student', '', '2016-07-03', NULL, 0),
+(23, 'StuMod[`^`]StudentChatBox', 'Student Chat Box', 'Student', '', '2016-07-03', NULL, 0),
+(24, 'StuMod[`^`]ShiftStudents', 'Shift Students', 'Student', '', '2016-12-02', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -420,7 +454,7 @@ CREATE TABLE `zvs_resource_role_mapper` (
   `schoolRoleId` varchar(100) NOT NULL,
   `schoolResourceId` varchar(45) DEFAULT NULL,
   `resourceCategory` varchar(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_resource_role_mapper`
@@ -431,7 +465,8 @@ INSERT INTO `zvs_resource_role_mapper` (`id`, `systemSchoolCode`, `schoolRoleId`
 (3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'StuMod[`^`]RegisterStudent', 'StuMod'),
 (7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'ClsMod[`^`]ViewClasses', 'ClsMod'),
 (8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]CollectFees', 'FinMod'),
-(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]FeeStructure', 'FinMod');
+(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'FinMod[`^`]FeeStructure', 'FinMod'),
+(10, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'StuMod[`^`]ShiftStudents', 'StuMod');
 
 -- --------------------------------------------------------
 
@@ -492,16 +527,19 @@ CREATE TABLE `zvs_school_attendance_schedule` (
   `attendanceEndDate` date NOT NULL,
   `attendanceStatus` tinyint(5) NOT NULL,
   `dateCreated` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_attendance_schedule`
 --
 
 INSERT INTO `zvs_school_attendance_schedule` (`id`, `systemSchoolCode`, `systemAttendanceCode`, `attendanceName`, `attendanceYear`, `attendanceStartDate`, `attendanceEndDate`, `attendanceStatus`, `dateCreated`) VALUES
-(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '2017-01-09', '2017-04-07', 1, '2016-11-03'),
-(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '2017-05-01', '2017-08-04', 1, '2016-11-03'),
-(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2017', 'Third Term', '2017', '2017-09-04', '2017-11-03', 1, '2016-11-03');
+(1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2016', 'First Term', '2016', '2016-01-04', '2016-04-08', 1, '2016-12-02'),
+(2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2016', 'Second Term', '2016', '2016-05-02', '2016-08-05', 1, '2016-12-02'),
+(3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2016', 'Third Term', '2016', '2016-09-05', '2016-11-11', 1, '2016-12-02'),
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FirstTerm[`^`]2017', 'First Term', '2017', '2017-01-09', '2017-04-07', 1, '2016-12-02'),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]SecondTerm[`^`]2017', 'Second Term', '2017', '2017-05-01', '2017-08-04', 1, '2016-12-02'),
+(6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]ThirdTerm[`^`]2017', 'Third Term', '2017', '2017-09-04', '2017-11-10', 1, '2016-12-02');
 
 -- --------------------------------------------------------
 
@@ -1069,7 +1107,7 @@ CREATE TABLE `zvs_school_roles` (
   `dateModified` date DEFAULT NULL,
   `assignStatus` tinyint(1) unsigned zerofill NOT NULL,
   `roleStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_roles`
@@ -1079,7 +1117,8 @@ INSERT INTO `zvs_school_roles` (`id`, `systemSchoolCode`, `schoolRoleCode`, `sch
 (1, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Principal', 'Principal', 'Principal', 'Principal', '2016-08-18', NULL, 1, 1),
 (2, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Bursar', 'Bursar', 'Bursar', 'Bursar', '2016-09-10', NULL, 1, 1),
 (3, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Student', 'Student', 'Student', 'Student', '2016-09-11', NULL, 1, 1),
-(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Parent', 'Parent', 'Parent', 'Parent', '2016-09-17', NULL, 0, 1);
+(4, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]Parent', 'Parent', 'Parent', 'Parent', '2016-09-17', NULL, 0, 1),
+(5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]DeputyPrincipal', 'Deputy Principal', 'DP', 'DeputyPrincipal', '2016-11-26', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1223,7 +1262,7 @@ INSERT INTO `zvs_students_class_details` (`id`, `systemSchoolCode`, `identificat
 (6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormThree', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormThree[`^`]West', '2012', '6578', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'WK-ETLGgAtaCzA1FfF_qODOsYf9MPqfQ-ot-Qn5xYiB171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ3dMsvGmbdMbIylFd4zV3q0ZLAF722IHGHhhUBXp7AZs', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2014', '2372', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ-9Yi1Y4lCHQ5srGrjKzAbJlVC7m-WTjkhCjrnTXVxBc', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2015', '2373', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
-(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2016', '2374', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2016', '2274', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (10, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7t171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ0-MfGSmjwuJdlXlzrovGBdaI34izYg3ejGmlNHsSTxN', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2016', '2376', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (11, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'BUVjLKjR2-gwMwQm8VDvfR6pe6hq4MLhEj5m4jUnJTl171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ4_xVsS9h17dszG8TkgI1pp8fM2o5EFSxDRJyixzVf9J', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne', 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO[`^`]FormOne[`^`]East', '2016', '2377', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
 
@@ -1397,9 +1436,9 @@ INSERT INTO `zvs_students_personal_details` (`id`, `systemSchoolCode`, `identifi
 (5, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'Y6U6uC21UebV5s3jkxnCc0t6h6qnRwGOpkmrjyExNCVmtFmACh_e7m7uyPdkM2qRf-VsWEg_OdqI9p811H2wim_NXt-bINsOYGqv4omZ1hrUAi_P8K-o8jz9GFuPQizL', '6578', 'Mary', 'Emily', 'Jane', 'Female', '30-07-2012', 'Hindu', '+254', '7', '2431', '0700222222', 'French', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (6, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'WK-ETLGgAtaCzA1FfF_qODOsYf9MPqfQ-ot-Qn5xYiB171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ3dMsvGmbdMbIylFd4zV3q0ZLAF722IHGHhhUBXp7AZs', '2372', 'Mathew', 'Juma', 'Otieno', 'Male', '01-10-2016', 'Christian', '+254', '6', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
 (7, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', '3avG_MewSyIwuMTE3n0dTf3c8IQ2VyuyOP8a6C8sX7p171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ-9Yi1Y4lCHQ5srGrjKzAbJlVC7m-WTjkhCjrnTXVxBc', '2373', 'Mathew', 'Juma', 'Otieno', 'Male', '01-10-2016', 'Christian', '+254', '3', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
-(8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', '2374', 'Mathew', 'Juma', 'Otieno', 'Male', '01-10-2016', 'Christian', '+254', '2', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
-(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7t171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ0-MfGSmjwuJdlXlzrovGBdaI34izYg3ejGmlNHsSTxN', '2376', 'Mathew', 'Juma', 'Otieno', 'Male', '01-10-2016', 'Christian', '+254', '2', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
-(10, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'BUVjLKjR2-gwMwQm8VDvfR6pe6hq4MLhEj5m4jUnJTl171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ4_xVsS9h17dszG8TkgI1pp8fM2o5EFSxDRJyixzVf9J', '2377', 'Mathew', 'Juma', 'Otieno', 'Male', '01-10-2016', 'Christian', '+254', '5', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
+(8, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7spRVR3wIe6QOol45Jjyl2kzuvH5j93aNBwowCJ6fpHsa3B_HWE9Xg-l3y2Be7rOemZJ4Cdpi-flQFaf1hUU2Wa', '2274', 'Mathew', 'Juma', 'Otieno', 'Male', '01-10-2016', 'Christian', '+254', '2', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(9, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'llyTLza9apoL_qsV-vP9IvkgLDkkNjQRb9cvImeLT7t171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ0-MfGSmjwuJdlXlzrovGBdaI34izYg3ejGmlNHsSTxN', '2376', 'Elvis ', 'Mbugua', 'Makale', 'Male', '01-10-2016', 'Christian', '+254', '2', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1),
+(10, 'xnCwJMK&LVkrX#bmBl40$!eW29IcjO', 'BUVjLKjR2-gwMwQm8VDvfR6pe6hq4MLhEj5m4jUnJTl171m8qyRVLlYDMtAlw_RIkpYo4rUpXMlm82opCc8oJ4_xVsS9h17dszG8TkgI1pp8fM2o5EFSxDRJyixzVf9J', '2377', 'James', 'Mweu', 'Makau', 'Male', '01-10-2016', 'Christian', '+254', '5', 'P.O Box 73619 -00100', '0727074108', 'English', '_ggzjo422a8OskMuV3J0Q00DJVEN7YG7VXu25mK_FKx-sndjTSmU-dlm7lcVktUrhGii79_zec1hFqCeNGTH1t-asd086NLDROS8Yw5zXB-D0xmozRC8lndDcG1CPW8k', 1);
 
 -- --------------------------------------------------------
 
@@ -1459,6 +1498,12 @@ ALTER TABLE `zvs_blood_groups`
 ALTER TABLE `zvs_class_school_fees`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `systemFeeCode` (`systemFeeCode`);
+
+--
+-- Indexes for table `zvs_fees_payment_detials`
+--
+ALTER TABLE `zvs_fees_payment_detials`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zvs_fees_payment_schedule`
@@ -1693,17 +1738,22 @@ ALTER TABLE `zvs_blood_groups`
 -- AUTO_INCREMENT for table `zvs_class_school_fees`
 --
 ALTER TABLE `zvs_class_school_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zvs_fees_payment_detials`
+--
+ALTER TABLE `zvs_fees_payment_detials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `zvs_fees_payment_schedule`
 --
 ALTER TABLE `zvs_fees_payment_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `zvs_general_school_fees`
 --
 ALTER TABLE `zvs_general_school_fees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `zvs_platform_admin`
 --
@@ -1733,7 +1783,7 @@ ALTER TABLE `zvs_platform_religions`
 -- AUTO_INCREMENT for table `zvs_platform_resources`
 --
 ALTER TABLE `zvs_platform_resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `zvs_resource_categories`
 --
@@ -1743,7 +1793,7 @@ ALTER TABLE `zvs_resource_categories`
 -- AUTO_INCREMENT for table `zvs_resource_role_mapper`
 --
 ALTER TABLE `zvs_resource_role_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `zvs_school_admin`
 --
@@ -1753,7 +1803,7 @@ ALTER TABLE `zvs_school_admin`
 -- AUTO_INCREMENT for table `zvs_school_attendance_schedule`
 --
 ALTER TABLE `zvs_school_attendance_schedule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `zvs_school_classes`
 --
@@ -1803,7 +1853,7 @@ ALTER TABLE `zvs_school_locality`
 -- AUTO_INCREMENT for table `zvs_school_roles`
 --
 ALTER TABLE `zvs_school_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_school_streams`
 --
