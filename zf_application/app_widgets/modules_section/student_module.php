@@ -25,6 +25,18 @@ $main_menu = array(
         'title' => '',
         'style' => '',
         'id' => ''
+    ),
+    
+    
+    //Shift students
+    "shift_students" => array(
+        'name' => '<i class="fa fa-exchange"></i> Shift Students',
+        'controller' => $zvs_controller,
+        'action' => 'shift_students',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
     )
     
     
@@ -33,17 +45,22 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "register_student") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "register_student" || $zvs_action == "shift_students") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
         <span class="title"> Student Module </span>
-        <?php if ($zvs_action == "register_student") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "register_student") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "register_student" || $zvs_action == "shift_students") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "register_student" || $zvs_action == "shift_students") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STUDENT, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "register_student") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['register_student']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(SHIFT_STUDENTS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "shift_students") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['shift_students']); ?>
             </li>
         <?php } ?>
     </ul>

@@ -379,6 +379,16 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
     margin-left: 10% !important;
 }
 
+
+.quiz-button{
+    /*width: 5px; height: 5px; background-color: #b94a48 !important;*/
+    width: 5px; height: 5px; background-color: #21B4E2 !important;
+    padding: 1px 4px 1px 4px !important; text-align: center; color: #ffffff; margin-top: -10px !important; margin-bottom: -5px !important;
+    font-size: 8px; line-height: 1.25em; letter-spacing: 0em; text-decoration: none !important; font-weight: bold !important;
+    font-family:  Ubuntu-L; cursor: pointer !important;
+    -webkit-border-radius: 10px !important; -moz-border-radius: 10px !important; border-radius: 10px !important;
+}
+
 /**
 This is the styling for the zozo tabs and accordion
 */

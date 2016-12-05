@@ -225,7 +225,7 @@ class processFeeInformation_Model extends Zf_Model {
                                     <div class="row" style="margin-top: 20px !important;">
                                         <div class="col-md-12" id="feesPaymentDataChart">';
                           
-                                        $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear);
+                                        $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear, $identificationCode);
                                         
                 $feesHistoryDetails .= '</div>
                                         <div class="col-md-12" id="dividerLine"><hr></div>
@@ -643,7 +643,8 @@ class processFeeInformation_Model extends Zf_Model {
         $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentStreamCode);
         $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
         $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($feesHistoryYear);
-        if($paymentPeriod != NULL && !empty($paymentPeriod) ){
+        
+        if($paymentPeriod != NULL && !empty($paymentPeriod)){
             
             $zvs_sqlValue["paymentScheduleName"] = Zf_QueryGenerator::SQLValue($paymentPeriod);
             
@@ -708,18 +709,18 @@ class processFeeInformation_Model extends Zf_Model {
     /**
      * This private method plots the pie charts that shows how the student has paid school fees.
      */
-    private function plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear){
+    private function plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear, $studentIdentificationCode){
         
-        //$totalFees = filter_var($classFeesAmount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        //$paidFees = filter_var($studentPaidFees, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-        $totalFees = 46000.00;
-        $paidFees = 23000.00;
+        $totalFees = filter_var($classFeesAmount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $paidFees = filter_var($studentPaidFees, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        //$totalFees = 46000.00;
+        //$paidFees = 23000.00;
         $dueFees = $totalFees - $paidFees;
         
         //These are the initial chart settings
         $chartSettings = array(
             "ChartType" => "Doughnut2D",
-            "ChartID" => "feePaymentCharts".$feesHistoryYear,
+            "ChartID" => "feePaymentCharts".$feesHistoryYear.$studentIdentificationCode,
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "270",
             "ChartContainer" => "feesPaymentDataChart",
@@ -1016,7 +1017,7 @@ class processFeeInformation_Model extends Zf_Model {
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
         //This of debugging purposes only.
-        echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
+        //echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
         
         
         $adminIdentificationCode = $this->_validResult['adminIdentificationCode'];
@@ -1028,11 +1029,12 @@ class processFeeInformation_Model extends Zf_Model {
         if(empty($this->_errorResult)){
             
             $systemSchoolCode = $this->_validResult['systemSchoolCode'];
-            $schoolClassCode = $this->_validResult['studentClassCode'];
-            $systemStreamCode = $this->_validResult['studentStreamCode'];
+            $studentClassCode = $this->_validResult['studentClassCode'];
+            $studentStreamCode = $this->_validResult['studentStreamCode'];
             $paymentScheduleYear = $this->_validResult['paymentScheduleYear'];
             $paymentScheduleName = $this->_validResult['paymentScheduleName'];
             $studentIdentificationCode = $this->_validResult['studentIdentificationCode'];
+            $studentAdmissionNumber = $this->_validResult['studentAdmissionNumber'];
             $paymentAmount = $this->_validResult['paymentAmount'];
             
             
@@ -1043,26 +1045,33 @@ class processFeeInformation_Model extends Zf_Model {
             
             //0. Get the fees payment percentage proportion for the selected year and the selected payment period
             $feePaymentProportion = ($this->feePaymentSchedule($systemSchoolCode, $paymentScheduleName, $paymentScheduleYear)/100);
-            echo $feePaymentProportion."<br>";
+            //echo $feePaymentProportion."<br>";
             
             
             //1. Get the fees supposed to be paid for the selected year and the selected payment period, say X
-            $totalFeesAmount = (filter_var($this->zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $paymentScheduleYear), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)*$feePaymentProportion);
-            echo $totalFeesAmount."<br>";
+            $totalFeesAmount = (filter_var($this->zvs_generateClassFeeDetails($systemSchoolCode, $studentClassCode, $paymentScheduleYear), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)*$feePaymentProportion);
+            //echo "Total Fees: ".$totalFeesAmount."<br>";
             
             //2. Get the fees already paid by the student for the selected year and the selected payment period, say Y
-            $amountAlreadyPaid = filter_var($this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $schoolClassCode, $studentStreamCode, $paymentScheduleYear, $studentIdentificationCode, $paymentScheduleName), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-            echo $amountAlreadyPaid."<br>";
+            $amountAlreadyPaid = filter_var($this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $paymentScheduleYear, $studentIdentificationCode, $paymentScheduleName), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            //echo "Paid Fees: ".$amountAlreadyPaid."<br>";
             
             
             //3. Work out the fees balance for the paying student by calculating X-Y = Z
             $feesBalance  = $totalFeesAmount - $amountAlreadyPaid;
-            echo $feesBalance; exit();
+            //echo "Fees Balance: ".$feesBalance;
+            //exit();
+            
             
             //4. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
             if($totalFeesAmount == $amountAlreadyPaid){
                 
-                
+                Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_already_completed");
+
+                $zf_errorData = array("zf_fieldName" => "paymentScheduleName", "zf_errorMessage" => "* Student already completed fees for the selected payment period.");
+                Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+                exit();
             }
             
             //5. If the balance Z is more than 0, compare the balance Z and the paid amount W.
@@ -1071,13 +1080,46 @@ class processFeeInformation_Model extends Zf_Model {
                 //6. If the paid amount is more than the the balance i.e W > Z, return a flag about the students remaining balance for the selected year and payment period
                 if($paymentAmount > $feesBalance){
                     
-                    
+                    Zf_SessionHandler::zf_setSessionVariable("collect_fees", "paid_more_fees");
+
+                    $zf_errorData = array("zf_fieldName" => "paymentAmount", "zf_errorMessage" => "* Student's balance for selected period is $feesBalance");
+                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                    Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+                    exit();
                     
                 }
                 //7. If the paid amount is equal to or less than the balance i.e W == Z || W < Z, insert the record for the paid fees against the selected year and payment period.
                 else if($paymentAmount == $feesBalance || $paymentAmount < $feesBalance){
                     
+                    $zvs_sqlValues['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                    $zvs_sqlValues['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
+                    $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                    $zvs_sqlValues['studentClassCode'] = Zf_QueryGenerator::SQLValue($studentClassCode);
+                    $zvs_sqlValues['studentStreamCode'] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+                    $zvs_sqlValues['paymentScheduleName'] = Zf_QueryGenerator::SQLValue($paymentScheduleName);
+                    $zvs_sqlValues['paymentScheduleYear'] = Zf_QueryGenerator::SQLValue($paymentScheduleYear);
+                    $zvs_sqlValues['paymentAmount'] = Zf_QueryGenerator::SQLValue($paymentAmount);
+                    $zvs_sqlValues['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
+                    $zvs_sqlValues['paymentDate'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
+                    $zvs_sqlValues['feesStatus'] = Zf_QueryGenerator::SQLValue(0);
+
+                    //Insertion sql query and execution
+                    $zvs_insertNewPaymentDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_detials", $zvs_sqlValues);
                     
+                    $zvs_executeInsertNewPaymentDetails = $this->Zf_AdoDB->Execute($zvs_insertNewPaymentDetails);
+
+                    if(!$zvs_executeInsertNewPaymentDetails){
+
+                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                    }else{
+
+                        //Insertion successful
+                         Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_payment_success");
+                         Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+                         exit();
+
+                    }
                     
                 }
                 
@@ -1086,7 +1128,7 @@ class processFeeInformation_Model extends Zf_Model {
             
         }else{
             
-            Zf_SessionHandler::zf_setSessionVariable("configure_attendance", "attendance_setup_error");
+            Zf_SessionHandler::zf_setSessionVariable("collect_fees", "collect_fees_error");
             Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
             Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
             exit();

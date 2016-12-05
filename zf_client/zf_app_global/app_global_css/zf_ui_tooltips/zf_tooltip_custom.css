@@ -1,0 +1,61 @@
+/*THIS IS THE CSS THAT IS DEDICATED TOWARD THE WORKING OF THE TOOLTIP FOR THE CALCULATOR*/
+.zvs-tooltip-indicator-wrapper{
+     padding-left: 5px !important; height: 17px; width: 17px; cursor: pointer !important; text-decoration: none !important;
+     color: #ffffff !important; margin-top: -20px !important;
+}
+
+.all-zvs-tooltips{
+    border: 3px solid #ffffff !important;width: 400px;
+    -webkit-border-radius: 5px !important; -moz-border-radius: 5px !important; border-radius: 5px !important;
+    font-family: ProximaNova-Light !important; font-size: 13px; box-shadow:  0px 0px 20px 1px #888888;
+     -moz-box-shadow:  0px 0px 20px 1px #888888; -webkit-box-shadow:  0px 0px 20px 1px #888888;
+}
+
+.qtip-close {
+    border-color: rgba(0, 0, 0, 0); padding-left:1px  !important; padding-right:1px  !important; padding-top: 2px !important;
+    border-style: solid; background-color: #efefef !important;
+    -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important; border-radius: 3px !important;
+    border-width: 1px;
+    cursor: pointer;
+    outline: medium none;
+    position: absolute;
+    right: 3px !important;
+    top: 12px !important;
+}
+
+.qtip-close:hover {
+    text-decoration: none !important;
+}
+
+.qtip-tipped .qtip-titlebar {
+    background: #efefef !important;
+    /* -moz-box-shadow: inset 0px 0px 21px 1px #888888; -webkit-box-shadow: inset 0px 0px 21px 1px #888888; box-shadow: inset 0px 0px 21px 1px #888888;*/
+    -webkit-border-radius: 5px 5px 0 0 !important; -moz-border-radius: 5px 5px 0 0  !important; border-radius: 5px 5px 0 0  !important;
+    border-bottom-width: 0;
+    color: #656565;font-family: Oswald-light,Ubuntu-L !important; padding: 8px !important; padding-bottom: 10px !important;
+    font-size: 15px !important; font-weight: lighter; letter-spacing: 1px; margin-bottom: 5px !important;
+}
+
+
+.all-zvs-tooltips p{
+    text-align: left !important; font-size: 11px !important; font-weight: lighter;
+    font-family: ProximaNova-Light !important; line-height: 20px !important; padding-bottom: 5px !important;
+}
+.all-zvs-tooltips p a{
+    text-decoration: none !important; color: #E8921d  !important;
+}
+.all-zvs-tooltips p a:hover{
+    text-decoration: underline !important; color: #E8921d  !important;
+}
+
+.slidMe-wrapper{
+    margin-top: -30px !important;
+}
+
+.slideMe{
+    -webkit-border-radius: 5px !important; -moz-border-radius: 5px !important; border-radius: 5px !important;
+    text-align: left !important; font-size: 11px !important; font-weight: lighter; letter-spacing: 1px; 
+    font-family: Ubuntu-L !important; line-height: 20px !important; height: 20px !important; padding-bottom: 10px !important;
+    z-index: 0 !important;
+}
+

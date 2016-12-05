@@ -236,6 +236,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('STUDENT_MODULE') ? null : define('STUDENT_MODULE' , 'StuMod');
     
         defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
+        defined('SHIFT_STUDENTS') ? null : define('SHIFT_STUDENTS' , 'StuMod'.CONNECT.'ShiftStudents');
     
     
     //Teacher Module and resources

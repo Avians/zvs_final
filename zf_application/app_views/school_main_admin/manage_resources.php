@@ -90,7 +90,7 @@
 </div>
 <!-- END CONTENT -->
 <?php
-    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
-    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
+    //Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
+    //Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
 ?>
 
