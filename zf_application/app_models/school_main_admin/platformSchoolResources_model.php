@@ -109,12 +109,12 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                                       <table class="table table-striped table-hover">
                                                                                           <thead>
                                                                                               <tr>
-                                                                                                  <th  style="width: 40%;">Resource Name</th><th>Help</th><th style="width: 20%; text-align: center !important;">Date</th><th style="width: 15%; text-align: center !important;">Status</th>
+                                                                                                  <th style="width: 40%;">Resource Name</th><th style="width: 10%;">Help</th><th style="width: 25%; text-align: center !important;">Date</th><th style="width: 15%; text-align: center !important;">Status</th>
                                                                                               </tr>
                                                                                           </thead>
                                                                                           <tbody>
                                                                                           <style type="text/css">
-                                                                                            .all-zvs-tooltips{ width: 280px; !important;}
+                                                                                            .all-zvs-tooltips{ width: 250px; !important;}
                                                                                             .qtip-tipped .qtip-titlebar {color: #21B4E2;}
                                                                                           </style>';
                                                 
@@ -123,7 +123,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                                                 $resourceName = $resourceValues['resourceName']; $dateCreated = $resourceValues['dateCreated']; $resourceStatus = ($resourceValues['resourceStatus'] == 1 ? '<i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
                                                                                                 $resourceId = str_replace(ZVSS_CONNECT, "_", $resourceValues['resourceId']);  
                                                                                                 
-                                                                                                $zvs_resourcesGridView .='<tr><td>'.$resourceName.'</td><td><a id="'.$resourceId.'"><span class="zvs-tooltip-indicator-wrapper quiz-button" id="'.$resourceId.'_helper">?</span></a></td><td style="text-align:center !important;">'.$dateCreated.'</td><td style="text-align:center !important;">'.$resourceStatus.'</td></tr>';
+                                                                                                $zvs_resourcesGridView .='<tr><td>'.$resourceName.'</td><td><a id="'.$resourceId.'" style="text-decoration: none !important;"><span class="zvs-tooltip-indicator-wrapper quiz-button" id="'.$resourceId.'_helper">?</span></a></td><td style="text-align:center !important;">'.$dateCreated.'</td><td style="text-align:center !important;">'.$resourceStatus.'</td></tr>';
                                                                                                 
                                                                                             }
 
