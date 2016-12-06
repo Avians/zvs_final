@@ -224,9 +224,13 @@ class processFeeInformation_Model extends Zf_Model {
                                     <div class="portlet-titles">Fees Payment Details</div>
                                     <div class="row" style="margin-top: 20px !important;">
                                         <div class="col-md-12" style="text-align: right;">
-                                            <div class="right" style="background-color:#73CBE8; width: 10% auto; float: right; padding: 5px; text-align:right; font-weight: bolder; color:#ffffff;">
-                                                <span>Reserve Payment:&nbsp;</span>
-                                                Kshs. 0.00
+                                            <style type="text/css">
+                                                .all-zvs-tooltips{ width: 300px; !important;}
+                                                .qtip-tipped .qtip-titlebar {color: #21B4E2;}
+                                            </style>
+                                            <div class="right" style="background-color:#73CBE8; width: 10% auto; float: right; padding: 5px 5px 3px 5px; text-align:right; font-weight: bolder; color:#ffffff;">
+                                                <a id="reservedSchoolFees" style="text-decoration: none !important;"><span class="zvs-tooltip-indicator-wrapper quiz-button-white" id="reservedSchoolFees_helper"><strong>?</strong></span></a>&nbsp;
+                                                Reserved Payment:&nbsp; '.$this->reservedFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode,$identificationCode).'
                                             </div>
                                         </div>
                                         <div class="col-md-12" id="feesPaymentDataChart">';
@@ -252,6 +256,29 @@ class processFeeInformation_Model extends Zf_Model {
                                         $("#collectFeesContainer").fadeIn(2000, function(){
                                         
                                         });
+
+                                    });
+                                    
+
+                                    //This shows the reserved fees tool-tip
+                                    $("#reservedSchoolFees").qtip({
+                                                
+                                        content: {
+                                            title: "Reserved Payment",
+                                            text: "<p>Reserved payment is an amount of money <b><u>over-paid</u></b> by the student as school fees, and which can be allocated as school fees for subsequent fee payment periods. Money is reserved, everytime a student pays more than the existing fees balance for a selected fees payment period.</p>",
+                                            button: false
+                                        },
+                                        hide: {
+                                            event: "mouseleave",
+                                            fixed: true 
+                                        },
+                                        position: {
+                                            my: "right center", // Position my top left...
+                                            at: "bottom left", // at the bottom right of...
+                                            adjust: { x: 5, y: -6 },
+                                            target: $("#reservedSchoolFees_helper") // my target
+                                        },
+                                        style: "qtip-tipped qtip-shadow qtip-rounded all-zvs-tooltips"
 
                                     });
                                     
@@ -677,6 +704,19 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     /**
+     * This private method fetches all the data about reserved fees payment
+     */
+    private function reservedFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode,$identificationCode){
+        
+        return number_format(20000, 2, ".", ",");
+        
+    }
+
+    
+
+
+
+    /**
      * This private works out pulls the actual fees payment details
      */
     private function zvs_fetchFeesDetails($studentFeesQuery){
@@ -785,18 +825,16 @@ class processFeeInformation_Model extends Zf_Model {
         
         $chartData = '
                     "data": [
-                    
-                        {
-                            "label": "Fees Due",
-                            "value": "'.$dueFees.'",
-                            "color": "#2A5653"   
-                        },
                         {
                             "label": "Fees Paid",
                             "value": "'.$paidFees.'",
                             "color": "#73A99B"
-                        }
-                        
+                        },
+                        {
+                            "label": "Fees Due",
+                            "value": "'.$dueFees.'",
+                            "color": "#2A5653"   
+                        } 
                     ]   
                 ';
         
