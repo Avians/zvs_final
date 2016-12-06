@@ -223,6 +223,12 @@ class processFeeInformation_Model extends Zf_Model {
                                 <div class="col-md-6 col-sm-12 col-xs-12">
                                     <div class="portlet-titles">Fees Payment Details</div>
                                     <div class="row" style="margin-top: 20px !important;">
+                                        <div class="col-md-12" style="text-align: right;">
+                                            <div class="right" style="background-color:#73CBE8; width: 10% auto; float: right; padding: 5px; text-align:right; font-weight: bolder; color:#ffffff;">
+                                                <span>Reserve Payment:&nbsp;</span>
+                                                Kshs. 0.00
+                                            </div>
+                                        </div>
                                         <div class="col-md-12" id="feesPaymentDataChart">';
                           
                                         $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear, $identificationCode);
@@ -722,7 +728,7 @@ class processFeeInformation_Model extends Zf_Model {
             "ChartType" => "Doughnut2D",
             "ChartID" => "feePaymentCharts".$feesHistoryYear.$studentIdentificationCode,
             "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "270",
+            "ChartHeight" =>  "240",
             "ChartContainer" => "feesPaymentDataChart",
             "ChartDataFormat" =>  "json",
         );
@@ -733,14 +739,14 @@ class processFeeInformation_Model extends Zf_Model {
             
                             "chart":{
                                 "bgColor": "#ffffff",
-                                "pieRadius": "90",
+                                "pieRadius": "85",
                                 "showBorder": "0",
                                 "use3DLighting": "0",
                                 "showShadow": "0",
                                 "showLabels": "1", 
                                 "enableSmartLabels": "1",
                                 "showValues": "1",
-                                "startingAngle": "0",
+                                "startingAngle": "120",
                                 "slicingDistance" : "8",
                                 "showPercentValues": "1",
                                 "showPercentInTooltip": "0",
@@ -781,14 +787,14 @@ class processFeeInformation_Model extends Zf_Model {
                     "data": [
                     
                         {
-                            "label": "Fees Paid",
-                            "value": "'.$paidFees.'",
-                            "color": "#73A99B"
-                        },
-                        {
                             "label": "Fees Due",
                             "value": "'.$dueFees.'",
                             "color": "#2A5653"   
+                        },
+                        {
+                            "label": "Fees Paid",
+                            "value": "'.$paidFees.'",
+                            "color": "#73A99B"
                         }
                         
                     ]   
