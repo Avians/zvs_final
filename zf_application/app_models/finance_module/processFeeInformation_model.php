@@ -183,7 +183,7 @@ class processFeeInformation_Model extends Zf_Model {
         $classFeesAmount = $this->zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
         $studentPaidFees = $this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode);
         
-        $feesHistoryDetails .= '<div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
+        $feesHistoryDetails .= '<div id="allStudentFeesData" class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
                                     <div class="portlet-titles">Student Details</div>
                                     <div class="row portlet-body" style="margin-top: 20px !important; min-height: 80px !important;">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">

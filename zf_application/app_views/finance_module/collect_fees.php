@@ -122,7 +122,11 @@
                                                 Select Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("feesHistoryYear");?>
                                             </div>
                                         </div>
-                                        <div class="row" id="feesHistoryDetails"></div>
+                                        <div class="row" id="feesHistoryDetails">
+                                            <div class="col-md-12" class="zvs_preloader" align="center">
+                                                <div class="zvs_loader" ></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -159,6 +163,20 @@
         var $current_view = "collect_fees";
 
         FinanceModule.init($current_view, $absolute_path, $separator );
+        
+        
+        
+        
+        //Process the streams within the selected class
+        $('.studentsListDetails, #feesHistoryYear').change(function(){
+            
+            $(".zvs_preloader, .zvs_loader").show();
+            
+            $( "#allStudentFeesData").load(function() {
+                $(".zvs_preloader, .zvs_loader").hide();
+            });
+            
+        });
 
 
     });
