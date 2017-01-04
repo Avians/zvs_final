@@ -50,18 +50,23 @@ var CollectSchoolFeesFormWizard = function () {
                         required: true
                     },
                     
+                    //Payment Source
+                    paymentSource: {
+                        required: true
+                    },
+                    
                     //Payment Amount
                     paymentAmount: {
                         maxlength: 10,
                         minlength: 1,
-                        digits: true,
+                        number: true,
                         required: true
                     }
                 
                 },
 
                 messages: { // custom messages for radio buttons and checkboxes
-                    'gender': {
+                    'paymentSource': {
                         required: "Select at one option",
                         minlength: jQuery.format("Select at one option")
                     }

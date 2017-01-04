@@ -43,7 +43,7 @@ class collectFees_Model extends Zf_Model {
         
         $currentDate = Zf_Core_Functions::Zf_CurrentDate();
     
-        $endYear = explode("-", $currentDate)[2]; $startYear = $endYear-2;
+        $endYear = explode("-", $currentDate)[2]; $startYear = $endYear-3;
         
         $option = "";
         

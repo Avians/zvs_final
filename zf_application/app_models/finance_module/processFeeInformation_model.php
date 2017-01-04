@@ -21,6 +21,7 @@ class processFeeInformation_Model extends Zf_Model {
     
     //This is the user identification code
     private $userIdentificationCode;
+    
 
     /*
     * --------------------------------------------------------------------------------------
@@ -64,7 +65,7 @@ class processFeeInformation_Model extends Zf_Model {
             
         }else{
             
-            $select_options .= '<option value="" selected>Select Stream</option>';
+            $select_options .= '<option value="" selected="selected">Select a stream</option>';
             
             foreach ($streamDetails as $streamValue) {
                 
@@ -97,7 +98,7 @@ class processFeeInformation_Model extends Zf_Model {
         
         
         //Here we have fetch all student class details
-        $studentClassDetails = $this->zvs_fetchStudentsClassDetails($studentStreamCode);
+        $studentClassDetails = $this->zvs_fetchStudentClassHistory($studentStreamCode, NULL, NULL);
         
         $select_options = '';
         
@@ -108,7 +109,7 @@ class processFeeInformation_Model extends Zf_Model {
             
         }else{
             
-            $select_options .= '<option value="" selected>Select Student</option>';
+            $select_options .= '<option value="" selected="selected">Select a student</option>';
             
             foreach ($studentClassDetails as $studentClassValue) {
                 
@@ -156,136 +157,256 @@ class processFeeInformation_Model extends Zf_Model {
         $feesHistoryYear = explode(ZVSS_CONNECT, $feesHistoryIdentifier)[1];
         
         $studentDetails = $this->zvs_fetchStudentsPersonalDetails($identificationCode);
-        $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $identificationCode);
+        $studentClassDetails = $this->zvs_fetchStudentClassHistory(NULL, $identificationCode, $feesHistoryYear);
         
+        $this->feesPaymentPeriod = $feesHistoryYear;
+        
+        
+//This is for debugging purpose only
+//echo "Fees History Year: ".$feesHistoryYear."<br>";
+//echo "<pre>Personal Data<br>";
+//print_r($studentDetails);
+//echo "</pre>";
+//
+//echo "<pre>Class Data for ".$feesHistoryYear." <br>";
+//print_r($studentClassDetails);
+//echo "</pre>";
+//exit();
         
         
         $feesHistoryDetails = "";
-        
-        
+
+
         foreach ($studentDetails as $studentValue) {
-            
+
             $studentFirstName = $studentValue['studentFirstName'];$studentMiddleName = $studentValue['studentMiddleName']; 
             $studentLastName = $studentValue['studentLastName'];$studentGender = $studentValue['studentGender'];
             $studentPhoneNumber = $studentValue['studentPhoneNumber'];$studentBoxAddress = $studentValue['studentBoxAddress'];
-            
+            $studentAdmissionNumber = $studentValue['studentAdmissionNumber'];
+
         }
-        
+
         foreach ($studentClassDetails as $classValue) {
-            
+
             $systemSchoolCode = $classValue['systemSchoolCode']; $studentClassCode = $classValue['studentClassCode']; $studentStreamCode = $classValue['studentStreamCode'];
-            $studentYearOfStudy = $classValue['studentYearOfStudy']; $studentAdmissionNumber = $classValue['studentAdmissionNumber'];
-            
+            $studentYearOfStudy = $classValue['studentYearOfStudy'];
+
         }
-        
+
         $classDetails = $this->zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode);
         $streamDetails = $this->zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode);
         $classFeesAmount = $this->zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
         $studentPaidFees = $this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode);
+        $reservedAmount = $this->reservedFeesPaymentDetails($systemSchoolCode, $identificationCode);
         
+        $generalFeeDetails = $this->pullGeneralFeeDetails($systemSchoolCode, $feesHistoryYear);
+        $classFeeDetails = $this->pullClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
+        $pullPaymentSchedule = $this->feePaymentSchedule($systemSchoolCode, $feesHistoryYear);
+        
+        
+        $generalTotalAmount; $classTotalAmount; $totalProportion;
+        
+        foreach ($generalFeeDetails as $generalFeeValues) {
+
+            $itemAmount = $generalFeeValues['itemAmount']; $generalTotalAmount = $generalTotalAmount + $itemAmount;
+
+        }
+
+        foreach ($classFeeDetails as $classFeeValues) {
+
+            $itemAmount = $classFeeValues['itemAmount']; $classTotalAmount = $classTotalAmount + $itemAmount;
+
+        }
+        
+        foreach ($pullPaymentSchedule as $paymentProportionValue){
+            
+            $paymentScheduleProportion = $paymentProportionValue['paymentScheduleProportion']; $totalProportion = $totalProportion + $paymentScheduleProportion;
+         
+        }
+        
+        $totalAmount = $generalTotalAmount + $classTotalAmount;
+
         $feesHistoryDetails .= '<div id="allStudentFeesData" class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 200px !important; height: auto !important;">
-                                    <div class="portlet-titles">Student Details</div>
-                                    <div class="row portlet-body" style="margin-top: 20px !important; min-height: 80px !important;">
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
-                                            <div class="zvs-circular">   
-                                                <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-condensed table-responsive table-hover">
-                                                    <tbody>
-                                                        <tr><td><i class="fa fa-user zvs-user-profile"></i></td><td>'.$studentFirstName.' '.$studentMiddleName.' '.$studentLastName.'</td></tr>
-                                                        <tr><td><i class="fa fa-phone zvs-user-profile"></i></td><td>'.$studentPhoneNumber.'</td></tr>
-                                                        <tr><td><i class="fa fa-envelope zvs-user-profile"></i></td><td>'.$studentBoxAddress.'</td></tr>
-                                                        <tr><td><i class="fa fa-transgender zvs-user-profile"></i></td><td>'.$studentGender.'</td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                <div class="portlet-titles">Student Details</div>
+                                <div class="row portlet-body" style="margin-top: 20px !important; min-height: 80px !important;">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-10 margin-bottom-20">
+                                        <div class="zvs-circular">   
+                                            <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
                                         </div>
                                     </div>
-                                    <div class="portlet-titles">Class Details</div>
-                                    <div class="row portlet-body" style="min-height: 80px !important;">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-striped table-condensed table-responsive table-hover">
-                                                    <tbody>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Admission No:</td><td>'.$studentAdmissionNumber.'</td></tr>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Class:</td><td>'.$classDetails.'</td></tr>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Stream:</td><td>'.$streamDetails.'</td></tr>
-                                                        <tr><td style="text-align:right; font-weight: bolder; color:#21B4E2;">Total Fees:</td><td>'.$classFeesAmount.'</td></tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-condensed table-responsive table-hover">
+                                                <tbody>
+                                                    <tr><td><i class="fa fa-user zvs-user-profile"></i></td><td>'.$studentFirstName.' '.$studentMiddleName.' '.$studentLastName.'</td></tr>
+                                                    <tr><td><i class="fa fa-hashtag zvs-user-profile"></i></td><td>'.$studentAdmissionNumber.'</td></tr>
+                                                    <tr><td><i class="fa fa-phone zvs-user-profile"></i></td><td>'.$studentPhoneNumber.'</td></tr>
+                                                    <tr><td><i class="fa fa-envelope zvs-user-profile"></i></td><td>'.$studentBoxAddress.'</td></tr>
+                                                    <tr><td><i class="fa fa-transgender zvs-user-profile"></i></td><td>'.$studentGender.'</td></tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-12 col-xs-12">
-                                    <div class="portlet-titles">Fees Payment Details</div>
-                                    <div class="row" style="margin-top: 20px !important;">
-                                        <div class="col-md-12" style="text-align: right;">
-                                            <style type="text/css">
-                                                .all-zvs-tooltips{ width: 300px; !important;}
-                                                .qtip-tipped .qtip-titlebar {color: #21B4E2;}
-                                            </style>
-                                            <div class="right" style="background-color:#73CBE8; width: 10% auto; float: right; padding: 5px 5px 3px 5px; text-align:right; font-weight: bolder; color:#ffffff;">
-                                                <a id="reservedSchoolFees" style="text-decoration: none !important;"><span class="zvs-tooltip-indicator-wrapper quiz-button-white" id="reservedSchoolFees_helper"><strong>?</strong></span></a>&nbsp;
-                                                Reserved Payment:&nbsp; '.$this->reservedFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode,$identificationCode).'
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12" id="feesPaymentDataChart">';
-                          
-                                        $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear, $identificationCode);
-                                        
-                $feesHistoryDetails .= '</div>
-                                        <div class="col-md-12" id="dividerLine"><hr></div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <a href="#feesPaymentDataChart" style="text-decoration: none !important;">
-                                                <button id="feesCollectionButton" type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
-                                                    Collect School Fees
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <script type="text/javascript">
-                                
-                                    //A click on this button loads the fee collection form
-                                    $("#feesCollectionButton").click(function(){
-                                        
-                                        $("#collectFeesContainer").fadeIn(2000, function(){
-                                        
-                                        });
+                                <div class="portlet-titles">Scheduled Payment Details</div>
+                                <div class="row portlet-body" style="min-height: 80px !important;">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-condensed table-responsive table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 25%; text-align: right; padding-right: 5px;">Schedule Name</th>
+                                                        <th style="width: 20%; text-align: right; padding-right: 10px;">Paid Fees</th>
+                                                        <th style="width: 20%; text-align: right; padding-right: 10px;">Due Fees</th>
+                                                        <th style="width: 20%; text-align: right; padding-right: 10px;">Total Fees</th>
+                                                        <th style="width: 5%;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>';
 
-                                    });
-                                    
+                                                        if($pullPaymentSchedule == 0){
+                                                    
+                                                            $feesHistoryDetails .= '<tr><td colspan="4" class="alert alert-danger" style="text-align: center !important; background-color: #F2DEDE !important;">No fees schedules for the year '.$feesHistoryYear.' for '.$studentFirstName.' '.$studentMiddleName.'!!</td><td style="background-color: #FFFFFF !important; border-right: 1px solid #dddddd; !important;"><a id="missingFeesSchedule" style="text-decoration: none !important;"><span class="zvs-tooltip-indicator-wrapper quiz-button-red" id="missingFeesSchedule_helper"><strong>?</strong></span></a></td></tr>'; 
 
-                                    //This shows the reserved fees tool-tip
-                                    $("#reservedSchoolFees").qtip({
+                                                         }else{
+                                                             
+                                                             $totalPaidFees; $totalDuesFees; $totalPayableFees;
+
+                                                             foreach ($pullPaymentSchedule as $paymentValues) {
+
+                                                                 $paymentScheduleName = $paymentValues['paymentScheduleName']; $systemPaymentCode = $paymentValues['systemPaymentCode']; $paymentProportion = $paymentValues['paymentScheduleProportion'];
+                                                                 
+                                                                 
+                                                                 //1. For each payment schedule find total paid
+                                                                 $feesPaid = $this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode, $systemPaymentCode);
+                                                                 
+                                                                 //2. For each payment schedule calculate total amount payable
+                                                                 $totalFees = ($totalAmount * $paymentProportion)/$totalProportion; 
+                                                                 
+                                                                 //3. For each payment schedule calculate payment due
+                                                                 $feesDue = $totalFees - $feesPaid;
+                                                                 
+                                                                 $totalPaidFees = $totalPaidFees + $feesPaid;
+                                                                 $totalDuesFees = $totalDuesFees + $feesDue;
+                                                                 $totalPayableFees = $totalPayableFees + $totalFees;
+                                                                 
+                                                                 $feesStatus = ($feesPaid == $totalFees  ? '<i class="fa fa-check-circle" style="color:#3c763d !important;"></i>':'<i class="fa fa-times-circle" style="color:#a94442 !important;"></i>');
+                                                                 
+                                                                 $feesHistoryDetails .= '<tr style="font-weight: bold !important; font-size: 10px !important;"><td style="text-align: right; padding-right: 5px; width: 25%;">'.$paymentScheduleName.':</td>'
+                                                                         . '<td style="text-align: right; padding-right: 15px; width: 20%; color:#3c763d;">'.number_format($feesPaid, 2).'</td>'
+                                                                         . '<td style="text-align: right; padding-right: 15px; width: 20%; color:#a94442;">'.number_format($feesDue, 2).'</td>'
+                                                                         . '<td style="text-align: right; padding-right: 15px; width: 20%;">'.number_format($totalFees, 2).'</td>'
+                                                                         . '<td style="width: 5%;">'.$feesStatus.'</td></tr>';
+                                                             }
+                                                         }
                                                 
-                                        content: {
-                                            title: "Reserved Payment",
-                                            text: "<p>Reserved payment is an amount of money <b><u>over-paid</u></b> by the student as school fees, and which can be allocated as school fees for subsequent fee payment periods. Money is reserved, everytime a student pays more than the existing fees balance for a selected fees payment period.</p>",
-                                            button: false
-                                        },
-                                        hide: {
-                                            event: "mouseleave",
-                                            fixed: true 
-                                        },
-                                        position: {
-                                            my: "right center", // Position my top left...
-                                            at: "bottom left", // at the bottom right of...
-                                            adjust: { x: 5, y: -6 },
-                                            target: $("#reservedSchoolFees_helper") // my target
-                                        },
-                                        style: "qtip-tipped qtip-shadow qtip-rounded all-zvs-tooltips"
+                        $feesHistoryDetails .= '</tbody>
+                                                <tfoot>
+                                                    <tr style="font-weight: bolder !important; font-size: 11px !important;">
+                                                        <th style="width: 25%; text-align: right; padding-right: 5px;">Total Fees:</th>
+                                                        <th style="width: 20%; text-align: right; padding-right: 15px;">'.number_format($totalPaidFees, 2).'</th>
+                                                        <th style="width: 20%; text-align: right; padding-right: 15px;">'.number_format($totalDuesFees, 2).'</th>
+                                                        <th style="width: 20%; text-align: right; padding-right: 15px;">'.number_format($totalPayableFees, 2).'</th>
+                                                        <th style="width: 5%;"></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="portlet-titles">Overall Payment Details</div>
+                                <div class="row" style="margin-top: 20px !important;">
+                                    <div class="col-md-12" style="text-align: right;">
+                                        <style type="text/css">
+                                            .all-zvs-tooltips{ width: 300px; !important;}
+                                            .qtip-tipped .qtip-titlebar {color: #21B4E2;}
+                                        </style>
+                                        <div class="right" style="background-color:#73CBE8; width: 10% auto; float: right; padding: 5px 5px 3px 5px; text-align:right; font-weight: bolder; color:#ffffff;">
+                                            <a id="reservedSchoolFees" style="text-decoration: none !important;"><span class="zvs-tooltip-indicator-wrapper quiz-button-white" id="reservedSchoolFees_helper"><strong>?</strong></span></a>&nbsp;
+                                            Excess Payment:&nbsp; '.number_format($reservedAmount, 2, ".", ",").'
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" id="feesPaymentDataChart">';
+
+                                    $feesHistoryDetails .= $this->plotFeesPaymentPieChart($classFeesAmount, $studentPaidFees, $feesHistoryYear, $identificationCode);
+
+            $feesHistoryDetails .= '</div>';
+            
+                                if($pullPaymentSchedule != 0){
+                
+            $feesHistoryDetails .= '<div class="col-md-12" id="dividerLine"><hr></div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <a href="#feesPaymentDataChart" style="text-decoration: none !important;">
+                                            <button id="feesCollectionButton" type="button" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
+                                                Collect School Fees
+                                            </button>
+                                        </a>
+                                    </div>';
+                                }   
+        $feesHistoryDetails .= '</div>
+                            </div>
+                            <script type="text/javascript">
+
+                                //A click on this button loads the fee collection form
+                                $("#feesCollectionButton").click(function(){
+
+                                    $("#collectFeesContainer").fadeIn(2000, function(){
 
                                     });
-                                    
 
-                                </script>';
-        
-       
+                                });
+
+
+                                //This shows the reserved fees tool-tip
+                                $("#reservedSchoolFees").qtip({
+
+                                    content: {
+                                        title: "Excess Payment",
+                                        text: "<p>Excess payment is an amount of money <b><u>over-paid</u></b> by the student as school fees, and which can be allocated as school fees for subsequent fee payment periods. Money is reserved, everytime a student pays more than the existing fees balance for a selected fees payment period.</p>",
+                                        button: false
+                                    },
+                                    hide: {
+                                        event: "mouseleave",
+                                        fixed: true 
+                                    },
+                                    position: {
+                                        my: "right center", // Position my top left...
+                                        at: "bottom left", // at the bottom right of...
+                                        adjust: { x: 5, y: -6 },
+                                        target: $("#reservedSchoolFees_helper") // my target
+                                    },
+                                    style: "qtip-tipped qtip-shadow qtip-rounded all-zvs-tooltips"
+
+                                }),
+                                
+                                //This shows the reserved fees tool-tip
+                                $("#missingFeesSchedule").qtip({
+
+                                    content: {
+                                        title: "Missing Fees Schedules",
+                                        text: "<p>The student might have been out of class or didn\'t attend class for the year whose fees schedule is under review. Also, there might have not been fees schedule for the year under review. Therefore you shouldn\'t collect fees for this student for the specified period!!</p>",
+                                        button: false
+                                    },
+                                    hide: {
+                                        event: "mouseleave",
+                                        fixed: true 
+                                    },
+                                    position: {
+                                        my: "left center", // Position my top left...
+                                        at: "bottom left", // at the bottom right of...
+                                        adjust: { x: 13, y: -6 },
+                                        target: $("#missingFeesSchedule_helper") // my target
+                                    },
+                                    style: "qtip-tipped qtip-shadow qtip-rounded all-zvs-tooltips"
+
+                                });
+
+
+                            </script>';
+
+
         echo $feesHistoryDetails;
         
     }
@@ -294,24 +415,66 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     //This private method fetches student class detials for a given selected stream.
-    private function zvs_fetchStudentsClassDetails($studentsStreamCode = NULL, $identificationCode = NULL){
+    private function zvs_fetchStudentClassHistory($studentsStreamCode = NULL, $identificationCode = NULL, $feesHistoryYear = NULL){
         
         $currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
         
-        if(empty($identificationCode) || $identificationCode == ""){
+        
+        //This replicates the various use-cases of this function
+        //1. identificationCode and feesHistoryyear are empty
+        if(($studentsStreamCode != NULL) && ($identificationCode === NULL) && ($feesHistoryYear === NULL)){
             
             $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentsStreamCode);
             $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($currentYear);
             
-        }else{
+            $fetchStudentClassDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $zvs_sqlValue);
+            
+        }
+        //2. studentStreamCode is empty
+        else if(($studentsStreamCode === NULL) && ($identificationCode != NULL) && ($feesHistoryYear != NULL)){
             
             $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+            $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($feesHistoryYear);
+            
+            $zvs_table = "";
+            
+            if($currentYear == $feesHistoryYear){
+                
+                $zvs_table = "zvs_students_class_details";
+                
+            }else if($currentYear != $feesHistoryYear){
+                
+                $zvs_table = "zvs_students_class_history";
+                
+            }
+            
+            $fetchStudentClassDetails = Zf_QueryGenerator::BuildSQLSelect($zvs_table, $zvs_sqlValue);
+            
+        }
+        //3. studentStreamCode and feesHistoryYear are empty
+        else if(($studentsStreamCode === NULL) && ($identificationCode != NULL) && ($feesHistoryYear === NULL)){
+            
+            $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+            $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($currentYear);
+            
+            $fetchStudentClassDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $zvs_sqlValue);
             
         }
         
         
         
-        $fetchStudentClassDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $zvs_sqlValue);
+        
+//        if(empty($identificationCode) || $identificationCode == ""){
+//            
+//            $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentsStreamCode);
+//            $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($currentYear);
+//            
+//        }else{
+//            
+//            $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+//            
+//        }
+        
         
         $zf_executeFetchStudentClassDetails = $this->Zf_AdoDB->Execute($fetchStudentClassDetails);
 
@@ -416,7 +579,6 @@ class processFeeInformation_Model extends Zf_Model {
         }
         
     }
-    
     
     
     
@@ -538,37 +700,78 @@ class processFeeInformation_Model extends Zf_Model {
     /**
      * This private method pulls all fee payment schedule for a selected year
      */
-    private function feePaymentSchedule($systemSchoolCode, $systemPaymentCode, $selectedYear){
+    private function feePaymentSchedule($systemSchoolCode, $selectedYear, $systemPaymentCode = NULL){
         
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValue["systemPaymentCode"] = Zf_QueryGenerator::SQLValue($systemPaymentCode);
-        $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
-        
-        $fetchFeePaymentSchedule = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_schedule', $zvs_sqlValue);
-        
-        if(!$this->Zf_QueryGenerator->Query($fetchFeePaymentSchedule)){
-                
-            $message = "Query execution failed.<br><br>";
-            $message.= "The failed Query is : <b><i>{$fetchFeePaymentSchedule}.</i></b>";
-            echo $message; exit();
-
-        }else{
+        if(!empty($systemPaymentCode) && $systemPaymentCode != NULL && $systemPaymentCode != ""){
             
-            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+            $zvs_sqlValue["systemPaymentCode"] = Zf_QueryGenerator::SQLValue($systemPaymentCode);
+            $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
             
-            if($resultCount > 0){
+            $fetchFeePaymentSchedule = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_schedule', $zvs_sqlValue);
+        
+            if(!$this->Zf_QueryGenerator->Query($fetchFeePaymentSchedule)){
 
-                $this->Zf_QueryGenerator->MoveFirst();
-                
-                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+                $message = "Query execution failed.<br><br>";
+                $message.= "The failed Query is : <b><i>{$fetchFeePaymentSchedule}.</i></b>";
+                echo $message; exit();
 
-                    $paymentProportion = $this->Zf_QueryGenerator->Row()->paymentScheduleProportion;
-                    
-                    return $paymentProportion;
+            }else{
+
+                $resultCount = $this->Zf_QueryGenerator->RowCount();
+
+                if($resultCount > 0){
+
+                    $this->Zf_QueryGenerator->MoveFirst();
+
+                    while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                        $paymentProportion = $this->Zf_QueryGenerator->Row()->paymentScheduleProportion;
+
+                        return $paymentProportion;
+                    }
+
                 }
-
             }
+            
+        }else{
+
+            $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+            $zvs_sqlValue["paymentScheduleYear"] = Zf_QueryGenerator::SQLValue($selectedYear);
+
+            $fetchFeePaymentSchedule = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_schedule', $zvs_sqlValue);
+
+            //echo $fetchClassFeeItems; exit();
+
+            $zf_executeFetchFeePaymentSchedule = $this->Zf_AdoDB->Execute($fetchFeePaymentSchedule);
+
+            if(!$zf_executeFetchFeePaymentSchedule){
+
+                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+            }else{
+
+                if($zf_executeFetchFeePaymentSchedule->RecordCount() > 0){
+
+                    while(!$zf_executeFetchFeePaymentSchedule->EOF){
+
+                        $results = $zf_executeFetchFeePaymentSchedule->GetRows();
+
+                    }
+
+                    return $results;
+
+
+                }else{
+
+                    return 0;
+
+                }
+            }
+            
         }
+        
+        
         
     }
     
@@ -666,6 +869,50 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     /**
+     * This private function pulls reserved fees details
+     */
+    private function pullReservedFeesDetails($systemSchoolCode, $studentIdentificationCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+        
+        $fetchReservedFeesItems = Zf_QueryGenerator::BuildSQLSelect('zvs_fees_payment_reserved', $zvs_sqlValue);
+        
+        //echo $fetchClassFeeItems; exit();
+        
+        $zf_executeFetchReservedFeesItems = $this->Zf_AdoDB->Execute($fetchReservedFeesItems);
+
+        if(!$zf_executeFetchReservedFeesItems){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchReservedFeesItems->RecordCount() > 0){
+
+                while(!$zf_executeFetchReservedFeesItems->EOF){
+                    
+                    $results = $zf_executeFetchReservedFeesItems->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+        
+    }
+    
+    
+    
+    
+    /**
      * This private methods works out the amount of fees paid by a selected student for a selected year
      */
     private function zvs_fetchFeesPaymentDetails($systemSchoolCode, $schoolClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode, $paymentPeriod = NULL){
@@ -687,7 +934,6 @@ class processFeeInformation_Model extends Zf_Model {
         
         $studentFeesPaymentDetails = $this->zvs_fetchFeesDetails($fetchFeePaymentAmounts);
         
-        
         $totalFeesPaid;
 
         foreach ($studentFeesPaymentDetails as $feesPaymentValues) {
@@ -696,7 +942,7 @@ class processFeeInformation_Model extends Zf_Model {
 
         }
         
-        return number_format($totalFeesPaid, 2);
+        return $totalFeesPaid;
         
     }
     
@@ -706,9 +952,21 @@ class processFeeInformation_Model extends Zf_Model {
     /**
      * This private method fetches all the data about reserved fees payment
      */
-    private function reservedFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode,$identificationCode){
+    private function reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode){
         
-        return number_format(20000, 2, ".", ",");
+        //Fetch all the reserved fees for the student in question
+        $reservedFeesDetails = $this->pullReservedFeesDetails($systemSchoolCode, $studentIdentificationCode);
+        
+        $reservedAmount;
+        
+        foreach ($reservedFeesDetails as $reservedFeesValues) {
+
+            $reservedFeesAmount = $reservedFeesValues['reservedAmount']; $reservedAmount = $reservedAmount + $reservedFeesAmount;
+
+        }
+        
+        
+        return $reservedAmount;
         
     }
 
@@ -768,7 +1026,7 @@ class processFeeInformation_Model extends Zf_Model {
             "ChartType" => "Doughnut2D",
             "ChartID" => "feePaymentCharts".$feesHistoryYear.$studentIdentificationCode,
             "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "240",
+            "ChartHeight" =>  "280",
             "ChartContainer" => "feesPaymentDataChart",
             "ChartDataFormat" =>  "json",
         );
@@ -853,10 +1111,14 @@ class processFeeInformation_Model extends Zf_Model {
      */
     public function generateStudentForm() {
         
-        $studentIdentificationCode = $_POST['studentIdentificationCode'];
+        $feesHistoryIdentifier = $_POST['feesHistoryIdentifier'];
+        
+        $studentIdentificationCode = explode(ZVSS_CONNECT, $feesHistoryIdentifier)[0];
+        $feesHistoryYear = explode(ZVSS_CONNECT, $feesHistoryIdentifier)[1];
         
         $studentDetails = $this->zvs_fetchStudentsPersonalDetails($studentIdentificationCode);
-        $studentClassDetails = $this->zvs_fetchStudentsClassDetails(NULL, $studentIdentificationCode);
+        $studentClassDetails = $this->zvs_fetchStudentClassHistory(NULL, $studentIdentificationCode, $feesHistoryYear);
+        $studentCurrentClasslassDetails = $this->zvs_fetchStudentClassHistory(NULL, $studentIdentificationCode, NULL);
         
         
         
@@ -876,8 +1138,14 @@ class processFeeInformation_Model extends Zf_Model {
             
         }
         
-        $classDetails = $this->zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode);
-        $streamDetails = $this->zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode);
+        foreach ($studentCurrentClasslassDetails as $currentClassValue) {
+            
+            $currentSystemSchoolCode = $currentClassValue['systemSchoolCode']; $currentClassCode = $currentClassValue['studentClassCode']; $currentStreamCode = $currentClassValue['studentStreamCode'];
+            
+        }
+        
+        $classDetails = $this->zvs_fetchStudentClassDetails($currentSystemSchoolCode, $currentClassCode);
+        $streamDetails = $this->zvs_fetchStudentStreamDetails($currentSystemSchoolCode, $currentClassCode, $currentStreamCode);
         
         
         $studentPrefilledForm .='
@@ -1042,7 +1310,7 @@ class processFeeInformation_Model extends Zf_Model {
                 
                                 ->zf_postFormData('paymentScheduleName')
                 
-                                ->zf_postFormData('paymentScheduleName')
+                                ->zf_postFormData('paymentSource')
                 
                                 ->zf_postFormData('paymentAmount')
                 
@@ -1080,96 +1348,119 @@ class processFeeInformation_Model extends Zf_Model {
             $studentIdentificationCode = $this->_validResult['studentIdentificationCode'];
             $studentAdmissionNumber = $this->_validResult['studentAdmissionNumber'];
             $paymentAmount = $this->_validResult['paymentAmount'];
+            $paymentSource = $this->_validResult['paymentSource'];
             
-            
-            /**
-             * We are about to record the collected fees. But before, we have to conduct a seven step logical check 
-             *to ensure that the fees is paid correctly for the select year and payment period
-             */
             
             //0. Get the fees payment percentage proportion for the selected year and the selected payment period
-            $feePaymentProportion = ($this->feePaymentSchedule($systemSchoolCode, $paymentScheduleName, $paymentScheduleYear)/100);
-            //echo $feePaymentProportion."<br>";
-            
-            
+            $feePaymentProportion = ($this->feePaymentSchedule($systemSchoolCode, $paymentScheduleYear, $paymentScheduleName)/100);
+            //echo "Payment Proportion:".($feePaymentProportion*100)." %<br>";
+
             //1. Get the fees supposed to be paid for the selected year and the selected payment period, say X
             $totalFeesAmount = (filter_var($this->zvs_generateClassFeeDetails($systemSchoolCode, $studentClassCode, $paymentScheduleYear), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)*$feePaymentProportion);
             //echo "Total Fees: ".$totalFeesAmount."<br>";
-            
+
             //2. Get the fees already paid by the student for the selected year and the selected payment period, say Y
             $amountAlreadyPaid = filter_var($this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $paymentScheduleYear, $studentIdentificationCode, $paymentScheduleName), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             //echo "Paid Fees: ".$amountAlreadyPaid."<br>";
-            
-            
+
             //3. Work out the fees balance for the paying student by calculating X-Y = Z
             $feesBalance  = $totalFeesAmount - $amountAlreadyPaid;
-            //echo "Fees Balance: ".$feesBalance;
-            //exit();
+            //echo "Fees Balance: ".$feesBalance."<br>"; exit();
             
+            //WE ARE MAKING A FEES PAYMENT EITHER FROM A NEW PAYMENT OR FROM FEE RESERVES OF THE TARGET STUDENT
             
-            //4. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
-            if($totalFeesAmount == $amountAlreadyPaid){
+            //Payment is from reserve, then we confirm that this student actually has money in his/her reserve account
+            if($paymentSource == "reservedFeesPayment"){
                 
-                Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_already_completed");
-
-                $zf_errorData = array("zf_fieldName" => "paymentScheduleName", "zf_errorMessage" => "* Student already completed fees for the selected payment period.");
-                Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
-                exit();
-            }
-            
-            //5. If the balance Z is more than 0, compare the balance Z and the paid amount W.
-            else{
+                //Here we fetch all the amount of money reserved for the target student
+                $reservedAmount = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
                 
-                //6. If the paid amount is more than the the balance i.e W > Z, return a flag about the students remaining balance for the selected year and payment period
-                if($paymentAmount > $feesBalance){
+                //0. Check if the reserved amount is capable of off setting the amount paid.
+                if($reservedAmount < $paymentAmount){
                     
-                    Zf_SessionHandler::zf_setSessionVariable("collect_fees", "paid_more_fees");
+                    Zf_SessionHandler::zf_setSessionVariable("collect_fees", "less_reserved_amount");
 
-                    $zf_errorData = array("zf_fieldName" => "paymentAmount", "zf_errorMessage" => "* Student's balance for selected period is $feesBalance");
+                    $zf_errorData = array("zf_fieldName" => "paymentAmount", "zf_errorMessage" => "* Available reserved amount is Kshs. $reservedAmount");
+                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                    Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+                    exit();
+                    
+                }else{
+                
+                    //1. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
+                    if($totalFeesAmount == $amountAlreadyPaid){
+
+                        Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_already_completed");
+
+                        $zf_errorData = array("zf_fieldName" => "paymentScheduleName", "zf_errorMessage" => "* Student already completed fees for the selected payment period.");
+                        Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                        Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+                        exit();
+                    }
+
+                    //2. If the balance Z is more than 0, compare the balance Z and the paid amount W.
+                    else{
+                        
+                        //3. Check to confirm that the payment amount is not greater than the balance for the selected payment period
+                        //   This helps to ensure that only the current fees balance is cleared.
+                        if($paymentAmount > $feesBalance){
+                            
+                            $paymentAmount = $feesBalance;
+                            
+                        }
+                        
+                        //4. Deduct an equivalent from the reserves for the balance to reflect appropriately
+                        $this->zvs_deductAmountFromReserve($this->_validResult, $paymentAmount);
+                        
+                    }
+                    
+                }
+            }
+            //Pay is from a new payment amount
+            else if($paymentSource == "newFeesPayment"){
+                
+                /**
+                 * We are about to record the collected fees. But before, we have to conduct a seven step logical check 
+                 *to ensure that the fees is paid correctly for the select year and payment period
+                 */
+                
+                //1. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
+                if($totalFeesAmount == $amountAlreadyPaid){
+
+                    Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_already_completed");
+
+                    $zf_errorData = array("zf_fieldName" => "paymentScheduleName", "zf_errorMessage" => "* Student already completed fees for the selected payment period.");
                     Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
                     Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
                     exit();
                     
                 }
-                //7. If the paid amount is equal to or less than the balance i.e W == Z || W < Z, insert the record for the paid fees against the selected year and payment period.
-                else if($paymentAmount == $feesBalance || $paymentAmount < $feesBalance){
+           
+                //2. If the balance Z is more than 0, compare the balance Z and the paid amount W.
+                else{
+               
+                    //3. If the paid amount is more than the the balance i.e W > Z, return a flag about the students remaining balance for the selected year and payment period
+                    if($paymentAmount > $feesBalance){
+                        
+                        //4. Workout the amount of money that is to be reserved for the target student
+                        $amountToReserve = $paymentAmount - $feesBalance;
+                        
+                        //5. Insert the over payment amount into student's reserve account
+                        $this->zvs_addAmountToReserve($this->_validResult, $feesBalance, $amountToReserve);
+                        
+                    }else if(($paymentAmount < $feesBalance) && ($feesBalance != 0)){
                     
-                    $zvs_sqlValues['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                    $zvs_sqlValues['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
-                    $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                    $zvs_sqlValues['studentClassCode'] = Zf_QueryGenerator::SQLValue($studentClassCode);
-                    $zvs_sqlValues['studentStreamCode'] = Zf_QueryGenerator::SQLValue($studentStreamCode);
-                    $zvs_sqlValues['paymentScheduleName'] = Zf_QueryGenerator::SQLValue($paymentScheduleName);
-                    $zvs_sqlValues['paymentScheduleYear'] = Zf_QueryGenerator::SQLValue($paymentScheduleYear);
-                    $zvs_sqlValues['paymentAmount'] = Zf_QueryGenerator::SQLValue($paymentAmount);
-                    $zvs_sqlValues['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
-                    $zvs_sqlValues['paymentDate'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
-                    $zvs_sqlValues['feesStatus'] = Zf_QueryGenerator::SQLValue(0);
-
-                    //Insertion sql query and execution
-                    $zvs_insertNewPaymentDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_detials", $zvs_sqlValues);
+                        //4. Insert the fees payment details into the fees payment details database
+                        $this->zvs_makeFeesPayment($this->_validResult, $paymentAmount);
+                        
+                        exit();
                     
-                    $zvs_executeInsertNewPaymentDetails = $this->Zf_AdoDB->Execute($zvs_insertNewPaymentDetails);
-
-                    if(!$zvs_executeInsertNewPaymentDetails){
-
-                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-                    }else{
-
-                        //Insertion successful
-                         Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_payment_success");
-                         Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
-                         exit();
-
                     }
                     
                 }
                 
-                
             }
-            
+                   
         }else{
             
             Zf_SessionHandler::zf_setSessionVariable("collect_fees", "collect_fees_error");
@@ -1178,9 +1469,203 @@ class processFeeInformation_Model extends Zf_Model {
             exit();
 
         }
+          
+    }
+    
+    
+    
+    
+    /**
+     * This private function makes the actual fees payment for the student
+     * 
+     */
+    private function zvs_makeFeesPayment($formResult, $paymentAmount){
+        
+        $systemSchoolCode = $formResult['systemSchoolCode'];
+        $studentClassCode = $formResult['studentClassCode'];
+        $studentStreamCode = $formResult['studentStreamCode'];
+        $paymentScheduleYear = $formResult['paymentScheduleYear'];
+        $paymentScheduleName = $formResult['paymentScheduleName'];
+        $studentIdentificationCode = $formResult['studentIdentificationCode'];
+        $studentAdmissionNumber = $formResult['studentAdmissionNumber'];
+        $adminIdentificationCode = $formResult['adminIdentificationCode'];
+        
+        
+        $zvs_sqlValues['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+        $zvs_sqlValues['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
+        $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValues['studentClassCode'] = Zf_QueryGenerator::SQLValue($studentClassCode);
+        $zvs_sqlValues['studentStreamCode'] = Zf_QueryGenerator::SQLValue($studentStreamCode);
+        $zvs_sqlValues['paymentScheduleName'] = Zf_QueryGenerator::SQLValue($paymentScheduleName);
+        $zvs_sqlValues['paymentScheduleYear'] = Zf_QueryGenerator::SQLValue($paymentScheduleYear);
+        $zvs_sqlValues['paymentAmount'] = Zf_QueryGenerator::SQLValue($paymentAmount);
+        $zvs_sqlValues['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
+        $zvs_sqlValues['paymentDate'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
+        $zvs_sqlValues['feesStatus'] = Zf_QueryGenerator::SQLValue(0);
+        
+        //Insertion sql query and execution
+        $zvs_insertNewPaymentDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_detials", $zvs_sqlValues);
+
+        $zvs_executeInsertNewPaymentDetails = $this->Zf_AdoDB->Execute($zvs_insertNewPaymentDetails);
+
+        if(!$zvs_executeInsertNewPaymentDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            //Insertion successful
+             Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_payment_success");
+             Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+             exit();
+
+        }
+        
+        
+    }
+
+
+
+    /**
+     * This private function adds the excess payment amount to student reserve account
+     * 
+     */
+    private function zvs_addAmountToReserve($formResult, $feesBalance, $excessAmount){
+        
+        $systemSchoolCode = $formResult['systemSchoolCode'];
+        $studentClassCode = $formResult['studentClassCode'];
+        $studentStreamCode = $formResult['studentStreamCode'];
+        $studentIdentificationCode = $formResult['studentIdentificationCode'];
+        $studentAdmissionNumber = $formResult['studentAdmissionNumber'];
+        $reservedAmount = $excessAmount;
+        $adminIdentificationCode = $formResult['adminIdentificationCode'];
+        
+        
+        //Pull the student's total reserved fees
+        $amountInReserve = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
+        
+        $zvs_sqlValues['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+        $zvs_sqlValues['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
+        $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValues['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
+        
+        
+        if($amountInReserve == 0 || empty($amountInReserve) || $amountInReserve == 0.00){
+            
+            $zvs_sqlValues['reservedAmount'] = Zf_QueryGenerator::SQLValue($reservedAmount);
+            $zvs_sqlValues['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
+            
+            //Insertion sql query and execution
+            $zvs_insertUpdateNewReserveDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_reserved", $zvs_sqlValues);
+            
+        }else{
+            
+            //We have reserved amount so we update the value
+            $newReservedAmount = $amountInReserve + $reservedAmount;
+            $zvs_sqlColumn["reservedAmount"] = Zf_QueryGenerator::SQLValue($newReservedAmount);
+            $zvs_sqlColumn['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
+            
+            //Update sql query and execution
+            $zvs_insertUpdateNewReserveDetails = Zf_QueryGenerator::BuildSQLUpdate('zvs_fees_payment_reserved', $zvs_sqlColumn, $zvs_sqlValues);
+            
+        }
+        
+        $zvs_executeInsertUpdateNewReserveDetails = $this->Zf_AdoDB->Execute($zvs_insertUpdateNewReserveDetails);
+
+        if(!$zvs_executeInsertUpdateNewReserveDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            //Make fee payment for the target student
+            $this->zvs_makeFeesPayment($formResult, $feesBalance);
+
+        }
         
     }
     
+
+    
+    /**
+     * This private function deducts payment amount from student reserve account
+     * 
+     */
+    private function zvs_deductAmountFromReserve($formResult, $paymentAmount){
+        
+        $systemSchoolCode = $formResult['systemSchoolCode'];
+        $studentClassCode = $formResult['studentClassCode'];
+        $studentStreamCode = $formResult['studentStreamCode'];
+        $paymentScheduleYear = $formResult['paymentScheduleYear'];
+        $paymentScheduleName = $formResult['paymentScheduleName'];
+        $studentIdentificationCode = $formResult['studentIdentificationCode'];
+        $studentAdmissionNumber = $formResult['studentAdmissionNumber'];
+        $paymentSource = $formResult['paymentSource'];
+        $adminIdentificationCode = $formResult['adminIdentificationCode'];
+        
+        //Pull the student's total reserved fees
+        $reservedAmount = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
+        
+        //Calculate new reserved amount and then update the value.
+        $newReservedAmount = $reservedAmount - $paymentAmount;
+        
+        //Update the reserve amount for the target student
+        $this->updateReservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode, $newReservedAmount);
+        
+        //Make fee payment for the target student
+        $this->zvs_makeFeesPayment($formResult, $paymentAmount); 
+        
+        exit();
+        
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method updates the value for reserved fees payment
+     */
+    private function updateReservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode, $newReservedAmount){
+        
+        //Update Values
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+        
+        //Update Column
+        $zvs_sqlColumn["reservedAmount"] = Zf_QueryGenerator::SQLValue($newReservedAmount);
+        
+        $fetchReservedFeesItems = Zf_QueryGenerator::BuildSQLUpdate('zvs_fees_payment_reserved', $zvs_sqlColumn, $zvs_sqlValue);
+        
+        $zf_executeFetchReservedFeesItems = $this->Zf_AdoDB->Execute($fetchReservedFeesItems);
+
+        if(!$zf_executeFetchReservedFeesItems){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchReservedFeesItems->RecordCount() > 0){
+
+                while(!$zf_executeFetchReservedFeesItems->EOF){
+                    
+                    $results = $zf_executeFetchReservedFeesItems->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
+
+
 }
 
 ?>

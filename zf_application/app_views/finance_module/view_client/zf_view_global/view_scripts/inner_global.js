@@ -149,8 +149,6 @@ var FinanceModule = function(){
         });
         
         
-        
-        
         //Process the streams within the selected class
         $('.studentsListDetails, #feesHistoryYear').change(function(){
             
@@ -182,16 +180,21 @@ var FinanceModule = function(){
         });
         
         
-        $('.studentsListDetails').change(function(){
+        $('.studentsListDetails, #feesHistoryYear').change(function(){
             
             var collectSchoolFees = $absolute_path + "finance_module" + $separator + "ProcessFeeInformation" + $separator + "collect_school_fees";
+            
+            var zvs_connect = "[`^`]";
             var studentIdentificationCode = $("#studentsListDetails").val();
+            var feesHistoryYear = $("#feesHistoryYear").val();
+            
+            var feesHistoryIdentifier = studentIdentificationCode+zvs_connect+feesHistoryYear;
 
             //Here we run ajax task
             $.ajax({
                 type: "POST",
                 url: collectSchoolFees,
-                data: {studentIdentificationCode: studentIdentificationCode},
+                data: {feesHistoryIdentifier: feesHistoryIdentifier},
                 cache: false,
                 success: function(html) {
                    $("#studentformData").html(html);

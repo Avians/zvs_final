@@ -29,15 +29,18 @@ class class_select_Model extends Zf_Model {
 
                 $this->Zf_QueryGenerator->MoveFirst();
                 
-                echo "<option value=''></option>";
+                $class_options = '<option value="selectClass" selected="selected">Select a class</option>';
+                
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 
                     $fetchRow = $this->Zf_QueryGenerator->Row();
-                    echo "<option value='".$fetchRow->schoolClassCode."' >".$fetchRow->schoolClassName."</option>";
+                    $class_options .= '<option value="'.$fetchRow->schoolClassCode.'" >'.$fetchRow->schoolClassName.'</option>';
 
                 }
 
             }
+            
+            echo $class_options;
         }
 
     }
