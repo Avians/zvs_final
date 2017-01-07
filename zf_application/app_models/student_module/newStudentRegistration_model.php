@@ -221,9 +221,6 @@ class newStudentRegistration_Model extends Zf_Model {
                                 ->zf_postFormData('studentStreamCode')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Student stream')
         
-                                ->zf_postFormData('studentYearOfStudy')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student year of study')
-        
                                 ->zf_postFormData('studentAdmissionNumber')
                                 ->zf_validateFormData('zf_maximumLength', 30, 'Student admission number')
                                 ->zf_validateFormData('zf_minimumLength', 2, 'Student admission number')
@@ -302,7 +299,7 @@ class newStudentRegistration_Model extends Zf_Model {
                 $studentLanguage = $this->_validResult['studentLanguage'];
                 $studentClassCode = $this->_validResult['studentClassCode'];
                 $studentStreamCode = $this->_validResult['studentStreamCode'];
-                $studentYearOfStudy = $this->_validResult['studentYearOfStudy'];
+                $studentYearOfStudy = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
                 $studentAdmissionNumber = $this->_validResult['studentAdmissionNumber'];
                 $studentEmailAddress = $this->_validResult['studentEmailAddress'];
                 $studentPassword = $this->_validResult['studentPassword'];

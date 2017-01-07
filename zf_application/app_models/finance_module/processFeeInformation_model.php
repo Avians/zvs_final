@@ -160,20 +160,7 @@ class processFeeInformation_Model extends Zf_Model {
         $studentClassDetails = $this->zvs_fetchStudentClassHistory(NULL, $identificationCode, $feesHistoryYear);
         
         $this->feesPaymentPeriod = $feesHistoryYear;
-        
-        
-//This is for debugging purpose only
-//echo "Fees History Year: ".$feesHistoryYear."<br>";
-//echo "<pre>Personal Data<br>";
-//print_r($studentDetails);
-//echo "</pre>";
-//
-//echo "<pre>Class Data for ".$feesHistoryYear." <br>";
-//print_r($studentClassDetails);
-//echo "</pre>";
-//exit();
-        
-        
+         
         $feesHistoryDetails = "";
 
 
@@ -195,16 +182,29 @@ class processFeeInformation_Model extends Zf_Model {
 
         $classDetails = $this->zvs_fetchStudentClassDetails($systemSchoolCode, $studentClassCode);
         $streamDetails = $this->zvs_fetchStudentStreamDetails($systemSchoolCode, $studentClassCode, $studentStreamCode);
-        $classFeesAmount = $this->zvs_generateClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
+        $classFeesAmount = $this->zvs_generateClassFeeDetails($systemSchoolCode, $studentClassCode, $feesHistoryYear);
         $studentPaidFees = $this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $feesHistoryYear, $identificationCode);
         $reservedAmount = $this->reservedFeesPaymentDetails($systemSchoolCode, $identificationCode);
         
         $generalFeeDetails = $this->pullGeneralFeeDetails($systemSchoolCode, $feesHistoryYear);
-        $classFeeDetails = $this->pullClassFeeDetails($systemSchoolCode, $schoolClassCode, $feesHistoryYear);
+        $classFeeDetails = $this->pullClassFeeDetails($systemSchoolCode, $studentClassCode, $feesHistoryYear);
         $pullPaymentSchedule = $this->feePaymentSchedule($systemSchoolCode, $feesHistoryYear);
         
         
         $generalTotalAmount; $classTotalAmount; $totalProportion;
+        
+//This is for debugging purpose only
+//echo "Fees History Year: ".$feesHistoryYear."<br>";
+//echo "<pre>Personal Data<br>";
+//print_r($studentDetails);
+//echo "</pre>";
+//
+//echo "<pre>Class Data for ".$feesHistoryYear." <br>";
+//print_r($studentClassDetails);
+//echo "</pre>";
+
+
+//exit();
         
         foreach ($generalFeeDetails as $generalFeeValues) {
 

@@ -47,7 +47,7 @@
                                                 <div id="feeDefaultTitle">Fees Structure</div>
                                                 <div id="feeClassTitle" style="color: #21b4e2 !important; padding-top: 3px;"></div>
                                             </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: center !important;">
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">
                                                 Select Class: <?=$zf_controller->zf_targetModel->zvs_buildClassOption($identificationCode,"activeClassSelector");?>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">

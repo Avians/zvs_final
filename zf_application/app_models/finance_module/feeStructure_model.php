@@ -46,7 +46,7 @@ class feeStructure_Model extends Zf_Model {
         
         $pageInformation = "";
         
-        $pageInformation .='<div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
+        $pageInformation .='<div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 90px !important; padding-bottom: 90px !important;">
                                 <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br/>
                                 <span class="content-view-errors" >
                                     <b>&nbsp;You will need to select a class and a related year so as to have a view of its fee structure.</b>
@@ -69,7 +69,7 @@ class feeStructure_Model extends Zf_Model {
         
         $option = "";
         
-        $option .='<select class="select2me" style="width: 87px !important;"  id="'.$yearsDiv.'">';
+        $option .='<select class="select2me" style="width: 115px !important;"  id="'.$yearsDiv.'">';
 
             for($year=$startYear; $year < $endYear+2; $year++){
                 
@@ -127,7 +127,7 @@ class feeStructure_Model extends Zf_Model {
             
             $option = "";
         
-            $option .='<select class="select2me" style="width: 130px !important;"  id="'.$classSelectDiv.'">';
+            $option .='<select class="select2me" style="width: 115px !important;"  id="'.$classSelectDiv.'">';
             
             $resultCount = $this->Zf_QueryGenerator->RowCount();
             if($resultCount > 0){

@@ -58,11 +58,14 @@ class processClassChart_Model extends Zf_Model {
         
         $classValuesArray = explode(ZVSS_CONNECT, $postedClassValues);
         
-        $zvs_classYear = $classValuesArray[0]; $studentClassCode = $classValuesArray[1].ZVSS_CONNECT.$classValuesArray[2];
-        $zvs_className = $classValuesArray[3]; $chartContainer = $classValuesArray[2];
+        $zvs_currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
+        $zvs_classYear = $classValuesArray[0]; 
+        $schoolClassCode = $classValuesArray[1].ZVSS_CONNECT.$classValuesArray[2];
+        $zvs_className = $classValuesArray[3]; 
+        $chartContainer = $classValuesArray[2];
         
         //Here we pull all the stream details
-        $zvs_streamDetails = $this->zvs_fetchStreamDetails($studentClassCode);
+        $zvs_streamDetails = $this->zvs_fetchStreamDetails($schoolClassCode);
         
         $classChartData = "";
         
@@ -74,8 +77,6 @@ class processClassChart_Model extends Zf_Model {
                                         &nbsp;No data to visulaize for '.strtolower($zvs_className).' yet!
                                     </span>
                                 </div>';
-            
-            return $classChartData;
             
             
         }else{
@@ -131,8 +132,19 @@ class processClassChart_Model extends Zf_Model {
                                 "label":"'.$streamName.'",';
                     
                     
-                    $zvs_table = "zvs_students_class_details";
-                    $studentsStreamCount = "SELECT * FROM " . $zvs_table . " WHERE studentClassCode ='".$studentClassCode."' AND studentStreamCode = '".$studentStreamCode."' AND studentYearOfStudy = '".$zvs_classYear."' "; //die();
+                    if($zvs_currentYear == $zvs_classYear){
+                        
+                        $zvs_table = "zvs_students_class_details";
+                        
+                    }else{
+                        
+                        $zvs_table = "zvs_students_class_history";
+                        
+                    }
+                    
+                    
+                    
+                    $studentsStreamCount = "SELECT * FROM " . $zvs_table . " WHERE studentClassCode ='".$schoolClassCode."' AND studentStreamCode = '".$studentStreamCode."' AND studentYearOfStudy = '".$zvs_classYear."' "; //die();
                     
                     //echo $studentsStreamCount; exit();
                     
@@ -158,10 +170,10 @@ class processClassChart_Model extends Zf_Model {
                 $chartData .= ']';
         
                 $classChartData .= Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
-        
-                return $classChartData;
             
         }
+        
+         return $classChartData;
            
     }
     
@@ -212,9 +224,9 @@ class processClassChart_Model extends Zf_Model {
     /**
      * This method checks and counts, then returns all stream details for all classess in the school.
      */
-    private function zvs_fetchStreamDetails($studentClassCode){
+    private function zvs_fetchStreamDetails($schoolClassCode){
         
-        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($studentClassCode);
+        $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
         
         $fetchSchoolStreams = Zf_QueryGenerator::BuildSQLSelect('zvs_school_streams', $zvs_sqlValue);
         

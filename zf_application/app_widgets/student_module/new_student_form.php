@@ -893,20 +893,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-md-4">Year of Study:</label>
-                                    <div class="col-md-8">
-                                        <select class="form-control select2me" name="studentYearOfStudy" class="form-control" data-placeholder="Current Year of Study: <?php echo $currentYear;?>" value="<?php echo $zf_formHandler->zf_getFormValue("studentYearOfStudy"); ?>">
-                                            <option value=""></option>
-                                            <?php Zf_Core_Functions::Zf_GenerateYearOption($currentYear-10, $currentYear);?>
-                                        </select>
-                                        <span class="help-block server-side-error" >
-                                            <?php echo $zf_formHandler->zf_getFormError("studentYearOfStudy") ?>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label class="control-label col-md-4">Admission No:</label>
                                     <div class="col-md-8">
                                         <input type="text" name="studentAdmissionNumber" class="form-control" placeholder="2371, 0021, 6791, ...." value="<?php echo $zf_formHandler->zf_getFormValue("studentAdmissionNumber"); ?>">
@@ -1707,15 +1693,6 @@
                                     <!--row-->
                                     
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-5">Year of Study:</label>
-                                                <div class="col-md-7">
-                                                    <p class="form-control-static confirm-form-result" data-display="studentYearOfStudy"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label col-md-5">Admission Number:</label>

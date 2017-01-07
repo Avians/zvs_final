@@ -60,7 +60,7 @@ class viewClasses_Model extends Zf_Model {
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
-                                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i>
+                                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 26px !important;"></i>
                                                 <span class="content-view-errors" >
                                                     &nbsp;There are no classes yet! You need to add atleast one class to have a class overview.
                                                 </span>
@@ -93,15 +93,13 @@ class viewClasses_Model extends Zf_Model {
                                                     <div style="padding-top: 5px;"><h3 style="padding-left: 10px !important;">'.$zvs_className.'</h3></div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-7 col-xs-7">
-                                                    <h3 style="text-align: right !important; padding-right: 10px !important;"> Class Year:&nbsp;<span>'.
-                                                            $this->zvs_buildYearsOption($yearsDiv)
-                                                    .'</span></h3>
+                                                    <h3 style="text-align: right !important; padding-right: 10px !important;"> Class Year:&nbsp;<span>'.$this->zvs_buildYearsOption($yearsDiv).'</span></h3>
                                                 </div>
                                              </div>
                                              <div class="portlet-body">
                                                  <div class="zvs-chart-blocks" id="'.$chartContainer.'Dynamic">';
-                                                        
-                                                    
+                
+                                                   //Here goese the Dynamic chart
                 
                         $zvs_classGridView .='   </div>
                                                  <div class="zvs-chart-blocks" id="'.$chartContainer.'Static">';
@@ -260,6 +258,7 @@ class viewClasses_Model extends Zf_Model {
                     //echo $studentsStreamCount; exit();
                     
                     $executeStudentsStreamCount  = $this->Zf_AdoDB->Execute($studentsStreamCount);
+                    
                     if (!$executeStudentsStreamCount){
 
                         echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
