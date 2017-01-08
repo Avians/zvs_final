@@ -190,6 +190,11 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('ZVS_BANNED_SCHOOL')       ?   null : define('ZVS_BANNED_SCHOOL'       ,  -5);
     
     
+    //Platform Student Status
+    defined('STUDENT_CONTINUING')       ?   null : define('STUDENT_CONTINUING'   ,  1);
+    defined('STUDENT_ALUMNI')       ?   null : define('STUDENT_CONTINUING'       ,  0);
+    
+    
 
     
 /**

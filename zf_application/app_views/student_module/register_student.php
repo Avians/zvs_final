@@ -47,9 +47,9 @@
                         <div>
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
                                         <div class="portlet-empty table-responsive" style="margin-right: 4% !important;">
-                                            <div style="margin-right: 5px !important;"><?php echo $zf_generateTable; ?></div>
+                                            <div style="margin-right: 8px !important;"><?php echo $zf_generateTable; ?></div>
                                         </div>
                                     </div>          
                                 </div>

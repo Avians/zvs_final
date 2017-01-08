@@ -42,7 +42,7 @@ class student_moduleController extends Zf_Controller {
         
         $tableData = array();
         $tableData['tableTitle'] = "List of all school students";
-        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '$systemSchoolCode' ";
+        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' ";
         
         $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData);
         
