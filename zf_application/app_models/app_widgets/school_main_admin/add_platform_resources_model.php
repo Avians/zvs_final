@@ -66,6 +66,24 @@ class add_platform_resources_Model extends Zf_Model {
                 //Here we fetch and return all resources that belong to a given category with the entire platform.
                 $zvs_resourceDetails = $this->zvs_fetchResourceDetails($categoryName);
                 
+                
+                
+                //In this section we return the difference between assigned resources and all resources
+                
+                //$zvs_allAssignedResources = $this->zvs_fetchAssignedResources($categoryCode, $schoolRoleCode, "compare");
+                //$zvs_allPlatformReources = $this->zvs_fetchResourceDetails($categoryName, "compare");
+                
+                
+                //echo "<pre>";
+                //print_r($zvs_allAssignedResources);
+                //echo "</pre>";                
+                //echo "<pre>";
+                //print_r($zvs_allPlatformReources);
+                //echo "</pre>";
+                
+                
+                //exit();
+                
                 foreach ($assignedResources as $assignedResourceValue){
                     
                     $assignedResourceId = $assignedResourceValue['schoolResourceId'];
@@ -196,12 +214,21 @@ class add_platform_resources_Model extends Zf_Model {
     /**
      * This method checks and counts, then returns all stream details for all classess in the school.
      */
-    private function zvs_fetchResourceDetails($categoryName){
+    private function zvs_fetchResourceDetails($categoryName, $purpose = NULL){
         
         $zvs_sqlValue["resourceCategory"] = Zf_QueryGenerator::SQLValue($categoryName);
         $zvs_sqlValue["resourceStatus"] = Zf_QueryGenerator::SQLValue(1);
-        
-        $fetchCategoryResources = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_resources', $zvs_sqlValue);
+                
+        if($purpose == NULL){
+            
+            $fetchCategoryResources = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_resources', $zvs_sqlValue);
+            
+        } else{
+            
+            $zvs_sqlColumn = array("resourceId");
+            $fetchCategoryResources = Zf_QueryGenerator::BuildSQLSelect('zvs_platform_resources', $zvs_sqlValue, $zvs_sqlColumn);
+            
+        }
         
         $zf_executeFetchCategoryResources = $this->Zf_AdoDB->Execute($fetchCategoryResources);
 
@@ -279,12 +306,22 @@ class add_platform_resources_Model extends Zf_Model {
     /**
      * This method checks and counts, then returns all stream details for all classess in the school.
      */
-    private function zvs_fetchAssignedResources($categoryCode, $schoolRoleCode){
+    private function zvs_fetchAssignedResources($categoryCode, $schoolRoleCode, $purpose = NULL){
         
         $zvs_sqlValue["schoolRoleId"] = Zf_QueryGenerator::SQLValue($schoolRoleCode);
         $zvs_sqlValue["resourceCategory"] = Zf_QueryGenerator::SQLValue($categoryCode);
         
-        $fetchAssignedResources = Zf_QueryGenerator::BuildSQLSelect('zvs_resource_role_mapper', $zvs_sqlValue);
+        
+        if($purpose == NULL){
+            
+            $fetchAssignedResources = Zf_QueryGenerator::BuildSQLSelect('zvs_resource_role_mapper', $zvs_sqlValue);
+            
+        } else{
+            
+            $zvs_sqlColumn = array("schoolResourceId");
+            $fetchAssignedResources = Zf_QueryGenerator::BuildSQLSelect('zvs_resource_role_mapper', $zvs_sqlValue, $zvs_sqlColumn);
+            
+        }
         
         $zf_executeFetchAssignedResources = $this->Zf_AdoDB->Execute($fetchAssignedResources);
 

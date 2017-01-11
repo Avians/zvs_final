@@ -84,8 +84,8 @@ class studentsStatistics_Model extends Zf_Model {
         $zvs_table = "zvs_students_personal_details";
 
 
-        $getMaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Male' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getFemaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Female' AND systemSchoolCode = '".$systemSchoolCode."'  "; //die();
+        $getMaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Male' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getFemaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Female' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
 
 
         $executeMaleStudents   = $this->Zf_AdoDB->Execute($getMaleStudents);
@@ -281,15 +281,15 @@ class studentsStatistics_Model extends Zf_Model {
         $zvs_table = "zvs_students_medical_details";
 
 
-        $getBloodGroupABpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupABnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupApositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupAnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupBpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupBnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupOpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O+' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupOnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O-' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getBloodGroupNotKnown = "SELECT * FROM " . $zvs_table . " WHERE isStudentBloodGroup ='No' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getBloodGroupABpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB+' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupABnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='AB-' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupApositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A+' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupAnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='A-' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupBpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B+' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupBnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='B-' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupOpositive = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O+' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupOnegative = "SELECT * FROM " . $zvs_table . " WHERE studentBloodGroup ='O-' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getBloodGroupNotKnown = "SELECT * FROM " . $zvs_table . " WHERE isStudentBloodGroup ='No' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
 
 
         $executeBloodGroupABpositive   = $this->Zf_AdoDB->Execute($getBloodGroupABpositive);
@@ -392,7 +392,7 @@ class studentsStatistics_Model extends Zf_Model {
             "ChartType" => "spline",
             "ChartID" => "guardians",
             "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "270",
+            "ChartHeight" =>  "350",
             "ChartContainer" => "studentsGuardians",
             "ChartDataFormat" =>  "json",
         );
@@ -429,15 +429,15 @@ class studentsStatistics_Model extends Zf_Model {
         $zvs_table = "zvs_students_guardian_details";
 
 
-        $getParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Parent' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getAdoptiveParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Adoptive Parent' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getGrandParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Grandparent' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getUncleAunt = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Uncle or Aunt' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getCousin = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Cousin' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getNephewNiece = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Nephew or Niece' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getSponsor = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Sponsor' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getFamilyFriend = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Family Friend' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
-        $getOthers = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Others' AND systemSchoolCode = '".$systemSchoolCode."' "; //die();
+        $getParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Parent' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getAdoptiveParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Adoptive Parent' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getGrandParent = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Grandparent' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getUncleAunt = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Uncle or Aunt' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getCousin = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Cousin' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getNephewNiece = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Nephew or Niece' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getSponsor = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Sponsor' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getFamilyFriend = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Family Friend' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getOthers = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Others' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
 
 
         $executeGetParent   = $this->Zf_AdoDB->Execute($getParent);
@@ -532,6 +532,115 @@ class studentsStatistics_Model extends Zf_Model {
     
     
     
+    
+    /**
+     * This method is used to render students disability chart
+     */
+    public function AllStudentsByDisabilityPie($systemSchoolCode){
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Pie2D",
+            "ChartID" => 'disability',
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "270",
+            "ChartContainer" => "studentsDisability",
+            "ChartDataFormat" =>  "json",
+        );
+
+        
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{  
+                                "caption": "Total Students",
+                                "subCaption": "Disabled vs Not Disabled",
+                                "captionFontSize": "11",
+                                "subcaptionFontSize": "8",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "pieRadius": "75",
+                                "startingAngle": "120",
+                                "slicingDistance" : "8",
+                                "exportenabled": "1",
+                                "decimals": "1",
+                                "enableSmartLabels": "1",
+                                "use3DLighting": "1",
+                                "useDataPlotColorForLabels": "1",
+                                "smartLineColor": "#d11b2d",
+                                "smartLineThickness": "2",
+                                "smartLineAlpha": "75",
+                                "isSmartLineSlanted": "0",
+                                "labelDistance": "1",
+                                "slicingDistance": "10",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        //Custom SQL QUERIES can go here
+        
+        $zvs_table = "zvs_students_medical_details";
+
+
+        $getDisabledStudents = "SELECT * FROM " . $zvs_table . " WHERE isStudentDisable ='Yes' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getNotDisabledStudents = "SELECT * FROM " . $zvs_table . " WHERE isStudentDisable ='No' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+
+
+        $executeDisabledStudents   = $this->Zf_AdoDB->Execute($getDisabledStudents);
+        $executeNotDisabledStudents = $this->Zf_AdoDB->Execute($getNotDisabledStudents);
+
+        if (!$executeDisabledStudents|| !$executeNotDisabledStudents){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            $disabledCount = $executeDisabledStudents->RecordCount();
+            $notDisabledCount = $executeNotDisabledStudents->RecordCount();
+
+        }
+        
+        
+        //This is the actual chart data in JSON format
+        $chartData = '
+            
+                "data":[  
+                  {  
+                    "label":"Disabled Students",
+                    "value":"'.$disabledCount.'",
+                    "tooltext": "Total Male Students: '.$disabledCount.'"
+                  },
+                  {  
+                    "label":"Not Disabled Students",
+                    "value":"'.$notDisabledCount.'",
+                    "tooltext": "Total Female Students: '.$notDisabledCount.'"
+                  }
+                ]
+                            
+                    ';
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method is used to pull loaclities for all students who are not alumni
+     */
+    public function AllStudentsByLocality($systemSchoolCode){
+        
+        //Pull all the school country code
+        //$schoolCountryCode = 
+        
+    }
+
+
     
     /**
      * This method is essential in fetching all call details

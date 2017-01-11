@@ -47,6 +47,18 @@
                     </div>
                     <!--/row-->
                     
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Description:</label>
+                                <div class="col-md-10">
+                                    <textarea type="text" name="resourceDescription" class="form-control" id="summernote_1" placeholder="Resource Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
                     <input type="hidden" class="form-control" name="adminIdentificationCode" value="<?php echo $identificationCode; ?>">
                 </div>
             </div>

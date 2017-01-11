@@ -10,7 +10,7 @@ $(document).ready(function() {
     NewModuleFormWizard.init();
     EditModuleFormWizard.init();
     FormSelect.init();
+    ComponentsEditors.init();
     ComponentsPickers.init();
-    
     
 });

@@ -161,6 +161,9 @@ class newResourcesRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_minimumLength', 2, 'Resource name')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Resource name')
                 
+                                ->zf_postFormData('resourceDescription')
+                                ->zf_validateFormData('zf_maximumLength', 240, 'Resource name')
+                
                                 ->zf_postFormData('adminIdentificationCode');
         
 
@@ -171,7 +174,7 @@ class newResourcesRegistration_Model extends Zf_Model {
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
         //This of debugging purposes only.
-        //echo "<pre>All Resource Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
+        //echo "<pre>All Resource Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
     
         
         if(empty($this->_errorResult)){
@@ -218,6 +221,7 @@ class newResourcesRegistration_Model extends Zf_Model {
                     $zvs_resourceDetails['resourceId'] = Zf_QueryGenerator::SQLValue($resourceId);
                     $zvs_resourceDetails['resourceName'] = Zf_QueryGenerator::SQLValue($this->_validResult['resourceName']);
                     $zvs_resourceDetails['resourceCategory'] = Zf_QueryGenerator::SQLValue($moduleName);
+                    $zvs_resourceDetails['resourceDescription'] = Zf_QueryGenerator::SQLValue($this->_validResult['resourceDescription']);
                     $zvs_resourceDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
                     $zvs_resourceDetails['resourceStatus'] = Zf_QueryGenerator::SQLValue(0);
                     

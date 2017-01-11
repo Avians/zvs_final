@@ -208,6 +208,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('CLSMOD') ? null : define('CLSMOD' , 'class_module');
     defined('CLASS_MODULE') ? null : define('CLASS_MODULE' , 'ClsMod');
     
+        //These constant are a set of resources that are usable within the class module
         defined('VIEW_CLASSES') ? null : define('VIEW_CLASSES' , 'ClsMod'.CONNECT.'ViewClasses');
         defined('CLASS_PROFILE') ? null : define('CLASS_PROFILE' , 'ClsMod'.CONNECT.'ClassProfile');
         defined('VIEW_STREAMS') ? null : define('VIEW_STREAMS' , 'ClsMod'.CONNECT.'ViewStreams');
@@ -216,7 +217,8 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Department Module and resources
     defined('DEPMOD') ? null : define('DEPMOD' , 'department_module');
     defined('DEPARTMENT_MODULE') ? null : define('DEPARTMENT_MODULE' , 'DepMod');
-    
+        
+        //These constant are a set of resources that are usable within the department module
         defined('VIEW_DEPARTMENTS') ? null : define('VIEW_DEPARTMENTS' , 'DepMod'.CONNECT.'ViewDepartments');
         defined('DEPARTMENT_PROFILE') ? null : define('DEPARTMENT_PROFILE' , 'DepMod'.CONNECT.'DepartmentProfile');
         defined('VIEW_SUB_DEPARTMENTS') ? null : define('VIEW_SUB_DEPARTMENTS' , 'DepMod'.CONNECT.'ViewSubDepartments');
@@ -227,6 +229,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('FINMOD') ? null : define('FINMOD' , 'finance_module');
     defined('FINANCE_MODULE') ? null : define('FINANCE_MODULE' , 'FinMod');
     
+        //These constant are a set of resources that are usable within the finance module
         defined('CREATE_FEES') ? null : define('CREATE_FEES' , 'FinMod'.CONNECT.'CreateFees');
         defined('COLLECT_FEES') ? null : define('COLLECT_FEES' , 'FinMod'.CONNECT.'CollectFees');
         defined('FINANCE_STATUS') ? null : define('FINANCE_STATUS' , 'FinMod'.CONNECT.'FinanceStatus');
@@ -240,6 +243,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('STUMOD') ? null : define('STUMOD' , 'student_module');
     defined('STUDENT_MODULE') ? null : define('STUDENT_MODULE' , 'StuMod');
     
+        //These constant are a set of resources that are usable within the students module
         defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
         defined('SHIFT_STUDENTS') ? null : define('SHIFT_STUDENTS' , 'StuMod'.CONNECT.'ShiftStudents');
     
@@ -267,6 +271,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Subject Module and resources
     defined('SUBMOD') ? null : define('SUBMOD' , 'subject_module');
     defined('SUBJECT_MODULE') ? null : define('SUBJECT_MODULE' , 'SubMod');
+    
+        //These constant are a set of resources that are usable within the subjects module
+        defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
     
     
     //Examination Module and resources
