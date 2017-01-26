@@ -93,18 +93,13 @@
                             <label class="control-label col-md-2"></label>
                             <div class="col-md-10">
                                 <div class="row">
-                                    <div class="control-label" style="text-align: left !important; margin-left: 5% !important; color: #b94a48 !important;"><u>Select Source of Paid Money</u></div>
-                                    <div class="col-md-6">
-                                        <div class="radio-list">
-                                            <label class="radio-inline radio-labels">
-                                            <input type="radio" checked="checked" id="newFeesPaymentButton" name="paymentSource" value="newFeesPayment" data-title="New Payment" class="radio-buttons"> New Payment</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="radio-list">
-                                            <label class="radio-inline  radio-labels">
-                                            <input type="radio" id="reservedFeesPaymentButton" name="paymentSource" value="reservedFeesPayment" data-title="Excess Payment"  class="radio-buttons"> Excess Payment</label>
-                                        </div>
+                                    <div class="control-label" style="text-align: left !important; margin-left: 5% !important; color: #b94a48 !important;"><u>Check to Pay Using Excess Amount Only!!</u></div>
+                                    <div class="col-md-12">
+                                        <label class="checkbox-inline">
+                                            <span class=""><input id="excessPaymentCheckBox" name="excessPaymentCheckBox" value="1" type="checkbox"></span>
+                                            <input id="ClsMod" name="ClsMod" value="ClsMod" type="hidden">
+                                            <strong>Pay fees using your excess amount</strong>
+                                        </label>
                                     </div>
                                     <div class="col-md-6">
                                         <span class="help-block server-side-error">
@@ -117,12 +112,21 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group" style="margin-top: 30px !important;">
-                                <label class="control-label col-md-4">Amount Paid:</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="paymentAmount" class="form-control" placeholder="2500, 30000, 45000" value="<?php echo $zf_formHandler->zf_getFormValue("paymentAmount"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("paymentAmount"); ?>
-                                    </span>
+                                <div class="col-md-12">
+                                    <label class="control-label col-md-4 amountPaidLabel">Amount Paid:</label>
+                                    <div class="col-md-8 paymentAmountDiv">
+                                        <div class="newPaymentAmount">
+                                            <input type="text" name="paymentAmount" id="formattedNumberField1" class="form-control" placeholder="2500, 30000, 45000" value="<?php echo $zf_formHandler->zf_getFormValue("paymentAmount"); ?>">
+                                        </div> 
+                                    </div> 
+                                </div>
+                                <div class="col-md-12 paymentErrorDiv">
+                                    <label class="control-label col-md-4"></label>
+                                    <div class="col-md-8"> 
+                                        <span class="help-block server-side-error" >
+                                            <?php echo $zf_formHandler->zf_getFormError("paymentAmount"); ?>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +209,7 @@
                         <!--/span-->
                     </div>
                     
-                    <div class="row">
+                    <div class="row amountPaidRow">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Amount Paid:</label>

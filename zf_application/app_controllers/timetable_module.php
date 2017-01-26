@@ -32,6 +32,8 @@ class timetable_moduleController extends Zf_Controller {
         
     }
 
+
+
     
     //Executes the index view. Also is the defaukt action for this controller
     public function actionIndex(){
@@ -40,6 +42,17 @@ class timetable_moduleController extends Zf_Controller {
         
     }
     
+    
+    
+    
+    //This controller executes create a new timetable view
+    public function actionCreate_time_table($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('create_time_table',$zf_actionData);
+        
+    }
     
 
 }

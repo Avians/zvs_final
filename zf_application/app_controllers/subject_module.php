@@ -33,6 +33,8 @@ class subject_moduleController extends Zf_Controller {
     }
 
     
+    
+    
     //Executes the index view. Also is the defaukt action for this controller
     public function actionIndex(){
         
@@ -40,6 +42,17 @@ class subject_moduleController extends Zf_Controller {
         
     }
     
+    
+    
+    
+    //This controller executes the view for assigning sun=bjects to teachers.
+    public function actionAssign_subjects_to_teachers($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('assign_subjects_to_teachers',$zf_actionData);
+        
+    }
     
 
 }

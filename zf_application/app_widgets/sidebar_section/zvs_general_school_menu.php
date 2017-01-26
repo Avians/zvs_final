@@ -1,37 +1,37 @@
 <?php
 
-/** 
- * This menu is used by school general administrator
- */
+    /** 
+     * This menu is used by school general administrator
+     */
 
-//This holds an array of the active URL
-$activeURL = Zf_Core_Functions::Zf_URLSanitize();
+    //This holds an array of the active URL
+    $activeURL = Zf_Core_Functions::Zf_URLSanitize();
 
-//This are the active controller, action and parameter if any.
-$zvs_controller = $activeURL[0]; $zvs_action = $activeURL[1]; $zvs_parameter = Zf_SecureData::zf_decode_data($activeURL[2]);
+    //This are the active controller, action and parameter if any.
+    $zvs_controller = $activeURL[0]; $zvs_action = $activeURL[1]; $zvs_parameter = Zf_SecureData::zf_decode_data($activeURL[2]);
 
-//User identification code. This code is also stored in a session variable
-$identificationCode = $zf_externalWidgetData;
-
-
-
-/**
- * We access the database to retrieve the resources assigned to the current user role. If there are resources assigned in the returned array
- * then we return those resources in an array.
- */
-
-//This array holds all valid user resources for the selected role.
-$zvs_allowedResources = $zf_model_data->zvs_fetchUserResources($identificationCode);
+    //User identification code. This code is also stored in a session variable
+    $identificationCode = $zf_externalWidgetData;
 
 
-//MODULES AND RESOURCES LIST BEGINS HERE
 
-/**
- * This is a list of all availeble platform modules with available resources
- * 
- * This list will always be updated as modules and resources are built into the platform.
- *
- */
+    /**
+     * We access the database to retrieve the resources assigned to the current user role. If there are resources assigned in the returned array
+     * then we return those resources in an array.
+     */
+
+    //This array holds all valid user resources for the selected role.
+    $zvs_allowedResources = $zf_model_data->zvs_fetchUserResources($identificationCode);
+
+
+    //MODULES AND RESOURCES LIST BEGINS HERE
+
+    /**
+     * This is a list of all availeble platform modules with available resources
+     * 
+     * This list will always be updated as modules and resources are built into the platform.
+     *
+     */
 
 
     //1. Class Module(ClsMod) ==> zvs_class

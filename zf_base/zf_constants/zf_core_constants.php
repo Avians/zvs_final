@@ -273,7 +273,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('SUBJECT_MODULE') ? null : define('SUBJECT_MODULE' , 'SubMod');
     
         //These constant are a set of resources that are usable within the subjects module
-        defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
+        defined('ASSIGN_SUBJECTS_TO_TEACHERS') ? null : define('ASSIGN_SUBJECTS_TO_TEACHERS' , 'SubMod'.CONNECT.'AssignSubjectsToTeachers');
     
     
     //Examination Module and resources
@@ -289,6 +289,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Timetable Module and resources
     defined('TTBMOD') ? null : define('TTBMOD' , 'timetable_module');
     defined('TIMETABLE_MODULE') ? null : define('TIMETABLE_MODULE' , 'TtbMod');
+    
+    //These constant are a set of resources that are usable within the time-table module
+        defined('CREATE_TIME_TABLE') ? null : define('CREATE_TIME_TABLE' , 'TtbMod'.CONNECT.'createTimeTable');
     
     
     //Noticeboard Module and resources

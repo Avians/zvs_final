@@ -1289,7 +1289,6 @@ class processFeeInformation_Model extends Zf_Model {
     
     
     
-    
     /**
      * This public method records information about the collected school fees.
      */
@@ -1328,15 +1327,15 @@ class processFeeInformation_Model extends Zf_Model {
         //This array holds all valid data. 
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
+        //echo $paymentAmount = (double)str_replace(',', '', $this->_validResult['paymentAmount'])."<br>";
+        
         //This of debugging purposes only.
-        //echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
+        //echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
         
         
         $adminIdentificationCode = $this->_validResult['adminIdentificationCode'];
         $adminIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($adminIdentificationCode);
         
-        //$formatedStartDate =  Zf_Core_Functions::Zf_FomartDate("Y-m-d", $this->_validResult['attendanceStartDate']);
-        //$formatedEndDate =  Zf_Core_Functions::Zf_FomartDate("Y-m-d", $this->_validResult['attendanceEndDate']);
         
         if(empty($this->_errorResult)){
             
@@ -1347,86 +1346,56 @@ class processFeeInformation_Model extends Zf_Model {
             $paymentScheduleName = $this->_validResult['paymentScheduleName'];
             $studentIdentificationCode = $this->_validResult['studentIdentificationCode'];
             $studentAdmissionNumber = $this->_validResult['studentAdmissionNumber'];
-            $paymentAmount = $this->_validResult['paymentAmount'];
+            $paymentAmount = (float)str_replace(',', '', $this->_validResult['paymentAmount']);
             $paymentSource = $this->_validResult['paymentSource'];
             
             
             //0. Get the fees payment percentage proportion for the selected year and the selected payment period
             $feePaymentProportion = ($this->feePaymentSchedule($systemSchoolCode, $paymentScheduleYear, $paymentScheduleName)/100);
-            //echo "Payment Proportion:".($feePaymentProportion*100)." %<br>";
+            //echo "Payment Proportion for selected year and period:".($feePaymentProportion*100)." %<br><br>";
 
             //1. Get the fees supposed to be paid for the selected year and the selected payment period, say X
             $totalFeesAmount = (filter_var($this->zvs_generateClassFeeDetails($systemSchoolCode, $studentClassCode, $paymentScheduleYear), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)*$feePaymentProportion);
-            //echo "Total Fees: ".$totalFeesAmount."<br>";
+            //echo "Total Fees to be paid for selected year and period: ".$totalFeesAmount."<br><br>";
 
             //2. Get the fees already paid by the student for the selected year and the selected payment period, say Y
             $amountAlreadyPaid = filter_var($this->zvs_fetchFeesPaymentDetails($systemSchoolCode, $studentClassCode, $studentStreamCode, $paymentScheduleYear, $studentIdentificationCode, $paymentScheduleName), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-            //echo "Paid Fees: ".$amountAlreadyPaid."<br>";
+            //echo "Total fees already paid for selected year and period: ".$amountAlreadyPaid."<br><br>";
 
             //3. Work out the fees balance for the paying student by calculating X-Y = Z
             $feesBalance  = $totalFeesAmount - $amountAlreadyPaid;
-            //echo "Fees Balance: ".$feesBalance."<br>"; exit();
+            //echo "Total current fees balance for selected year and period: ".$feesBalance."<br><br>";
             
-            //WE ARE MAKING A FEES PAYMENT EITHER FROM A NEW PAYMENT OR FROM FEE RESERVES OF THE TARGET STUDENT
             
-            //Payment is from reserve, then we confirm that this student actually has money in his/her reserve account
-            if($paymentSource == "reservedFeesPayment"){
+            //4. Amount currently paid by the student as school fees
+            //echo "Current amount of money paid by the student as fees: ".$paymentAmount."<br><br>";
+            
+            //5. Let check if the student has any accummulates excess payment
+            $amountInReserve = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
+            //echo "Excess amount for the selected student: ".$amountInReserve."<br><br>";
+            
+            
+            //7. Total amount that can be used to settle current fees balance for the selected year and period
+            $totalPayableAmount = $paymentAmount + $amountInReserve;
+            //echo "Total amount available for settling school fees: ".$totalPayableAmount."<br><br>"; //exit();
+            
+            //8. Check if the total payment amount is 0 and return an error
+            if($totalPayableAmount == 0){
                 
-                //Here we fetch all the amount of money reserved for the target student
-                $reservedAmount = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
+                Zf_SessionHandler::zf_setSessionVariable("collect_fees", "less_reserved_amount");
+
+                $zf_errorData = array("zf_fieldName" => "paymentAmount", "zf_errorMessage" => "* You don't have enough money to make any fee payment");
+                Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
+                exit();
                 
-                //0. Check if the reserved amount is capable of off setting the amount paid.
-                if($reservedAmount < $paymentAmount){
-                    
-                    Zf_SessionHandler::zf_setSessionVariable("collect_fees", "less_reserved_amount");
-
-                    $zf_errorData = array("zf_fieldName" => "paymentAmount", "zf_errorMessage" => "* Available reserved amount is Kshs. $reservedAmount");
-                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                    Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
-                    exit();
-                    
-                }else{
-                
-                    //1. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
-                    if($totalFeesAmount == $amountAlreadyPaid){
-
-                        Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_already_completed");
-
-                        $zf_errorData = array("zf_fieldName" => "paymentScheduleName", "zf_errorMessage" => "* Student already completed fees for the selected payment period.");
-                        Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
-                        Zf_GenerateLinks::zf_header_location('finance_module', 'collect_fees', $adminIdentificationCode);
-                        exit();
-                    }
-
-                    //2. If the balance Z is more than 0, compare the balance Z and the paid amount W.
-                    else{
-                        
-                        //3. Check to confirm that the payment amount is not greater than the balance for the selected payment period
-                        //   This helps to ensure that only the current fees balance is cleared.
-                        if($paymentAmount > $feesBalance){
-                            
-                            $paymentAmount = $feesBalance;
-                            
-                        }
-                        
-                        //4. Deduct an equivalent from the reserves for the balance to reflect appropriately
-                        $this->zvs_deductAmountFromReserve($this->_validResult, $paymentAmount);
-                        
-                    }
-                    
-                }
             }
-            //Pay is from a new payment amount
-            else if($paymentSource == "newFeesPayment"){
+            //9. Check if we have fees balance to pays and process the payments
+            else{
                 
-                /**
-                 * We are about to record the collected fees. But before, we have to conduct a seven step logical check 
-                 *to ensure that the fees is paid correctly for the select year and payment period
-                 */
-                
-                //1. If the balance Z is 0, return a flag about the student already having completed fees for the selected year and payment period
-                if($totalFeesAmount == $amountAlreadyPaid){
-
+                //9.1 Check if the fees balance for the selected period is 0 and return a flag
+                if(($feesBalance == 0) && ($amountAlreadyPaid == $totalFeesAmount)){
+                    
                     Zf_SessionHandler::zf_setSessionVariable("collect_fees", "fees_already_completed");
 
                     $zf_errorData = array("zf_fieldName" => "paymentScheduleName", "zf_errorMessage" => "* Student already completed fees for the selected payment period.");
@@ -1435,31 +1404,40 @@ class processFeeInformation_Model extends Zf_Model {
                     exit();
                     
                 }
-           
-                //2. If the balance Z is more than 0, compare the balance Z and the paid amount W.
+                //9.2 We have fees balance to pay, so lets make the payment setpwise
                 else{
-               
-                    //3. If the paid amount is more than the the balance i.e W > Z, return a flag about the students remaining balance for the selected year and payment period
-                    if($paymentAmount > $feesBalance){
+                
+                    //9.2.1 Check and if the total payable amount is greater than fee balance, clear the balance and send the rest into reserve
+                    if($totalPayableAmount > $feesBalance){
                         
-                        //4. Workout the amount of money that is to be reserved for the target student
-                        $amountToReserve = $paymentAmount - $feesBalance;
+                        //This is the new amount being sent into reserve as excess payment
+                        $amountToReserve = $totalPayableAmount - $feesBalance;
+                        //echo "This is the current excess amount paid: ".$amountToReserve."<br><br>"; 
                         
-                        //5. Insert the over payment amount into student's reserve account
-                        $this->zvs_addAmountToReserve($this->_validResult, $feesBalance, $amountToReserve);
+                        //This is the actual amount for fees payment
+                        $totalPayableAmount = $feesBalance;
+                        //echo "This is the new payable amount as fees: ".$totalPayableAmount."<br><br>"; //exit();
+
+                    }else if(($totalPayableAmount == $feesBalance) || ($totalPayableAmount < $feesBalance)){
                         
-                    }else if(($paymentAmount < $feesBalance) && ($feesBalance != 0)){
-                    
-                        //4. Insert the fees payment details into the fees payment details database
-                        $this->zvs_makeFeesPayment($this->_validResult, $paymentAmount);
+                        //This is the case when there is no excess amount but there was prior to this transaction
+                        $amountToReserve = "0.00";
+                        //echo "This is the current excess amount paid: ".$amountToReserve."<br><br>";
                         
-                        exit();
-                    
                     }
                     
+                    //exit();
+                    //9.2.1 Check and if the total payable amount is less than fee balance, make fees payment and set resrve to 0
+                        
+                    //This is the actual amount for fees payment
+                    //echo "This is the new payable amount as fees: ".$totalPayableAmount."<br><br>"; //exit();
+                    
+                    $this->zvs_makeFeesPayment($this->_validResult, $totalPayableAmount, $amountToReserve);
+                 
                 }
                 
             }
+            
                    
         }else{
             
@@ -1479,8 +1457,9 @@ class processFeeInformation_Model extends Zf_Model {
      * This private function makes the actual fees payment for the student
      * 
      */
-    private function zvs_makeFeesPayment($formResult, $paymentAmount){
+    private function zvs_makeFeesPayment($formResult, $paymentAmount, $amountToReserve = NULL){
         
+        //0. Strip all form details
         $systemSchoolCode = $formResult['systemSchoolCode'];
         $studentClassCode = $formResult['studentClassCode'];
         $studentStreamCode = $formResult['studentStreamCode'];
@@ -1491,6 +1470,58 @@ class processFeeInformation_Model extends Zf_Model {
         $adminIdentificationCode = $formResult['adminIdentificationCode'];
         
         
+        //Prepare default SQL Values
+        $zvs_sqlValuesReserve['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+        $zvs_sqlValuesReserve['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
+        $zvs_sqlValuesReserve['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValuesReserve['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
+        
+        
+        //1. INSERT OR UPDATE EXCESS PAYMENT AMOUNT INTO RESERVE
+        
+        if(is_null($amountToReserve) == FALSE && !empty($amountToReserve)){
+            
+            //1.1 Check if student as an exsiting excess payment record
+            $reservedPaymentRecord = $this->pullReservedFeesDetails($systemSchoolCode, $studentIdentificationCode);
+
+            //There is no any pre-existing record, therefore insert
+            if($reservedPaymentRecord == 0){
+                
+                $zvs_sqlValuesReserve['reservedAmount'] = Zf_QueryGenerator::SQLValue($amountToReserve);
+                $zvs_sqlValuesReserve['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
+
+                //Insertion sql query and execution
+                $zvs_insertUpdateNewReserveDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_reserved", $zvs_sqlValuesReserve);
+
+            }
+            //There is pre-existing record, therefore update
+            else{
+                
+                //We have reserved amount so we update the value
+                $zvs_sqlColumn["reservedAmount"] = Zf_QueryGenerator::SQLValue($amountToReserve);
+                $zvs_sqlColumn['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
+
+                //Update sql query and execution
+                $zvs_insertUpdateNewReserveDetails = Zf_QueryGenerator::BuildSQLUpdate('zvs_fees_payment_reserved', $zvs_sqlColumn, $zvs_sqlValuesReserve);
+
+            }
+            
+            //echo $zvs_insertUpdateNewReserveDetails."<br><br>";
+            
+            $zvs_executeInsertUpdateNewReserveDetails = $this->Zf_AdoDB->Execute($zvs_insertUpdateNewReserveDetails);
+
+            if(!$zvs_executeInsertUpdateNewReserveDetails){
+
+                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+            }
+            
+        }
+        
+        
+        //2. MAKE ACTUAL SCHOOL FEES PAYMENT
+        
+        //Prepare SQL values for fee payment
         $zvs_sqlValues['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
         $zvs_sqlValues['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
         $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
@@ -1506,6 +1537,8 @@ class processFeeInformation_Model extends Zf_Model {
         //Insertion sql query and execution
         $zvs_insertNewPaymentDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_detials", $zvs_sqlValues);
 
+        //echo $zvs_insertNewPaymentDetails."<br>"; exit();
+        
         $zvs_executeInsertNewPaymentDetails = $this->Zf_AdoDB->Execute($zvs_insertNewPaymentDetails);
 
         if(!$zvs_executeInsertNewPaymentDetails){
@@ -1523,148 +1556,6 @@ class processFeeInformation_Model extends Zf_Model {
         
         
     }
-
-
-
-    /**
-     * This private function adds the excess payment amount to student reserve account
-     * 
-     */
-    private function zvs_addAmountToReserve($formResult, $feesBalance, $excessAmount){
-        
-        $systemSchoolCode = $formResult['systemSchoolCode'];
-        $studentClassCode = $formResult['studentClassCode'];
-        $studentStreamCode = $formResult['studentStreamCode'];
-        $studentIdentificationCode = $formResult['studentIdentificationCode'];
-        $studentAdmissionNumber = $formResult['studentAdmissionNumber'];
-        $reservedAmount = $excessAmount;
-        $adminIdentificationCode = $formResult['adminIdentificationCode'];
-        
-        
-        //Pull the student's total reserved fees
-        $amountInReserve = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
-        
-        $zvs_sqlValues['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-        $zvs_sqlValues['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
-        $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValues['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
-        
-        
-        if($amountInReserve == 0 || empty($amountInReserve) || $amountInReserve == 0.00){
-            
-            $zvs_sqlValues['reservedAmount'] = Zf_QueryGenerator::SQLValue($reservedAmount);
-            $zvs_sqlValues['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
-            
-            //Insertion sql query and execution
-            $zvs_insertUpdateNewReserveDetails = Zf_QueryGenerator::BuildSQLInsert("zvs_fees_payment_reserved", $zvs_sqlValues);
-            
-        }else{
-            
-            //We have reserved amount so we update the value
-            $newReservedAmount = $amountInReserve + $reservedAmount;
-            $zvs_sqlColumn["reservedAmount"] = Zf_QueryGenerator::SQLValue($newReservedAmount);
-            $zvs_sqlColumn['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
-            
-            //Update sql query and execution
-            $zvs_insertUpdateNewReserveDetails = Zf_QueryGenerator::BuildSQLUpdate('zvs_fees_payment_reserved', $zvs_sqlColumn, $zvs_sqlValues);
-            
-        }
-        
-        $zvs_executeInsertUpdateNewReserveDetails = $this->Zf_AdoDB->Execute($zvs_insertUpdateNewReserveDetails);
-
-        if(!$zvs_executeInsertUpdateNewReserveDetails){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            //Make fee payment for the target student
-            $this->zvs_makeFeesPayment($formResult, $feesBalance);
-
-        }
-        
-    }
-    
-
-    
-    /**
-     * This private function deducts payment amount from student reserve account
-     * 
-     */
-    private function zvs_deductAmountFromReserve($formResult, $paymentAmount){
-        
-        $systemSchoolCode = $formResult['systemSchoolCode'];
-        $studentClassCode = $formResult['studentClassCode'];
-        $studentStreamCode = $formResult['studentStreamCode'];
-        $paymentScheduleYear = $formResult['paymentScheduleYear'];
-        $paymentScheduleName = $formResult['paymentScheduleName'];
-        $studentIdentificationCode = $formResult['studentIdentificationCode'];
-        $studentAdmissionNumber = $formResult['studentAdmissionNumber'];
-        $paymentSource = $formResult['paymentSource'];
-        $adminIdentificationCode = $formResult['adminIdentificationCode'];
-        
-        //Pull the student's total reserved fees
-        $reservedAmount = $this->reservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode);
-        
-        //Calculate new reserved amount and then update the value.
-        $newReservedAmount = $reservedAmount - $paymentAmount;
-        
-        //Update the reserve amount for the target student
-        $this->updateReservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode, $newReservedAmount);
-        
-        //Make fee payment for the target student
-        $this->zvs_makeFeesPayment($formResult, $paymentAmount); 
-        
-        exit();
-        
-        
-    }
-    
-    
-    
-    
-    /**
-     * This private method updates the value for reserved fees payment
-     */
-    private function updateReservedFeesPaymentDetails($systemSchoolCode, $studentIdentificationCode, $newReservedAmount){
-        
-        //Update Values
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-        
-        //Update Column
-        $zvs_sqlColumn["reservedAmount"] = Zf_QueryGenerator::SQLValue($newReservedAmount);
-        
-        $fetchReservedFeesItems = Zf_QueryGenerator::BuildSQLUpdate('zvs_fees_payment_reserved', $zvs_sqlColumn, $zvs_sqlValue);
-        
-        $zf_executeFetchReservedFeesItems = $this->Zf_AdoDB->Execute($fetchReservedFeesItems);
-
-        if(!$zf_executeFetchReservedFeesItems){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            if($zf_executeFetchReservedFeesItems->RecordCount() > 0){
-
-                while(!$zf_executeFetchReservedFeesItems->EOF){
-                    
-                    $results = $zf_executeFetchReservedFeesItems->GetRows();
-                    
-                }
-                
-                return $results;
-
-                
-            }else{
-                
-                return 0;
-                
-            }
-        }
-        
-    }
-
 
 }
 
