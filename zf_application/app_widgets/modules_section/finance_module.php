@@ -113,6 +113,11 @@ $main_menu = array(
         <span class="arrow <?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" || $zvs_action == "collect_fees" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(FINANCE_STATUS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "finance_status") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['finance_status']); ?>
+            </li>
+        <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(CREATE_FEES, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "create_fees") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['create_fees']); ?>
@@ -121,11 +126,6 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(COLLECT_FEES, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "collect_fees") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['collect_fees']); ?>
-            </li>
-        <?php } ?>
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(FINANCE_STATUS, $zvs_allowedResources)){ ?>
-            <li class="<?php if ($zvs_action == "finance_status") { echo "active";} ?>">
-                <?php Zf_GenerateLinks::zf_internal_link($main_menu['finance_status']); ?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(ALLOCATE_FINANCES, $zvs_allowedResources)){ ?>

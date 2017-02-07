@@ -1,4 +1,4 @@
-e<?php
+<?php
 
     //Access to pull all administrator information.
     $zf_controller->Zf_loadModel("school_main_admin", "newAttendanceRegistration");
@@ -31,6 +31,7 @@ e<?php
             //This is the pop up indicator that shows a success or a failure in creating a new attendance schedule.
             $zf_widgetFolder = "indicators"; $zf_widgetFile = "attendance_configuration_indicator.php";
             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
+            
         ?>    
         <!-- BEGIN INNER CONTENT -->
         <div class="row">

@@ -197,7 +197,7 @@ class processFeeStructure_Model extends Zf_Model {
        
        $feeSummaryView = '<div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="dashboard-stat blue">
+                                <div class="dashboard-stat blue-soft">
                                     <div class="visual">
                                         <i class="fa fa-money"></i>
                                     </div>

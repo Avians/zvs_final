@@ -280,11 +280,13 @@ class School_main_adminController extends Zf_Controller {
 
     
     /**
-     * This action executes the manage timetable view
+     * This action executes the view that is used to configure school timetable
      */
-    public function actionManage_timetable(){
+    public function actionConfigure_timetable($identificationCode){
         
-        Zf_View::zf_displayView('manage_timetable');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('configure_timetable', $zf_actionData);
         
     }
    
@@ -729,6 +731,29 @@ class School_main_adminController extends Zf_Controller {
             $this->zf_targetModel->processAnnualAttendanceSchedule();
         
         }
+    }
+    
+   
+    
+    /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR CREATION OF NEW TIMETABLE ITEMS
+     */
+    
+    /**
+     * This action sends the class information to the model for processing
+     */
+    public function actionTimeTableInformation($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == 'process_streams'){
+            
+            //Get the streams related a selected class
+            $this->zf_targetModel->getStreamDetails();
+            
+        }
+        
     }
     
     

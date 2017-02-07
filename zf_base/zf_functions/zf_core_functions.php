@@ -517,8 +517,7 @@ class Zf_Core_Functions {
      * @return string true or false
      */
     //Delete array value from a recursive array.
-    public static function recursiveRemoval(&$array, $val)
-    {
+    public static function recursiveRemoval(&$array, $val){
         if(is_array($array))
         {
             foreach($array as $key=>&$arrayElement)
@@ -538,6 +537,46 @@ class Zf_Core_Functions {
         }
     }
     
+    
+    
+    
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD THAT RETURNS DAYS OF THE WEEK
+     * -------------------------------------------------------------------------
+     */
+    public static function Zf_GenerateWeekDays(){
+        
+        $today = date('l');
+        
+        $weekDays = "";
+        
+        
+        //1. Sunday
+        $weekDays .='<option value="Sunday" '.($today == "Sunday" ? "selected" : "").'>Sunday</option>';
+
+        //2. Monday
+        $weekDays .='<option value="Monday" '.($today == "Monday" ? "selected" : "").'>Monday</option>';
+
+        //3. Tuesday
+        $weekDays .='<option value="Tuesday" '.($today == "Tuesday" ? "selected" : "").'>Tuesday</option>';
+
+        //4. Wednesday
+        $weekDays .='<option value="Wednesday" '.($today == "Wednesday" ? "selected" : "").'>Wednesday</option>';
+
+        //5. Thursday
+        $weekDays .='<option value="Thursday" '.($today == "Thursday" ? "selected" : "").'>Thursday</option>';
+
+        //6. Friday
+        $weekDays .='<option value="Friday" '.($today == "Friday" ? "selected" : "").'>Friday</option>';
+
+        //7. Saturday
+        $weekDays .='<option value="Saturday" '.($today == "Saturday" ? "selected" : "").'>Saturday</option>';
+           
+        return $weekDays;
+        
+    }
     
     
     

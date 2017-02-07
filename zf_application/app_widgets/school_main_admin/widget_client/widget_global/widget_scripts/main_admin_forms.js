@@ -249,6 +249,34 @@
         };
         
         
+        
+        //Here we process all timetable details
+        var timeTableDetails = function ($absolute_path, $separator){
+            
+            //Process the streams within the selected class
+            $('.timeTableClassCode').change(function(){
+                
+                var processStreams = $absolute_path + "school_main_admin" + $separator + "timeTableInformation" + $separator + "process_streams";
+                var timeTableClassCode = $("#timeTableClassCode").val();
+                
+                //alert(timeTableClassCode); exit();
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processStreams,
+                    data: {timeTableClassCode: timeTableClassCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#timeTableStreamCode").html(html);
+                    }
+                });
+
+            });
+            
+        };
+        
+        
         //Here we initialize all the above functions
         return { 
 
@@ -269,6 +297,10 @@
                 }if($current_view === "configure_attendance"){
                     
                     attendanceDetails($absolute_path, $separator);
+                    
+                }if($current_view === "configure_timeTable"){
+                    
+                    timeTableDetails($absolute_path, $separator);
                     
                 }
 

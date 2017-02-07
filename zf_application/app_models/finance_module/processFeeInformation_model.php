@@ -1329,7 +1329,7 @@ class processFeeInformation_Model extends Zf_Model {
         
         //echo $paymentAmount = (double)str_replace(',', '', $this->_validResult['paymentAmount'])."<br>";
         
-        //This of debugging purposes only.
+        //This is for debugging purposes only.
         //echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
         
         

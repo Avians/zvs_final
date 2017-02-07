@@ -192,18 +192,23 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     
     //Platform Student Status
     defined('STUDENT_CONTINUING')       ?   null : define('STUDENT_CONTINUING'   ,  1);
-    defined('STUDENT_ALUMNI')       ?   null : define('STUDENT_CONTINUING'       ,  0);
+    defined('STUDENT_ALUMNI')       ?   null : define('STUDENT_ALUMNI'  ,  0);
     
     
 
-    
+/**
+ * -----------------------------------------------------------------------------
+ * THIS IS THE MAIN CONNECTOR FOR ZILAS FRAMEWORK
+ * -----------------------------------------------------------------------------
+ */    
+    defined('CONNECT') ? null : define('CONNECT' , '[`^`]');
+
+
 /**
  * -----------------------------------------------------------------------------
  * THESE HOLDS ALL PLATFORM MODULES WITHIN ZILAS VIRTUAL SCHOOLS
  * -----------------------------------------------------------------------------
- */ 
-    defined('CONNECT') ? null : define('CONNECT' , '[`^`]');
-    
+ */    
     //Class Module and resources
     defined('CLSMOD') ? null : define('CLSMOD' , 'class_module');
     defined('CLASS_MODULE') ? null : define('CLASS_MODULE' , 'ClsMod');

@@ -37,13 +37,13 @@
             <?php
             
                 //This is the notification widget
-                Zf_ApplicationWidgets::zf_load_widget("header_section", "notifications.php", $identificationCode);
+                //Zf_ApplicationWidgets::zf_load_widget("header_section", "notifications.php", $identificationCode);
 
                 //This is the messages widget
-                Zf_ApplicationWidgets::zf_load_widget("header_section", "inbox_messages.php", $identificationCode);
+                //Zf_ApplicationWidgets::zf_load_widget("header_section", "inbox_messages.php", $identificationCode);
 
                 //This is the tasks widget
-                Zf_ApplicationWidgets::zf_load_widget("header_section", "pending_tasks.php", $identificationCode);
+                //Zf_ApplicationWidgets::zf_load_widget("header_section", "pending_tasks.php", $identificationCode);
 
                 //This is the users section widget
                 Zf_ApplicationWidgets::zf_load_widget("header_section", "user_section.php", $identificationCode);

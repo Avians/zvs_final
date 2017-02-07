@@ -24,6 +24,9 @@ $(document).ready(function() {
     //Configure Attendance
     NewAttendanceFormWizard.init();
     
+    //Configure Timetable
+    //NewTimeTableFormWizard.init();
+    
     //Manage Departments
     NewDepartmentFormWizard.init();
     NewSubDepartmentFormWizard.init();

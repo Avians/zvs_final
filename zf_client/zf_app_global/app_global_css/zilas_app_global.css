@@ -451,7 +451,7 @@ This is the styling for the zozo tabs and accordion
     border-radius: 0 4px 0 0 !important;
 }
 
-.z-tabs.silver > ul > li.z-active > a {
+.z-tabs.silver > ul > li.z-active > a, .z-tabs.silver > ul > li.z-link > a {
     background: none repeat scroll 0 0 #EFEFEF;
     box-shadow: none; border-top: 3px solid #21b4e2 !important;
     color: #21b4e2 !important; filter: none;
@@ -461,9 +461,16 @@ This is the styling for the zozo tabs and accordion
    margin-bottom: 10px !important;
 }
 
-.zozo_tab_wrapper .fa{
+.zozo_tab_wrapper .z-link .fa{
     color: #21b4e2 !important;
 }
+
+.dashboard-stat .fa{
+    color: white;
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+}
+
 
 .z-content-inner{
     min-height: 360px !important; font-family: ProximaNova-Light !important; font-size: 13px; background-color: #EFEFEF;
@@ -477,9 +484,6 @@ This is the styling for the zozo tabs and accordion
 .data-danger{
     color: #a94442 !important;
 }
-
-
-
 
 
 

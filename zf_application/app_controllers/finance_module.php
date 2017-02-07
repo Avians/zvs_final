@@ -56,9 +56,11 @@ class finance_moduleController extends Zf_Controller {
     
     
     //This controller executes the finance status view
-    public function actionFinance_status(){
+    public function actionFinance_status($identificationCode){
         
-        Zf_View::zf_displayView('finance_status');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('finance_status', $zf_actionData);
         
     }
     

@@ -171,11 +171,11 @@ $main_menu = array(
     ),
     
     
-    //Manage Timetable
-    "manage_timetable" => array(
+    //Configure Timetable
+    "configure_timetable" => array(
         'name' => '<i class="fa fa-clock-o"></i> Configure Timetable ',
         'controller' => $zvs_controller,
-        'action' => 'manage_timetable',
+        'action' => 'configure_timetable',
         'parameter' => $identificationCode,
         'title' => '',
         'style' => '',
@@ -343,16 +343,16 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS School Communication-->
-<li class="<?php if ($zvs_action == "manage_timetable" || $zvs_action == "manage_notice_board" || $zvs_action == "manage_calendar") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "configure_timetable" || $zvs_action == "manage_notice_board" || $zvs_action == "manage_calendar") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-bullhorn"></i>
         <span class="title"> School Communication </span>
-        <?php if ($zvs_action == "manage_timetable" || $zvs_action == "manage_notice_board" || $zvs_action == "manage_calendar") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "manage_timetable" || $zvs_action == "manage_notice_board" || $zvs_action == "manage_calendar") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "configure_timetable" || $zvs_action == "manage_notice_board" || $zvs_action == "manage_calendar") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "configure_timetable" || $zvs_action == "manage_notice_board" || $zvs_action == "manage_calendar") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "manage_timetable") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_timetable']); ?>
+        <li class="<?php if ($zvs_action == "configure_timetable") { echo "active";} ?>">
+            <?php Zf_GenerateLinks::zf_internal_link($main_menu['configure_timetable']); ?>
         </li>
         <li class="<?php if ($zvs_action == "manage_notice_board") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_notice_board']); ?>
