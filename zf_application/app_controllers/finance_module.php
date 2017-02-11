@@ -175,5 +175,23 @@ class finance_moduleController extends Zf_Controller {
         }
         
     }
+    
+    
+    
+    
+    //This method processes Finance Status of the school
+    public function actionProcessFinanceStatus($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == 'financialStatus'){
+
+            //Gets the financial data for the selected year
+            $this->zf_targetModel->processFinancialData();
+            
+        }
+        
+    }
 }
 ?>

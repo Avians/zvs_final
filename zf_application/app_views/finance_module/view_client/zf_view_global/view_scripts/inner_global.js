@@ -6,8 +6,63 @@
 //This variable processes platform administrators locations
 var FinanceModule = function(){
 
+    //Here we process all finance status javascript and ajax
+    var financeStatus = function($absolute_path, $separator){
+        
+        //Model variables
+        var targetController = "finance_module";
+        var targetAction = "processFinanceStatus";
+        var financialParameter = "financialStatus";
+        
+        //Selected Financial Year
+        var financialYear = $('#selectedFinancialYear').val();
+        
+        $("#financeStatusDefaultTitle, #financeDynamicDefaultTitle").hide();
+        
+        //Show the title based on the default Year
+        $("#financeStatusDefaultTitle").html(financialYear+" - General School Finance Status");
+        $("#financeStatusDefaultTitle").show();
+        
+        var processFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + financialParameter;
 
-    //Here we process all fee structure.
+        //Here we run ajax task for class fee structure
+        $.ajax({
+            type: "POST",
+            url: processFinancialStatus,
+            data: {postedFinancialYear : financialYear},
+            cache: false,
+            success: function(html) {
+               $("#financialStatusData").html(html);
+            }
+        });
+        
+        
+        //Change the title year based on the changed year
+        $("#selectedFinancialYear").change(function(){
+           
+            var financialYear = $('#selectedFinancialYear').val();
+            $("#financeDynamicDefaultTitle").html(financialYear+" - General School Finance Status");
+            $("#financeStatusDefaultTitle").hide(); $("#financeDynamicDefaultTitle").fadeIn(3000);
+            
+            var processFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + financialParameter;
+
+            //Here we run ajax task for class fee structure
+            $.ajax({
+                type: "POST",
+                url: processFinancialStatus,
+                data: {postedFinancialYear : financialYear},
+                cache: false,
+                success: function(html) {
+                   $("#financialStatusData").html(html);
+                }
+            });
+            
+        });
+        
+        
+    };
+
+    //Here we process all fee structure javascript and ajax
     var feeStructure = function ($absolute_path, $separator){
 
         $('#feeStructureData, #feeClassTitle').hide();
@@ -101,7 +156,7 @@ var FinanceModule = function(){
     };
     
     
-    //Here we process all fee collection details
+    //Here we process all fee collection details javascript and ajax
     var collectFees = function ($absolute_path, $separator){
         
         $('#feesHistoryContainer, #collectFeesContainer').hide();
@@ -235,7 +290,11 @@ var FinanceModule = function(){
 
         init:function($current_view, $absolute_path, $separator){
 
-            if($current_view === "fee_structure"){
+            if($current_view === "finance_status"){
+                
+                financeStatus($absolute_path, $separator);
+                
+            }else if($current_view === "fee_structure"){
 
                 feeStructure($absolute_path, $separator);
 
