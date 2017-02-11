@@ -11,7 +11,7 @@
         
 #Here we define the rewrite base rule for the application,
 #which is the main applications directory from the root of the server.
-        RewriteBase /zvs_final
+        RewriteBase /zvs_final(prod)
 	
 # 2.The below 3 rules ensures that we are not redirected if the URL is to a directory->d, file->f or a link->l
 	RewriteCond %{REQUEST_FILENAME} !-d

@@ -3753,7 +3753,7 @@ Dashboard stats
 ***/
 .dashboard-stat {
   display: block;
-  margin-bottom: 25px;
+  margin-bottom: 25px !important;
   overflow: hidden;
 }
 .dashboard-stat:before, .dashboard-stat:after {
