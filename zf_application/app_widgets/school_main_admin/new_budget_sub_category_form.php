@@ -21,7 +21,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#confirmBudgetSubCategoryInfo" data-toggle="tab" class="step">
+                    <a href="#confirmNewBudgetSubCategoryInfo" data-toggle="tab" class="step">
                         <span class="number">
                             2
                         </span>
@@ -56,8 +56,8 @@
                                 <div class="col-md-8">
                                     <select class="form-control select2me" name="budgetCategoryCode" data-placeholder="Health, Library, Kitchen, Laboratory..." value="<?php echo $zf_formHandler->zf_getFormValue("budgetCategoryCode"); ?>">
                                         <?php
-                                            //$zf_widgetFolder = "zvs_options"; $zf_widgetFile = "budget_category_select.php";
-                                            //Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "budget_category_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
                                         ?>
                                     </select>
                                     <span class="help-block server-side-error">
@@ -86,7 +86,7 @@
                 <!-- END OF ADMINL SETUP FORM-->
                 
                 <!-- START OF CONFIRM SETUP SECTION-->
-                <div class="tab-pane" id="confirmBudgetSubCategoryInfo">
+                <div class="tab-pane" id="confirmNewBudgetSubCategoryInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
                     <h4 class="form-section confirm-inner-title">Stream Setup Information</h4>
@@ -103,7 +103,7 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Sub Category Name:</label>
+                                <label class="control-label col-md-4">Sub Category:</label>
                                 <div class="col-md-8">
                                     <p class="form-control-static confirm-form-result"  data-display="subCategoryName"></p>
                                 </div>

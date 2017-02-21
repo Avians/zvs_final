@@ -539,6 +539,30 @@ class School_main_adminController extends Zf_Controller {
     
     
     /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A CLASS AND A STREAM.
+     */
+    public function actionNewBudgetCategoriesRegistration($zvs_parameter){
+        
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_budget_category"){
+            
+            //Register a budget category for the acting school
+            $this->zf_targetModel->registerNewBudgetCategory();
+            
+        }else if($filterDataUrl == "new_budget_sub_category"){
+            
+            //Register a budget sub-category for the acting school
+            $this->zf_targetModel->registerNewBudgetSubCategory();
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
      * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A SUBJECT.
      */
     public function actionNewFeeItemRegistration($zvs_parameter){

@@ -1,7 +1,7 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("school_main_admin", "manageSchoolClasses");
+    $zf_controller->Zf_loadModel("school_main_admin", "configureBudgetCategories");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -45,8 +45,8 @@
                         <div>
                             <div class="row margin-top-10">
                                 <?php
-                                    //Here we fetch all class details
-                                    //$zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
+                                    //Here we fetch all budget categories details
+                                    $zf_controller->zf_targetModel->fetchBudgetCategoryDetails($identificationCode);
                                 ?>
                             </div>
                         </div>
@@ -66,39 +66,40 @@
                         </div>
                         <div>
                             <?php
-                                $zvsClassPresence = $zf_controller->zf_targetModel->confirmClassPresence($identificationCode);
-                                if($zvsClassPresence == 0){
+                                $zvsBudgetCategoryPresence = $zf_controller->zf_targetModel->confirmBudgetCategoryPresence($identificationCode);
+                                
+                                if($zvsBudgetCategoryPresence == 0){
                             ?>
-                            <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="zvs-content-titles">
-                                            <h3>Budget Category Overview Warning!!</h3>
+                                    <div class="row margin-top-10">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                                <div class="zvs-content-titles">
+                                                    <h3>Budget Category Overview Warning!!</h3>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
+                                                        <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i>
+                                                        <span class="content-view-errors" >
+                                                            &nbsp;There are no budget categories yet! You need to add at-least one budget category to be able to add a sub-category.
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>          
                                         </div>
-                                        <div class="portlet-body">
-                                            <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
-                                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i>
-                                                <span class="content-view-errors" >
-                                                    &nbsp;There are no budget categories yet! You need to add at-least one budget category to be able to add a sub-category.
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>          
-                                </div>
-                            </div>       
+                                    </div>       
                             <?php }else{ ?>
-                            <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="portlet-body form" >
-                                            <?php
-                                                //Confirm the presence of a class so as to pull the new stream form.
-                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_budget_sub_category_form.php");
-                                            ?>
+                                    <div class="row margin-top-10">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                            <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                                <div class="portlet-body form" >
+                                                    <?php
+                                                        //Confirm the presence of a class so as to pull the new stream form.
+                                                        Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_budget_sub_category_form.php");
+                                                    ?>
+                                                </div>
+                                            </div>          
                                         </div>
-                                    </div>          
-                                </div>
-                            </div>     
+                                    </div>     
                             <?php } ?>
                         </div>
                     </div>
