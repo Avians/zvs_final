@@ -1,5 +1,4 @@
 <?php
-
 /**
  * -----------------------------------------------------------------------------
  * THIS CLASS FILE IS ESSENTIAL FOR LOADING THE CHARTS THAT HAVE BEEN GENERATED
