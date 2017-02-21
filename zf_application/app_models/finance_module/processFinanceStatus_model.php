@@ -166,7 +166,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                 </div> 
                                 <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
                                     <div class="portlet-titles">'.$postedFinancialYear.' - Class Finance Status</div>
-                                    <div id="financeStatusBarGraph">'.$this->financialStatusBarGraph($identificationCode).'</div>
+                                    <div id="financeStatusBarGraph">'.$this->financialStatusBarGraph($identificationCode, $postedFinancialYear).'</div>
                                 </div>
                             </div>
                             <!--END OF FINANCIAL STATUS CHARTS-->
@@ -338,16 +338,12 @@ class processFinanceStatus_Model extends Zf_Model {
      * This method plots the chat for the finance status for the selected year
      * While showing what had been paid against what is pending.
      */
-    public function financialStatusBarGraph($identificationCode){
+    public function financialStatusBarGraph($identificationCode, $postedFinancialYear){
         
         //This is the system school code
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
-        $amountExpected = $this->zvs_generateExpectedSchoolFees($systemSchoolCode);
-        $amountPaid = $this->zvs_generatePaidSchoolFees($systemSchoolCode);
-        $amountPending = ($amountExpected - $amountPaid);
-        
-        return $this->zvs_plotFinancialStatusBarGraph();
+        return $this->zvs_plotFinancialStatusBarGraph($systemSchoolCode, $postedFinancialYear);
         
     }
     
@@ -699,7 +695,7 @@ class processFinanceStatus_Model extends Zf_Model {
         
         return $totalExpectedFees;
     }
-    
+   
     
     
     
@@ -861,12 +857,13 @@ class processFinanceStatus_Model extends Zf_Model {
     /**
      * This private method plots the financial status pie chart for the school
      */
-    private function zvs_plotFinancialStatusBarGraph(){
+    private function zvs_plotFinancialStatusBarGraph($systemSchoolCode, $postedFinancialYear){
+        
         
         //These are the initial chart settings
         $chartSettings = array(
             "ChartType" => "MSColumn2D",
-            "ChartID" => 'financialStatusBarGraph',
+            "ChartID" => "financialStatusBarGraph".$postedFinancialYear,
             "ChartWidth" =>  "100%",
             "ChartHeight" =>  "350",
             "ChartContainer" => "financeStatusBarGraph",
@@ -892,9 +889,9 @@ class processFinanceStatus_Model extends Zf_Model {
                                 "canvasBorderAlpha": "0",
                                 "usePlotGradientColor": "0",
                                 "plotBorderAlpha": "10",
-                                "placevaluesInside": "1",
+                                "placevaluesInside": "0",
                                 "rotatevalues": "1",
-                                "valueFontColor": "#ffffff",
+                                "valueFontColor": "#0F4E74",
                                 "useDataPlotColorForLabels": "1",
                                 "labelDisplay": "rotate",
                                 "slantLabels": "1",
@@ -906,65 +903,98 @@ class processFinanceStatus_Model extends Zf_Model {
                         ';
         
         
-        //This is the actual chart data in JSON format
-        $chartData = '
+        //Here we return all classes within the school
+        $zvs_fetchClassDetails = $this->zvs_fetchClassDetails($systemSchoolCode);
+        
+        if($zvs_fetchClassDetails == 0){
             
-                "categories": [
+            echo "There is no class data!!";
+            
+        }else{
+            
+            //Here we process the class loop
+            $chartData = "";
+            
+            $chartData .='
+                        
+                            "categories" : [
                                 {
-                                    "category": [
-                                        {
-                                            "label": "Form One "
-                                        },
-                                        {
-                                            "label": "Form Two"
-                                        },
-                                        {
-                                            "label": "Form Three"
-                                        },
-                                        {
-                                            "label": "Form Four"
+                                    "category" : [';
+                                        
+                                        foreach($zvs_fetchClassDetails as $classValues){
+
+                                            $zvs_className = $classValues['schoolClassName'];
+                                            
+                                            $chartData .='{
+                                                
+                                                            "label": "'.$zvs_className.'"
+                                                            
+                                                          },';
+
                                         }
-                                    ]
+                                            
+                        $chartData .=']
                                 }
                             ],
-                 "dataset": [
+
+                        ';
+            
+            $chartData .='
+                        
+                            "dataset" : [
                                 {
-                                    "seriesname": "Total Paid Amount",
-                                    "data": [
-                                        {
-                                            "value": "25400"
-                                        },
-                                        {
-                                            "value": "29800"
-                                        },
-                                        {
-                                            "value": "21800"
-                                        },
-                                        {
-                                            "value": "26800"
+                                    
+                                    "seriesname" : "Total Paid Amount",
+                                    "data" : [';
+
+                                        foreach($zvs_fetchClassDetails as $classValues){
+                                            
+                                            $schoolClassCode =  $classValues['schoolClassCode'];
+                                            
+                                            //Calculate total amount paid by students in the selected class
+                                            
+                                            $totalAmountPaid = $this->zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $chartData .='{
+                                                
+                                                            "value": "'.$totalAmountPaid.'",
+                                                            "tooltext": "Total '.$zvs_className.' Paid Amount, <br> KES: '.number_format($totalAmountPaid, 2).'"    
+                                                            
+                                                          },';
+                                            
                                         }
-                                    ]
+
+                        $chartData .=']
+                            
                                 },
                                 {
-                                    "seriesname": "Total Pending Amount",
-                                    "data": [
-                                        {
-                                            "value": "10000"
-                                        },
-                                        {
-                                            "value": "11500"
-                                        },
-                                        {
-                                            "value": "12500"
-                                        },
-                                        {
-                                            "value": "15000"
+                                    "seriesname" : "Total Pending Amount",
+                                    "data" : [';
+
+                                        foreach($zvs_fetchClassDetails as $classValues){
+                                            
+                                            $schoolClassCode =  $classValues['schoolClassCode'];
+                                            
+                                            //Calculate total amount pending by students in the selected class
+                                            
+                                            $totalAmountPending = $this->zvs_classTotalAmountPending($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $chartData .='{
+                                                
+                                                            "value": "'.$totalAmountPending.'",
+                                                            "tooltext": "Total '.$zvs_className.' Pending Amount, <br> KES: '.number_format($totalAmountPending, 2).'"     
+                                                            
+                                                          },';
+                                            
                                         }
-                                    ]
+
+                        $chartData .=']
                                 }
                             ]
-                            
-                    ';
+
+                        ';
+            
+        }
         
         //Here we generate the actual chart
         Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
@@ -972,7 +1002,120 @@ class processFinanceStatus_Model extends Zf_Model {
         
     }
     
+   
     
+    
+    /**
+     * This method generates fees that is expected for the entire school 
+     */
+    private function zvs_classExpectedSchoolFees($systemSchoolCode, $schoolClassCode, $postedFinancialYear){
+        
+        $financialYear = $postedFinancialYear;
+        
+        //This variable holds total expected school fees
+        $totalExpectedFees;
+            
+        //Here we count number of student per class
+        $numberOfClassStudent = $this->countClassStudents($systemSchoolCode, $schoolClassCode, $financialYear);
+
+        //Here we fetch general school fees
+        $generalFeeDetails = $this->pullGeneralFeeDetails($systemSchoolCode, $financialYear);
+
+        foreach ($generalFeeDetails as $generalFeeValues) {
+
+            //This variable holds general amount per student for a given class
+            $GeneralAmountPerStudent;
+
+            //Return each fee item
+            $generalItemAmount = $generalFeeValues['itemAmount']; 
+
+            //Sum all the general fees items per student for the class 
+            $GeneralAmountPerStudent = $GeneralAmountPerStudent + $generalItemAmount;
+
+        }
+
+        //Here we fetch class specific school fees
+        $classFeeDetails = $this->pullClassFeeDetails($systemSchoolCode, $schoolClassCode, $financialYear);
+
+        foreach ($classFeeDetails as $classFeeValues) {
+
+            //This variable holds class specific amount per student for a given class
+            $classAmountPerStudent;
+
+            //Return each fee item for the class
+            $classItemAmount = $classFeeValues['itemAmount']; 
+
+            //Sum all class fees items per student for the class
+            $classAmountPerStudent = $classAmountPerStudent + $classItemAmount;
+
+        }
+
+        //This returns total amount to be paid by each student in a given class
+        $totalAmountPerStudent = $GeneralAmountPerStudent+$classAmountPerStudent;
+
+        //Total fees expected per class
+        $totalClassFees = $totalAmountPerStudent * $numberOfClassStudent;
+
+        //Total Expected School Fees
+        $totalExpectedFees = $totalExpectedFees + $totalClassFees;
+
+        //Reset the values to 0
+        $GeneralAmountPerStudent = 0; $classAmountPerStudent = 0;
+        
+        return $totalExpectedFees;
+    }
+    
+    
+    
+    
+    //This private method pulls the amount of money paid by a given class in a given year
+    private function zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear){
+        
+        $paidAmountsDetails = $this->pullAllPaidAmounts($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+        
+        $studentsPaidAmounts;
+            
+        foreach ($paidAmountsDetails as $paymentValues) {
+            
+            //Returns each paid amount
+            $paymentAmount = $paymentValues['paymentAmount']; 
+
+            //echo "Each Amount Paid: ".$paymentAmount."<br>";
+
+            //Sum all the amounts paid by student 
+            $studentsPaidAmounts = $studentsPaidAmounts + $paymentAmount;
+
+        }
+        
+        //This ensures that 0 is returned incase a empty data set is returned
+        if(empty($studentsPaidAmounts) || $studentsPaidAmounts == ""){
+                
+                $studentsPaidAmounts = "0";
+        }
+        
+        return $studentsPaidAmounts;
+        
+    }
+    
+    
+    
+    
+    //This private method pulls the amount of money pending by a given class in a given year
+    private function zvs_classTotalAmountPending($systemSchoolCode, $schoolClassCode, $postedFinancialYear){
+        
+        //This is the total amount of money that should be paid by the selected class
+        $classExpectedAmount = $this->zvs_classExpectedSchoolFees($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+        
+        
+        //This is the total amount of money paid by the selected class
+        $classAmountPaid = $this->zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+        
+        //This is the amount of money pending for the selected class
+        $classPendingAmount = $classExpectedAmount - $classAmountPaid;
+        
+        return $classPendingAmount;
+        
+    }
     
 }
 
