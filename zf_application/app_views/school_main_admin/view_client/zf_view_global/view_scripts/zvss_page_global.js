@@ -12,6 +12,10 @@ $(document).ready(function() {
     NewFeeItemFormWizard.init();
     PaymentScheduleFormWizard.init();
     
+    //Configure School Budget Items
+    NewBugdetCategoryFormWizard.init();
+    NewBudgetSubCategoryFormWizard.init();
+    
     //Manage Subjects
     NewSubjectFormWizard.init();
     

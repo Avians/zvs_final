@@ -219,7 +219,19 @@ class School_main_adminController extends Zf_Controller {
         Zf_View::zf_displayView('manage_fees', $zf_actionData);
         
     }
-   
+    
+    
+    
+    /**
+     * This action executes the manage classes view
+     */
+    public function actionConfigure_budget($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('configure_budget', $zf_actionData);
+        
+    }
     
 
     

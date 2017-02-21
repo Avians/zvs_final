@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">Manage Classes</h3>
+                <h3 class="page-title">Configure Budget Settings</h3>
                 <div class="page-breadcrumb breadcrumb">
                     <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
@@ -36,9 +36,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
-                        <li><a>Classes overview</a></li>
-                        <li><a><i class="fa fa-plus-square"></i> Add a class (Form)</a></li>
-                        <li><a><i class="fa fa-plus-square"></i> Add a stream</a></li>
+                        <li><a>Budget categories overview</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Add a budget category</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Add a budget sub-category</a></li>
                     </ul>
 
                     <div class="z-content-inner">
@@ -46,7 +46,7 @@
                             <div class="row margin-top-10">
                                 <?php
                                     //Here we fetch all class details
-                                    $zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
+                                    //$zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
                                 ?>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform super administrators
-                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_class_form.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_budget_category_form.php");
                                             ?>
                                         </div>
                                     </div>          
@@ -73,13 +73,13 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="zvs-content-titles">
-                                            <h3>Class Overview Warning!!</h3>
+                                            <h3>Budget Category Overview Warning!!</h3>
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
                                                 <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i>
                                                 <span class="content-view-errors" >
-                                                    &nbsp;There are no classes yet! You need to add atleast one class to be able to add a class stream.
+                                                    &nbsp;There are no budget categories yet! You need to add at-least one budget category to be able to add a sub-category.
                                                 </span>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //Confirm the presence of a class so as to pull the new stream form.
-                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_stream_form.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_budget_sub_category_form.php");
                                             ?>
                                         </div>
                                     </div>          
@@ -118,7 +118,7 @@
         //Here we are generating the applications absolute path.
         var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
         var $separator = "<?= DS; ?>";
-        var $current_view = "manage_classes";
+        var $current_view = "configure_budget";
 
         ManageForms.init($current_view, $absolute_path, $separator );
 
