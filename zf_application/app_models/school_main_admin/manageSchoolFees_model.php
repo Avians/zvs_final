@@ -190,7 +190,7 @@ class manageSchoolFees_Model extends Zf_Model {
             
                 "label":"'.$feeItem.'",
                 "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', actual value"
+                "tooltext": "'.$feeItem.', actual value = '.number_format($itemAmount).'"
                         
             },';
             
@@ -209,84 +209,22 @@ class manageSchoolFees_Model extends Zf_Model {
      * This method returns all class fee details for a school in a pie chart
      */
     public function fetchClassFeesPieChart($identificationCode){
+       
+        $zf_viewData = "";
         
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-         
-         
-         //These are the initial chart settings
-        $chartSettings = array(
-            "ChartType" => "Pie2D",
-            "ChartID" => 'classFeesPie',
-            "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "350",
-            "ChartContainer" => "classFeesStaticPieChart",
-            "ChartDataFormat" =>  "json",
-        );
-
+        $zf_viewData .='<div class="row" >
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 15% !important; border: 0px !important;">
+                                    <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br>
+                                    <span class="content-view-errors" >
+                                        &nbsp;There are no classes yet! You need to add atleast one class to have a class overview.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>';
         
-        
-        //These chart properties add to the beauty of the chart
-        $chartProperties .= '
-            
-                            "chart":{  
-                                "caption": "Percentage Representation",
-                                "subCaption": "of class school fees items",
-                                "captionFontSize": "11",
-                                "subcaptionFontSize": "8",
-                                "showPercentValues": "1",
-                                "showPercentInTooltip": "0",
-                                "pieRadius": "90",
-                                "exportenabled": "1",
-                                "decimals": "1",
-                                "enableSmartLabels": "1",
-                                "use3DLighting": "1",
-                                "useDataPlotColorForLabels": "1",
-                                "smartLineColor": "#d11b2d",
-                                "smartLineThickness": "2",
-                                "smartLineAlpha": "75",
-                                "isSmartLineSlanted": "0",
-                                "showLegend": "1",
-                                "legendBgColor": "#ffffff",
-                                "legendBorderAlpha": "0",
-                                "legendShadow": "0",
-                                "legendItemFontSize": "10",
-                                "legendItemFontColor": "#666666",
-                                "useDataPlotColorForLabels": "1",
-                                "labelDistance": "1",
-                                "slicingDistance": "10",
-                                "theme": "ocean"
-                            }
-                            
-                        ';
-        
-
-        
-        
-        //Pull all general school fees items
-        $zvs_generalSchoolFeesItems = $this->fetchClassFeeItems($systemSchoolCode);
-        
-        $chartData = ' "data":[ ';
-        
-        foreach ($zvs_generalSchoolFeesItems as $zvs_feeItems) {
-            
-            $feeItem = $zvs_feeItems['feeItem']; $itemAmount = $zvs_feeItems['itemAmount'];
-            
-            //This is the actual chart data in JSON format
-            $chartData .= '{
-            
-                "label":"'.$feeItem.'",
-                "value":"'.$itemAmount.'",
-                "tooltext": "'.$feeItem.', percentage representation"
-                        
-            },';
-            
-        }
-        
-        $chartData .= ']';
-        
-        //Here we generate the actual chart
-        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
-        
+        echo  $zf_viewData;
+       
     }
     
     

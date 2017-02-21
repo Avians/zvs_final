@@ -162,6 +162,8 @@ class Authentication_Model extends Zf_Model {
                                             //Store the identification code in a session variable
                                             Zf_SessionHandler::zf_setSessionVariable("zvs_identificationCode", $identificationCode);
                                             
+                                            //echo $identificationCode."<br>";
+                                            
                                             //When decoded, the idefication code looks like this
                                             /**
                                              * 
@@ -175,6 +177,7 @@ class Authentication_Model extends Zf_Model {
                                                 )
                                              * 
                                              */
+                                            
                                             
                                             //Here we decode the identification code into an identification Array.
                                             $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);

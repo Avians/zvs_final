@@ -51,6 +51,26 @@ class Zvs_super_adminController extends Zf_Controller {
     }
    
     
+    
+    
+    
+    //Excutes the test excel upload
+    public function actionTemplate_view(){
+        
+        Zf_View::zf_displayView("excelUpload");
+        
+    }
+    
+
+    
+    //Excutes the test excel upload
+    public function actionNewExcelUpload(){
+        
+        //Register a new school to Zilas Virtual Schools platform 
+        $this->zf_targetModel->uploadExcelFile();
+        
+    }
+    
 
     
     /**

@@ -145,6 +145,18 @@ $main_menu = array(
         'title' => '',
         'style' => '',
         'id' => ''
+    ),
+    
+    
+    //template View
+    "template_view" => array(
+        'name' => '<i class="fa fa-cogs"></i> Template View <span class="selected"></span>',
+        'controller' => "$zvs_controller",
+        'action' => 'template_view',
+        'parameter' => $identificationCode,
+        'title' => '',
+        'style' => '',
+        'id' => ''
     )
     
     
@@ -212,5 +224,10 @@ $main_menu = array(
 <!--This is the menu item links to management of resources allocated to schools-->
 <li class="<?php if ($zvs_action == "manage_resources") { echo "active";} ?>">
     <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_resources']); ?>
+</li>
+
+<!--This is the menu item links to management of resources allocated to schools-->
+<li class="<?php if ($zvs_action == "template_view") { echo "active";} ?>">
+    <?php Zf_GenerateLinks::zf_internal_link($main_menu['template_view']); ?>
 </li>
 

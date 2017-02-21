@@ -479,6 +479,7 @@ class newStudentRegistration_Model extends Zf_Model {
                                         $studentPersonalDetails['studentBoxAddress'] = Zf_QueryGenerator::SQLValue($studentBoxAddress);
                                         $studentPersonalDetails['studentPhoneNumber'] = Zf_QueryGenerator::SQLValue($studentPhoneNumber);
                                         $studentPersonalDetails['studentLanguage'] = Zf_QueryGenerator::SQLValue($studentLanguage);
+                                        $studentPersonalDetails['studentSchoolStatus'] = Zf_QueryGenerator::SQLValue(1);
                                         $studentPersonalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
                                         $studentPersonalDetails['studentStatus'] = Zf_QueryGenerator::SQLValue(1);
 
@@ -499,6 +500,7 @@ class newStudentRegistration_Model extends Zf_Model {
                                         $studentGuardianDetails['guardianRelation'] = Zf_QueryGenerator::SQLValue($guardianRelation);
                                         $studentGuardianDetails['guardianOccupation'] = Zf_QueryGenerator::SQLValue($guardianOccupation);
                                         $studentGuardianDetails['guardianLanguage'] = Zf_QueryGenerator::SQLValue($guardianLanguage);
+                                        $studentGuardianDetails['studentSchoolStatus'] = Zf_QueryGenerator::SQLValue(1);
                                         $studentGuardianDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
                                         $studentGuardianDetails['guardianStatus'] = Zf_QueryGenerator::SQLValue(1);
 
@@ -534,6 +536,7 @@ class newStudentRegistration_Model extends Zf_Model {
                                         $studentMedicalDetails['hospitalEmailAddress'] = Zf_QueryGenerator::SQLValue($hospitalEmailAddress);
                                         $studentMedicalDetails['hospitalCountry'] = Zf_QueryGenerator::SQLValue($hospitalCountry);
                                         $studentMedicalDetails['hospitalLocality'] = Zf_QueryGenerator::SQLValue($hospitalLocality);
+                                        $studentMedicalDetails['studentSchoolStatus'] = Zf_QueryGenerator::SQLValue(1);
                                         $studentMedicalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
                                         $studentMedicalDetails['studentStatus'] = Zf_QueryGenerator::SQLValue(1);
 

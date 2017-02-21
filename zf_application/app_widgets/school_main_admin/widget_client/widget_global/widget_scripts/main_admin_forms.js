@@ -55,6 +55,9 @@
         //Here we process all fee form data
         var feesDetails = function ($absolute_path, $separator){
             
+            //This section processes all charts for the fee section
+            $('#generalFeesDynamicPieChart, #generalFeesDynamicBarChart, #classFeesDynamicPieChart, #classFeesDynamicBarChart').hide();
+            
             //Hide both general and class fee forms
             $("#classSpecificFees").hide();
             
@@ -80,10 +83,6 @@
                 
             });
             
-            
-            //This section processes all charts for the fee section
-            
-            $('#generalFeesDynamicPieChart, #generalFeesDynamicBarChart, #classFeesDynamicPieChart, #classFeesDynamicBarChart').hide();
             
             //GENERAL FEES CHARTS.
             $("#generalFeesYearsSelector").change(function(){
@@ -129,31 +128,31 @@
             });
             
             
-            
+                
             //CLASS FEES CHARTS
             $("#classFeesYearsSelector, #activeClassSelector").change(function(){
-                
-                $('#classFeesStaticPieChart, #classFeesStaticBarChart').remove();
+
+                $('#classFeesSplashScreen').remove();
                 $('#classFeesDynamicPieChart, #classFeesDynamicBarChart').show();
-                
+
                 //This is the value of the selected year
                 var selectedClassFeesYear = $("#classFeesYearsSelector").val();
-                
+
                 //This is the value of the selected class
                 var selectedActiveClass = $("#activeClassSelector").val();
-                
+
                 var targetController = "school_main_admin";
                 var targetAction = "processDynamicFeesCharts";
                 var classPieChart = "classPieChart";
                 var classBarChart = "classBarChart";
-                
+
                 //This is the overall chart values
                 var classChartValues = selectedClassFeesYear + "[`^`]" + selectedActiveClass;
 
                 //The absloute path to chart processing model
                 var processClassPieChart = $absolute_path + targetController + $separator + targetAction + $separator + classPieChart;
                 var processClassBarChart = $absolute_path + targetController + $separator + targetAction + $separator + classBarChart;
-                
+
                 //Here we run ajax task for dynamic pie chart
                 $.ajax({
                     type: "POST",
@@ -175,7 +174,8 @@
                        $("#classFeesDynamicBarChart").html(html);
                     }
                 });
-                
+
+
             });
             
             

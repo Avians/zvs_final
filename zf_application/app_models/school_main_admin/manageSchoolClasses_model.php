@@ -101,7 +101,13 @@ class manageSchoolClasses_Model extends Zf_Model {
                                                                             &nbsp;There are no streams in '.strtolower($zvs_className).' yet! <br>You need to add atleast one stream to have an overview.
                                                                         </span>
                                                                     </div>
-                                                                </div>';
+                                                                </div><div class="zvs-content-footer">
+                                                                            <div class="row">';
+                                                                    
+                                                                                $zvs_classGridView .= $this->zvs_fetchClassInnerDetails($schoolClassCode);  
+                                                                                
+                                                     $zvs_classGridView .=' </div>
+                                                                        </div>';
 
                                        }else{
                                            

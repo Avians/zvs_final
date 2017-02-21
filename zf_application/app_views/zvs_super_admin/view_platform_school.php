@@ -145,6 +145,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <p><?= $schoolName; ?> has been registered on Zilas Virtual Schools<sup style='font-size: 8px !important; font-style: normal;'>TM</sup>, since <?=$schoolRegDate;?>. Established in <?=$dateOfEstablishment;?>, the <?=$schoolType;?> administered school is located in <?=$schoolLocality;?>, and is a <?=$schoolLevel;?> <?=$schoolGender;?> <?=$schoolCategory;?></p>
+                                    <br>
                                     <p><b><u>Other School Information</u></b></p>
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 margin-top-20 margin-bottom-20">

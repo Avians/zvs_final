@@ -116,7 +116,7 @@ class Zf_File_Upload {
 
             // we create an instance of the class, feeding in the name of the file
             // sent via a XMLHttpRequest request, prefixed with 'php:'
-            $zf_fileUpload = new Upload('php:'.$_SERVER['HTTP_X_FILE_NAME']);  
+            $zf_fileUpload = new Zf_FileUpload('php:'.$_SERVER['HTTP_X_FILE_NAME']);  
 
         } else {
             

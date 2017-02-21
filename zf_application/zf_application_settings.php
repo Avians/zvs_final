@@ -23,9 +23,9 @@
  * NAME, and ALSO APPLICATION LOGO PATH
  * -----------------------------------------------------------------------------
  */
-    @define('APPLICATION_FOLDER'     , 'zvs_final(prod)/');
+    @define('APPLICATION_FOLDER'     , 'zvs_final(dev)/');
     @define('APPLICATION_NAME'       , 'Zilas Virtual School Platform');
-    @define('APPLICATION_LOGO'       , 'zvs_final(prod)/zf_client/zf_app_global/app_global_files/app_global_images/logo.png');
+    @define('APPLICATION_LOGO'       , 'zvs_final(dev)/zf_client/zf_app_global/app_global_files/app_global_images/logo.png');
     @define('APPLICATION_COPYRIGHT'  , '<span style="font-family: ProximaNova-Light !important; font-size: 14px !important;">&copy;</span>'.date('Y').',&nbsp;Zilas Virtual Schools<sup style="font-size: 8px !important; font-style: normal;">TM</sup>. All Rights Reserved.');
     @define("DATE_FORMAT"            , date('Y-m-d H:i:s'));
     
@@ -108,7 +108,7 @@
     @define("DATABASE_USERNAME"      ,  "root");
     @define("DATABASE_PASSWORD"      ,  "root");
     @define("DATABASE_DRIVER"        ,  "mysql");  
-    @define("DATABASE_NAME"          ,  "zvs_final(prod)");
+    @define("DATABASE_NAME"          ,  "zvs_final(dev)");
     @define("CHARACTER_SET"          ,  "utf8");
     @define("CONNECTION_TYPE"        ,  false);
     @define("DATABASE_DEBUG"         ,  false);

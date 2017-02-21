@@ -104,7 +104,10 @@
                                 <div class="col-md-8">
                                     <select class="form-control select2me" name="dateOfEstablishment" data-placeholder="Year of establishment" value="<?php echo $zf_formHandler->zf_getFormValue("dateOfEstablishment"); ?>">
                                         <option value=""></option>
-                                        <?php Zf_Core_Functions::Zf_GenerateYearOption(1800);?>
+                                        <?php   
+                                            $currentDate = Zf_Core_Functions::Zf_CurrentDate(); $currentYear = explode("-", $currentDate)[2];
+                                            Zf_Core_Functions::Zf_GenerateYearOption(1800, $currentYear);
+                                        ?>
                                     </select>
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("dateOfEstablishment") ?>

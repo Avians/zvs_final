@@ -93,20 +93,15 @@ e<?php
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6" id="classFeesStaticPieChart" style="border-right: 1px solid #efefef; min-height: 300px !important;">
-                                                <?php
-                                                    //Here we fetch class fee datails for the school in a pie chart
-                                                    $zf_controller->zf_targetModel->fetchClassFeesPieChart($identificationCode);
-                                                ?>
+                                            <div class="col-md-8 col-md-offset-2" id="classFeesSplashScreen">
+                                                    <div class="zvs-content-warnings" style="text-align: center !important; padding-top: 15% !important;">
+                                                        <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br>
+                                                        <span class="content-view-errors" >
+                                                            <b>&nbsp;You have to select a class so as to have a view of class based school fees. This is school fees paid by the selected class in addition to the general school fees.</b>
+                                                        </span>
+                                                    </div>
                                             </div>
                                             <div class="col-md-6" id="classFeesDynamicPieChart" style="border-right: 1px solid #efefef; min-height: 300px !important;">
-                                                
-                                            </div>
-                                            <div class="col-md-6" id="classFeesStaticBarChart">
-                                                <?php
-                                                    //Here we fetch class fee datails for the school in a bar chart
-                                                    $zf_controller->zf_targetModel->fetchClassFeesBarChart($identificationCode);
-                                                ?>
                                             </div>
                                             <div class="col-md-6" id="classFeesDynamicBarChart"></div>
                                         </div>
