@@ -1,14 +1,14 @@
+
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("school_main_admin", "newAttendanceRegistration");
+    //$zf_controller->Zf_loadModel("finance_module", "createNewBudget");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
     
 ?>
-
-
+    
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
@@ -17,9 +17,9 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">Configure Attendance</h3>
+                <h3 class="page-title">Create School Budget</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-calendar"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <i class="fa fa-money"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -27,19 +27,14 @@
         <!-- END PAGE HEADER-->
 
         <div class="clearfix"></div>
-        <?php
-            //This is the pop up indicator that shows a success or a failure in creating a new attendance schedule.
-            $zf_widgetFolder = "indicators"; $zf_widgetFile = "attendance_configuration_indicator.php";
-            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile);
-            
-        ?>    
+
         <!-- BEGIN INNER CONTENT -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
-                        <li><a>School attendance overview</a></li>
-                        <li><a><i class="fa fa-plus-square"></i> School attendance setup</a></li>
+                        <li><a>School budget overview</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> School budget setup</a></li>
                     </ul>
                      <div class="z-content-inner">
                         <div>
@@ -50,18 +45,18 @@
                                     <div class="portlet zvs-content-blocks" style="min-height: 300px !important;">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 30px !important; font-weight: 900;">
-                                                General Attendance Schedule 
+                                                General School Budget 
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles"  style="min-height: 30px !important; text-align: right !important;">
-                                                Select Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("activeAttendanceYear");?>
+                                                Select Financial Year: <?php //echo $zf_controller->zf_targetModel->zvs_buildYearsOption("activeAttendanceYear");?>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="attendanceSplashScreen">
                                                 <?php
-                                                    $zf_controller->Zf_loadModel("school_main_admin", "processAttendanceSchedule"); 
+                                                    //$zf_controller->Zf_loadModel("school_main_admin", "processAttendanceSchedule"); 
                                                     //Here we fetch class fee datails school attendance for the current year
-                                                    $zf_controller->zf_targetModel->processAnnualAttendanceSchedule();
+                                                    //$zf_controller->zf_targetModel->processAnnualAttendanceSchedule();
                                                 ?>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="activeAttendanceSchedule"></div>
@@ -78,7 +73,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform super administrators
-                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_attendance_form.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
                                             ?>
                                         </div>
                                     </div>          
@@ -91,19 +86,20 @@
         </div>
         <!-- END INNER CONTENT -->
             
-        </div>
+    </div>
 </div>
+<!-- END CONTENT -->
+
 <script type="text/javascript">
     $(document).ready(function() {
 
         //Here we are generating the applications absolute path.
         var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
         var $separator = "<?= DS; ?>";
-        var $current_view = "configure_attendance";
+        var $current_view = "create_budget";
 
-        ManageForms.init($current_view, $absolute_path, $separator );
-
+        FinanceModule.init($current_view, $absolute_path, $separator );
+        
 
     });
-</script>
-
+</script> 

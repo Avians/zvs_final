@@ -67,10 +67,24 @@ class finance_moduleController extends Zf_Controller {
     
     
     
-    //This controller executes the assign finances view
-    public function actionAssign_finances(){
+    //This controller executes the create budget view
+    public function actionCreate_budget($identificationCode){
         
-        Zf_View::zf_displayView('assign_finances');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('create_budget', $zf_actionData);
+        
+    }
+    
+    
+    
+    
+    //This controller executes the allocate finances view
+    public function actionAllocate_finances($identificationCode){
+        
+         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('allocate_finances', $zf_actionData);
         
     }
     
@@ -136,7 +150,7 @@ class finance_moduleController extends Zf_Controller {
     
    
     
-    //This methhod processes fees information for fee collection purpose
+    //This method processes fees information for fee collection purpose
     public function actionProcessFeeInformation($zvs_parameter){
         
         $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
@@ -193,5 +207,32 @@ class finance_moduleController extends Zf_Controller {
         }
         
     }
+    
+    
+    
+    
+    //This method process all budget information for budget creation purpose
+    public function actionProcessBudgetInformation($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == "process_sub_categories"){
+            
+            //Get the budget sub categories related to a selected category
+            $this->zf_targetModel->getBudgetSubCategoryDetails();
+            
+        }else if($filterDataUrl == "create_new_budget"){
+            
+            echo "We are about to create a new budget"; exit();
+            //This model method registers new budget item.
+           //$this->zf_targetModel->createNewBudget();
+            
+        }
+        
+        
+        
+    }
+    
 }
 ?>

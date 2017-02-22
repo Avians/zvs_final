@@ -284,6 +284,31 @@ var FinanceModule = function(){
     };
 
 
+    //Here we process all the new budget creation details javascript and ajax
+    var createBudget = function ($absolute_path, $separator){
+        
+        //Process the sub categories within the selected budget category
+        $('.budgetCategoryCode').change(function(){
+
+            var processBudgetSubCategories = $absolute_path + "finance_module" + $separator + "processBudgetInformation" + $separator + "process_sub_categories";
+            var budgetCategoryCode = $("#budgetCategoryCode").val();
+
+            //alert(budgetCategoryCode); exit();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processBudgetSubCategories,
+                data: {budgetCategoryCode: budgetCategoryCode},
+                cache: false,
+                success: function(html) {
+                   $("#budgetSubCategoryCode").html(html);
+                }
+            });
+
+        });
+            
+    };
 
    //Here we initialize all the above functions
     return { 
@@ -302,6 +327,10 @@ var FinanceModule = function(){
                 
                 collectFees($absolute_path, $separator);
                 
+            }else if($current_view === "create_budget"){
+
+                createBudget($absolute_path, $separator);
+
             }
 
         }

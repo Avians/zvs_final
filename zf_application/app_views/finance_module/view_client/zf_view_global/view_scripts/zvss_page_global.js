@@ -7,6 +7,9 @@ $(document).ready(function() {
     //Collect School Fees
     CollectSchoolFeesFormWizard.init();
     
+    //Create New Budget
+    CreateNewBudgetFormWizard.init();
+    
     //Components Picker
     ComponentsPickers.init();
     
