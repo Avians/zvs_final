@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Feb 21, 2017 at 07:55 PM
+-- Generation Time: Feb 23, 2017 at 05:49 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -413,7 +413,7 @@ CREATE TABLE `zvs_platform_resources` (
   `dateCreated` date NOT NULL,
   `dateModified` date DEFAULT NULL,
   `resourceStatus` tinyint(1) unsigned zerofill NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_platform_resources`
@@ -429,7 +429,7 @@ INSERT INTO `zvs_platform_resources` (`id`, `resourceId`, `resourceName`, `resou
 (7, 'DepMod[`^`]ViewSubDepartments', 'View Sub Departments', 'Department', '', '2016-07-03', NULL, 0),
 (8, 'DepMod[`^`]SubDepartmentProfile', 'Sub Department Profile', 'Department', '', '2016-07-03', NULL, 0),
 (9, 'FinMod[`^`]CreateFees', 'Create Fees', 'Finance', '', '2016-07-03', NULL, 0),
-(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '', '2016-07-03', NULL, 0),
+(10, 'FinMod[`^`]AllocateFinances', 'Allocate Finances', 'Finance', '', '2016-07-03', NULL, 1),
 (11, 'FinMod[`^`]CollectFees', 'Collect Fees', 'Finance', 'This resource helps its consumers to collect and record school fees. The resource consumer searches for a student from a selected class and stream, then will be able to see the student''s fee history and subsequently collect fees being paid by the same student.', '2016-07-03', NULL, 1),
 (12, 'FinMod[`^`]FinanceStatus', 'Finance Status', 'Finance', '', '2016-07-03', NULL, 1),
 (13, 'FinMod[`^`]FeeStructure', 'Fee Structure', 'Finance', 'This resource is useful in presenting fees structure to its consumers. The consumers are able to select a given class and a corresponding year, for which they would like to view a fees structure. The resource draws a fees structure, percentage representations and more.', '2016-07-03', NULL, 1),
@@ -445,7 +445,8 @@ INSERT INTO `zvs_platform_resources` (`id`, `resourceId`, `resourceName`, `resou
 (23, 'StuMod[`^`]StudentChatBox', 'Student Chat Box', 'Student', '', '2016-07-03', NULL, 0),
 (24, 'StuMod[`^`]ShiftStudents', 'Shift Students', 'Student', '', '2016-12-02', NULL, 1),
 (25, 'TtbMod[`^`]CreateTimeTable', 'Create Time Table', 'Timetable', 'This resource is useful in the creation of a new school school timetable item. A correctly created timetable item MUST have a an associated subject, an associated class, an associated stream, start time and end time', '2017-01-10', NULL, 1),
-(26, 'SubMod[`^`]AssignSubjectToTeacher', 'Assign Subject to Teacher', 'Subject', 'Resource is used to assign subject(s) to a teacher. These are subjects that a respective teacher will be teaching respective classes. This is the resource that helps in creation of a teacher specific timetable', '2017-01-10', NULL, 1);
+(26, 'SubMod[`^`]AssignSubjectToTeacher', 'Assign Subject to Teacher', 'Subject', 'Resource is used to assign subject(s) to a teacher. These are subjects that a respective teacher will be teaching respective classes. This is the resource that helps in creation of a teacher specific timetable', '2017-01-10', NULL, 1),
+(27, 'FinMod[`^`]CreateBudget', 'Create Budget', 'Finance', '<p>This resource is useful in the creation of a budget for a budget item within a specific budget category</p>', '2017-02-22', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -498,7 +499,7 @@ CREATE TABLE `zvs_resource_role_mapper` (
   `schoolRoleId` varchar(100) NOT NULL,
   `schoolResourceId` varchar(45) DEFAULT NULL,
   `resourceCategory` varchar(6) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_resource_role_mapper`
@@ -509,7 +510,9 @@ INSERT INTO `zvs_resource_role_mapper` (`id`, `systemSchoolCode`, `schoolRoleId`
 (2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'FinMod[`^`]CollectFees', 'FinMod'),
 (3, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'FinMod[`^`]FinanceStatus', 'FinMod'),
 (4, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'FinMod[`^`]FeeStructure', 'FinMod'),
-(5, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'StuMod[`^`]RegisterStudent', 'StuMod');
+(5, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'StuMod[`^`]RegisterStudent', 'StuMod'),
+(6, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'FinMod[`^`]CreateBudget', 'FinMod'),
+(7, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'FinMod[`^`]AllocateFinances', 'FinMod');
 
 -- --------------------------------------------------------
 
@@ -545,7 +548,7 @@ CREATE TABLE `zvs_school_admin` (
 --
 
 INSERT INTO `zvs_school_admin` (`id`, `systemSchoolCode`, `identificationCode`, `idNumber`, `designation`, `firstName`, `middleName`, `lastName`, `mobileNumber`, `boxAddress`, `gender`, `country`, `locality`, `imagePath`, `dateCreated`, `timeCreated`, `dateModified`, `timeModified`, `createdBy`, `userStatus`) VALUES
-(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7TLtEjbuUyFQ0TN6SmTIqLVZ0CIueM8EvCjD92ltiOqRuProh5vZbJddzXuk6WASb4BQ0p0Bifd3NDxGdWUSZoq', 'ZVS_SA_25138058', 'Mr', 'Mathew', 'Juma', 'Otieno', '0727074108', 'P.O. Box 30253, Nairobi 00100', 'Male', '+254', '30', 'I5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7TLtEjbuUyFQ0TN6SmTIqLVZ0CIueM8EvCjD92ltiOqRuProh5vZbJddzXuk6WASb4BQ0p0Bifd3NDxGdWUSZoq.png', '2017-02-13', '08:35:32', NULL, NULL, 'pSoaHX1j8XXb2diMDomSijvRhBm6bxybcBWAbm6KL-mtWlM0NHJJdIXj6sxsi4NWMsv34U7kuRjGb3fd9rPlDMw_RESDtvMpAfdTYg23vR_7rylRfEqSABHs29kz0IxS', 1);
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7TLtEjbuUyFQ0TN6SmTIqLVZ0CIueM8EvCjD92ltiOqRuProh5vZbJddzXuk6WASb4BQ0p0Bifd3NDxGdWUSZoq', 'ZVS_SA_25138058', 'Mr', 'Mathew', 'Otieno', 'Juma', '0727074108', 'P.O. Box 30253, Nairobi 00100', 'Male', '+254', '30', 'I5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7TLtEjbuUyFQ0TN6SmTIqLVZ0CIueM8EvCjD92ltiOqRuProh5vZbJddzXuk6WASb4BQ0p0Bifd3NDxGdWUSZoq.png', '2017-02-13', '08:35:32', NULL, NULL, 'pSoaHX1j8XXb2diMDomSijvRhBm6bxybcBWAbm6KL-mtWlM0NHJJdIXj6sxsi4NWMsv34U7kuRjGb3fd9rPlDMw_RESDtvMpAfdTYg23vR_7rylRfEqSABHs29kz0IxS', 1);
 
 -- --------------------------------------------------------
 
@@ -586,21 +589,21 @@ INSERT INTO `zvs_school_attendance_schedule` (`id`, `systemSchoolCode`, `systemA
 CREATE TABLE `zvs_school_budget_categories` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(200) NOT NULL,
+  `financialYearCode` varchar(240) NOT NULL,
   `budgetCategoryCode` varchar(200) NOT NULL,
   `budgetCategoryName` varchar(100) NOT NULL,
   `budgetCategoryAlias` varchar(100) NOT NULL,
   `dateCreated` date DEFAULT NULL,
   `dateModified` date NOT NULL,
   `budgetCategoryStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_budget_categories`
 --
 
-INSERT INTO `zvs_school_budget_categories` (`id`, `systemSchoolCode`, `budgetCategoryCode`, `budgetCategoryName`, `budgetCategoryAlias`, `dateCreated`, `dateModified`, `budgetCategoryStatus`) VALUES
-(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library', 'Library', 'Library', '2017-02-21', '0000-00-00', 0),
-(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Laboratory', 'Laboratory', 'Lab', '2017-02-21', '0000-00-00', 0);
+INSERT INTO `zvs_school_budget_categories` (`id`, `systemSchoolCode`, `financialYearCode`, `budgetCategoryCode`, `budgetCategoryName`, `budgetCategoryAlias`, `dateCreated`, `dateModified`, `budgetCategoryStatus`) VALUES
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library', 'Library', 'Library', '2017-02-22', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -611,23 +614,14 @@ INSERT INTO `zvs_school_budget_categories` (`id`, `systemSchoolCode`, `budgetCat
 CREATE TABLE `zvs_school_budget_sub_categories` (
   `id` int(11) NOT NULL,
   `systemSchoolCode` varchar(200) NOT NULL,
+  `financialYearCode` varchar(240) NOT NULL,
   `budgetCategoryCode` varchar(200) NOT NULL,
   `budgetSubCategoryCode` varchar(200) NOT NULL,
   `subCategoryName` varchar(30) NOT NULL,
   `dateCreated` date DEFAULT NULL,
   `dateModified` date NOT NULL,
   `subCategoryStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `zvs_school_budget_sub_categories`
---
-
-INSERT INTO `zvs_school_budget_sub_categories` (`id`, `systemSchoolCode`, `budgetCategoryCode`, `budgetSubCategoryCode`, `subCategoryName`, `dateCreated`, `dateModified`, `subCategoryStatus`) VALUES
-(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library[`^`]Books', 'Books', '2017-02-21', '0000-00-00', 0),
-(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library[`^`]BookRacks', 'Book Racks', '2017-02-21', '0000-00-00', 0),
-(3, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Laboratory', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Laboratory[`^`]LabChemicals', 'Lab Chemicals', '2017-02-21', '0000-00-00', 0),
-(4, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Laboratory', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Laboratory[`^`]LabChairs', 'Lab Chairs', '2017-02-21', '0000-00-00', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1011,6 +1005,31 @@ CREATE TABLE `zvs_school_examinations` (
   `schoolSubjectCode` varchar(200) NOT NULL,
   `examStatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_school_financial_years`
+--
+
+CREATE TABLE `zvs_school_financial_years` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
+  `financialYearCode` varchar(240) NOT NULL,
+  `financialYearName` varchar(60) NOT NULL,
+  `financialYearAlias` varchar(60) NOT NULL,
+  `financialYearStartDate` date NOT NULL,
+  `financialYearEndDate` date NOT NULL,
+  `dateCreated` date NOT NULL,
+  `financialYearStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_financial_years`
+--
+
+INSERT INTO `zvs_school_financial_years` (`id`, `systemSchoolCode`, `financialYearCode`, `financialYearName`, `financialYearAlias`, `financialYearStartDate`, `financialYearEndDate`, `dateCreated`, `financialYearStatus`) VALUES
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', '2017 - Financial Year', '2017 Financial Year', '2017-01-01', '2017-12-31', '2017-02-22', 1);
 
 -- --------------------------------------------------------
 
@@ -1722,6 +1741,12 @@ ALTER TABLE `zvs_school_examinations`
   ADD UNIQUE KEY `systemExamCode` (`systemExamCode`);
 
 --
+-- Indexes for table `zvs_school_financial_years`
+--
+ALTER TABLE `zvs_school_financial_years`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `zvs_school_general_admins`
 --
 ALTER TABLE `zvs_school_general_admins`
@@ -1903,7 +1928,7 @@ ALTER TABLE `zvs_platform_religions`
 -- AUTO_INCREMENT for table `zvs_platform_resources`
 --
 ALTER TABLE `zvs_platform_resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `zvs_resource_categories`
 --
@@ -1913,7 +1938,7 @@ ALTER TABLE `zvs_resource_categories`
 -- AUTO_INCREMENT for table `zvs_resource_role_mapper`
 --
 ALTER TABLE `zvs_resource_role_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `zvs_school_admin`
 --
@@ -1928,12 +1953,12 @@ ALTER TABLE `zvs_school_attendance_schedule`
 -- AUTO_INCREMENT for table `zvs_school_budget_categories`
 --
 ALTER TABLE `zvs_school_budget_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `zvs_school_budget_sub_categories`
 --
 ALTER TABLE `zvs_school_budget_sub_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `zvs_school_classes`
 --
@@ -1964,6 +1989,11 @@ ALTER TABLE `zvs_school_details`
 --
 ALTER TABLE `zvs_school_examinations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zvs_school_financial_years`
+--
+ALTER TABLE `zvs_school_financial_years`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `zvs_school_grades`
 --

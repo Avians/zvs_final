@@ -250,6 +250,14 @@
         
         
         
+        //Here we process all the javascript that is related to processing of budget
+        var budgetDetails = function ($absolute_path, $separator){
+            
+            alert("Fuck this shit!!"); //die();
+            
+        };
+        
+        
         //Here we process all timetable details
         var timeTableDetails = function ($absolute_path, $separator){
             
@@ -297,6 +305,10 @@
                 }if($current_view === "configure_attendance"){
                     
                     attendanceDetails($absolute_path, $separator);
+                    
+                }if($current_view === "configure_budget"){
+                    
+                    budgetDetails($absolute_path, $separator);
                     
                 }if($current_view === "configure_timeTable"){
                     

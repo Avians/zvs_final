@@ -47,13 +47,29 @@
                 
                 <!-- START OF ADMIN SETUP FORM-->
                 <div class="tab-pane" id="newBudgetSubCategoryInfo">
-                    <h3 class="form-section form-title">New Stream Information</h3>
+                    <h3 class="form-section form-title">New Budget Sub-category Item</h3>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Select Category:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Financial Year:</label>
+                                <div class="col-md-7">
+                                    <select class="form-control select2me financialYearCode" id="financialYearCode" name="financialYearCode" data-placeholder="<?php echo $currentDate."/".$currentDate+1;?> - Financial year" value="<?php echo $zf_formHandler->zf_getFormValue("financialYearCode"); ?>">
+                                        <?php
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "financial_years_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error">
+                                        <?php echo $zf_formHandler->zf_getFormError("financialYearCode") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Select Category Name:</label>
+                                <div class="col-md-7">
                                     <select class="form-control select2me" name="budgetCategoryCode" data-placeholder="Health, Library, Kitchen, Laboratory..." value="<?php echo $zf_formHandler->zf_getFormValue("budgetCategoryCode"); ?>">
                                         <?php
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "budget_category_select.php";
@@ -66,10 +82,25 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Sub Category:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Sub Category Name:</label>
+                                <div class="col-md-7">
+                                    <input type="text" name="subCategoryName" class="form-control" placeholder="Books, Chemicals, Food," value="<?php echo $zf_formHandler->zf_getFormValue("subCategoryName"); ?>">
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("subCategoryName"); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Sub Category Alias:</label>
+                                <div class="col-md-7">
                                     <input type="text" name="subCategoryName" class="form-control" placeholder="Books, Chemicals, Food," value="<?php echo $zf_formHandler->zf_getFormValue("subCategoryName"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("subCategoryName"); ?>
