@@ -7,8 +7,8 @@ class budget_category_select_Model extends Zf_Model {
     }
     
     
-    //This method is responsoble for building country codes.
-    public function zvs_buildBudgetCategorySelectCode($identificationCode) {
+    //This method is responsoble for building categories list for a given school.
+    public function zvs_buildBudgetCategoriesSelectCode($identificationCode) {
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
@@ -29,18 +29,18 @@ class budget_category_select_Model extends Zf_Model {
 
                 $this->Zf_QueryGenerator->MoveFirst();
                 
-                $budget_category_options = '<option value="selectBudgetCategory" selected="selected">Select a budget category</option>';
+                $budget_categories_options = '<option value="selectBudgetCategoy" selected="selected">Select a budget category</option>';
                 
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 
                     $fetchRow = $this->Zf_QueryGenerator->Row();
-                    $budget_category_options .= '<option value="'.$fetchRow->budgetCategoryCode.'" >'.$fetchRow->budgetCategoryName.'</option>';
+                    $budget_categories_options .= '<option value="'.$fetchRow->budgetCategoryCode.'" >'.$fetchRow->budgetCategoryName.'</option>';
 
                 }
 
             }
             
-            echo $budget_category_options;
+            echo $budget_categories_options;
         }
 
     }

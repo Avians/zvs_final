@@ -13,6 +13,7 @@ $(document).ready(function() {
     PaymentScheduleFormWizard.init();
     
     //Configure School Budget Items
+    NewFinancialYearFormWizard.init();
     NewBugdetCategoryFormWizard.init();
     NewBudgetSubCategoryFormWizard.init();
     

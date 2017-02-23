@@ -1,4 +1,4 @@
-var NewBugdetCategoryFormWizard = function () {
+var NewFinancialYearFormWizard = function () {
 
 
     return {
@@ -23,7 +23,7 @@ var NewBugdetCategoryFormWizard = function () {
                 }
             });
 
-            var form = $('#new_budget_category_form');
+            var form = $('#new_financial_year_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -38,17 +38,23 @@ var NewBugdetCategoryFormWizard = function () {
                     
                     //THESE RULES GOVERN THE VALIDATION OF SCHOOL REGISTRTAION FORM
                     
-                    //Financial Year Code
-                    financialYearCode: {
+                    //Financial Year Start Date
+                    financialYearStartDate: {
                         required: true
                     },
                     
-                    //Category Name
-                    categoryName: {
+                    //Financial Year End Date
+                    financialYearEndDate: {
+                        required: true
+                    },
+                    
+                    //Financial Year Start Date
+                    financialYearAlias: {
                         maxlength: 45,
                         minlength: 2,
                         required: true
                     }
+                    
                 },
 
                 messages: { // custom messages for radio buttons and checkboxes
@@ -105,7 +111,7 @@ var NewBugdetCategoryFormWizard = function () {
             
 
             var displayConfirm = function() {
-                $('#confirmNewBudgetCategoryInfo .form-control-static', form).each(function(){
+                $('#confirmNewFinancialYearInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":text") || input.is("textarea")) {
                         $(this).html(input.val());
@@ -119,33 +125,33 @@ var NewBugdetCategoryFormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#newBudgetCategory')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#newFinancialYear')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
-                jQuery('li', $('#newBudgetCategory')).removeClass("done");
+                jQuery('li', $('#newFinancialYear')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
-                    $('#newBudgetCategory').find('.button-previous').hide();
+                    $('#newFinancialYear').find('.button-previous').hide();
                 } else {
-                    $('#newBudgetCategory').find('.button-previous').show();
+                    $('#newFinancialYear').find('.button-previous').show();
                 }
 
                 if (current >= total) {
-                    $('#newBudgetCategory').find('.button-next').hide();
-                    $('#newBudgetCategory').find('.button-submit').show();
+                    $('#newFinancialYear').find('.button-next').hide();
+                    $('#newFinancialYear').find('.button-submit').show();
                     displayConfirm();
                 } else {
-                    $('#newBudgetCategory').find('.button-next').show();
-                    $('#newBudgetCategory').find('.button-submit').hide();
+                    $('#newFinancialYear').find('.button-next').show();
+                    $('#newFinancialYear').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
-            $('#new_budget_category_form').bootstrapWizard({
+            $('#new_financial_year_form').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -176,14 +182,14 @@ var NewBugdetCategoryFormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#newBudgetCategory').find('.progress-bar').css({
+                    $('#newFinancialYear').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#new_budget_category_form').find('.button-previous').hide();
-            $('#new_budget_category_form .button-submit').click(function () {
+            $('#new_financial_year_form').find('.button-previous').hide();
+            $('#new_financial_year_form .button-submit').click(function () {
                 
                 //form.submit();
                 

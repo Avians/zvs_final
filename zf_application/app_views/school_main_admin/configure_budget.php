@@ -37,6 +37,7 @@
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
                         <li><a>Budget categories overview</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Configure Financial Year</a></li>
                         <li><a><i class="fa fa-plus-square"></i> Add a budget category</a></li>
                         <li><a><i class="fa fa-plus-square"></i> Add a budget sub-category</a></li>
                     </ul>
@@ -48,6 +49,20 @@
                                     //Here we fetch all budget categories details
                                     $zf_controller->zf_targetModel->fetchBudgetCategoryDetails($identificationCode);
                                 ?>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="portlet-body form" >
+                                            <?php
+                                                //This is the form for registering platform super administrators
+                                                Zf_ApplicationWidgets::zf_load_widget("school_main_admin", "new_financial_year_form.php");
+                                            ?>
+                                        </div>
+                                    </div>          
+                                </div>
                             </div>
                         </div>
                         <div>

@@ -51,8 +51,8 @@ Requirements:
 //class MapBuilder 
 class MapBuilderException extends Exception {};
 
-class Zf_MapBuilder {
-    
+class Zf_MapBuilder 
+{
     const MAP_TYPE_ID_HYBRID = 'HYBRID';
     const MAP_TYPE_ID_ROADMAP = 'ROADMAP';
     const MAP_TYPE_ID_SATELLITE = 'SATELLITE';
@@ -86,7 +86,7 @@ class Zf_MapBuilder {
     
     const ANIMATION_BOUNCE = 'BOUNCE';
     const ANIMATION_DROP = 'DROP';
-
+    
     protected $_id = '';
     protected $_width = 600; 
     protected $_height = 600;
@@ -137,7 +137,9 @@ class Zf_MapBuilder {
     protected $_markers = array();
     protected $_polylines = array();
     protected $_polygons = array();
-
+    
+    protected $_apiKey = '';
+    
     protected static $defMarkerOptions = array(
         'animation' => null, 
         'clickable' => null, 
@@ -161,9 +163,10 @@ class Zf_MapBuilder {
         'infoCloseOthers' => false, 
     );
     
-    public function __construct($id = '') 
+    public function __construct($id = '', $apiKey = '') 
     {
         $this->setId($id);
+        $this->setApiKey($apiKey);
     }
     
     public function setId($id) 
@@ -558,6 +561,16 @@ class Zf_MapBuilder {
         return $this->_zoomControlStyle;
     }
     
+    public function setApiKey($apiKey)
+    {
+        $this->_apiKey = $apiKey;
+    }
+    
+    public function getApiKey()
+    {
+        return $this->_apiKey;
+    }
+    
     protected function _getByCurl($url)
     {
         if (!function_exists('curl_init')) {
@@ -790,11 +803,9 @@ class Zf_MapBuilder {
     
     public function show($output = true)
     {
-        $rootMarkerClustererPath = ZF_ROOT_PATH.ZF_CLIENT.'zf_app_global'.DS.'app_global_scripts'.DS.'app_global_jquery'.DS.'markerclusterer'.DS.'marker_clusterer.min.js';
-        
         $html = '';
-        $html .= '<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=' . ($this->_sensor ? 'true' : 'false') . '"></script>' . "\n";
-        $html .= '<script type="text/javascript" src=" '.$rootMarkerClustererPath.' "></script>' . "\n";
+
+        $html .= '<script src="https://maps.googleapis.com/maps/api/js?v=3' . (!empty($this->_apiKey) ? '&key=' . urlencode($this->_apiKey) : '') . '"></script>' . "\n";
         $html .= '<script type="text/javascript">' . "\n";
         $html .= '<!--' . "\n";
         $html .= 'var map;' . "\n";
@@ -932,7 +943,6 @@ class Zf_MapBuilder {
         $html .= '        center: latlng' . "\n";
         $html .= '    };' . "\n";
         $html .= '    map = new google.maps.Map(document.getElementById("' . $this->_id . '"), myOptions);' . "\n";
-        //$html .= '    map =  new MarkerClusterer(map);' . "\n";
 
         foreach ($this->_markers as $i => $marker) {
             $html .= '    markers['. $i . '] = new google.maps.Marker({' . "\n";
@@ -982,7 +992,6 @@ class Zf_MapBuilder {
             if (!is_null($marker['options']['zIndex'])) {
                 $html .= '        zIndex: ' . abs(intval($marker['options']['zIndex'])) . ',' . "\n";
             }
-            
             $html .= '        position: new google.maps.LatLng(' . $marker['lat'] . ', ' . $marker['lng'] . '),' . "\n";
             $html .= '        map: map' . "\n";
             $html .= '    });' . "\n";
@@ -1000,10 +1009,9 @@ class Zf_MapBuilder {
                 }
                 
                 $html .= '        content: "' . addslashes($marker['options']['html']) . '"' . "\n";
-                //$html .= '              $(".gm-style-iw, .gm-style").next("div").remove();' . "\n";
+
                 $html .= '    });' . "\n";
-                
-                $html .= '    google.maps.event.addListener(markers[' . $i . '], "mouseover", function() {' . "\n";
+                $html .= '    google.maps.event.addListener(markers[' . $i . '], "click", function() {' . "\n";
                 
                 if ($marker['options']['infoCloseOthers']) {
                     $html .= '        for (i = 0; i < infos.length; i++) {' . "\n";
@@ -1122,18 +1130,15 @@ class Zf_MapBuilder {
                 }
                 
                 $html .= '                content: "' . addslashes($this->_geoMarker['options']['html']) . '"' . "\n";
-                //$html .= '              $(".gm-style-iw, .gm-style").next("div").remove();' . "\n";
+
                 $html .= '            });' . "\n";
-                
-                $html .= '            google.maps.event.addListener(geoMarker, "mouseover", function() {' . "\n";
-    
+                $html .= '            google.maps.event.addListener(geoMarker, "click", function() {' . "\n";
                 if ($this->_geoMarker['options']['infoCloseOthers']) {
                     $html .= '                for (i = 0; i < infos.length; i++) {' . "\n";
                     $html .= '                    if (infos[i] != null) { infos[i].close(); }' . "\n";
                     $html .= '                }' . "\n";
                     $html .= '                if (geoInfo != null) { geoInfo.close(); }' . "\n";
                 }
-                
                 $html .= '                geoInfo.open(map, geoMarker);' . "\n";
                 $html .= '            });' . "\n";
             }            
@@ -1142,6 +1147,9 @@ class Zf_MapBuilder {
                 $html .= '            map.setCenter(new google.maps.LatLng(gpsLat, gpsLng));' . "\n";
             }            
 
+            $html .= 'if (typeof mbOnAfterLocationDetected == "function") mbOnAfterLocationDetected(gpsLat, gpsLng);' . "\n";        
+
+            
             $html .= '        }, function (error) {' . "\n";
             $html .= '	          switch(error.code) {' . "\n";
             $html .= '            case error.TIMEOUT:' . "\n";

@@ -7,13 +7,13 @@
  * ---------------------------------------------------------------------
  * |                                                                   |
  * |  This the Model which is responsible responsible for handling all |
- * |  logic that is related to registration of a new school onto the   |
- * |  platform.                                                        |
+ * |  logic that is related to registration of a new financial year in |
+ * |  the school                                                       |
  * |                                                                   |
  * ---------------------------------------------------------------------
  */
 
-class newBudgetCategoriesRegistration_Model extends Zf_Model {
+class newFinancialYearRegistration_Model extends Zf_Model {
     
 
     private $_errorResult = array();
@@ -36,23 +36,23 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
     
     
    /**
-    * Register a budget category within the school
+    * Register a new financial year into the school
     */
-    public function registerNewBudgetCategory(){
+    public function registerNewFinancialYear(){
         
         //In this section we chain class data, posted from the form.
-        $this->zf_formController->zf_postFormData('financialYearCode')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Financial year')
-                                
-                                ->zf_postFormData('categoryName')
-                                ->zf_validateFormData('zf_maximumLength', 45, 'Category name')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Category name')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Category name')
+        $this->zf_formController->zf_postFormData('financialYearStartDate')
+                                ->zf_validateFormData('zf_maximumLength', 20, 'Start date')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Start date')
+                
+                                ->zf_postFormData('financialYearEndDate')
+                                ->zf_validateFormData('zf_maximumLength', 20, 'End date')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'End date')
 
-                                ->zf_postFormData('categoryAlias')
-                                ->zf_validateFormData('zf_maximumLength', 45, 'Category alias')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Category alias')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Category alias')
+                                ->zf_postFormData('financialYearAlias')
+                                ->zf_validateFormData('zf_maximumLength', 45, 'Financial year alias')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Financial year alias')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Financial year alias')
                 
                                 ->zf_postFormData('adminIdentificationCode');
         
@@ -64,43 +64,58 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
         //This of debugging purposes only.
-        //echo "<pre>Budget Categories Data: <br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        //echo "<pre>Financial Year Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
        
         $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['adminIdentificationCode']);
         
         //Here we get the system school code from the identification code.
         $systemSchoolCode = $identificationArray[2];
+        
 
         if(empty($this->_errorResult)){
             
+            
+            $startYear = intval(Zf_Core_Functions::Zf_FomartDate("Y", $this->_validResult['financialYearStartDate']));
+            $endYear = intval(Zf_Core_Functions::Zf_FomartDate("Y", $this->_validResult['financialYearEndDate']));
+
+            if($startYear == $endYear){
+
+                $financialYearName = $startYear." - Financial Year";
+
+            }else if($startYear != $endYear){
+
+                $financialYearName = $startYear."/".$endYear." - Financial Year";
+
+            }
+            
            
-            //We concatinate value in order to generate a unique budget category code.
-            $budgetCategoryCode = $systemSchoolCode.ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($this->_validResult['categoryName']);
+            //We concatinate values in order to generate a unique financial year code.
+            $financialYearCode = $systemSchoolCode.ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($financialYearName);
+            
             
             //Check if a class with a similar registration code exists within the same school.
-            $budgetCategoryValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-            $budgetCategoryValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearCode']);
-            $budgetCategoryValues['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+            $financialYearValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+            $financialYearValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
             
-            $budgetCategoryColumns = array('systemSchoolCode', 'financialYearCode', 'budgetCategoryCode');
+            $financialYearColumns = array('systemSchoolCode', 'financialYearCode');
             
-            $zvs_budgetCategorySqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_budget_categories', $budgetCategoryValues, $budgetCategoryColumns);
+            $zvs_financialYearSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_financial_years', $financialYearValues, $financialYearColumns);
             
-            $zvs_executeBudgetCategorySqlQuery = $this->Zf_AdoDB->Execute($zvs_budgetCategorySqlQuery);
+            $zvs_executeFinancialYearSqlQuery = $this->Zf_AdoDB->Execute($zvs_financialYearSqlQuery);
             
-            if (!$zvs_executeBudgetCategorySqlQuery) {
+            if (!$zvs_executeFinancialYearSqlQuery) {
 
                 echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
             } else {
                 
                 //Check if record count is greater than zero.
-                if($zvs_executeBudgetCategorySqlQuery->RecordCount() > 0){
+                if($zvs_executeFinancialYearSqlQuery->RecordCount() > 0){
                     
                     //A class with similar class code has already been registered onto the platform for the same school.
-                    Zf_SessionHandler::zf_setSessionVariable("budget_category_setup", "existent_budget_category_error");
+                    Zf_SessionHandler::zf_setSessionVariable("financial_year_setup", "existent_financial_year_error");
                     
-                    $zf_errorData = array("zf_fieldName" => "categoryName", "zf_errorMessage" => "* A budget category with a similar name already exists!!");
+                    $zf_errorData = array("zf_fieldName" => "financialYearStartDate", "zf_errorMessage" => "* A financial year with a similar name already exists!!");
                     Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
                     Zf_GenerateLinks::zf_header_location("school_main_admin", 'configure_budget', $this->_validResult['adminIdentificationCode']);
                     exit();
@@ -110,26 +125,27 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
                     //There is not a class with a similar class name within the same school, therefore store the class into the DB.
                     
                     //1. application user details
-                    $zvs_budgetCategoryDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                    $zvs_budgetCategoryDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearCode']);
-                    $zvs_budgetCategoryDetails['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
-                    $zvs_budgetCategoryDetails['budgetCategoryName'] = Zf_QueryGenerator::SQLValue($this->_validResult['categoryName']);
-                    $zvs_budgetCategoryDetails['budgetCategoryAlias'] = Zf_QueryGenerator::SQLValue($this->_validResult['categoryAlias']);
-                    $zvs_budgetCategoryDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
-                    $zvs_budgetCategoryDetails['budgetCategoryStatus'] = Zf_QueryGenerator::SQLValue(0);
+                    $zvs_financialYearDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                    $zvs_financialYearDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
+                    $zvs_financialYearDetails['financialYearName'] = Zf_QueryGenerator::SQLValue($financialYearName);
+                    $zvs_financialYearDetails['financialYearAlias'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearAlias']);
+                    $zvs_financialYearDetails['financialYearStartDate'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", $this->_validResult['financialYearStartDate']));
+                    $zvs_financialYearDetails['financialYearEndDate'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", $this->_validResult['financialYearEndDate']));
+                    $zvs_financialYearDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
+                    $zvs_financialYearDetails['financialYearStatus'] = Zf_QueryGenerator::SQLValue(0);
                     
                     //Build the insert SQL queries
-                    $insertSchoolBudgetCategory = Zf_QueryGenerator::BuildSQLInsert('zvs_school_budget_categories', $zvs_budgetCategoryDetails);
-                    $executeInsertSchoolBudgetCategory = $this->Zf_AdoDB->Execute($insertSchoolBudgetCategory);
+                    $insertSchoolFinancialYear = Zf_QueryGenerator::BuildSQLInsert('zvs_school_financial_years', $zvs_financialYearDetails);
+                    $executeInsertSchoolFinancialYear = $this->Zf_AdoDB->Execute($insertSchoolFinancialYear);
                     
-                    if(!$executeInsertSchoolBudgetCategory){
+                    if(!$executeInsertSchoolFinancialYear){
                         
                         echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
                         
                     }else{
                         
                         //Redirect to the platform users overview
-                        Zf_SessionHandler::zf_setSessionVariable("budget_category_setup", "budget_category_setup_success");
+                        Zf_SessionHandler::zf_setSessionVariable("financial_year_setup", "financial_year_setup_success");
                         Zf_GenerateLinks::zf_header_location("school_main_admin", 'configure_budget', $this->_validResult['adminIdentificationCode']);
                         exit();
                         
@@ -145,7 +161,7 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
         }else{
             
             //Redirect to the registration form section. Also make an error indicator.
-            Zf_SessionHandler::zf_setSessionVariable("budget_category_setup", "budget_category_form_error");
+            Zf_SessionHandler::zf_setSessionVariable("financial_year_setup", "financial_year_form_error");
             
             echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
             Zf_GenerateLinks::zf_header_location("school_main_admin", 'configure_budget', $this->_validResult['adminIdentificationCode']);

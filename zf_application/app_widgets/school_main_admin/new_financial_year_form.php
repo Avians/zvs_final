@@ -2,31 +2,35 @@
     //Get the identfication code held in a session variable.
     $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
     
-    $new_budget_category = "new_budget_category";
+    $new_financial_year = "new_financial_year";
+
+    $currentDate = Zf_Core_Functions::Zf_CurrentDate();
+    
+    $currentYear = explode("-", $currentDate)[2];
     
 ?>
 
-<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newBudgetCategoriesRegistration", $new_budget_category); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_budget_category_form">
-    <div class="form-wizard" id="newBudgetCategory">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newFinancialYearRegistration", $new_financial_year); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_financial_year_form">
+    <div class="form-wizard" id="newFinancialYear">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">
                 <li>
-                    <a href="#newBudgetCategoryInfo" data-toggle="tab" class="step active">
+                    <a href="#newFinancialYearInfo" data-toggle="tab" class="step active">
                         <span class="number">
                             1
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> Budget Category Setup
+                            <i class="fa fa-check"></i> Financial Year Setup
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#confirmNewBudgetCategoryInfo" data-toggle="tab" class="step">
+                    <a href="#confirmNewFinancialYearInfo" data-toggle="tab" class="step">
                         <span class="number">
                             2
                         </span>
                         <span class="desc progress-form-title">
-                            <i class="fa fa-check"></i> Confirm Budget Category Details
+                            <i class="fa fa-check"></i> Confirm Financial Year Details
                         </span>
                     </a>
                 </li>
@@ -46,45 +50,33 @@
                 
                 
                 <!-- START OF ADMIN SETUP FORM-->
-                <div class="tab-pane" id="newBudgetCategoryInfo">
-                    <h3 class="form-section form-title">New Budget Category Information</h3>
+                <div class="tab-pane" id="newFinancialYearInfo">
+                    <h3 class="form-section form-title">New Financial Year Information</h3>
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label col-md-4">Financial Year:</label>
                                 <div class="col-md-8">
-                                    <select class="form-control select2me financialYearCode" id="financialYearCode" name="financialYearCode" data-placeholder="<?php echo $currentDate."/".$currentDate+1;?> - Financial year" value="<?php echo $zf_formHandler->zf_getFormValue("financialYearCode"); ?>">
-                                        <?php
-                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "financial_years_select.php";
-                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
-                                        ?>
-                                    </select>
-                                    <span class="help-block server-side-error">
-                                        <?php echo $zf_formHandler->zf_getFormError("financialYearCode") ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Category Name:</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="categoryName" class="form-control" placeholder="Health, Library, Kitchen, Laboratory..." value="<?php echo $zf_formHandler->zf_getFormValue("categoryName"); ?>">
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("categoryName"); ?>
-                                    </span>
+                                        <div class="input-group input-medium date-picker input-daterange" data-date="<?=$currentYear;?>" style="width: 277px !important;" data-date-format="mm/dd/yyyy">
+                                                <input type="text" class="form-control" name="financialYearStartDate">
+                                                <span class="input-group-addon"> to </span>
+                                                <input type="text" class="form-control" name="financialYearEndDate">
+                                        </div>
+                                        <!-- /input-group -->
+                                        <span class="help-block server-side-error" >
+                                            <?php echo $zf_formHandler->zf_getFormError("financialYearStartDate") ?>
+                                        </span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Category Alias:</label>
+                                <label class="control-label col-md-4">Alias Name:</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="categoryAlias" class="form-control" placeholder="Any alias name" value="<?php echo $zf_formHandler->zf_getFormValue("categoryAlias"); ?>">
+                                    <input type="text" name="financialYearAlias" class="form-control" placeholder="E.g. <?=$currentYear;?> Financial Year, ...." value="<?php echo $zf_formHandler->zf_getFormValue("financialYearAlias"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("categoryAlias"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("financialYearAlias"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -98,37 +90,38 @@
                 <!-- END OF ADMINL SETUP FORM-->
                 
                 <!-- START OF CONFIRM SETUP SECTION-->
-                <div class="tab-pane" id="confirmNewBudgetCategoryInfo">
+                <div class="tab-pane" id="confirmNewFinancialYearInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
-                    <h4 class="form-section confirm-inner-title">Budget Category Setup Information</h4>
+                    <h4 class="form-section confirm-inner-title">Financial Year Information</h4>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Financial Year:</label>
+                                <label class="control-label col-md-4">Start Date:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="financialYearCode"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="financialYearStartDate"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-4">End Date:</label>
+                                <div class="col-md-8">
+                                    <p class="form-control-static confirm-form-result"  data-display="financialYearEndDate"></p>
                                 </div>
                             </div>
                         </div>
                         <!--/span-->
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Category Name:</label>
+                                <label class="control-label col-md-4">Alias Name:</label>
                                 <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="categoryName"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Category Alias:</label>
-                                <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result"  data-display="categoryAlias"></p>
+                                    <p class="form-control-static confirm-form-result" data-display="financialYearAlias"></p>
                                 </div>
                             </div>
                         </div>

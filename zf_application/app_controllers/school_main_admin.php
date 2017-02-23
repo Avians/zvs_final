@@ -539,6 +539,24 @@ class School_main_adminController extends Zf_Controller {
     
     
     /**
+     * THIS SECTION, WE HAVE A METHOD THAT IS USED TO REGISTER A NEW FINANCIAL YEAR INTO THE SCHOOL
+     */
+    public function actionNewFinancialYearRegistration($zvs_parameter){
+        
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_financial_year"){
+            
+            //Register a new financial year for the acting school
+            $this->zf_targetModel->registerNewFinancialYear();
+            
+        }
+        
+    }
+    
+    
+    
+    /**
      * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A CLASS AND A STREAM.
      */
     public function actionNewBudgetCategoriesRegistration($zvs_parameter){

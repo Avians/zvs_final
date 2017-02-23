@@ -60,7 +60,7 @@
                                 <div class="col-md-8">
                                     <select class="form-control select2me budgetCategoryCode" id="budgetCategoryCode" name="budgetCategoryCode" data-placeholder="Library, Laboratory, Salaries, ..." value="<?php echo $zf_formHandler->zf_getFormValue("budgetCategoryCode"); ?>">
                                         <?php
-                                            $zf_widgetFolder = "finance_module"; $zf_widgetFile = "selectList_budget_categories.php";
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "budget_category_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
                                         ?>
                                     </select>
@@ -85,55 +85,34 @@
                         </div>
                     </div>
                     <!--/row-->
-                    
-                    <div class="row">
+                     <div class="clearfix"></div>
+                    <div class="row margin-top-10">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Start Date:</label>
+                                <label class="control-label col-md-4">Budget Year:</label>
                                 <div class="col-md-8">
-                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 277px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-                                        <input type="text" class="form-control" name="attendanceStartDate" readonly value="<?php echo $currentDate; ?>" >
-                                        <span class="input-group-btn">
-                                            <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
+                                        <div class="input-group input-medium date-picker input-daterange" data-date="<?php echo $currentDate;?>" style="width: 277px !important;" data-date-format="mm/dd/yyyy">
+                                                <input type="text" class="form-control" name="budgetStartDate">
+                                                <span class="input-group-addon">
+                                                to </span>
+                                                <input type="text" class="form-control" name="budgetEndDate">
+                                        </div>
+                                        <!-- /input-group -->
+                                        <span class="help-block server-side-error" >
+                                            <?php echo $zf_formHandler->zf_getFormError("budgetStartDate") ?>
                                         </span>
-                                    </div>
-                                    <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("attendanceStartDate") ?>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">End Date:</label>
+                                <label class="control-label col-md-4">Budget Amount:</label>
                                 <div class="col-md-8">
-                                    <div class="input-group input-medium date date-picker" data-date="<?php echo $currentDate;?>" style="width: 277px !important;" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-                                        <input type="text" class="form-control" name="attendanceEndDate" readonly value="<?php echo $currentDate; ?>" >
-                                        <span class="input-group-btn">
-                                            <button class="btn default calendarBtn" type="button"><i class="fa fa-calendar"></i></button>
-                                        </span>
-                                    </div>
+                                    <input type="text" name="budgetAmount"  class="form-control currencyField" placeholder="2500, 30000, 45000" value="<?php echo $zf_formHandler->zf_getFormValue("budgetAmount"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("attendanceEndDate") ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("budgetAmount"); ?>
                                     </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/row-->
-    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label col-md-4">Attendance Status:</label>
-                                <div class="col-md-8">
-                                    <div class="radio-list">
-                                        <label class="radio-inline radio-labels">
-                                        <input type="radio" name="attendanceStatus" value="1" data-title="Active"> Active </label>
-                                        <label class="radio-inline radio-labels">
-                                        <input type="radio" name="attendanceStatus" value="0" checked  data-title="Inactive"> Inactive </label>
-                                    </div>
                                 </div>
                             </div>
                         </div>

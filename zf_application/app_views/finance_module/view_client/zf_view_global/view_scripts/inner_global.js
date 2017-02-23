@@ -290,7 +290,7 @@ var FinanceModule = function(){
         //Process the sub categories within the selected budget category
         $('.budgetCategoryCode').change(function(){
 
-            var processBudgetSubCategories = $absolute_path + "finance_module" + $separator + "processBudgetInformation" + $separator + "process_sub_categories";
+            var processBudgetSubCategories = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_sub_categories";
             var budgetCategoryCode = $("#budgetCategoryCode").val();
 
             //alert(budgetCategoryCode); exit();

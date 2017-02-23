@@ -1,25 +1,27 @@
  <?php
 
-class selectList_budget_categories_Model extends Zf_Model {
+class financial_years_select_Model extends Zf_Model {
 
     public function __construct() {
+        
         parent::__construct();
+        
     }
     
     
-    //This method is responsoble for building country codes.
-    public function zvs_buildBudgetCategoriesSelectCode($identificationCode) {
+    //This method is responsible for financial years select list.
+    public function zvs_buildFinancialYearsSelectCode($identificationCode) {
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         
-        $zf_selectClasses = Zf_QueryGenerator::BuildSQLSelect('zvs_school_budget_categories', $zvs_sqlValue);
+        $zf_selectFinancialYears = Zf_QueryGenerator::BuildSQLSelect('zvs_school_financial_years', $zvs_sqlValue);
 
-        if(!$this->Zf_QueryGenerator->Query($zf_selectClasses)){
+        if(!$this->Zf_QueryGenerator->Query($zf_selectFinancialYears)){
                 
             $message = "Query execution failed.<br><br>";
-            $message.= "The failed Query is : <b><i>{$zf_selectClasses}.</i></b>";
+            $message.= "The failed Query is : <b><i>{$zf_selectFinancialYears}.</i></b>";
             echo $message; exit();
 
         }else{
@@ -29,18 +31,18 @@ class selectList_budget_categories_Model extends Zf_Model {
 
                 $this->Zf_QueryGenerator->MoveFirst();
                 
-                $class_options = '<option value="selectBudgetCategoy" selected="selected">Select a budget category</option>';
+                $financial_years_options = '<option value="selectClass" selected="selected">Select a financial year</option>';
                 
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 
                     $fetchRow = $this->Zf_QueryGenerator->Row();
-                    $class_options .= '<option value="'.$fetchRow->budgetCategoryCode.'" >'.$fetchRow->budgetCategoryName.'</option>';
+                    $financial_years_options .= '<option value="'.$fetchRow->financialYearCode.'" >'.$fetchRow->financialYearName.'</option>';
 
                 }
 
             }
             
-            echo $class_options;
+            echo $financial_years_options;
         }
 
     }
