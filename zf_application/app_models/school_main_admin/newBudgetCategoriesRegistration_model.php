@@ -64,18 +64,19 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
         //This of debugging purposes only.
-        //echo "<pre>Budget Categories Data: <br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        //echo "<pre>Budget Categories Data: <br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
        
         $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['adminIdentificationCode']);
         
         //Here we get the system school code from the identification code.
         $systemSchoolCode = $identificationArray[2];
-
+       
+        
         if(empty($this->_errorResult)){
             
            
             //We concatinate value in order to generate a unique budget category code.
-            $budgetCategoryCode = $systemSchoolCode.ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($this->_validResult['categoryName']);
+            $budgetCategoryCode = $this->_validResult['financialYearCode'].ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($this->_validResult['categoryName']);
             
             //Check if a class with a similar registration code exists within the same school.
             $budgetCategoryValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
@@ -161,18 +162,24 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
     /**
      * Register a new stream within a class which exists within a valid school.
      */
-   public function registerNewBudgetSubCategory(){
+    public function registerNewBudgetSubCategory(){
        
         //In this section we chain class data, posted from the form.
-        $this->zf_formController->zf_postFormData('budgetCategoryCode')
-                                ->zf_validateFormData('zf_maximumLength', 45, 'Category name')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Category name')
+        $this->zf_formController->zf_postFormData('financialYearCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Financial year')
+                
+                                ->zf_postFormData('budgetCategoryCode')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Category name')
 
                                 ->zf_postFormData('subCategoryName')
                                 ->zf_validateFormData('zf_maximumLength', 45, 'Sub category name')
                                 ->zf_validateFormData('zf_minimumLength', 2, 'Sub category name')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Sub category name')
+                
+                                ->zf_postFormData('subCategoryAlias')
+                                ->zf_validateFormData('zf_maximumLength', 45, 'Sub category alias')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Sub category alias')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Sub category alias')
                 
                                 ->zf_postFormData('adminIdentificationCode');
         
@@ -184,7 +191,7 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
         
         //This of debugging purposes only.
-        //echo "<pre>All School Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        //echo "<pre>All School Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
        
         $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['adminIdentificationCode']);
         
@@ -194,10 +201,12 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
         if(empty($this->_errorResult)){
             
             //We concatinate value in order to generate a unique school stream code.
-            $budgetSubCategoryCode = $this->_validResult['budgetCategoryCode'].ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName(ucwords($this->_validResult['subCategoryName']));
-           
+            $budgetSubCategoryCode = $this->_validResult['budgetCategoryCode'].ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($this->_validResult['subCategoryName']);
+            
+            
             //Check if a similar budget sub-category item has already been registered for the same category
             $budgetValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+            $budgetValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearCode']);
             $budgetValues['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['budgetCategoryCode']);
             $budgetValues['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
             
@@ -230,9 +239,11 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
                     
                     //1. application user details
                     $zvs_budgetSubCategoryDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                    $zvs_budgetSubCategoryDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearCode']);
                     $zvs_budgetSubCategoryDetails['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['budgetCategoryCode']);
                     $zvs_budgetSubCategoryDetails['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
                     $zvs_budgetSubCategoryDetails['subCategoryName'] = Zf_QueryGenerator::SQLValue(ucwords($this->_validResult['subCategoryName']));
+                    $zvs_budgetSubCategoryDetails['subCategoryAlias'] = Zf_QueryGenerator::SQLValue(ucwords($this->_validResult['subCategoryAlias']));
                     $zvs_budgetSubCategoryDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
                     $zvs_budgetSubCategoryDetails['subCategoryStatus'] = Zf_QueryGenerator::SQLValue(0);
                     
@@ -272,6 +283,84 @@ class newBudgetCategoriesRegistration_Model extends Zf_Model {
        
    }
     
+   
+   
+   
+    /**
+     * This method is used to select Admin localities
+     */
+    public function getBudgetCategoryDetails(){
+        
+        $financialYearCode = $_POST['financialYearCode'];
+        
+        
+        //Here we have all related budget category data
+        $budgetCategoryDetails = $this->zvs_fetchBudgetCategoryDetails($financialYearCode);
+        
+        $select_options = '';
+        
+        
+        if($budgetCategoryDetails == 0){
+            
+            $budgetCategoryDetails .= '<option value="">No Valid Data!!</option>';
+            
+        }else{
+            
+            $select_options .= '<option value="selectBugdetCategory" selected >Select Budget Category</option>';
+            
+            foreach ($budgetCategoryDetails as $categoryValue) {
+                
+                $budgetCategoryName = $categoryValue['budgetCategoryName']; $budgetCategoryCode = $categoryValue['budgetCategoryCode'];
+                
+                $select_options .= '<option value="'.$budgetCategoryCode.'">'.$budgetCategoryName .'</option>';
+                
+            }
+            
+        }
+        
+               
+        echo $select_options;
+        
+        
+    }
+    
+    
+    
+    
+    //This private method fetches all budget categories for the selected financial year
+    private function zvs_fetchBudgetCategoryDetails($financialYearCode){
+        
+        $zvs_sqlValue["financialYearCode"] = Zf_QueryGenerator::SQLValue($financialYearCode);
+        
+        $fetchBudgetCategories = Zf_QueryGenerator::BuildSQLSelect('zvs_school_budget_categories', $zvs_sqlValue);
+        
+        $zf_executeFetchBudgetCategories = $this->Zf_AdoDB->Execute($fetchBudgetCategories);
+
+        if(!$zf_executeFetchBudgetCategories){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchBudgetCategories->RecordCount() > 0){
+
+                while(!$zf_executeFetchBudgetCategories->EOF){
+                    
+                    $results = $zf_executeFetchBudgetCategories->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
     
 }
 

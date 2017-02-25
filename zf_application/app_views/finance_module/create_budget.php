@@ -57,6 +57,7 @@
                                                     //$zf_controller->Zf_loadModel("school_main_admin", "processAttendanceSchedule"); 
                                                     //Here we fetch class fee datails school attendance for the current year
                                                     //$zf_controller->zf_targetModel->processAnnualAttendanceSchedule();
+                                                Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
                                                 ?>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="activeAttendanceSchedule"></div>
@@ -73,7 +74,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform super administrators
-                                                Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
+                                                //Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
                                             ?>
                                         </div>
                                     </div>          

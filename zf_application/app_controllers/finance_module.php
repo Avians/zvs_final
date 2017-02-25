@@ -217,16 +217,20 @@ class finance_moduleController extends Zf_Controller {
         $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
         $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
         
-        if($filterDataVariable == "process_sub_categories"){
+        if($filterDataVariable == "process_budget_categories"){
+            
+            //Get the budget categories related to the selected financial year
+            $this->zf_targetModel->getBudgetCategoryDetails();
+            
+        }else if($filterDataVariable == "process_budget_sub_categories"){
             
             //Get the budget sub categories related to a selected category
             $this->zf_targetModel->getBudgetSubCategoryDetails();
             
         }else if($filterDataUrl == "create_new_budget"){
             
-            echo "We are about to create a new budget"; exit();
-            //This model method registers new budget item.
-           //$this->zf_targetModel->createNewBudget();
+            //Here we register a new budgeted item amount
+            $this->zf_targetModel->createNewBudget();
             
         }
         

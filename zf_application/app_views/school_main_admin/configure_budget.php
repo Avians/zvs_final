@@ -45,10 +45,27 @@
                     <div class="z-content-inner">
                         <div>
                             <div class="row margin-top-10">
-                                <?php
-                                    //Here we fetch all budget categories details
-                                    $zf_controller->zf_targetModel->fetchBudgetCategoryDetails($identificationCode);
-                                ?>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 50px !important;">
+                                        <div class="portlet-body form" style="min-height: 50px !important;">
+                                            <h3 class="form-section form-title" style="padding-top: 10px !important;">General School Budget </h3> 
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 10px !important; font-weight: 900; padding-top: 10px;">
+                                                    Select School Budget Year
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles"  style="min-height: 10px !important; text-align: right !important;">
+                                                    Select a year: <?=$zf_controller->zf_targetModel->zvs_buildFinancialYearsSelectCode($identificationCode, "generalFinancialYearSelector");?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: -10px !important;">
+                                <div class="row margin-top-10" id="generalStaticBudgetOverview">
+                                    <?php $zf_controller->zf_targetModel->fetchBudgetCategorySplashScreen(); ?> 
+                                </div>
+                                <div class="row margin-top-10"s id="generatDynamicBudgetOverview"></div>
                             </div>
                         </div>
                         <div>

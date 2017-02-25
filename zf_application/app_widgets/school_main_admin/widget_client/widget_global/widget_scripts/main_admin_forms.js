@@ -253,7 +253,60 @@
         //Here we process all the javascript that is related to processing of budget
         var budgetDetails = function ($absolute_path, $separator){
             
-            alert("Fuck this shit!!"); //die();
+            //Process budget categories based in the selected financial year
+            $('.financialYearCodeSubCategory').change(function(){
+
+                var processBudgetCategories = $absolute_path + "school_main_admin" + $separator + "NewBudgetCategoriesRegistration" + $separator + "process_budget_categories";
+                var financialYearCode = $("#financialYearCodeSubCategory").val();
+
+                //alert(financialYearCode); exit();
+
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processBudgetCategories,
+                    data: {financialYearCode: financialYearCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#budgetCategoryCodeSubCategory").html(html);
+                    }
+                });
+
+            });
+            
+            
+            //Process budget overview upon selection of a financial year
+            $('#generalFinancialYearSelector').change(function(){
+                
+                $('#generalStaticBudgetOverview').fadeOut(1500, function(){
+                    
+                    $("#generatDynamicBudgetOverview").fadeIn(500, function(){
+                        
+                        var processBudgetOverview = $absolute_path + "school_main_admin" + $separator + "configureBudgetCategories" + $separator + "process_budget_overview";
+                        var financialYearCode = $("#generalFinancialYearSelector").val();
+
+                        //alert(financialYearCode); exit();
+
+                        //Here we run ajax task
+                        $.ajax({
+                            type: "POST",
+                            url: processBudgetOverview,
+                            data: {financialYearCode: financialYearCode},
+                            cache: false,
+                            success: function(html) {
+                               $("#generatDynamicBudgetOverview").html(html);
+                            }
+                        });
+                        
+                    });
+                    
+                });
+                
+                        
+                
+            });
+            
+            
             
         };
         

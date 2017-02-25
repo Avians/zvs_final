@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-5">Financial Year:</label>
                                 <div class="col-md-7">
-                                    <select class="form-control select2me financialYearCode" id="financialYearCode" name="financialYearCode" data-placeholder="<?php echo $currentDate."/".$currentDate+1;?> - Financial year" value="<?php echo $zf_formHandler->zf_getFormValue("financialYearCode"); ?>">
+                                    <select class="form-control select2me financialYearCodeSubCategory" id="financialYearCodeSubCategory" name="financialYearCode" data-placeholder="<?php echo $currentDate."/".$currentDate+1;?> - Financial year" value="<?php echo $zf_formHandler->zf_getFormValue("financialYearCode"); ?>">
                                         <?php
                                             $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "financial_years_select.php";
                                             Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
@@ -70,13 +70,10 @@
                             <div class="form-group">
                                 <label class="control-label col-md-5">Select Category Name:</label>
                                 <div class="col-md-7">
-                                    <select class="form-control select2me" name="budgetCategoryCode" data-placeholder="Health, Library, Kitchen, Laboratory..." value="<?php echo $zf_formHandler->zf_getFormValue("budgetCategoryCode"); ?>">
-                                        <?php
-                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "budget_category_select.php";
-                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
-                                        ?>
+                                    <select class="form-control select2me budgetCategoryCodeSubCategory" id="budgetCategoryCodeSubCategory" name="budgetCategoryCode" data-placeholder="Health, Library, Kitchen, Laboratory..." value="<?php echo $zf_formHandler->zf_getFormValue("budgetCategoryCode"); ?>">
+                                        <option value=""></option>
                                     </select>
-                                    <span class="help-block server-side-error">
+                                    <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("budgetCategoryCode") ?>
                                     </span>
                                 </div>
@@ -101,9 +98,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-5">Sub Category Alias:</label>
                                 <div class="col-md-7">
-                                    <input type="text" name="subCategoryName" class="form-control" placeholder="Books, Chemicals, Food," value="<?php echo $zf_formHandler->zf_getFormValue("subCategoryName"); ?>">
+                                    <input type="text" name="subCategoryAlias" class="form-control" placeholder="Books, Chemicals, Food," value="<?php echo $zf_formHandler->zf_getFormValue("subCategoryAlias"); ?>">
                                     <span class="help-block server-side-error" >
-                                        <?php echo $zf_formHandler->zf_getFormError("subCategoryName"); ?>
+                                        <?php echo $zf_formHandler->zf_getFormError("subCategoryAlias"); ?>
                                     </span>
                                 </div>
                             </div>
@@ -125,18 +122,40 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Category Name:</label>
-                                <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result" data-display="budgetCategoryCode"></p>
+                                <label class="control-label col-md-5">Financial Year:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result" data-display="financialYearCode"></p>
                                 </div>
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Sub Category:</label>
-                                <div class="col-md-8">
-                                    <p class="form-control-static confirm-form-result"  data-display="subCategoryName"></p>
+                                <label class="control-label col-md-5">Category Name:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result"  data-display="budgetCategoryCode"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    <!--row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Sub Category Name:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result" data-display="subCategoryName"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Sub Category Alias:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result"  data-display="subCategoryAlias"></p>
                                 </div>
                             </div>
                         </div>
@@ -171,3 +190,7 @@
         </div>
     </div>
 </form>
+<?php
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
+?>

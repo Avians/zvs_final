@@ -561,6 +561,7 @@ class School_main_adminController extends Zf_Controller {
      */
     public function actionNewBudgetCategoriesRegistration($zvs_parameter){
         
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
         $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
         
         if($filterDataUrl == "new_budget_category"){
@@ -572,6 +573,30 @@ class School_main_adminController extends Zf_Controller {
             
             //Register a budget sub-category for the acting school
             $this->zf_targetModel->registerNewBudgetSubCategory();
+            
+        }else if($filterDataVariable == "process_budget_categories"){
+            
+            //Get the budget categories related to a selected financial year
+            $this->zf_targetModel->getBudgetCategoryDetails();
+            
+        }
+        
+    }
+    
+    
+    
+    /**
+     * THIS SECTION, WE HAVE METHODS THAT ARE USED TO PUSH DATA FOR THE CREATION OF A CLASS AND A STREAM.
+     */
+    public function actionConfigureBudgetCategories($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == "process_budget_overview"){
+            
+            //Get the budget overview for the selected financial year
+            $this->zf_targetModel->zvs_budgetCategoryOverview();
             
         }
         

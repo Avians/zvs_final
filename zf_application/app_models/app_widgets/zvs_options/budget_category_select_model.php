@@ -29,7 +29,7 @@ class budget_category_select_Model extends Zf_Model {
 
                 $this->Zf_QueryGenerator->MoveFirst();
                 
-                $budget_categories_options = '<option value="selectBudgetCategoy" selected="selected">Select a budget category</option>';
+                $budget_categories_options = '<option value="selectBudgetCategory" selected="selected">Select a budget category</option>';
                 
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 

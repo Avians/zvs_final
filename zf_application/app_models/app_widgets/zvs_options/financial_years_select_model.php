@@ -31,7 +31,7 @@ class financial_years_select_Model extends Zf_Model {
 
                 $this->Zf_QueryGenerator->MoveFirst();
                 
-                $financial_years_options = '<option value="selectClass" selected="selected">Select a financial year</option>';
+                $financial_years_options = '<option value="selectFinancialYear" selected="selected">Select a financial year</option>';
                 
                 while(!$this->Zf_QueryGenerator->EndOfSeek()){
 

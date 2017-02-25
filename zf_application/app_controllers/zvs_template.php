@@ -16,7 +16,7 @@
  * 
  */
 
-class Zwf_templateController extends Zf_Controller {
+class Zvs_templateController extends Zf_Controller {
    
     
     public $zf_defaultAction = "index";

@@ -287,10 +287,32 @@ var FinanceModule = function(){
     //Here we process all the new budget creation details javascript and ajax
     var createBudget = function ($absolute_path, $separator){
         
-        //Process the sub categories within the selected budget category
+        //Process the budget categories that fall within a given financial year
+        $('.financialYearCode').change(function(){
+
+            var processBudgetCategories = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_budget_categories";
+            var financialYearCode = $("#financialYearCode").val();
+
+            //alert(financialYearCode); exit();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processBudgetCategories,
+                data: {financialYearCode: financialYearCode},
+                cache: false,
+                success: function(html) {
+                   $("#budgetCategoryCode").html(html);
+                }
+            });
+
+        });
+        
+        
+        //Process budget sub-categories that belong to the selected category
         $('.budgetCategoryCode').change(function(){
 
-            var processBudgetSubCategories = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_sub_categories";
+            var processBudgetSubCategories = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_budget_sub_categories";
             var budgetCategoryCode = $("#budgetCategoryCode").val();
 
             //alert(budgetCategoryCode); exit();
@@ -309,6 +331,8 @@ var FinanceModule = function(){
         });
             
     };
+    
+    
 
    //Here we initialize all the above functions
     return { 
