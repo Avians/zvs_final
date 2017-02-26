@@ -2,7 +2,7 @@
 <?php
 
     //Access to pull all administrator information.
-    //$zf_controller->Zf_loadModel("finance_module", "createNewBudget");
+    $zf_controller->Zf_loadModel("finance_module", "processBudgetInformation");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -38,34 +38,29 @@
                     </ul>
                      <div class="z-content-inner">
                         <div>
-                            
-                            <!--This is the section for general school fees-->
                             <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet zvs-content-blocks" style="min-height: 300px !important;">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 30px !important; font-weight: 900;">
-                                                General School Budget 
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles"  style="min-height: 30px !important; text-align: right !important;">
-                                                Select Financial Year: <?php //echo $zf_controller->zf_targetModel->zvs_buildYearsOption("activeAttendanceYear");?>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 50px !important;">
+                                        <div class="portlet-body form" style="min-height: 50px !important;">
+                                            <h3 class="form-section form-title" style="padding-top: 10px !important;">General School Budget </h3> 
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 10px !important; font-weight: 900; padding-top: 10px;">
+                                                    Select School Budget Year
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles"  style="min-height: 10px !important; text-align: right !important;">
+                                                    Select a year: <?=$zf_controller->zf_targetModel->zvs_buildFinancialYearsSelectCode($identificationCode, "generalOverviewFinancialYearCode");?>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="attendanceSplashScreen">
-                                                <?php
-                                                    //$zf_controller->Zf_loadModel("school_main_admin", "processAttendanceSchedule"); 
-                                                    //Here we fetch class fee datails school attendance for the current year
-                                                    //$zf_controller->zf_targetModel->processAnnualAttendanceSchedule();
-                                                Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
-                                                ?>
-                                            </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="activeAttendanceSchedule"></div>
-                                        </div>
-                                    </div>          
+                                    </div>
                                 </div>
                             </div>
-                            
+                            <div style="margin-bottom: -10px !important;">
+                                <div class="row margin-top-10" id="generalStaticBudgetOverview">
+                                    <?php $zf_controller->zf_targetModel->fetchBudgetOverviewSplashScreen(); ?> 
+                                </div>
+                                <div class="row margin-top-10"s id="generateDynamicBudgetOverview"></div>
+                            </div>
                         </div>
                         <div>
                             <div class="row margin-top-10">
@@ -74,7 +69,7 @@
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering platform super administrators
-                                                //Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
+                                                Zf_ApplicationWidgets::zf_load_widget("finance_module", "create_budget_form.php");
                                             ?>
                                         </div>
                                     </div>          

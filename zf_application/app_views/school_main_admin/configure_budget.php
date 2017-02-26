@@ -65,7 +65,7 @@
                                 <div class="row margin-top-10" id="generalStaticBudgetOverview">
                                     <?php $zf_controller->zf_targetModel->fetchBudgetCategorySplashScreen(); ?> 
                                 </div>
-                                <div class="row margin-top-10"s id="generatDynamicBudgetOverview"></div>
+                                <div class="row margin-top-10"s id="generateDynamicBudgetOverview"></div>
                             </div>
                         </div>
                         <div>

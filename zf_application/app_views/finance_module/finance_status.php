@@ -44,18 +44,37 @@
                                         <!--START OF FINANCIAL SELECTOR-->
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
-                                                <div id="financeStatusDefaultTitle" style="color: #21b4e2 !important;"></div>
-                                                <div id="financeDynamicDefaultTitle" style="color: #21b4e2 !important;"></div>
+                                                <div id="feesFinanceStatusDefaultTitle" style="color: #21b4e2 !important;"></div>
+                                                <div id="feesFinanceDynamicDefaultTitle" style="color: #21b4e2 !important;"></div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">
-                                                Financial Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("selectedFinancialYear");?>
+                                                School Academic Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("selectedFeesFinancialYear");?>
                                             </div>
                                         </div>
                                         <!--END OF FINANCIAL SELECTOR-->
                                         <div class="clearfix"></div>
                                         <!--START OF MAIN DATA SECTION-->
                                         <div class="row margin-top-10" >
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="financialStatusData"></div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="feesFinancialStatus"></div>    
+                                        </div>
+                                        <!--END OF MAIN DATA SECTION-->
+                                    </div>
+                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
+                                        <!--START OF FINANCIAL SELECTOR-->
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
+                                                <div id="financeStatusDefaultTitle" style="color: #21b4e2 !important;"></div>
+                                                <div id="financeDynamicDefaultTitle" style="color: #21b4e2 !important;"></div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">
+                                                Budget Financial Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("selectedFinancialYear");?>
+                                            </div>
+                                        </div>
+                                        <!--END OF FINANCIAL SELECTOR-->
+                                        <div class="clearfix"></div>
+                                        <!--START OF MAIN DATA SECTION-->
+                                        <div class="row margin-top-10" >
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="budgetFinancialStatus"></div>    
                                         </div>
                                         <!--END OF MAIN DATA SECTION-->
                                     </div>

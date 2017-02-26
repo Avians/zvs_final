@@ -280,7 +280,7 @@
                 
                 $('#generalStaticBudgetOverview').fadeOut(1500, function(){
                     
-                    $("#generatDynamicBudgetOverview").fadeIn(500, function(){
+                    $("#generateDynamicBudgetOverview").fadeIn(500, function(){
                         
                         var processBudgetOverview = $absolute_path + "school_main_admin" + $separator + "configureBudgetCategories" + $separator + "process_budget_overview";
                         var financialYearCode = $("#generalFinancialYearSelector").val();
@@ -294,15 +294,13 @@
                             data: {financialYearCode: financialYearCode},
                             cache: false,
                             success: function(html) {
-                               $("#generatDynamicBudgetOverview").html(html);
+                               $("#generateDynamicBudgetOverview").html(html);
                             }
                         });
                         
                     });
                     
-                });
-                
-                        
+                });        
                 
             });
             

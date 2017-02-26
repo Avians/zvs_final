@@ -227,6 +227,11 @@ class finance_moduleController extends Zf_Controller {
             //Get the budget sub categories related to a selected category
             $this->zf_targetModel->getBudgetSubCategoryDetails();
             
+        }else if($filterDataVariable == "process_budget_overview"){
+            
+            //Get the budget sub categories related to a selected category
+            $this->zf_targetModel->getSchoolBudgetOverview();
+            
         }else if($filterDataUrl == "create_new_budget"){
             
             //Here we register a new budgeted item amount

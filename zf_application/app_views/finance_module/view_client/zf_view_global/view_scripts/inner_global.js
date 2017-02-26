@@ -15,13 +15,13 @@ var FinanceModule = function(){
         var financialParameter = "financialStatus";
         
         //Selected Financial Year
-        var financialYear = $('#selectedFinancialYear').val();
+        var financialYear = $('#selectedFeesFinancialYear').val();
         
-        $("#financeStatusDefaultTitle, #financeDynamicDefaultTitle").hide();
+        $("#feesFinanceStatusDefaultTitle, #feesFinanceDynamicDefaultTitle").hide();
         
         //Show the title based on the default Year
-        $("#financeStatusDefaultTitle").html(financialYear+" - General School Finance Status");
-        $("#financeStatusDefaultTitle").show();
+        $("#feesFinanceStatusDefaultTitle").html(financialYear+" - General School Finance Status");
+        $("#feesFinanceStatusDefaultTitle").show();
         
         var processFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + financialParameter;
 
@@ -32,17 +32,17 @@ var FinanceModule = function(){
             data: {postedFinancialYear : financialYear},
             cache: false,
             success: function(html) {
-               $("#financialStatusData").html(html);
+               $("#feesFinancialStatus").html(html);
             }
         });
         
         
         //Change the title year based on the changed year
-        $("#selectedFinancialYear").change(function(){
+        $("#selectedFeesFinancialYear").change(function(){
            
-            var financialYear = $('#selectedFinancialYear').val();
-            $("#financeDynamicDefaultTitle").html(financialYear+" - General School Finance Status");
-            $("#financeStatusDefaultTitle").hide(); $("#financeDynamicDefaultTitle").fadeIn(3000);
+            var financialYear = $('#selectedFeesFinancialYear').val();
+            $("#feesFinanceDynamicDefaultTitle").html(financialYear+" - General School Finance Status");
+            $("#feesFinanceStatusDefaultTitle").hide(); $("#feesFinanceDynamicDefaultTitle").fadeIn(3000);
             
             var processFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + financialParameter;
 
@@ -53,7 +53,7 @@ var FinanceModule = function(){
                 data: {postedFinancialYear : financialYear},
                 cache: false,
                 success: function(html) {
-                   $("#financialStatusData").html(html);
+                   $("#feesFinancialStatus").html(html);
                 }
             });
             
@@ -287,6 +287,7 @@ var FinanceModule = function(){
     //Here we process all the new budget creation details javascript and ajax
     var createBudget = function ($absolute_path, $separator){
         
+        
         //Process the budget categories that fall within a given financial year
         $('.financialYearCode').change(function(){
 
@@ -329,6 +330,38 @@ var FinanceModule = function(){
             });
 
         });
+        
+        
+        
+        //Process the budget overview for the selected fincial year
+        $('.generalOverviewFinancialYearCode').change(function(){
+
+            $('#generalStaticBudgetOverview').fadeOut(1000, function(){
+                    
+                $("#generateDynamicBudgetOverview").fadeIn(2000, function(){
+
+                    var processBudgetOverview = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_budget_overview";
+                    var financialYearCode = $("#generalOverviewFinancialYearCode").val();
+
+                    //alert(financialYearCode); exit();
+
+                    //Here we run ajax task
+                    $.ajax({
+                        type: "POST",
+                        url: processBudgetOverview,
+                        data: {financialYearCode: financialYearCode},
+                        cache: false,
+                        success: function(html) {
+                           $("#generateDynamicBudgetOverview").html(html);
+                        }
+                    });
+
+                });
+
+            });
+
+        });
+        
             
     };
     

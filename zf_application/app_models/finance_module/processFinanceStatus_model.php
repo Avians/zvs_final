@@ -51,7 +51,7 @@ class processFinanceStatus_Model extends Zf_Model {
         
         $option = "";
         
-        $option .='<select class="select2me" style="width: 87px !important;"  id="'.$yearsDiv.'">';
+        $option .='<select class="select2me" style="width: 90px !important;"  id="'.$yearsDiv.'">';
 
             for($year=$startYear; $year < $endYear+2; $year++){
                 
@@ -169,88 +169,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                     <div id="financeStatusBarGraph">'.$this->financialStatusBarGraph($identificationCode, $postedFinancialYear).'</div>
                                 </div>
                             </div>
-                            <!--END OF FINANCIAL STATUS CHARTS-->
-
-                            <div class="clearfix margin-top-10"><hr></div>
-
-                            <!--START OF FINANCIAL ALLOCATIONS-->
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="portlet-titles">'.$postedFinancialYear.' - General Finance Allocations</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="dashboard-stat purple-sharp">
-                                        <div class="visual">
-                                            <i class="fa fa-money"></i>
-                                        </div>
-                                        <div class="details">
-                                            <div class="number">
-                                                KES: 250,000
-                                            </div>
-                                            <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                Total Running Budget
-                                            </div>
-                                        </div>
-                                        <div class="more" style="height: 40px;" href="#">
-                                            Estimated Running Budget for '.$postedFinancialYear.'
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="dashboard-stat green-sharp">
-                                        <div class="visual">
-                                            <i class="fa fa-money"></i>
-                                        </div>
-                                        <div class="details">
-                                            <div class="number">
-                                                KES: 200,000
-                                            </div>
-                                            <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                Total Amount Allocated
-                                            </div>
-                                        </div>
-                                        <div class="more" style="height: 40px;" href="#">
-                                            Total Amount Allocated For '.$postedFinancialYear.' Budget
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <div class="dashboard-stat blue-madison">
-                                        <div class="visual">
-                                            <i class="fa fa-money"></i>
-                                        </div>
-                                        <div class="details">
-                                            <div class="number">
-                                                KES: 50,000
-                                            </div>
-                                            <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                Total Allocation Pending
-                                            </div>
-                                        </div>
-                                        <div class="more" style="height: 40px;" href="#">
-                                            Total Amount Pending For '.$postedFinancialYear.' Budget
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--END OF FINANCIAL ALLOCATIONS-->
-
-                            <div class="clearfix margin-top-10"><hr></div>
-
-                            <!--START OF FINANCIAL ALLOCATION CHARTS-->
-                            <div class="row">
-                                <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10" style="border-right: 1px solid #efefef; min-height: 300px !important; height: auto !important;">
-                                    <div class="portlet-titles">'.$postedFinancialYear.' - Finance Allocation Details</div>
-                                    Bar Graph
-                                </div>
-                                <div class="col-md-5 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
-                                    <div class="portlet-titles">'.$postedFinancialYear.' - Finance Allocation Proportion</div>
-                                    Pie Chart
-                                </div> 
-                            </div>
-                            <!--END OF FINANCIAL ALLOCATION CHARTS-->';
+                            <!--END OF FINANCIAL STATUS CHARTS-->';
         
         echo $financialData;
         
