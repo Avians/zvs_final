@@ -20,7 +20,7 @@
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">Finance Status</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <i class="fa fa-money"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -63,18 +63,23 @@
                                         <!--START OF FINANCIAL SELECTOR-->
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important;">
-                                                <div id="financeStatusDefaultTitle" style="color: #21b4e2 !important;"></div>
-                                                <div id="financeDynamicDefaultTitle" style="color: #21b4e2 !important;"></div>
+                                                <div id="budgetFinanceDynamicDefaultTitle" style="color: #21b4e2 !important;"></div>
+                                                <div id="budgetFinanceStaticDefaultTitle" style="color: #21b4e2 !important;">
+                                                    <?=$zf_controller->zf_targetModel->zvs_getBudgetFinancialYear($identificationCode);?>
+                                                </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 portlet-titles" style="min-height: 35px !important; text-align: right !important;">
-                                                Budget Financial Year: <?=$zf_controller->zf_targetModel->zvs_buildYearsOption("selectedFinancialYear");?>
+                                                Select Financial Year: <?=$zf_controller->zf_targetModel->zvs_buildFinancialYearsSelectCode($identificationCode, "selectedBudgetFinancialYear");?>
                                             </div>
                                         </div>
                                         <!--END OF FINANCIAL SELECTOR-->
                                         <div class="clearfix"></div>
                                         <!--START OF MAIN DATA SECTION-->
                                         <div class="row margin-top-10" >
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="budgetFinancialStatus"></div>    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="dynamicBudgetFinancialStatus"></div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="staticBudgetFinancialStatus">
+                                                <?=$zf_controller->zf_targetModel->zvs_getBugdetFinancialStatus($identificationCode);?>
+                                            </div>     
                                         </div>
                                         <!--END OF MAIN DATA SECTION-->
                                     </div>

@@ -82,7 +82,7 @@ class finance_moduleController extends Zf_Controller {
     //This controller executes the allocate finances view
     public function actionAllocate_finances($identificationCode){
         
-         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
         Zf_View::zf_displayView('allocate_finances', $zf_actionData);
         
@@ -199,10 +199,20 @@ class finance_moduleController extends Zf_Controller {
         $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
         $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
         
-        if($filterDataVariable == 'financialStatus'){
+        if($filterDataVariable == 'feesFinancialStatus'){
 
             //Gets the financial data for the selected year
             $this->zf_targetModel->processFinancialData();
+            
+        }else if($filterDataVariable == 'budgetFinancialYearName'){
+            
+            //Gets the financial year name for the selected financial year
+            $this->zf_targetModel->zvs_getBudgetFinancialYear();
+            
+        }else if($filterDataVariable == 'budgetFinancialStatus'){
+            
+            //Gets the financial status for the selected financial year
+            $this->zf_targetModel->zvs_getBugdetFinancialStatus();
             
         }
         
@@ -236,6 +246,11 @@ class finance_moduleController extends Zf_Controller {
             
             //Here we register a new budgeted item amount
             $this->zf_targetModel->createNewBudget();
+            
+        }else if($filterDataUrl == "allocate_finance"){
+            
+            //Here we register an amount allocated to a budget item
+            $this->zf_targetModel->allocateFinance();
             
         }
         

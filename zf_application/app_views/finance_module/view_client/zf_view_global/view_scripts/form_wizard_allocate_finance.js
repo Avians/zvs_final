@@ -1,4 +1,4 @@
-var CreateNewBudgetFormWizard = function () {
+var AllocateFinanceFormWizard = function () {
 
 
     return {
@@ -23,7 +23,7 @@ var CreateNewBudgetFormWizard = function () {
                 }
             });
 
-            var form = $('#create_budget_form');
+            var form = $('#allocate_finance_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -53,8 +53,8 @@ var CreateNewBudgetFormWizard = function () {
                         required: true
                     },
                     
-                    //Budgeted Amount
-                    budgetedAmount: {
+                    //Allocation Amount
+                    allocatedAmount: {
                         maxlength: 20,
                         minlength: 2,
                         required: true
@@ -116,7 +116,7 @@ var CreateNewBudgetFormWizard = function () {
             
 
             var displayConfirm = function() {
-                $('#confirmNewBudgetInfo .form-control-static', form).each(function(){
+                $('#confirmFinanceAllocationInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":radio")) {
                         input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
@@ -135,33 +135,33 @@ var CreateNewBudgetFormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#newBudget')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#newFinanceAllocation')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
-                jQuery('li', $('#newBudget')).removeClass("done");
+                jQuery('li', $('#newFinanceAllocation')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
-                    $('#newBudget').find('.button-previous').hide();
+                    $('#newFinanceAllocation').find('.button-previous').hide();
                 } else {
-                    $('#newBudget').find('.button-previous').show();
+                    $('#newFinanceAllocation').find('.button-previous').show();
                 }
 
                 if (current >= total) {
-                    $('#newBudget').find('.button-next').hide();
-                    $('#newBudget').find('.button-submit').show();
+                    $('#newFinanceAllocation').find('.button-next').hide();
+                    $('#newFinanceAllocation').find('.button-submit').show();
                     displayConfirm();
                 } else {
-                    $('#newBudget').find('.button-next').show();
-                    $('#newBudget').find('.button-submit').hide();
+                    $('#newFinanceAllocation').find('.button-next').show();
+                    $('#newFinanceAllocation').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
-            $('#create_budget_form').bootstrapWizard({
+            $('#allocate_finance_form').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -192,14 +192,14 @@ var CreateNewBudgetFormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#newBudget').find('.progress-bar').css({
+                    $('#newFinanceAllocation').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#create_budget_form').find('.button-previous').hide();
-            $('#create_budget_form .button-submit').click(function () {
+            $('#allocate_finance_form').find('.button-previous').hide();
+            $('#allocate_finance_form .button-submit').click(function () {
                 
                 //form.submit();
                 

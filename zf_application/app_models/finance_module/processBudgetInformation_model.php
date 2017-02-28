@@ -383,6 +383,7 @@ class processBudgetInformation_Model extends Zf_Model {
     }
     
     
+   
     
     /**
      * This public method is essential is creating a new budget
@@ -426,17 +427,17 @@ class processBudgetInformation_Model extends Zf_Model {
             $financialYearCode = $this->_validResult['financialYearCode'];
             $budgetCategoryCode = $this->_validResult['budgetCategoryCode'];
             $budgetSubCategoryCode = $this->_validResult['budgetSubCategoryCode'];
-            $budgetedAmount = (float)str_replace(',', '', $this->_validResult['budgetedAmount']);
+            $allocatedAmount = (float)str_replace(',', '', $this->_validResult['allocatedAmount']);
             
             //Prepare SQL queries to check if a class with a similar registration code exists within the same school.
-            $newBudgetValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-            $newBudgetValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearCode']);
-            $newBudgetValues['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['budgetCategoryCode']);
-            $newBudgetValues['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['budgetSubCategoryCode']);
+            $newBudgetedValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+            $newBudgetedValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['financialYearCode']);
+            $newBudgetedValues['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['budgetCategoryCode']);
+            $newBudgetedValues['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($this->_validResult['budgetSubCategoryCode']);
             
-            $newBudgetColumns = array('systemSchoolCode', 'financialYearCode', 'budgetCategoryCode', 'budgetSubCategoryCode');
+            $newBudgetedColumns = array('systemSchoolCode', 'financialYearCode', 'budgetCategoryCode', 'budgetSubCategoryCode');
             
-            $zvs_runningBudgetSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $newBudgetValues, $newBudgetColumns);
+            $zvs_runningBudgetSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $newBudgetedValues, $newBudgetedColumns);
             
             $zvs_executeRunningBudgetSqlQuery = $this->Zf_AdoDB->Execute($zvs_runningBudgetSqlQuery);
             
@@ -462,17 +463,17 @@ class processBudgetInformation_Model extends Zf_Model {
                     //There is not a class with a similar class name within the same school, therefore store the class into the DB.
                     
                     //1. application user details
-                    $zvs_newbudgetDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                    $zvs_newbudgetDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
-                    $zvs_newbudgetDetails['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
-                    $zvs_newbudgetDetails['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
-                    $zvs_newbudgetDetails['budgetedAmount'] = Zf_QueryGenerator::SQLValue($budgetedAmount);
-                    $zvs_newbudgetDetails['createdBy'] = Zf_QueryGenerator::SQLValue($this->_validResult['adminIdentificationCode']);
-                    $zvs_newbudgetDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
-                    $zvs_newbudgetDetails['budgetStatus'] = Zf_QueryGenerator::SQLValue(0);
+                    $zvs_newBudgetDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                    $zvs_newBudgetDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
+                    $zvs_newBudgetDetails['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+                    $zvs_newBudgetDetails['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
+                    $zvs_newBudgetDetails['budgetedAmount'] = Zf_QueryGenerator::SQLValue($budgetedAmount);
+                    $zvs_newBudgetDetails['createdBy'] = Zf_QueryGenerator::SQLValue($this->_validResult['adminIdentificationCode']);
+                    $zvs_newBudgetDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
+                    $zvs_newBudgetDetails['budgetStatus'] = Zf_QueryGenerator::SQLValue(0);
                     
                     //Build the insert SQL queries
-                    $insertNewBudgetedDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_school_running_budget', $zvs_newbudgetDetails);
+                    $insertNewBudgetedDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_school_running_budget', $zvs_newBudgetDetails);
                     $executeInsertNewBudgetedDetails = $this->Zf_AdoDB->Execute($insertNewBudgetedDetails);
                     
                     if(!$executeInsertNewBudgetedDetails){
@@ -513,13 +514,266 @@ class processBudgetInformation_Model extends Zf_Model {
     
     
     
+    
+    /**
+     * This public method is essential is allocating finance to budget items
+     */
+    public function allocateFinance(){
+    //In this section we chain class data, posted from the form.
+        $this->zf_formController->zf_postFormData('financialYearCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Financial year')
+                                
+                                ->zf_postFormData('budgetCategoryCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Category name')
+
+                                ->zf_postFormData('budgetSubCategoryCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Sub Category')
+
+                                ->zf_postFormData('allocatedAmount')
+                                ->zf_validateFormData('zf_maximumLength', 8, 'Allocated Amount')
+                                ->zf_validateFormData('zf_minimumLength', 2, 'Allocated Amount')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Allocated Amount')
+                
+                                ->zf_postFormData('adminIdentificationCode');
+        
+
+        //This array holds all error data
+        $this->_errorResult = $this->zf_formController->zf_fetchErrorData();
+
+        //This array holds all valid data. 
+        $this->_validResult = $this->zf_formController->zf_fetchValidData();
+        
+        //This of debugging purposes only.
+        //echo "<pre>Budget Creation Data: <br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+       
+        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($this->_validResult['adminIdentificationCode']);
+        
+        //Here we get the system school code from the identification code.
+        $systemSchoolCode = $identificationArray[2];
+       
+        if(empty($this->_errorResult)){
+            
+            //All submitted data
+            $financialYearCode = $this->_validResult['financialYearCode'];
+            $budgetCategoryCode = $this->_validResult['budgetCategoryCode'];
+            $budgetSubCategoryCode = $this->_validResult['budgetSubCategoryCode'];
+            $allocatedAmount = (float)str_replace(',', '', $this->_validResult['allocatedAmount']);
+            
+            //Prepare SQL queries to check if a financial year has already been registered.
+            $financialYearValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+            $financialYearValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
+            
+            $financialYearColumns = array('systemSchoolCode','financialYearCode');
+            
+            $zvs_financialYearSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $financialYearValues, $financialYearColumns);
+            
+            $zvs_executeFinancialYearSqlQuery = $this->Zf_AdoDB->Execute($zvs_financialYearSqlQuery);
+            
+            if (!$zvs_executeFinancialYearSqlQuery) {
+
+                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+            } else {
+                
+                //If there is an existing financial year, check for the budget category
+                if($zvs_executeFinancialYearSqlQuery->RecordCount() > 0){
+                    
+                    //Prepare SQL queries to check if a budget category has already been registered.
+                    $budgetCategoryValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                    $budgetCategoryValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
+                    $budgetCategoryValues['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+
+                    $budgetCategoryColumns = array('systemSchoolCode','financialYearCode', 'budgetCategoryCode');
+
+                    $zvs_budgetCategorySqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $budgetCategoryValues, $budgetCategoryColumns);
+                    
+                    $zvs_executeBudgetCategorySqlQuery = $this->Zf_AdoDB->Execute($zvs_budgetCategorySqlQuery);
+            
+                    if (!$zvs_executeBudgetCategorySqlQuery) {
+
+                        echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                    } else {
+                        
+                        //If there is an existing budget category, check for the budget sub category
+                        if($zvs_executeBudgetCategorySqlQuery->RecordCount() > 0){
+                            
+                            //Prepare SQL queries to check if a budget sub-category has already been registered.
+                            $budgetSubCategoryValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                            $budgetSubCategoryValues['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
+                            $budgetSubCategoryValues['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+                            $budgetSubCategoryValues['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
+
+                            $budgetSubCategoryColumns = array('systemSchoolCode','financialYearCode', 'budgetCategoryCode', 'budgetSubCategoryCode');
+
+                            $zvs_budgetSubCategorySqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $budgetSubCategoryValues, $budgetSubCategoryColumns);
+
+                            $zvs_executeBudgetSubCategorySqlQuery = $this->Zf_AdoDB->Execute($zvs_budgetSubCategorySqlQuery);
+                            
+                            if(!$zvs_executeBudgetSubCategorySqlQuery){
+                                
+                                echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+                                
+                            }else{
+                                
+                                //If there is an existing budget sub category, we are ready to process allocation insertion
+                                if($zvs_executeBudgetSubCategorySqlQuery->RecordCount() > 0){ 
+                                    
+                                    //1. Find the amount budgeted for the budget item: W
+                                    $zvs_budgetRunningAmount = $this->fetchBudgetDetails($systemSchoolCode, $financialYearCode, $budgetCategoryCode, $budgetSubCategoryCode);
+                                    
+                                    foreach ($zvs_budgetRunningAmount as $runningBudgetValues) {
+                                        
+                                        $totalBudgetedAmount = $runningBudgetValues['budgetedAmount'];
+                                        
+                                    }
+                                    
+                                    //2. Find the amount already allocated for the budget item: X
+                                    $totalAllocatedAmount = $this->zvs_budgetAllocatedAmount($systemSchoolCode, $financialYearCode, $budgetCategoryCode, $budgetSubCategoryCode);
+                                    
+                                    //3. Find the balance remaining to be allocated for this budget item: Y = W - X
+                                    $totalAllocationPending = $totalBudgetedAmount - $totalAllocatedAmount;
+                                    
+                                    
+                                    if($totalAllocationPending == 0){
+                                        
+                                        //This budget item has fully been allocated funds
+                                        Zf_SessionHandler::zf_setSessionVariable("budget_allocation_setup", "full_allocation_error");
+
+                                        $zf_errorData = array("zf_fieldName" => "budgetSubCategoryCode", "zf_errorMessage" => "* No budget item has fully been allocated funds!!");
+                                        Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                                        Zf_GenerateLinks::zf_header_location("finance_module", 'allocate_finances', $this->_validResult['adminIdentificationCode']);
+                                        exit();
+                                        
+                                        
+                                    }else{
+                                        
+                                        
+                                        //4. Prepare SQL values for insertion
+                                        $zvs_newAllocationDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+                                        $zvs_newAllocationDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
+                                        $zvs_newAllocationDetails['budgetCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+                                        $zvs_newAllocationDetails['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
+
+                                        //5. Allocation amount comparison logic:
+                                        //5.1 If the balance Y is greater the current allocated amount Z, then just insert Z
+                                        // Y > Z =====> Insert Z
+                                        if($totalAllocationPending > $allocatedAmount){
+                                            
+                                           $zvs_newAllocationDetails['allocatedAmount'] = Zf_QueryGenerator::SQLValue($allocatedAmount); 
+
+                                        }
+                                        //5.2 If the current allocated amount Z is greater than the balance Y and also the balance Y is no equal to 0, then insert the balance Y
+                                        // Z > Y && Y != 0 =====> Insert Y
+                                        else if(($allocatedAmount > $totalAllocationPending) && ($totalAllocationPending != 0)){
+                                            
+                                            $zvs_newAllocationDetails['allocatedAmount'] = Zf_QueryGenerator::SQLValue($totalAllocationPending);
+
+                                        }
+
+                                        $zvs_newAllocationDetails['createdBy'] = Zf_QueryGenerator::SQLValue($this->_validResult['adminIdentificationCode']);
+                                        $zvs_newAllocationDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
+                                        $zvs_newAllocationDetails['allocationStatus'] = Zf_QueryGenerator::SQLValue(0);
+                                        
+                                        //Build the insert SQL queries
+                                        $insertNewAllocationDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_school_finance_allocation', $zvs_newAllocationDetails);
+                                        
+                                        $executeInsertNewAllocationDetails = $this->Zf_AdoDB->Execute($insertNewAllocationDetails);
+
+                                        if(!$executeInsertNewAllocationDetails){
+
+                                            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+                                        }else{
+
+                                            //Redirect to the platform users overview
+                                            Zf_SessionHandler::zf_setSessionVariable("budget_allocation_setup", "new_budget_allocation_success");
+                                            Zf_GenerateLinks::zf_header_location('finance_module', 'allocate_finances', $this->_validResult['adminIdentificationCode']);
+                                            exit();
+
+                                        }
+                                
+                                    }
+                                    
+                                    
+                                }else{
+                                    
+                                    //This budget sub-category has not yet been registered
+                                    Zf_SessionHandler::zf_setSessionVariable("budget_allocation_setup", "no_budget_sub_category_error");
+
+                                    $zf_errorData = array("zf_fieldName" => "budgetSubCategoryCode", "zf_errorMessage" => "* No running budget for the selected budget sub-category");
+                                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                                    Zf_GenerateLinks::zf_header_location("finance_module", 'allocate_finances', $this->_validResult['adminIdentificationCode']);
+                                    exit();
+                                    
+                                }
+                                 
+                            }
+                            
+                        }else{
+                            
+                            //This budget category has not yet been registered
+                            Zf_SessionHandler::zf_setSessionVariable("budget_allocation_setup", "no_budget_category_error");
+
+                            $zf_errorData = array("zf_fieldName" => "budgetCategoryCode", "zf_errorMessage" => "* No running budget for the selected budget category");
+                            Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                            Zf_GenerateLinks::zf_header_location("finance_module", 'allocate_finances', $this->_validResult['adminIdentificationCode']);
+                            exit();
+                           
+                        }
+                    }
+                    
+                    
+                }else{
+                    
+                   //A class with similar class code has already been registered onto the platform for the same school.
+                    Zf_SessionHandler::zf_setSessionVariable("budget_allocation_setup", "no_financial_year_error");
+                    
+                    $zf_errorData = array("zf_fieldName" => "financialYearCode", "zf_errorMessage" => "* No running budget for the selected financial year!!");
+                    Zf_FormController::zf_validateSpecificField($this->_validResult, $zf_errorData);
+                    Zf_GenerateLinks::zf_header_location("finance_module", 'allocate_finances', $this->_validResult['adminIdentificationCode']);
+                    exit();
+                    
+                }
+                
+                
+            }
+            
+            
+        }else{
+            
+            
+            //Redirect to the registration form section. Also make an error indicator.
+            Zf_SessionHandler::zf_setSessionVariable("new_budget_setup", "new_budget_form_error");
+            
+            echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
+            
+            Zf_GenerateLinks::zf_header_location('finance_module', 'create_budget', $this->_validResult['adminIdentificationCode']);
+            
+            exit();
+             
+        }
+        
+        
+    }
+    
+    
+    
+    
     /**
      * This private method fetches all the schools budget details for the selected financial year
      */
-    private function fetchBudgetDetails($systemSchoolCode, $financialYearCode){
+    private function fetchBudgetDetails($systemSchoolCode, $financialYearCode, $budgetCategoryCode = NULL, $budgetSubCategoryCode = NULL){
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         $zvs_sqlValue["financialYearCode"] = Zf_QueryGenerator::SQLValue($financialYearCode);
+        
+        if(!empty($budgetCategoryCode) && !empty($budgetSubCategoryCode) && $budgetCategoryCode != "" && $budgetSubCategoryCode != "" && $budgetCategoryCode != NULL && $budgetSubCategoryCode != NULL){
+           
+            $zvs_sqlValue["budgetCategoryCode"] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+            $zvs_sqlValue["budgetSubCategoryCode"] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
+            
+        }
         
         $fetchSchoolBudgetDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $zvs_sqlValue);
         
@@ -553,6 +807,74 @@ class processBudgetInformation_Model extends Zf_Model {
     
     
     
+    
+    /**
+     * This private methods returns the total amount that has already been allocated to the budget item
+     */
+    private function zvs_budgetAllocatedAmount($systemSchoolCode, $financialYearCode, $budgetCategoryCode, $budgetSubCategoryCode){
+        
+        //Returns an array of actual budget allocations
+        $actualBudgetAllocations = $this->fetchActualBudgetAllocations($systemSchoolCode, $financialYearCode, $budgetCategoryCode, $budgetSubCategoryCode);
+        
+        $totalAllocatedAmount = 0;
+        
+        foreach($actualBudgetAllocations as $allocationValues){
+            
+            $allocatedAmount = $allocationValues['allocatedAmount'];
+            
+            $totalAllocatedAmount = $totalAllocatedAmount + $allocatedAmount;
+            
+        }
+        
+        return $totalAllocatedAmount;
+        
+    }
+    
+    
+    
+    /**
+     * This private method fetches all the budget allocations
+     */
+    private function fetchActualBudgetAllocations($systemSchoolCode, $financialYearCode, $budgetCategoryCode, $budgetSubCategoryCode){
+         
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["financialYearCode"] = Zf_QueryGenerator::SQLValue($financialYearCode);
+        $zvs_sqlValue["budgetCategoryCode"] = Zf_QueryGenerator::SQLValue($budgetCategoryCode);
+        $zvs_sqlValue["budgetSubCategoryCode"] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
+        
+        $fetchFinanceAllocationDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_finance_allocation', $zvs_sqlValue);
+        
+        $zf_executeFetchFinanceAllocationDetails = $this->Zf_AdoDB->Execute($fetchFinanceAllocationDetails);
+
+        if(!$zf_executeFetchFinanceAllocationDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchFinanceAllocationDetails->RecordCount() > 0){
+
+                while(!$zf_executeFetchFinanceAllocationDetails->EOF){
+                    
+                    $results = $zf_executeFetchFinanceAllocationDetails->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+         
+     }
+
+     
+     
+         
     /**
      * This private method fetches budget category name
      */
@@ -592,6 +914,7 @@ class processBudgetInformation_Model extends Zf_Model {
         }
         
     }
+    
     
     
     
@@ -635,6 +958,7 @@ class processBudgetInformation_Model extends Zf_Model {
         }
         
     }
+    
     
     
     

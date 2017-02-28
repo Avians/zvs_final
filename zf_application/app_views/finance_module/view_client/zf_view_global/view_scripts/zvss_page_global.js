@@ -10,6 +10,9 @@ $(document).ready(function() {
     //Create New Budget
     CreateNewBudgetFormWizard.init();
     
+    //Allocate Finances
+    AllocateFinanceFormWizard.init();
+    
     //Components Picker
     ComponentsPickers.init();
     

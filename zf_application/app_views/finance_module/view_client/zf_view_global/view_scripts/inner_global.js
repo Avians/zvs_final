@@ -9,27 +9,28 @@ var FinanceModule = function(){
     //Here we process all finance status javascript and ajax
     var financeStatus = function($absolute_path, $separator){
         
-        //Model variables
+        //Global Model variables
         var targetController = "finance_module";
         var targetAction = "processFinanceStatus";
-        var financialParameter = "financialStatus";
         
-        //Selected Financial Year
-        var financialYear = $('#selectedFeesFinancialYear').val();
+        
+        //THIS SECTION PROCESSES FINANCE STATUS BASED ON SCHOOL FEES FOR THE SELECTED YEAR
+        var feesFinancialParameter = "feesFinancialStatus";
+        var feesFinancialYear = $('#selectedFeesFinancialYear').val();
         
         $("#feesFinanceStatusDefaultTitle, #feesFinanceDynamicDefaultTitle").hide();
         
         //Show the title based on the default Year
-        $("#feesFinanceStatusDefaultTitle").html(financialYear+" - General School Finance Status");
+        $("#feesFinanceStatusDefaultTitle").html(feesFinancialYear+" - General School Finance Status");
         $("#feesFinanceStatusDefaultTitle").show();
         
-        var processFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + financialParameter;
+        var processFeesFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + feesFinancialParameter;
 
         //Here we run ajax task for class fee structure
         $.ajax({
             type: "POST",
-            url: processFinancialStatus,
-            data: {postedFinancialYear : financialYear},
+            url: processFeesFinancialStatus,
+            data: {postedFinancialYear : feesFinancialYear},
             cache: false,
             success: function(html) {
                $("#feesFinancialStatus").html(html);
@@ -40,21 +41,69 @@ var FinanceModule = function(){
         //Change the title year based on the changed year
         $("#selectedFeesFinancialYear").change(function(){
            
-            var financialYear = $('#selectedFeesFinancialYear').val();
-            $("#feesFinanceDynamicDefaultTitle").html(financialYear+" - General School Finance Status");
+            var feesFinancialYear = $('#selectedFeesFinancialYear').val();
+            $("#feesFinanceDynamicDefaultTitle").html(feesFinancialYear+" - General School Finance Status");
             $("#feesFinanceStatusDefaultTitle").hide(); $("#feesFinanceDynamicDefaultTitle").fadeIn(3000);
             
-            var processFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + financialParameter;
+            var processFeesFinancialStatus = $absolute_path + targetController + $separator + targetAction + $separator + feesFinancialParameter;
 
             //Here we run ajax task for class fee structure
             $.ajax({
                 type: "POST",
-                url: processFinancialStatus,
-                data: {postedFinancialYear : financialYear},
+                url: processFeesFinancialStatus,
+                data: {postedFinancialYear : feesFinancialYear},
                 cache: false,
                 success: function(html) {
                    $("#feesFinancialStatus").html(html);
                 }
+            });
+            
+        });
+        
+        
+        
+        //THIS SECTION PROCESSES FINANCE STATUS BASED ON SCHOOL FEES FOR THE SELECTED YEAR
+        var budgetFinancialYearName = "budgetFinancialYearName";
+        var budgetFinancialStatus = "budgetFinancialStatus";
+        
+        $("#budgetFinanceDynamicDefaultTitle, #dynamicBudgetFinancialStatus").hide();
+        
+        
+        //Change the budget title when the financial year changes
+        $("#selectedBudgetFinancialYear").change(function(){
+            
+            $("#budgetFinanceStaticDefaultTitle, #staticBudgetFinancialStatus").hide(); 
+            $("#budgetFinanceDynamicDefaultTitle, #dynamicBudgetFinancialStatus").show(function(){
+                
+                var budegtFinancialYearCode = $('#selectedBudgetFinancialYear').val();
+                //alert(budegtFinancialYearCode); die();
+
+                var processDynamicBudgetTitle = $absolute_path + targetController + $separator + targetAction + $separator + budgetFinancialYearName;
+                var processDynamicBudgetStatus = $absolute_path + targetController + $separator + targetAction + $separator + budgetFinancialStatus;
+
+                //Here we run ajax task for processing dynamic financial year title
+                $.ajax({
+                    type: "POST",
+                    url: processDynamicBudgetTitle,
+                    data: {postedFinancialYear : budegtFinancialYearCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#budgetFinanceDynamicDefaultTitle").html(html);
+                    }
+                });
+                
+                
+                //Here we run ajax task for processing dynamic financial status
+                $.ajax({
+                    type: "POST",
+                    url: processDynamicBudgetStatus,
+                    data: {postedFinancialYear : budegtFinancialYearCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#dynamicBudgetFinancialStatus").html(html);
+                    }
+                });
+            
             });
             
         });
@@ -365,6 +414,89 @@ var FinanceModule = function(){
             
     };
     
+
+
+    //Here we process all finance allocation details using javascript and ajax
+    var allocateFinances = function ($absolute_path, $separator){
+        
+        
+        //Process the budget categories that fall within a given financial year
+        $('.financialYearCode').change(function(){
+
+            var processBudgetCategories = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_budget_categories";
+            var financialYearCode = $("#financialYearCode").val();
+
+            //alert(financialYearCode); exit();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processBudgetCategories,
+                data: {financialYearCode: financialYearCode},
+                cache: false,
+                success: function(html) {
+                   $("#budgetCategoryCode").html(html);
+                }
+            });
+
+        });
+        
+        
+        //Process budget sub-categories that belong to the selected category
+        $('.budgetCategoryCode').change(function(){
+
+            var processBudgetSubCategories = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_budget_sub_categories";
+            var budgetCategoryCode = $("#budgetCategoryCode").val();
+
+            //alert(budgetCategoryCode); exit();
+
+            //Here we run ajax task
+            $.ajax({
+                type: "POST",
+                url: processBudgetSubCategories,
+                data: {budgetCategoryCode: budgetCategoryCode},
+                cache: false,
+                success: function(html) {
+                   $("#budgetSubCategoryCode").html(html);
+                }
+            });
+
+        });
+        
+        
+        
+        //Process the budget overview for the selected fincial year
+        $('.generalOverviewFinancialYearCode').change(function(){
+
+            $('#generalStaticBudgetOverview').fadeOut(1000, function(){
+                    
+                $("#generateDynamicBudgetOverview").fadeIn(2000, function(){
+
+                    var processBudgetOverview = $absolute_path + "finance_module" + $separator + "ProcessBudgetInformation" + $separator + "process_budget_overview";
+                    var financialYearCode = $("#generalOverviewFinancialYearCode").val();
+
+                    //alert(financialYearCode); exit();
+
+                    //Here we run ajax task
+                    $.ajax({
+                        type: "POST",
+                        url: processBudgetOverview,
+                        data: {financialYearCode: financialYearCode},
+                        cache: false,
+                        success: function(html) {
+                           $("#generateDynamicBudgetOverview").html(html);
+                        }
+                    });
+
+                });
+
+            });
+
+        });
+        
+            
+    };
+    
     
 
    //Here we initialize all the above functions
@@ -387,6 +519,10 @@ var FinanceModule = function(){
             }else if($current_view === "create_budget"){
 
                 createBudget($absolute_path, $separator);
+
+            }else if($current_view === "allocate_finances"){
+
+                allocateFinances($absolute_path, $separator);
 
             }
 

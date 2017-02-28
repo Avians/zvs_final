@@ -432,6 +432,23 @@ class Zf_Core_Functions {
     }
     
     
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD FOR REVERSING FORMATTED MONEY OR NUMBERS
+     * -------------------------------------------------------------------------
+     * @param none
+     * @return string current time
+     */
+    public static function Zf_unformatNumbers($amountToUnformat){
+        
+        $unformatedNumber  = filter_var($amountToUnformat, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        
+        return $unformatedNumber;
+        
+    }
+    
+    
     /**
      * -------------------------------------------------------------------------
      * THIS IS THE STATIC METHOD FOR CHANGING TIME ZONES

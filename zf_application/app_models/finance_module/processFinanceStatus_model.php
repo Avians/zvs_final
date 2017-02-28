@@ -87,6 +87,56 @@ class processFinanceStatus_Model extends Zf_Model {
     
     
     
+    
+    
+    //This method is responsible for financial years select list.
+    public function zvs_buildFinancialYearsSelectCode($identificationCode, $generalOverviewFinancialYearCode) {
+        
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        $zf_selectFinancialYears = Zf_QueryGenerator::BuildSQLSelect('zvs_school_financial_years', $zvs_sqlValue);
+
+        if(!$this->Zf_QueryGenerator->Query($zf_selectFinancialYears)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$zf_selectFinancialYears}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            $financial_years_options = "";
+            
+            $financial_years_options .='<select class="select2me '.$generalOverviewFinancialYearCode.'" style="width: 150px !important;"  id="'.$generalOverviewFinancialYearCode.'">';
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                $financial_years_options .= '<option value="selectFinancialYear" selected="selected"> Financial years</option>';
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $fetchRow = $this->Zf_QueryGenerator->Row();
+                    $financial_years_options .= '<option value="'.$fetchRow->financialYearCode.'" >'.$fetchRow->financialYearName.'</option>';
+
+                }
+
+            }
+            
+            $financial_years_options .="</select>";
+            
+            echo $financial_years_options;
+        }
+
+    }
+    
+    
+    
+    
     /**
      * This method processes all financial data for the selected year
      */
@@ -270,15 +320,234 @@ class processFinanceStatus_Model extends Zf_Model {
     
     
     /**
+     * This public method returns the title of the current financial year for the budget
+     */
+    public function zvs_getBudgetFinancialYear($identificationCode = NULL){
+        
+        if(empty($identificationCode) || $identificationCode == "" || $identificationCode == NULL){
+            
+            $postedFinancialYear = $_POST["postedFinancialYear"];
+            $systemSchoolCode = explode(ZVSS_CONNECT, $postedFinancialYear)[0];
+            $zvs_budgetFinancialYears = $this->fetchSchoolFinancialYear($systemSchoolCode, $postedFinancialYear);
+            
+            
+        }else if(!empty($identificationCode) && $identificationCode != "" && $identificationCode != NULL){
+            
+            $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+            $zvs_budgetFinancialYears = $this->fetchSchoolFinancialYear($systemSchoolCode);
+            
+        }
+        
+        $financialYearName = "";
+        
+        if($zvs_budgetFinancialYears == 0){
+            
+            $financialYearName .= "There is not financial year found";
+            
+        }else{
+            
+            foreach($zvs_budgetFinancialYears as $financialYearValues){
+                 
+                $financialYearName .= $financialYearValues['financialYearName'];
+              
+            }
+            
+        }
+        
+        echo $financialYearName." Budget";
+        
+        
+    }
+    
+    
+    
+    
+    /**
+     * This public method process all budget related financial status for the school
+     */
+    public function zvs_getBugdetFinancialStatus($identificationCode = NULL){
+        
+        if(empty($identificationCode) || $identificationCode == "" || $identificationCode == NULL){
+            
+            $postedFinancialYear = $_POST["postedFinancialYear"];
+            $systemSchoolCode = explode(ZVSS_CONNECT, $postedFinancialYear)[0];
+            $zvs_budgetFinancialYears = $this->fetchSchoolFinancialYear($systemSchoolCode, $postedFinancialYear);
+            
+        }else if(!empty($identificationCode) && $identificationCode != "" && $identificationCode != NULL){
+            
+            $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+            $zvs_budgetFinancialYears = $this->fetchSchoolFinancialYear($systemSchoolCode);
+            
+        }
+        
+        foreach ($zvs_budgetFinancialYears as $financialYearValues){
+            
+            $financialYearCode = $financialYearValues['financialYearCode']; $financialYearName = $financialYearValues['financialYearName'];
+        
+        }
+        
+        $schoolBudgetStatusView = "";
+        
+        
+        $schoolBudgetStatusView .='<!--START OF FINANCIAL ALLOCATIONS-->
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="dashboard-stat purple-sharp">
+                                                <div class="visual">
+                                                    <i class="fa fa-money"></i>
+                                                </div>
+                                                <div class="details">
+                                                    <div class="number">
+                                                        KES: '.$this->estimatedRunningBudget($systemSchoolCode, $financialYearCode).'
+                                                    </div>
+                                                    <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                        Total Running Budget
+                                                    </div>
+                                                </div>
+                                                <div class="more" style="height: 40px;" href="#">
+                                                    Estimated Amount for '.$financialYearName.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="dashboard-stat green-sharp">
+                                                <div class="visual">
+                                                    <i class="fa fa-money"></i>
+                                                </div>
+                                                <div class="details">
+                                                    <div class="number">
+                                                        KES: '.$this->totalAmountAllocated($systemSchoolCode, $financialYearCode).'
+                                                    </div>
+                                                    <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                        Total Amount Allocated
+                                                    </div>
+                                                </div>
+                                                <div class="more" style="height: 40px;" href="#">
+                                                    Amount Allocated For '.$financialYearName.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                            <div class="dashboard-stat blue-madison">
+                                                <div class="visual">
+                                                    <i class="fa fa-money"></i>
+                                                </div>
+                                                <div class="details">
+                                                    <div class="number">
+                                                        KES: '.$this->totalAllocationPending($systemSchoolCode, $financialYearCode).'
+                                                    </div>
+                                                    <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                        Total Allocation Pending
+                                                    </div>
+                                                </div>
+                                                <div class="more" style="height: 40px;" href="#">
+                                                    Amount Pending For '.$financialYearName.'
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--END OF FINANCIAL ALLOCATIONS-->
+
+                                    <div class="clearfix margin-top-10"><hr></div>
+
+                                    <!--START OF FINANCIAL ALLOCATION CHARTS-->
+                                    <div class="row">
+                                        <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10" style="border-right: 1px solid #efefef; min-height: 300px !important; height: auto !important;">
+                                            <div class="portlet-titles">'.$financialYearName.' - Budget Details</div>
+                                            Bar Graph
+                                        </div>
+                                        <div class="col-md-5 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
+                                            <div class="portlet-titles">'.$financialYearName.' - Budget Proportion</div>
+                                            Pie Chart
+                                        </div> 
+                                    </div>
+                                    <!--END OF FINANCIAL ALLOCATION CHARTS-->';
+        
+        
+        
+        echo $schoolBudgetStatusView;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method fetches financial year details and returns an array of data
+     */
+    private function fetchSchoolFinancialYear($systemSchoolCode, $financialYearCode = NULL){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        if($financialYearCode == NULL || empty($financialYearCode) || $financialYearCode == ""){
+            
+            $zvs_sqlValue["financialYearStatus"] = Zf_QueryGenerator::SQLValue(1);
+            
+        }else if(!empty($financialYearCode) && $financialYearCode != "" && $financialYearCode != NULL){
+            
+            $zvs_sqlValue["financialYearCode"] = Zf_QueryGenerator::SQLValue($financialYearCode);
+            
+        }
+        
+        $fetchSchoolFinancialYears = Zf_QueryGenerator::BuildSQLSelect('zvs_school_financial_years', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolFinancialYears = $this->Zf_AdoDB->Execute($fetchSchoolFinancialYears);
+
+        if(!$zf_executeFetchSchoolFinancialYears){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolFinancialYears->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolFinancialYears->EOF){
+                    
+                    $results = $zf_executeFetchSchoolFinancialYears->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    /**
      * This method processes total amount expected for collection from school 
      * fees
      */
-    public function estimatedRunningBudget($identificationCode){
+    public function estimatedRunningBudget($systemSchoolCode, $financialYearCode){
         
-        //This is the system school code
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+        //Here we return an array with the school running budget
+        $schoolRunningBudget = $this->fetchRunningBudgetDetails($systemSchoolCode, $financialYearCode);
         
-        $estimatedRunningBudget = 300000;
+        $estimatedRunningBudget = 0;
+        
+        if($schoolRunningBudget  == 0){
+            
+            $estimatedRunningBudget = $estimatedRunningBudget + 0;
+            
+        }else{
+            
+            foreach ($schoolRunningBudget as $runningBudgetValue) {
+                
+                $budgetedAmount = $runningBudgetValue['budgetedAmount'];
+                                        
+                $estimatedRunningBudget = $estimatedRunningBudget + $budgetedAmount;
+                
+            }
+            
+        }
         
         return number_format($estimatedRunningBudget, 2);
         
@@ -291,14 +560,30 @@ class processFinanceStatus_Model extends Zf_Model {
      * This method processes total amount expected for collection from school 
      * fees
      */
-    public function totalAmountAllocated($identificationCode){
+    public function totalAmountAllocated($systemSchoolCode, $financialYearCode){
         
-        //This is the system school code
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+        //Here we return an array with the school running budget
+        $schoolBudgetAllocation = $this->fetchBudgetAllocationDetails($systemSchoolCode, $financialYearCode);
         
-        $totalAmountAllocated = 210000;
+        $totalBudgetAllocation = 0;
         
-        return number_format($totalAmountAllocated, 2);
+        if($schoolBudgetAllocation  == 0){
+            
+            $totalBudgetAllocation = $totalBudgetAllocation + 0;
+            
+        }else{
+            
+            foreach ($schoolBudgetAllocation as $budgetAllocationValue) {
+                
+                $allocatedAmount = $budgetAllocationValue['allocatedAmount'];
+                                        
+                $totalBudgetAllocation = $totalBudgetAllocation + $allocatedAmount;
+                
+            }
+            
+        }
+        
+        return number_format($totalBudgetAllocation, 2);
         
     }
     
@@ -309,14 +594,15 @@ class processFinanceStatus_Model extends Zf_Model {
      * This method processes total amount expected for collection from school 
      * fees
      */
-    public function totalAllocationBalance($identificationCode){
+    public function totalAllocationPending($systemSchoolCode, $financialYearCode){
         
-        //This is the system school code
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+        $budgetedAmount  = Zf_Core_Functions::Zf_unformatNumbers($this->estimatedRunningBudget($systemSchoolCode, $financialYearCode));
         
-        $totalAllocationBalance = 70000;
+        $allocatedAmount = Zf_Core_Functions::Zf_unformatNumbers($this->totalAmountAllocated($systemSchoolCode, $financialYearCode));
         
-        return number_format($totalAllocationBalance, 2);
+        $totalAllocationPending = $budgetedAmount - $allocatedAmount;
+        
+        return number_format($totalAllocationPending, 2);
         
     }
     
@@ -768,11 +1054,10 @@ class processFinanceStatus_Model extends Zf_Model {
         
         
     }
+
     
     
-    
-    
-    
+   
     /**
      * This private method plots the financial status pie chart for the school
      */
@@ -1036,6 +1321,88 @@ class processFinanceStatus_Model extends Zf_Model {
         
     }
     
+    
+    
+    
+    /**
+     * This private method fetches all the schools budget details for the selected financial year
+     */
+    private function fetchRunningBudgetDetails($systemSchoolCode, $financialYearCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["financialYearCode"] = Zf_QueryGenerator::SQLValue($financialYearCode);
+        
+        $fetchSchoolBudgetDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_running_budget', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolBudgetDetails = $this->Zf_AdoDB->Execute($fetchSchoolBudgetDetails);
+
+        if(!$zf_executeFetchSchoolBudgetDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolBudgetDetails->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolBudgetDetails->EOF){
+                    
+                    $results = $zf_executeFetchSchoolBudgetDetails->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    /**
+     * This private method fetches all the schools budget details for the selected financial year
+     */
+    private function fetchBudgetAllocationDetails($systemSchoolCode, $financialYearCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_sqlValue["financialYearCode"] = Zf_QueryGenerator::SQLValue($financialYearCode);
+        
+        $fetchSchoolBudgetDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_finance_allocation', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolBudgetDetails = $this->Zf_AdoDB->Execute($fetchSchoolBudgetDetails);
+
+        if(!$zf_executeFetchSchoolBudgetDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolBudgetDetails->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolBudgetDetails->EOF){
+                    
+                    $results = $zf_executeFetchSchoolBudgetDetails->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
 }
 
 ?>
