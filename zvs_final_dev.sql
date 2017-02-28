@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Feb 23, 2017 at 05:49 PM
+-- Generation Time: Feb 28, 2017 at 09:10 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -138,7 +138,7 @@ CREATE TABLE `zvs_fees_payment_detials` (
   `approvedBy` varchar(240) NOT NULL DEFAULT 'Not yet approved',
   `approvalDate` datetime NOT NULL,
   `feesStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_fees_payment_detials`
@@ -155,7 +155,9 @@ INSERT INTO `zvs_fees_payment_detials` (`id`, `studentIdentificationCode`, `stud
 (8, '2OSpdqbWNYVQx-4g4GuFV23CrbimzwIT6LY-NGiCHn151-QkxhO4efqMqH1Ddpjg9LMRUy4rU-AjyUM9bnq1O015y12zQDqIIR2Y6CbpKtbG4nq7eQ2EptKcbFx4esHF', '2112', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormTwo', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormTwo[`^`]East', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]SecondTerm[`^`]2017', 2017, 13527.50, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:32:27', 'Not yet approved', '0000-00-00 00:00:00', 0),
 (9, 'KCZVMKpxNICmofxlL5QTDrQqxXVm0B2U1jcvr2RlxQj982IWzB-90F9fb-1tccW9RTMdVuXDhlBDd21qBICk8Jnjbqs0lVf-3qaihYVmuvHbAaeS0dFg_tG5uWqajBu4', '2113', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormTwo', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormTwo[`^`]North', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FirstTerm[`^`]2017', 2017, 19325.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:35:34', 'Not yet approved', '0000-00-00 00:00:00', 0),
 (10, 'oh6SipmG5IpN08r3LivJzYL__72riRvPlI8Nz0rE9Gs7ocR-XZDDXwGGNizAL4AaDUsXZFZDCNpLt2BwhLni4rPAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '3111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormThree', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormThree[`^`]East', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FirstTerm[`^`]2017', 2017, 19325.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:37:08', 'Not yet approved', '0000-00-00 00:00:00', 0),
-(11, 'oh6SipmG5IpN08r3LivJzYL__72riRvPlI8Nz0rE9Gs7ocR-XZDDXwGGNizAL4AaDUsXZFZDCNpLt2BwhLni4rPAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '3111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormThree', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormThree[`^`]East', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]SecondTerm[`^`]2017', 2017, 13527.50, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:37:32', 'Not yet approved', '0000-00-00 00:00:00', 0);
+(11, 'oh6SipmG5IpN08r3LivJzYL__72riRvPlI8Nz0rE9Gs7ocR-XZDDXwGGNizAL4AaDUsXZFZDCNpLt2BwhLni4rPAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '3111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormThree', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormThree[`^`]East', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]SecondTerm[`^`]2017', 2017, 13527.50, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:37:32', 'Not yet approved', '0000-00-00 00:00:00', 0),
+(12, 'k-EINdzHUkhtZq_gIUoxFbWFVG7yo-8h8qzVnxYQTiQQMxKmg-eQhAZzxPHpMZnQISwf3WaPYdlLnyzKPfV317PAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '4111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormFour', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormFour[`^`]East', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FirstTerm[`^`]2017', 2017, 24075.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-25 19:45:38', 'Not yet approved', '0000-00-00 00:00:00', 0),
+(13, 'k-EINdzHUkhtZq_gIUoxFbWFVG7yo-8h8qzVnxYQTiQQMxKmg-eQhAZzxPHpMZnQISwf3WaPYdlLnyzKPfV317PAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '4111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormFour', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]FormFour[`^`]East', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]SecondTerm[`^`]2017', 2017, 7222.50, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-25 20:01:08', 'Not yet approved', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -187,7 +189,7 @@ INSERT INTO `zvs_fees_payment_reserved` (`id`, `studentIdentificationCode`, `stu
 (5, '2OSpdqbWNYVQx-4g4GuFV23CrbimzwIT6LY-NGiCHn151-QkxhO4efqMqH1Ddpjg9LMRUy4rU-AjyUM9bnq1O015y12zQDqIIR2Y6CbpKtbG4nq7eQ2EptKcbFx4esHF', '2112', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 0.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:34:30'),
 (6, 'KCZVMKpxNICmofxlL5QTDrQqxXVm0B2U1jcvr2RlxQj982IWzB-90F9fb-1tccW9RTMdVuXDhlBDd21qBICk8Jnjbqs0lVf-3qaihYVmuvHbAaeS0dFg_tG5uWqajBu4', '2113', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 0.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:36:28'),
 (7, 'oh6SipmG5IpN08r3LivJzYL__72riRvPlI8Nz0rE9Gs7ocR-XZDDXwGGNizAL4AaDUsXZFZDCNpLt2BwhLni4rPAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '3111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 0.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:39:38'),
-(8, 'k-EINdzHUkhtZq_gIUoxFbWFVG7yo-8h8qzVnxYQTiQQMxKmg-eQhAZzxPHpMZnQISwf3WaPYdlLnyzKPfV317PAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '4111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 0.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-13 15:47:54');
+(8, 'k-EINdzHUkhtZq_gIUoxFbWFVG7yo-8h8qzVnxYQTiQQMxKmg-eQhAZzxPHpMZnQISwf3WaPYdlLnyzKPfV317PAHmxwFYEybxv0DTuRvyTuhBmlESJWhAeNA4IrzdUT', '4111', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 0.00, '', '', 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-25 20:01:08');
 
 -- --------------------------------------------------------
 
@@ -596,14 +598,18 @@ CREATE TABLE `zvs_school_budget_categories` (
   `dateCreated` date DEFAULT NULL,
   `dateModified` date NOT NULL,
   `budgetCategoryStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_budget_categories`
 --
 
 INSERT INTO `zvs_school_budget_categories` (`id`, `systemSchoolCode`, `financialYearCode`, `budgetCategoryCode`, `budgetCategoryName`, `budgetCategoryAlias`, `dateCreated`, `dateModified`, `budgetCategoryStatus`) VALUES
-(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Library', 'Library', 'Library', '2017-02-22', '0000-00-00', 0);
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Library', 'Library', '2017-02-24', '0000-00-00', 0),
+(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Health', 'Health', 'Health', '2017-02-24', '0000-00-00', 0),
+(3, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory', 'Laboratory', 'Laboratory', '2017-02-24', '0000-00-00', 0),
+(4, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear[`^`]Library', 'Library', 'Library', '2017-02-24', '0000-00-00', 0),
+(5, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear[`^`]Kitchen', 'Kitchen', 'Kitchen', '2017-02-24', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -613,15 +619,28 @@ INSERT INTO `zvs_school_budget_categories` (`id`, `systemSchoolCode`, `financial
 
 CREATE TABLE `zvs_school_budget_sub_categories` (
   `id` int(11) NOT NULL,
-  `systemSchoolCode` varchar(200) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
   `financialYearCode` varchar(240) NOT NULL,
-  `budgetCategoryCode` varchar(200) NOT NULL,
-  `budgetSubCategoryCode` varchar(200) NOT NULL,
+  `budgetCategoryCode` varchar(240) NOT NULL,
+  `budgetSubCategoryCode` varchar(240) NOT NULL,
   `subCategoryName` varchar(30) NOT NULL,
+  `subCategoryAlias` varchar(45) NOT NULL,
   `dateCreated` date DEFAULT NULL,
   `dateModified` date NOT NULL,
   `subCategoryStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_budget_sub_categories`
+--
+
+INSERT INTO `zvs_school_budget_sub_categories` (`id`, `systemSchoolCode`, `financialYearCode`, `budgetCategoryCode`, `budgetSubCategoryCode`, `subCategoryName`, `subCategoryAlias`, `dateCreated`, `dateModified`, `subCategoryStatus`) VALUES
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]Books', 'Books', 'Books', '2017-02-24', '0000-00-00', 0),
+(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]BooksRack', 'Books Rack', 'Books Rack', '2017-02-24', '0000-00-00', 0),
+(3, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear[`^`]Kitchen', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear[`^`]Kitchen[`^`]Maize', 'Maize', 'Maize', '2017-02-24', '0000-00-00', 0),
+(4, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Health', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Health[`^`]Medicines', 'Medicines', 'Medicines', '2017-02-26', '0000-00-00', 0),
+(5, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory[`^`]LabChemicals', 'Lab Chemicals', 'Lab Chemicals', '2017-02-26', '0000-00-00', 0),
+(6, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory[`^`]LabChairs', 'Lab Chairs', 'Lab Chairs', '2017-02-26', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -1009,6 +1028,33 @@ CREATE TABLE `zvs_school_examinations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `zvs_school_finance_allocation`
+--
+
+CREATE TABLE `zvs_school_finance_allocation` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
+  `financialYearCode` varchar(240) NOT NULL,
+  `budgetCategoryCode` varchar(240) NOT NULL,
+  `budgetSubCategoryCode` varchar(240) NOT NULL,
+  `allocatedAmount` double NOT NULL,
+  `createdBy` varchar(240) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `allocationStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_finance_allocation`
+--
+
+INSERT INTO `zvs_school_finance_allocation` (`id`, `systemSchoolCode`, `financialYearCode`, `budgetCategoryCode`, `budgetSubCategoryCode`, `allocatedAmount`, `createdBy`, `dateCreated`, `allocationStatus`) VALUES
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]Books', 50000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-28 00:00:00', 0),
+(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]BooksRack', 20000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-28 00:00:00', 0),
+(4, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]BooksRack', 10000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-28 00:00:00', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `zvs_school_financial_years`
 --
 
@@ -1022,14 +1068,15 @@ CREATE TABLE `zvs_school_financial_years` (
   `financialYearEndDate` date NOT NULL,
   `dateCreated` date NOT NULL,
   `financialYearStatus` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `zvs_school_financial_years`
 --
 
 INSERT INTO `zvs_school_financial_years` (`id`, `systemSchoolCode`, `financialYearCode`, `financialYearName`, `financialYearAlias`, `financialYearStartDate`, `financialYearEndDate`, `dateCreated`, `financialYearStatus`) VALUES
-(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', '2017 - Financial Year', '2017 Financial Year', '2017-01-01', '2017-12-31', '2017-02-22', 1);
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', '2017 - Financial Year', '2017 Financial Year', '2017-01-01', '2017-12-31', '2017-02-22', 1),
+(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2018-FinancialYear', '2018 - Financial Year', '2018 Financial Year', '2018-01-01', '2018-12-31', '2017-02-24', 0);
 
 -- --------------------------------------------------------
 
@@ -1191,6 +1238,35 @@ INSERT INTO `zvs_school_roles` (`id`, `systemSchoolCode`, `schoolRoleCode`, `sch
 (1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Principal', 'Principal', 'Principal', 'Principal', '2017-02-13', NULL, 1, 1),
 (2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Student', 'Student', 'Student', 'Student', '2017-02-13', NULL, 0, 1),
 (3, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]Parent', 'Parent', 'Parent', 'Parent', '2017-02-13', NULL, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zvs_school_running_budget`
+--
+
+CREATE TABLE `zvs_school_running_budget` (
+  `id` int(11) NOT NULL,
+  `systemSchoolCode` varchar(240) NOT NULL,
+  `financialYearCode` varchar(240) NOT NULL,
+  `budgetCategoryCode` varchar(240) NOT NULL,
+  `budgetSubCategoryCode` varchar(240) NOT NULL,
+  `budgetedAmount` double NOT NULL,
+  `createdBy` varchar(240) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `budgetStatus` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zvs_school_running_budget`
+--
+
+INSERT INTO `zvs_school_running_budget` (`id`, `systemSchoolCode`, `financialYearCode`, `budgetCategoryCode`, `budgetSubCategoryCode`, `budgetedAmount`, `createdBy`, `dateCreated`, `budgetStatus`) VALUES
+(1, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]Books', 100000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-25 00:00:00', 0),
+(2, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Library[`^`]BooksRack', 30000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-26 00:00:00', 0),
+(3, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Health', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Health[`^`]Medicines', 25000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-26 00:00:00', 0),
+(4, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory[`^`]LabChemicals', 35000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-26 00:00:00', 0),
+(5, 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory', 'Q&4%JR!abMgAfy*C15EVc2IYw3kKiL[`^`]2017-FinancialYear[`^`]Laboratory[`^`]LabChairs', 12000, 'i5OQFJp-sCHLEcjOAF_sed6nTEGw_tMwjRCdTyypl7Qx8nx0nKi4hI5kqCPArcxu2LNFBtaP0vZsBevbxGvQTg4tQEvNYpP95_59q_DnjhfJO6Q0GGn4SA4yKt-JFWDf', '2017-02-26 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -1741,6 +1817,12 @@ ALTER TABLE `zvs_school_examinations`
   ADD UNIQUE KEY `systemExamCode` (`systemExamCode`);
 
 --
+-- Indexes for table `zvs_school_finance_allocation`
+--
+ALTER TABLE `zvs_school_finance_allocation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `zvs_school_financial_years`
 --
 ALTER TABLE `zvs_school_financial_years`
@@ -1785,6 +1867,12 @@ ALTER TABLE `zvs_school_payment_modes`
 ALTER TABLE `zvs_school_roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `schoolRoleCode_UNIQUE` (`schoolRoleCode`);
+
+--
+-- Indexes for table `zvs_school_running_budget`
+--
+ALTER TABLE `zvs_school_running_budget`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `zvs_school_streams`
@@ -1883,7 +1971,7 @@ ALTER TABLE `zvs_class_school_fees`
 -- AUTO_INCREMENT for table `zvs_fees_payment_detials`
 --
 ALTER TABLE `zvs_fees_payment_detials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `zvs_fees_payment_reserved`
 --
@@ -1953,12 +2041,12 @@ ALTER TABLE `zvs_school_attendance_schedule`
 -- AUTO_INCREMENT for table `zvs_school_budget_categories`
 --
 ALTER TABLE `zvs_school_budget_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_school_budget_sub_categories`
 --
 ALTER TABLE `zvs_school_budget_sub_categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `zvs_school_classes`
 --
@@ -1990,10 +2078,15 @@ ALTER TABLE `zvs_school_details`
 ALTER TABLE `zvs_school_examinations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `zvs_school_finance_allocation`
+--
+ALTER TABLE `zvs_school_finance_allocation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `zvs_school_financial_years`
 --
 ALTER TABLE `zvs_school_financial_years`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `zvs_school_grades`
 --
@@ -2019,6 +2112,11 @@ ALTER TABLE `zvs_school_payment_modes`
 --
 ALTER TABLE `zvs_school_roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `zvs_school_running_budget`
+--
+ALTER TABLE `zvs_school_running_budget`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `zvs_school_streams`
 --
