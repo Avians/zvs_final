@@ -212,11 +212,11 @@ class processFinanceStatus_Model extends Zf_Model {
                             <div class="row">
                                 <div class="col-md-5 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10" style="border-right: 1px solid #efefef; min-height: 350px !important; height: auto !important;">
                                     <div class="portlet-titles">'.$postedFinancialYear.' - Finance Status Proportion</div>
-                                    <div id="financeStatusPie">'.$this->financialStatusPieChart($identificationCode, $postedFinancialYear).'</div>
+                                    <div id="feesFinanceStatusPieChart">'.$this->financialFeesStatusPieChart($identificationCode, $postedFinancialYear).'</div>
                                 </div> 
                                 <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
                                     <div class="portlet-titles">'.$postedFinancialYear.' - Class Finance Status</div>
-                                    <div id="financeStatusBarGraph">'.$this->financialStatusBarGraph($identificationCode, $postedFinancialYear).'</div>
+                                    <div id="feesFinanceStatusBarGraph">'.$this->financialFeesStatusBarGraph($identificationCode, $postedFinancialYear).'</div>
                                 </div>
                             </div>
                             <!--END OF FINANCIAL STATUS CHARTS-->';
@@ -225,10 +225,7 @@ class processFinanceStatus_Model extends Zf_Model {
         
     }
 
-
-
-
-
+   
 
     /**
      * This method processes total amount expected for collection from school 
@@ -269,7 +266,7 @@ class processFinanceStatus_Model extends Zf_Model {
      * This method processes total amount expected for collection from school 
      * fees
      */
-    public function totalAmountPending($identificationCode,$postedFinancialYear){
+    public function totalAmountPending($identificationCode, $postedFinancialYear){
         
         //This is the system school code
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
@@ -287,7 +284,7 @@ class processFinanceStatus_Model extends Zf_Model {
      * This method plots the chat for the finance status for the selected year
      * While showing what had been paid against what is pending.
      */
-    public function financialStatusPieChart($identificationCode, $postedFinancialYear){
+    public function financialFeesStatusPieChart($identificationCode, $postedFinancialYear){
         
         //This is the system school code
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
@@ -296,7 +293,7 @@ class processFinanceStatus_Model extends Zf_Model {
         $amountPaid = $this->zvs_generatePaidSchoolFees($systemSchoolCode, $postedFinancialYear);
         $amountPending = ($amountExpected - $amountPaid);
         
-        return $this->zvs_plotFinancialStatusPieChart($amountExpected, $amountPaid, $amountPending, $postedFinancialYear);
+        return $this->zvs_plotFinancialFeesStatusPieChart($amountExpected, $amountPaid, $amountPending, $postedFinancialYear);
         
     }
     
@@ -307,12 +304,257 @@ class processFinanceStatus_Model extends Zf_Model {
      * This method plots the chat for the finance status for the selected year
      * While showing what had been paid against what is pending.
      */
-    public function financialStatusBarGraph($identificationCode, $postedFinancialYear){
+    public function financialFeesStatusBarGraph($identificationCode, $postedFinancialYear){
         
         //This is the system school code
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
-        return $this->zvs_plotFinancialStatusBarGraph($systemSchoolCode, $postedFinancialYear);
+        return $this->zvs_plotFinancialFeesStatusBarGraph($systemSchoolCode, $postedFinancialYear);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method plots the financial status pie chart for the school
+     */
+    private function zvs_plotFinancialFeesStatusPieChart($amountExpected, $amountPaid, $amountPending, $postedFinancialYear){
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Doughnut2D",
+            "ChartID" => "feesFinancialStatusProportion".$postedFinancialYear,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "350",
+            "ChartContainer" => "feesFinanceStatusPieChart",
+            "ChartDataFormat" =>  "json",
+        );
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{
+                                "bgColor": "#ffffff",
+                                "pieRadius": "100",
+                                "showBorder": "0",
+                                "use3DLighting": "0",
+                                "showShadow": "0",
+                                "showLabels": "1", 
+                                "enableSmartLabels": "1",
+                                "exportenabled": "1",
+                                "showValues": "1",
+                                "exportFileName": "2017 - School Finance Proportions",
+                                "startingAngle": "120",
+                                "slicingDistance" : "8",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "defaultCenterLabel": "Total Expected Kshs:<br>'.number_format($amountExpected, 2).'</span>",
+                                "centerLabel": "$label $value",
+                                "centerLabelBold": "1",
+                                "decimals": "0",
+                                "captionFontSize": "14",
+                                "subcaptionFontSize": "14",
+                                "subcaptionFontBold": "0",
+                                "toolTipColor": "#ffffff",
+                                "toolTipBorderThickness": "0",
+                                "toolTipBgColor": "#000000",
+                                "toolTipBgAlpha": "80",
+                                "toolTipBorderRadius": "10",
+                                "toolTipPadding": "5",
+                                "showHoverEffect": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": "0",
+                                "legendShadow": "0",
+                                "legendItemFontSize": "10",
+                                "legendItemFontColor": "#666666",
+                                "legendPosition": "bottom",
+                                "legendCaptionAlignment": "left",
+                                "useDataPlotColorForLabels": "1",
+                                "numberPrefix": " Kshs: ",
+                                "formatNumberScale": "0",
+                                "decimalSeparator": ".",
+                                "thousandSeparator": ",",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        //This is the actual chart data in JSON format
+        $chartData = '
+            
+                "data":[ 
+                  {  
+                    "label":"Pending Amount",
+                    "value":"'.$amountPending.'",
+                    "tooltext": "Total Amount Pending, <br> KES: '.number_format($amountPending, 2).'"
+                  },
+                  {  
+                    "label":"Paid Amount",
+                    "value":"'.$amountPaid.'",
+                    "tooltext": "Total Amount Paid, <br> KES: '.number_format($amountPaid, 2).'"
+                  }
+                  
+                ]
+                            
+                    ';
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+        
+    }
+
+    
+    
+   
+    /**
+     * This private method plots the financial status pie chart for the school
+     */
+    private function zvs_plotFinancialFeesStatusBarGraph($systemSchoolCode, $postedFinancialYear){
+        
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "MSColumn2D",
+            "ChartID" => "feesFinancialStatusBarGraph".$postedFinancialYear,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "350",
+            "ChartContainer" => "feesFinanceStatusBarGraph",
+            "ChartDataFormat" =>  "json",
+        );
+
+                                
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{  
+                                "caption": "Financial Status by Classes",
+                                "captionFontSize": "11",
+                                "xAxisName": "School Classes",
+                                "yAxisName": "Amount of Money",
+                                "bgColor": "#ffffff",
+                                "palettecolors": "#4D998D, #04476C",
+                                "showHoverEffect": "1",
+                                "borderAlpha": "20",
+                                "exportenabled": "1",
+                                "exportFileName": "2017 - Class Finance Status",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "1",
+                                "valueFontColor": "#0F4E74",
+                                "useDataPlotColorForLabels": "1",
+                                "labelDisplay": "rotate",
+                                "slantLabels": "1",
+                                "labelDistance": "1",
+                                "plotSpacePercent" : "30",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        //Here we return all classes within the school
+        $zvs_fetchClassDetails = $this->zvs_fetchClassDetails($systemSchoolCode);
+        
+        if($zvs_fetchClassDetails == 0){
+            
+            echo "There is no class data!!";
+            
+        }else{
+            
+            //Here we process the class loop
+            $chartData = "";
+            
+            $chartData .='
+                        
+                            "categories" : [
+                                {
+                                    "category" : [';
+                                        
+                                        foreach($zvs_fetchClassDetails as $classValues){
+
+                                            $zvs_className = $classValues['schoolClassName'];
+                                            
+                                            $chartData .='{
+                                                
+                                                            "label": "'.$zvs_className.'"
+                                                            
+                                                          },';
+
+                                        }
+                                            
+                        $chartData .=']
+                                }
+                            ],
+
+                        ';
+            
+            $chartData .='
+                        
+                            "dataset" : [
+                                {
+                                    
+                                    "seriesname" : "Total Paid Amount",
+                                    "data" : [';
+
+                                        foreach($zvs_fetchClassDetails as $classValues){
+                                            
+                                            $schoolClassCode =  $classValues['schoolClassCode'];
+                                            
+                                            //Calculate total amount paid by students in the selected class
+                                            
+                                            $totalAmountPaid = $this->zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $chartData .='{
+                                                
+                                                            "value": "'.$totalAmountPaid.'",
+                                                            "tooltext": "Total '.$zvs_className.' Paid Amount, <br> KES: '.number_format($totalAmountPaid, 2).'"    
+                                                            
+                                                          },';
+                                            
+                                        }
+
+                        $chartData .=']
+                            
+                                },
+                                {
+                                    "seriesname" : "Total Pending Amount",
+                                    "data" : [';
+
+                                        foreach($zvs_fetchClassDetails as $classValues){
+                                            
+                                            $schoolClassCode =  $classValues['schoolClassCode'];
+                                            
+                                            //Calculate total amount pending by students in the selected class
+                                            
+                                            $totalAmountPending = $this->zvs_classTotalAmountPending($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $chartData .='{
+                                                
+                                                            "value": "'.$totalAmountPending.'",
+                                                            "tooltext": "Total '.$zvs_className.' Pending Amount, <br> KES: '.number_format($totalAmountPending, 2).'"     
+                                                            
+                                                          },';
+                                            
+                                        }
+
+                        $chartData .=']
+                                }
+                            ]
+
+                        ';
+            
+        }
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
         
     }
     
@@ -449,19 +691,18 @@ class processFinanceStatus_Model extends Zf_Model {
                                     <!--END OF FINANCIAL ALLOCATIONS-->
 
                                     <div class="clearfix margin-top-10"><hr></div>
-
-                                    <!--START OF FINANCIAL ALLOCATION CHARTS-->
+                                    <!--START OF FINANCIAL STATUS CHARTS-->
                                     <div class="row">
-                                        <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10" style="border-right: 1px solid #efefef; min-height: 300px !important; height: auto !important;">
-                                            <div class="portlet-titles">'.$financialYearName.' - Budget Details</div>
-                                            Bar Graph
-                                        </div>
-                                        <div class="col-md-5 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
-                                            <div class="portlet-titles">'.$financialYearName.' - Budget Proportion</div>
-                                            Pie Chart
+                                        <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10" style="border-right: 1px solid #efefef; min-height: 350px !important; height: auto !important;">
+                                            <div class="portlet-titles">'.$financialYearName.' Budget Details</div>
+                                            <div id="budgetFinanceStatusBarGraph">Bar Graph</div>
                                         </div> 
+                                        <div class="col-md-5 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
+                                            <div class="portlet-titles">'.$financialYearName.' Budget Proportion</div>
+                                            <div id="budgetFinanceStatusPieChart">'.$this->financialBudgetStatusPieChart($systemSchoolCode, $financialYearCode, $financialYearName).'</div>
+                                        </div>
                                     </div>
-                                    <!--END OF FINANCIAL ALLOCATION CHARTS-->';
+                                    <!--END OF FINANCIAL STATUS CHARTS-->';
         
         
         
@@ -605,6 +846,291 @@ class processFinanceStatus_Model extends Zf_Model {
         return number_format($totalAllocationPending, 2);
         
     }
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * This method plots the chat for the finance status for the selected year
+     * While showing what had been paid against what is pending.
+     */
+    public function financialBudgetStatusPieChart($systemSchoolCode, $financialYearCode, $financialYearName){
+        
+        $budgetedAmount  = Zf_Core_Functions::Zf_unformatNumbers($this->estimatedRunningBudget($systemSchoolCode, $financialYearCode));
+        $allocatedAmount = Zf_Core_Functions::Zf_unformatNumbers($this->totalAmountAllocated($systemSchoolCode, $financialYearCode));
+        $pendingAmount = Zf_Core_Functions::Zf_unformatNumbers($this->totalAllocationPending($systemSchoolCode, $financialYearCode));
+        
+        return $this->zvs_plotFinancialBudgetStatusPieChart($budgetedAmount, $allocatedAmount, $pendingAmount, $financialYearCode, $financialYearName);
+        //return $budgetedAmount."<br>".$allocatedAmount."<br>".$pendingAmount;
+        //return $financialYearCode."<br>".$financialYearName;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method plots the chat for the finance status for the selected year
+     * While showing what had been paid against what is pending.
+     */
+    public function financialBudgetStatusBarGraph($systemSchoolCode, $financialYearCode){
+        
+        //This is the system school code
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
+        
+        return $this->zvs_plotFinancialBudgetStatusBarGraph($systemSchoolCode, $postedFinancialYear);
+        
+    }
+    
+    
+    
+    
+    /**
+     * This private method plots the financial status pie chart for the school
+     */
+    private function zvs_plotFinancialBudgetStatusPieChart($budgetedAmount, $allocatedAmount, $pendingAmount, $financialYearCode, $financialYearName){
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "Doughnut2D",
+            "ChartID" => "budgetFinancialStatusProportion".$financialYearCode,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "350",
+            "ChartContainer" => "budgetFinanceStatusPieChart",
+            "ChartDataFormat" =>  "json",
+        );
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{
+                                "bgColor": "#ffffff",
+                                "pieRadius": "100",
+                                "showBorder": "0",
+                                "use3DLighting": "0",
+                                "showShadow": "0",
+                                "showLabels": "1", 
+                                "enableSmartLabels": "1",
+                                "exportenabled": "1",
+                                "showValues": "1",
+                                "exportFileName": "'.$financialYearName.' Proportions",
+                                "startingAngle": "120",
+                                "slicingDistance" : "8",
+                                "showPercentValues": "1",
+                                "showPercentInTooltip": "0",
+                                "defaultCenterLabel": "Total Budget Kshs:<br>'.number_format($budgetedAmount, 2).'</span>",
+                                "centerLabel": "$label $value",
+                                "centerLabelBold": "1",
+                                "decimals": "0",
+                                "captionFontSize": "14",
+                                "subcaptionFontSize": "14",
+                                "subcaptionFontBold": "0",
+                                "toolTipColor": "#ffffff",
+                                "toolTipBorderThickness": "0",
+                                "toolTipBgColor": "#000000",
+                                "toolTipBgAlpha": "80",
+                                "toolTipBorderRadius": "10",
+                                "toolTipPadding": "5",
+                                "showHoverEffect": "1",
+                                "showLegend": "1",
+                                "legendBgColor": "#ffffff",
+                                "legendBorderAlpha": "0",
+                                "legendShadow": "0",
+                                "legendItemFontSize": "10",
+                                "legendItemFontColor": "#666666",
+                                "legendPosition": "bottom",
+                                "legendCaptionAlignment": "left",
+                                "useDataPlotColorForLabels": "1",
+                                "numberPrefix": " Kshs: ",
+                                "formatNumberScale": "0",
+                                "decimalSeparator": ".",
+                                "thousandSeparator": ",",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        //This is the actual chart data in JSON format
+        $chartData = '
+            
+                "data":[ 
+                  {  
+                    "label":"Allocation Pending",
+                    "value":"'.$pendingAmount.'",
+                    "tooltext": "Total Allocation Pending, <br> KES: '.number_format($pendingAmount, 2).'"
+                  },
+                  {  
+                    "label":"Allocated Amount",
+                    "value":"'.$allocatedAmount.'",
+                    "tooltext": "Total Allocation Paid, <br> KES: '.number_format($allocatedAmount, 2).'"
+                  }
+                  
+                ]
+                            
+                    ';
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+        
+    }
+
+    
+    
+   
+    /**
+     * This private method plots the financial status pie chart for the school
+     */
+    private function zvs_plotFinancialBudgetStatusBarGraph($systemSchoolCode, $postedFinancialYear){
+        
+        
+        //These are the initial chart settings
+        $chartSettings = array(
+            "ChartType" => "MSColumn2D",
+            "ChartID" => "budgetFinancialStatusBarGraph".$postedFinancialYear,
+            "ChartWidth" =>  "100%",
+            "ChartHeight" =>  "350",
+            "ChartContainer" => "budgetFinanceStatusBarGraph",
+            "ChartDataFormat" =>  "json",
+        );
+
+                                
+        
+        //These chart properties add to the beauty of the chart
+        $chartProperties .= '
+            
+                            "chart":{  
+                                "caption": "Financial Status by Classes",
+                                "captionFontSize": "11",
+                                "xAxisName": "School Classes",
+                                "yAxisName": "Amount of Money",
+                                "bgColor": "#ffffff",
+                                "palettecolors": "#4D998D, #04476C",
+                                "showHoverEffect": "1",
+                                "borderAlpha": "20",
+                                "exportenabled": "1",
+                                "exportFileName": "2017 - Class Finance Status",
+                                "canvasBorderAlpha": "0",
+                                "usePlotGradientColor": "0",
+                                "plotBorderAlpha": "10",
+                                "placevaluesInside": "0",
+                                "rotatevalues": "1",
+                                "valueFontColor": "#0F4E74",
+                                "useDataPlotColorForLabels": "1",
+                                "labelDisplay": "rotate",
+                                "slantLabels": "1",
+                                "labelDistance": "1",
+                                "plotSpacePercent" : "30",
+                                "theme": "ocean"
+                            }
+                            
+                        ';
+        
+        
+        //Here we return all classes within the school
+        $zvs_fetchClassDetails = $this->zvs_fetchClassDetails($systemSchoolCode);
+        
+        if($zvs_fetchClassDetails == 0){
+            
+            echo "There is no class data!!";
+            
+        }else{
+            
+            //Here we process the class loop
+            $chartData = "";
+            
+            $chartData .='
+                        
+                            "categories" : [
+                                {
+                                    "category" : [';
+                                        
+                                        foreach($zvs_fetchClassDetails as $classValues){
+
+                                            $zvs_className = $classValues['schoolClassName'];
+                                            
+                                            $chartData .='{
+                                                
+                                                            "label": "'.$zvs_className.'"
+                                                            
+                                                          },';
+
+                                        }
+                                            
+                        $chartData .=']
+                                }
+                            ],
+
+                        ';
+            
+            $chartData .='
+                        
+                            "dataset" : [
+                                {
+                                    
+                                    "seriesname" : "Total Paid Amount",
+                                    "data" : [';
+
+                                        foreach($zvs_fetchClassDetails as $classValues){
+                                            
+                                            $schoolClassCode =  $classValues['schoolClassCode'];
+                                            
+                                            //Calculate total amount paid by students in the selected class
+                                            
+                                            $totalAmountPaid = $this->zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $chartData .='{
+                                                
+                                                            "value": "'.$totalAmountPaid.'",
+                                                            "tooltext": "Total '.$zvs_className.' Paid Amount, <br> KES: '.number_format($totalAmountPaid, 2).'"    
+                                                            
+                                                          },';
+                                            
+                                        }
+
+                        $chartData .=']
+                            
+                                },
+                                {
+                                    "seriesname" : "Total Pending Amount",
+                                    "data" : [';
+
+                                        foreach($zvs_fetchClassDetails as $classValues){
+                                            
+                                            $schoolClassCode =  $classValues['schoolClassCode'];
+                                            
+                                            //Calculate total amount pending by students in the selected class
+                                            
+                                            $totalAmountPending = $this->zvs_classTotalAmountPending($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $chartData .='{
+                                                
+                                                            "value": "'.$totalAmountPending.'",
+                                                            "tooltext": "Total '.$zvs_className.' Pending Amount, <br> KES: '.number_format($totalAmountPending, 2).'"     
+                                                            
+                                                          },';
+                                            
+                                        }
+
+                        $chartData .=']
+                                }
+                            ]
+
+                        ';
+            
+        }
+        
+        //Here we generate the actual chart
+        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
+        
+        
+    }
+    
+   
     
     
     
@@ -962,252 +1488,7 @@ class processFinanceStatus_Model extends Zf_Model {
     }
     
     
-    
-    
-    /**
-     * This private method plots the financial status pie chart for the school
-     */
-    private function zvs_plotFinancialStatusPieChart($amountExpected, $amountPaid, $amountPending, $postedFinancialYear){
-        
-        //These are the initial chart settings
-        $chartSettings = array(
-            "ChartType" => "Doughnut2D",
-            "ChartID" => "financialStatusProportion".$postedFinancialYear,
-            "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "350",
-            "ChartContainer" => "financeStatusPie",
-            "ChartDataFormat" =>  "json",
-        );
-        
-        //These chart properties add to the beauty of the chart
-        $chartProperties .= '
-            
-                            "chart":{
-                                "bgColor": "#ffffff",
-                                "pieRadius": "100",
-                                "showBorder": "0",
-                                "use3DLighting": "0",
-                                "showShadow": "0",
-                                "showLabels": "1", 
-                                "enableSmartLabels": "1",
-                                "exportenabled": "1",
-                                "showValues": "1",
-                                "exportFileName": "2017 - School Finance Proportions",
-                                "startingAngle": "120",
-                                "slicingDistance" : "8",
-                                "showPercentValues": "1",
-                                "showPercentInTooltip": "0",
-                                "defaultCenterLabel": "Total Expected Kshs:<br>'.number_format($amountExpected, 2).'</span>",
-                                "centerLabel": "$label $value",
-                                "centerLabelBold": "1",
-                                "decimals": "0",
-                                "captionFontSize": "14",
-                                "subcaptionFontSize": "14",
-                                "subcaptionFontBold": "0",
-                                "toolTipColor": "#ffffff",
-                                "toolTipBorderThickness": "0",
-                                "toolTipBgColor": "#000000",
-                                "toolTipBgAlpha": "80",
-                                "toolTipBorderRadius": "10",
-                                "toolTipPadding": "5",
-                                "showHoverEffect": "1",
-                                "showLegend": "1",
-                                "legendBgColor": "#ffffff",
-                                "legendBorderAlpha": "0",
-                                "legendShadow": "0",
-                                "legendItemFontSize": "10",
-                                "legendItemFontColor": "#666666",
-                                "legendPosition": "bottom",
-                                "legendCaptionAlignment": "left",
-                                "useDataPlotColorForLabels": "1",
-                                "numberPrefix": " Kshs: ",
-                                "formatNumberScale": "0",
-                                "decimalSeparator": ".",
-                                "thousandSeparator": ",",
-                                "theme": "ocean"
-                            }
-                            
-                        ';
-        
-        
-        //This is the actual chart data in JSON format
-        $chartData = '
-            
-                "data":[ 
-                  {  
-                    "label":"Pending Amount",
-                    "value":"'.$amountPending.'",
-                    "tooltext": "Total Amount Pending, <br> KES: '.number_format($amountPending, 2).'"
-                  },
-                  {  
-                    "label":"Paid Amount",
-                    "value":"'.$amountPaid.'",
-                    "tooltext": "Total Amount Paid, <br> KES: '.number_format($amountPaid, 2).'"
-                  }
-                  
-                ]
-                            
-                    ';
-        
-        //Here we generate the actual chart
-        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
-        
-        
-    }
-
-    
-    
    
-    /**
-     * This private method plots the financial status pie chart for the school
-     */
-    private function zvs_plotFinancialStatusBarGraph($systemSchoolCode, $postedFinancialYear){
-        
-        
-        //These are the initial chart settings
-        $chartSettings = array(
-            "ChartType" => "MSColumn2D",
-            "ChartID" => "financialStatusBarGraph".$postedFinancialYear,
-            "ChartWidth" =>  "100%",
-            "ChartHeight" =>  "350",
-            "ChartContainer" => "financeStatusBarGraph",
-            "ChartDataFormat" =>  "json",
-        );
-
-                                
-        
-        //These chart properties add to the beauty of the chart
-        $chartProperties .= '
-            
-                            "chart":{  
-                                "caption": "Financial Status by Classes",
-                                "captionFontSize": "11",
-                                "xAxisName": "School Classes",
-                                "yAxisName": "Amount of Money",
-                                "bgColor": "#ffffff",
-                                "palettecolors": "#4D998D, #04476C",
-                                "showHoverEffect": "1",
-                                "borderAlpha": "20",
-                                "exportenabled": "1",
-                                "exportFileName": "2017 - Class Finance Status",
-                                "canvasBorderAlpha": "0",
-                                "usePlotGradientColor": "0",
-                                "plotBorderAlpha": "10",
-                                "placevaluesInside": "0",
-                                "rotatevalues": "1",
-                                "valueFontColor": "#0F4E74",
-                                "useDataPlotColorForLabels": "1",
-                                "labelDisplay": "rotate",
-                                "slantLabels": "1",
-                                "labelDistance": "1",
-                                "plotSpacePercent" : "30",
-                                "theme": "ocean"
-                            }
-                            
-                        ';
-        
-        
-        //Here we return all classes within the school
-        $zvs_fetchClassDetails = $this->zvs_fetchClassDetails($systemSchoolCode);
-        
-        if($zvs_fetchClassDetails == 0){
-            
-            echo "There is no class data!!";
-            
-        }else{
-            
-            //Here we process the class loop
-            $chartData = "";
-            
-            $chartData .='
-                        
-                            "categories" : [
-                                {
-                                    "category" : [';
-                                        
-                                        foreach($zvs_fetchClassDetails as $classValues){
-
-                                            $zvs_className = $classValues['schoolClassName'];
-                                            
-                                            $chartData .='{
-                                                
-                                                            "label": "'.$zvs_className.'"
-                                                            
-                                                          },';
-
-                                        }
-                                            
-                        $chartData .=']
-                                }
-                            ],
-
-                        ';
-            
-            $chartData .='
-                        
-                            "dataset" : [
-                                {
-                                    
-                                    "seriesname" : "Total Paid Amount",
-                                    "data" : [';
-
-                                        foreach($zvs_fetchClassDetails as $classValues){
-                                            
-                                            $schoolClassCode =  $classValues['schoolClassCode'];
-                                            
-                                            //Calculate total amount paid by students in the selected class
-                                            
-                                            $totalAmountPaid = $this->zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
-                                            
-                                            $chartData .='{
-                                                
-                                                            "value": "'.$totalAmountPaid.'",
-                                                            "tooltext": "Total '.$zvs_className.' Paid Amount, <br> KES: '.number_format($totalAmountPaid, 2).'"    
-                                                            
-                                                          },';
-                                            
-                                        }
-
-                        $chartData .=']
-                            
-                                },
-                                {
-                                    "seriesname" : "Total Pending Amount",
-                                    "data" : [';
-
-                                        foreach($zvs_fetchClassDetails as $classValues){
-                                            
-                                            $schoolClassCode =  $classValues['schoolClassCode'];
-                                            
-                                            //Calculate total amount pending by students in the selected class
-                                            
-                                            $totalAmountPending = $this->zvs_classTotalAmountPending($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
-                                            
-                                            $chartData .='{
-                                                
-                                                            "value": "'.$totalAmountPending.'",
-                                                            "tooltext": "Total '.$zvs_className.' Pending Amount, <br> KES: '.number_format($totalAmountPending, 2).'"     
-                                                            
-                                                          },';
-                                            
-                                        }
-
-                        $chartData .=']
-                                }
-                            ]
-
-                        ';
-            
-        }
-        
-        //Here we generate the actual chart
-        Zf_GenerateCharts::zf_generate_chart($chartSettings, $chartProperties, $chartData);
-        
-        
-    }
-    
-   
-    
     
     /**
      * This method generates fees that is expected for the entire school 
