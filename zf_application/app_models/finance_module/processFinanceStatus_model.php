@@ -1176,11 +1176,11 @@ class processFinanceStatus_Model extends Zf_Model {
                                     <!--START OF FINANCIAL STATUS CHARTS-->
                                     <div class="row">
                                         <div class="col-md-7 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10" style="border-right: 1px solid #efefef; min-height: 350px !important; height: auto !important;">
-                                            <div class="portlet-titles">'.$financialYearName.' Budget Details</div>
+                                            <div class="portlet-titles">'.$financialYearName.', Budget Details</div>
                                             <div id="budgetFinanceStatusBarGraph">'.$this->financialBudgetStatusBarGraph($systemSchoolCode, $financialYearCode, $financialYearName).'</div>
                                         </div> 
                                         <div class="col-md-5 col-sm-12 col-xs-12 margin-top-10 margin-bottom-10">
-                                            <div class="portlet-titles">'.$financialYearName.' Budget Proportion</div>
+                                            <div class="portlet-titles">'.$financialYearName.', Budget Proportion</div>
                                             <div id="budgetFinanceStatusPieChart">'.$this->financialBudgetStatusPieChart($systemSchoolCode, $financialYearCode, $financialYearName).'</div>
                                         </div>
                                     </div>
