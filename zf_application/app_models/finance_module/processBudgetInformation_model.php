@@ -427,7 +427,7 @@ class processBudgetInformation_Model extends Zf_Model {
             $financialYearCode = $this->_validResult['financialYearCode'];
             $budgetCategoryCode = $this->_validResult['budgetCategoryCode'];
             $budgetSubCategoryCode = $this->_validResult['budgetSubCategoryCode'];
-            $allocatedAmount = (float)str_replace(',', '', $this->_validResult['allocatedAmount']);
+            $budgetedAmount = (float)str_replace(',', '', $this->_validResult['budgetedAmount']);
             
             //Prepare SQL queries to check if a class with a similar registration code exists within the same school.
             $newBudgetedValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
@@ -474,6 +474,7 @@ class processBudgetInformation_Model extends Zf_Model {
                     
                     //Build the insert SQL queries
                     $insertNewBudgetedDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_school_running_budget', $zvs_newBudgetDetails);
+                    
                     $executeInsertNewBudgetedDetails = $this->Zf_AdoDB->Execute($insertNewBudgetedDetails);
                     
                     if(!$executeInsertNewBudgetedDetails){
@@ -631,6 +632,7 @@ class processBudgetInformation_Model extends Zf_Model {
                                     //2. Find the amount already allocated for the budget item: X
                                     $totalAllocatedAmount = $this->zvs_budgetAllocatedAmount($systemSchoolCode, $financialYearCode, $budgetCategoryCode, $budgetSubCategoryCode);
                                     
+                                    
                                     //3. Find the balance remaining to be allocated for this budget item: Y = W - X
                                     $totalAllocationPending = $totalBudgetedAmount - $totalAllocatedAmount;
                                     
@@ -648,7 +650,6 @@ class processBudgetInformation_Model extends Zf_Model {
                                         
                                     }else{
                                         
-                                        
                                         //4. Prepare SQL values for insertion
                                         $zvs_newAllocationDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
                                         $zvs_newAllocationDetails['financialYearCode'] = Zf_QueryGenerator::SQLValue($financialYearCode);
@@ -656,9 +657,9 @@ class processBudgetInformation_Model extends Zf_Model {
                                         $zvs_newAllocationDetails['budgetSubCategoryCode'] = Zf_QueryGenerator::SQLValue($budgetSubCategoryCode);
 
                                         //5. Allocation amount comparison logic:
-                                        //5.1 If the balance Y is greater the current allocated amount Z, then just insert Z
-                                        // Y > Z =====> Insert Z
-                                        if($totalAllocationPending > $allocatedAmount){
+                                        //5.1 If the total allocated amount Z is less than current pending amount Y, then just insert Z
+                                        // Z < Y =====> Insert Z
+                                        if($allocatedAmount < $totalAllocationPending){
                                             
                                            $zvs_newAllocationDetails['allocatedAmount'] = Zf_QueryGenerator::SQLValue($allocatedAmount); 
 
@@ -668,6 +669,13 @@ class processBudgetInformation_Model extends Zf_Model {
                                         else if(($allocatedAmount > $totalAllocationPending) && ($totalAllocationPending != 0)){
                                             
                                             $zvs_newAllocationDetails['allocatedAmount'] = Zf_QueryGenerator::SQLValue($totalAllocationPending);
+
+                                        }
+                                        //IF the current allocated amount Z is equal to the current pending amount Y, then just insert the current allocated amount Z
+                                        // Z == Y, =====> Insert Z
+                                        else if(($allocatedAmount == $totalAllocationPending)){
+                                            
+                                            $zvs_newAllocationDetails['allocatedAmount'] = Zf_QueryGenerator::SQLValue($allocatedAmount);
 
                                         }
 
