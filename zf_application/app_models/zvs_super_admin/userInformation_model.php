@@ -513,6 +513,7 @@ class userInformation_Model extends Zf_Model {
                             
                             //Other database information for zvs application users
                             $zvs_userDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);
+                            $zvs_userDetails['zvs_user_role'] = Zf_QueryGenerator::SQLValue(ZVS_SUPER_ADMIN);
                             
                             //Other database information for zvs super administrators
                             $zvs_superAdminDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);        
@@ -774,6 +775,7 @@ class userInformation_Model extends Zf_Model {
                             
                             //Other database information for zvs application users
                             $zvs_userDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);
+                            $zvs_userDetails['zvs_user_role'] = Zf_QueryGenerator::SQLValue(ZVS_ADMIN);
                             
                             //Other database information for zvs super administrators
                             $zvs_platformAdminDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);        

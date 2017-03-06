@@ -61,25 +61,16 @@
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "student_module.php", $zvs_allowedResources);
          
     }
-
-
-    //5. Teacher Module(TchMod) ==> zvs_teacher
-    if(Zf_Core_Functions::Zf_recursiveArray(TEACHER_MODULE, $zvs_allowedResources)){
-        
-        Zf_ApplicationWidgets::zf_load_widget("modules_section", "teacher_module.php", $zvs_allowedResources);
-
-    }
-
     
-    //6. Sub Staff Module(SstMod) ==> zvs_subStaff
-    if(Zf_Core_Functions::Zf_recursiveArray(SUB_STAFF_MODULE, $zvs_allowedResources)){ 
+    //5. Staff Module(SstMod) ==> zvs_subStaff
+    if(Zf_Core_Functions::Zf_recursiveArray(STAFF_MODULE, $zvs_allowedResources)){ 
         
-        Zf_ApplicationWidgets::zf_load_widget("modules_section", "sub_staff_module.php", $zvs_allowedResources);
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "staff_module.php", $zvs_allowedResources);
     
     }  
     
     
-    //7. Parent Module(ParMod) ==> zvs_parent
+    //6. Parent Module(ParMod) ==> zvs_parent
     if(Zf_Core_Functions::Zf_recursiveArray(PARENT_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "parent_module.php", $zvs_allowedResources);
@@ -87,7 +78,7 @@
     }
 
  
-    //8. BOG Module(BogMod) ==> zvs_bog
+    //7. BOG Module(BogMod) ==> zvs_bog
     if(Zf_Core_Functions::Zf_recursiveArray(BOG_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "bog_module.php", $zvs_allowedResources);
@@ -95,7 +86,7 @@
     }
 
     
-    //9. Subject Module(SubMod) ==> zvs_subject
+    //8. Subject Module(SubMod) ==> zvs_subject
     if(Zf_Core_Functions::Zf_recursiveArray(SUBJECT_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "subject_module.php", $zvs_allowedResources);
@@ -103,7 +94,7 @@
     }
 
 
-    //10. Examination Module(ExmMod) ==> zvs_examination
+    //9. Examination Module(ExmMod) ==> zvs_examination
     if(Zf_Core_Functions::Zf_recursiveArray(EXAMINATION_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "examination_module.php", $zvs_allowedResources);
@@ -111,7 +102,7 @@
     }
 
 
-    //11. Grade Module(GrdMod) ==> zvs_grade
+    //10. Grade Module(GrdMod) ==> zvs_grade
     if(Zf_Core_Functions::Zf_recursiveArray(GRADE_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "grade_module.php", $zvs_allowedResources);
@@ -119,7 +110,7 @@
     }
 
  
-    //12. Timetable Module(TtbMod) ==> zvs_timetable
+    //11. Timetable Module(TtbMod) ==> zvs_timetable
     if(Zf_Core_Functions::Zf_recursiveArray(TIMETABLE_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "timetable_module.php", $zvs_allowedResources);
@@ -127,7 +118,7 @@
     }
 
  
-    //13. Noticeboard Module(NtcMod) ==> zvs_noticeboard
+    //12. Noticeboard Module(NtcMod) ==> zvs_noticeboard
     if(Zf_Core_Functions::Zf_recursiveArray(NOTICEBOARD_MODULE, $zvs_allowedResources)){
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "noticeboard_module.php", $zvs_allowedResources);
@@ -135,7 +126,7 @@
     }
 
  
-    //14. Library Module(LibMod) ==> zvs_library
+    //13. Library Module(LibMod) ==> zvs_library
     if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "library_module.php", $zvs_allowedResources);
@@ -143,7 +134,7 @@
     }
 
  
-    //15. Transport Module(TrnMod) ==> zvs_transport
+    //14. Transport Module(TrnMod) ==> zvs_transport
     if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "transport_module.php", $zvs_allowedResources);
@@ -151,7 +142,7 @@
     }
 
  
-    //16. Kitchen Module(KtnMod) ==> zvs_kitchen
+    //15. Kitchen Module(KtnMod) ==> zvs_kitchen
     if(Zf_Core_Functions::Zf_recursiveArray(KITCHEN_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "kitchen_module.php", $zvs_allowedResources);
@@ -159,7 +150,7 @@
     }
 
 
-    //17. Health Module(HthMod) ==> zvs_healthCare
+    //16. Health Module(HthMod) ==> zvs_healthCare
     if(Zf_Core_Functions::Zf_recursiveArray(HEALTH_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "health_module.php", $zvs_allowedResources);
@@ -167,7 +158,7 @@
     }
 
  
-    //18. Hostel Module(HosMod) ==> zvs_hostel
+    //17. Hostel Module(HosMod) ==> zvs_hostel
     if(Zf_Core_Functions::Zf_recursiveArray(HOSTEL_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "hostel_module.php", $zvs_allowedResources);
@@ -175,7 +166,7 @@
     } 
 
  
-    //19. Assets Module(AstMod) ==> zvs_assets
+    //18. Assets Module(AstMod) ==> zvs_assets
     if(Zf_Core_Functions::Zf_recursiveArray(ASSETS_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "assets_module.php", $zvs_allowedResources);

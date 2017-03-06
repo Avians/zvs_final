@@ -455,12 +455,14 @@ class newStudentRegistration_Model extends Zf_Model {
                                         $studentApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($studentEmailAddress);
                                         $studentApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($studentPassword));
                                         $studentApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                                        $studentApplicationUserDetails['zvs_user_role'] = Zf_QueryGenerator::SQLValue(ZVS_SCHOOL_STUDENT);
                                         $studentApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
 
 
                                         $guardianApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($guardianEmailAddress);
                                         $guardianApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($guardianPassword));
                                         $guardianApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
+                                        $guardianApplicationUserDetails['zvs_user_role'] = Zf_QueryGenerator::SQLValue(ZVS_SCHOOL_PARENT);
                                         $guardianApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
 
 

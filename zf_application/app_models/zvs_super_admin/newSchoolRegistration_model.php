@@ -304,6 +304,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                             
                             //1. application user details
                             $zvs_userDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode);
+                            $zvs_userDetails['zvs_platform_role'] = Zf_QueryGenerator::SQLValue(SCHOOL_MAIN_ADMIN);;
                             $zvs_userDetails['userStatus'] = Zf_QueryGenerator::SQLValue(ZVS_INACTIVE_USER);
                             
                             //2. school main admin details
@@ -318,7 +319,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                                 
                                 //We use the identification code to generate the corresponding image name.
                                 $imageName = Zf_Core_Functions::Zf_CleanName($identificationCode);
-                                $uploadDirectory = ZF_DATASTORE."zvs_user_images".DS."zvs_school_admin";
+                                $uploadDirectory = ZF_DATASTORE."zvs_user_images".DS."zvs_school_admin".DS.Zf_Core_Functions::Zf_CleanName($systemSchoolCode);
                                 $imageArray = $this->_validResult['imagePath'];
 
                                 //Store the user image into the datastore/user_images/zvs_super_admin directory

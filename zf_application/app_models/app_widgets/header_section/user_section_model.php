@@ -21,22 +21,32 @@ class user_section_Model extends Zf_Model {
      */
     public function zf_getUserDetails($identificationCode) {
         
-        //Get the user role held in a session variable.
-        $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+        $platformUserRole = $this->zf_fetchZilasUserRole($identificationCode);
 
-        $userRole = $identificationArray[3];
         
-        if($userRole == ZVS_SUPER_ADMIN){
+        if(ZVS_SUPER_ADMIN == $platformUserRole){
             
             $zvs_table = "zvs_super_admin";
             
-        }else if($userRole == ZVS_ADMIN){
+        }else if(ZVS_ADMIN == $platformUserRole){
             
             $zvs_table = "zvs_platform_admin";
             
-        }else if($userRole == SCHOOL_MAIN_ADMIN){
+        }else if(SCHOOL_MAIN_ADMIN == $platformUserRole){
             
             $zvs_table = "zvs_school_admin";
+            
+        }else if(ZVS_SCHOOL_STAFF == $platformUserRole){
+           
+            $zvs_table = "zvs_staff_personal_details";
+            
+        }else if(ZVS_SCHOOL_STUDENT == $platformUserRole){
+            
+            $zvs_table = "zvs_students_personal_details";
+            
+        }else if(ZVS_SCHOOL_PARENT == $platformUserRole){
+            
+            $zvs_table = "zvs_students_guardian_details";
             
         }
         
@@ -73,8 +83,8 @@ class user_section_Model extends Zf_Model {
         
     }
     
-    
-    
+
+
     
     /**
      * This method fetches the user profile image
@@ -83,20 +93,35 @@ class user_section_Model extends Zf_Model {
         
         //Get the user role held in a session variable.
         $identificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
-
-        $userRole = $identificationArray[3];
         
-        if($userRole == ZVS_SUPER_ADMIN){
+        $systemSchoolCode = Zf_Core_Functions::Zf_CleanName($identificationArray[2]);
+        
+        $platformUserRole = $this->zf_fetchZilasUserRole($identificationCode);
+
+        
+        if(ZVS_SUPER_ADMIN == $platformUserRole){
             
             $image_directory = "zvs_super_admin";
             
-        }else if($userRole == ZVS_ADMIN){
+        }else if(ZVS_ADMIN == $platformUserRole){
             
             $image_directory = "zvs_platform_admin";
             
-        }else if($userRole == SCHOOL_MAIN_ADMIN){
+        }else if(SCHOOL_MAIN_ADMIN == $platformUserRole){
+    
+            $image_directory = "zvs_school_admin".DS.$systemSchoolCode;
+
+        }else if(ZVS_SCHOOL_STAFF == $platformUserRole){
+           
+            $image_directory = "zvs_school_staff".DS.$systemSchoolCode;
             
-            $image_directory = "zvs_school_admin";
+        }else if(ZVS_SCHOOL_STUDENT == $platformUserRole){
+            
+            $image_directory = "zvs_school_student".DS.$systemSchoolCode;
+            
+        }else if(ZVS_SCHOOL_PARENT == $platformUserRole){
+            
+            $image_directory = "zvs_school_guardian".DS.$systemSchoolCode;
             
         }
          
@@ -108,6 +133,48 @@ class user_section_Model extends Zf_Model {
         echo  $image;
       
     }
+    
+    
+    
+    
+    
+    
+    /**
+     * This public method fetches the current user platform role
+     */
+    public function zf_fetchZilasUserRole($identificationCode){
+        
+        $zvs_sqlUserValue['identificationCode'] = Zf_QueryGenerator::SQLValue($identificationCode); 
+        $zf_selectUserRole = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $zvs_sqlUserValue);
+
+        if(!$this->Zf_QueryGenerator->Query($zf_selectUserRole)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$zf_selectUserRole}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $fetchRow = $this->Zf_QueryGenerator->Row();
+                    
+                    return $fetchRow->zvs_platform_role;
+
+                }
+
+            }
+        }
+        
+    }
+    
+    
     
 }
 ?>

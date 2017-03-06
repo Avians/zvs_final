@@ -163,16 +163,15 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Admin users constants
     defined('ZVS_SUPER_ADMIN')       ?   null : define('ZVS_SUPER_ADMIN'       ,  510);
     defined('ZVS_ADMIN')             ?   null : define('ZVS_ADMIN'             ,  509);
+    
+    //Zilas Virtual School - School Main Admin
+    defined('SCHOOL_MAIN_ADMIN') ?   null : define('SCHOOL_MAIN_ADMIN'         ,  209);
         
-    //School community users constants
-    defined('SCHOOL_PRINCIPAL')      ?   null : define('SCHOOL_PRINCIPAL'      ,  210);
-    defined('SCHOOL_MAIN_ADMIN')     ?   null : define('SCHOOL_MAIN_ADMIN'     ,  209);
-    defined('SCHOOL_GENERAL_ADMIN')  ?   null : define('SCHOOL_GENERAL_ADMIN'  ,  208);
-    defined('SCHOOL_SUB_STAFF')      ?   null : define('SCHOOL_SUB_STAFF'      ,  207);
-    defined('SCHOOL_BOG')            ?   null : define('SCHOOL_BOG'            ,  206);
-    defined('SCHOOL_STUDENT')        ?   null : define('SCHOOL_STUDENT'        ,  205);
-    defined('SCHOOL_PARENT')         ?   null : define('SCHOOL_PARENT'         ,  204);
-    defined('SCHOOL_ALUMNI')         ?   null : define('SCHOOL_ALUMNI'         ,  203);
+    //Zilas Virtual School User constants
+    defined('ZVS_SCHOOL_STAFF')         ?   null : define('ZVS_SCHOOL_STAFF'       ,  110);
+    defined('ZVS_SCHOOL_STUDENT')       ?   null : define('ZVS_SCHOOL_STUDENT'     ,  109);
+    defined('ZVS_SCHOOL_PARENT')        ?   null : define('ZVS_SCHOOL_PARENT'      ,  108);
+    defined('ZVS_EXTERNAL_ASSOCIATES')  ?   null : define('ZVS_EXTERNAL_ASSOCIATES',  107);
     
     //Platform restricted users
     defined('ZVS_ACTIVE_USER')       ?   null : define('ZVS_ACTIVE_USER'       ,  1);
@@ -254,14 +253,13 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         defined('SHIFT_STUDENTS') ? null : define('SHIFT_STUDENTS' , 'StuMod'.CONNECT.'ShiftStudents');
     
     
-    //Teacher Module and resources
-    defined('TCHMOD') ? null : define('TCHMOD' , 'teacher_module');
-    defined('TEACHER_MODULE') ? null : define('TEACHER_MODULE' , 'TchMod');
+    //Staff Module and resources
+    defined('STFMOD') ? null : define('STFMOD' , 'staff_module');
+    defined('STAFF_MODULE') ? null : define('STAFF_MODULE' , 'StfMod');
     
-    
-    //Sub Staff Module and resources
-    defined('SSTMOD') ? null : define('SSTMOD' , 'sub_staff_module');
-    defined('SUB_STAFF_MODULE') ? null : define('SUB_STAFF_MODULE' , 'SstMod');
+        //These constant are a set of resources that are usable within the staff module
+        defined('REGISTER_STAFF') ? null : define('REGISTER_STAFF' , 'StfMod'.CONNECT.'RegisterStaff');
+        defined('STAFF_DIRECTORY') ? null : define('STAFF_DIRECTORY' , 'StfMod'.CONNECT.'StaffDirectory');
     
     
     //Parent Module and resources

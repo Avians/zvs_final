@@ -58,7 +58,7 @@ class Authentication_Model extends Zf_Model {
 
         //This array holds all valid data. 
         $this->_validResult = $this->zf_formController->zf_fetchValidData();
-        
+       
         
         if(empty($this->_errorResult)){
             

@@ -7,6 +7,35 @@ $zvs_controller = $activeURL[0];
 
 //User identification code. This code is also stored in a session variable
 $identificationCode = $zf_externalWidgetData;
+
+//returns the platform user role for the current user
+$platformUserRole = $zf_model_data->zf_fetchZilasUserRole($identificationCode);
+
+if(ZVS_SUPER_ADMIN == $platformUserRole){
+            
+    $firstName = "firstName"; $lastName = "lastName";
+
+}else if(ZVS_ADMIN == $platformUserRole){
+
+    $firstName = "firstName"; $lastName = "lastName";
+
+}else if(SCHOOL_MAIN_ADMIN == $platformUserRole){
+    
+    $firstName = "firstName"; $lastName = "lastName";
+    
+}else if(ZVS_SCHOOL_STAFF == $platformUserRole){
+
+    $firstName = "staffFirstName"; $lastName = "staffLastName";
+
+}else if(ZVS_SCHOOL_STUDENT == $platformUserRole){
+
+    $firstName = "studentFirstName"; $lastName = "studentLastName";
+
+}else if(ZVS_SCHOOL_PARENT == $platformUserRole){
+
+    $firstName = "guardianFirstName"; $lastName = "guardianLastName";
+
+}
     
 //returns an array holding the user details
 $userDetails = $zf_model_data->zf_getUserDetails($identificationCode);
@@ -14,7 +43,7 @@ $userDetails = $zf_model_data->zf_getUserDetails($identificationCode);
 //Here we prepare Order Maker details
 foreach ($userDetails as $value) {
 
-    $userName = $value['firstName']." ".$value['lastName'];
+    $userName = $value[$firstName]." ".$value[$lastName];
     
     $imagePath = $value['imagePath'];
 
