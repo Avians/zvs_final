@@ -85,7 +85,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                 <h3 style="padding-left: 10px !important;">'.$categoryName.'</h3>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-3 col-xs-3">
-                                                <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_class_details'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolClassCode).' " title="View '.$zvs_className.'" ><i class="fa fa-list"></i></a></h3>
+                                                <h3 style="text-align: right !important; padding-right: 10px !important;"><a href=" '.ZF_ROOT_PATH.$this->zvs_controller.DS.'view_resource_details'.DS. Zf_SecureData::zf_encode_url($identificationCode.ZVSS_CONNECT.$schoolClassCode).' " title="View '.$zvs_className.'" ><i class="fa fa-list"></i></a></h3>
                                             </div>
                                         </div>';
 

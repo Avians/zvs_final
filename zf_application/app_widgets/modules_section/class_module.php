@@ -18,7 +18,7 @@ $main_menu = array(
     
     //View Classes
     "view_classes" => array(
-        'name' => '<i class="fa fa-user"></i> View Classes',
+        'name' => '<i class="fa fa-cubes"></i> View Classes',
         'controller' => $zvs_controller,
         'action' => 'view_classes',
         'parameter' => $zvs_parameter,
@@ -28,11 +28,11 @@ $main_menu = array(
     ),
     
     
-    //Class Profile
-    "class_profile" => array(
-        'name' => '<i class="fa fa-user"></i> Class Profile',
+    //Class Details
+    "class_details" => array(
+        'name' => '<i class="fa fa-id-badge"></i> Class Details',
         'controller' => $zvs_controller,
-        'action' => 'class_profile',
+        'action' => 'class_details',
         'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
@@ -69,12 +69,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "view_classes" || $zvs_action == "class_profile" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-building-o"></i>
         <span class="title"> Class Module </span>
-        <?php if ($zvs_action == "view_classes" || $zvs_action == "class_profile" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "view_classes" || $zvs_action == "class_profile" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_CLASSES, $zvs_allowedResources)){ ?>
@@ -82,9 +82,9 @@ $main_menu = array(
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['view_classes']); ?>
             </li>
         <?php } ?>
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(CLASS_PROFILE, $zvs_allowedResources)){ ?>
-            <li class="<?php if ($zvs_action == "class_profile") { echo "active";} ?>">
-                <?php Zf_GenerateLinks::zf_internal_link($main_menu['class_profile']); ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(CLASS_DETAILS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "class_details") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['class_details']); ?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_STREAMS, $zvs_allowedResources)){ ?>
@@ -92,9 +92,9 @@ $main_menu = array(
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['view_streams']); ?>
             </li>
         <?php } ?>
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(STREAM_PROFILE, $zvs_allowedResources)){ ?>
-            <li class="<?php if ($zvs_action == "stream_profile") { echo "active";} ?>">
-                <?php Zf_GenerateLinks::zf_internal_link($main_menu['stream_profile']); ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STREAM_DETAILS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "stream_details") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['stream_details']); ?>
             </li>
         <?php } ?>
     </ul>

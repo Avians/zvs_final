@@ -105,7 +105,7 @@ class viewClasses_Model extends Zf_Model {
                                                  <div class="zvs-chart-blocks" id="'.$chartContainer.'Static">';
                  
                                                     //This is the function that generates the chart.
-                                                    $zvs_classGridView .= $this->zvs_drawClassChart($schoolClassCode, $zvs_className, $chartContainer);
+                                                    $zvs_classGridView .= $this->zvs_drawClassChart($schoolClassCode, $zvs_className, $chartContainer, $identificationCode);
                                                 
                         $zvs_classGridView .='   </div>
                                             </div>
@@ -176,7 +176,7 @@ class viewClasses_Model extends Zf_Model {
     /**
      * This method plots the actual call graph
      */
-    public function zvs_drawClassChart($studentClassCode, $zvs_className, $chartContainer){
+    public function zvs_drawClassChart($studentClassCode, $zvs_className, $chartContainer, $identificationCode){
         
         
         $zvs_streamDetails = $this->zvs_fetchStreamDetails($studentClassCode);
@@ -269,10 +269,11 @@ class viewClasses_Model extends Zf_Model {
                         $chartData .= ' "value":"'.$totalStreamStudents.'", ';
 
                     }
+                    
+                    $zf_action = "class_details";
                         
-
                     $chartData .= '"tooltext": "'.$totalStreamStudents.' students in '.strtolower($zvs_className.', '.$streamName).' - '.$currentYear.'",
-                                "link":"#"
+                                  "link":"'.Zf_GenerateLinks::zf_fusionCharts_link($this->zvs_controller, $zf_action, $identificationCode).'"
                             },';
                 
                 }

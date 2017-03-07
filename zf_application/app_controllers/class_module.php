@@ -35,6 +35,8 @@ class class_moduleController extends Zf_Controller {
     //Executes the view classes view. Also is the defaukt action for this controller
     public function actionView_classes($identificationCode){
         
+        //echo $identificationCode; exit();
+        
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
         Zf_View::zf_displayView('view_classes', $zf_actionData);
@@ -54,8 +56,19 @@ class class_moduleController extends Zf_Controller {
     
 
     
-    //This controller executes the class profile view.
-    public function actionClass_profile($identificationCode){
+    //This controller executes the class details view.
+    public function actionClass_details($identificationCode){
+        
+        //echo $zvs_parameter; exit();
+        
+        //Get a parameter array
+        //$zvs_parameter = explode(ZVSS_CONNECT, Zf_SecureData::zf_decode_url($zvs_parameter));
+        
+//        $identificationCode = Zf_SecureData::zf_encode_url($zvs_parameter[0]);
+//        $systemSchoolCode = Zf_SecureData::zf_decode_url($zvs_parameter)[1];
+//        $systemClassCode = Zf_SecureData::zf_decode_url($zvs_parameter)[1].ZVSS_CONNECT.Zf_SecureData::zf_decode_url($zvs_parameter)[2];
+        
+        //$identificationCode = Zf_SecureData::zf_encode_url($zvs_parameter[0]); //exit();
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         

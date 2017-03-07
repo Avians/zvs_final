@@ -214,9 +214,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     
         //These constant are a set of resources that are usable within the class module
         defined('VIEW_CLASSES') ? null : define('VIEW_CLASSES' , 'ClsMod'.CONNECT.'ViewClasses');
-        defined('CLASS_PROFILE') ? null : define('CLASS_PROFILE' , 'ClsMod'.CONNECT.'ClassProfile');
+        defined('CLASS_DETAILS') ? null : define('CLASS_DETAILS' , 'ClsMod'.CONNECT.'ClassDetails');
         defined('VIEW_STREAMS') ? null : define('VIEW_STREAMS' , 'ClsMod'.CONNECT.'ViewStreams');
-        defined('STREAM_PROFILE') ? null : define('STREAM_PROFILE' , 'ClsMod'.CONNECT.'StreamProfile');
+        defined('STREAM_DETAILS') ? null : define('STREAM_DETAILS' , 'ClsMod'.CONNECT.'StreamDetails');
     
     //Department Module and resources
     defined('DEPMOD') ? null : define('DEPMOD' , 'department_module');
