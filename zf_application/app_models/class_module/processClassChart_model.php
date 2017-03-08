@@ -14,6 +14,9 @@
 
 class processClassChart_Model extends Zf_Model {
     
+    private $zvs_controller;
+    private $zvs_parameter;
+    
 
     private $_errorResult = array();
     private $_validResult = array();
@@ -27,7 +30,13 @@ class processClassChart_Model extends Zf_Model {
     */
     public function __construct() {
         
-         parent::__construct();
+        parent::__construct();
+
+        $activeURL = Zf_Core_Functions::Zf_URLSanitize();
+
+        //This is the active controller
+        $this->zvs_controller = $activeURL[0];
+        $this->zvs_parameter = $activeURL[2];
             
     }
     
@@ -43,8 +52,9 @@ class processClassChart_Model extends Zf_Model {
         
         $postedClassValues = $_POST['postedClassValues'];
         
+        $identificationCode = Zf_SessionHandler::zf_getSessionVariable("zvs_identificationCode");
         
-        $this->zvs_renderClassChart($postedClassValues);
+        $this->zvs_renderClassChart($postedClassValues, $identificationCode);
         
         
     }
@@ -54,7 +64,7 @@ class processClassChart_Model extends Zf_Model {
     /**
      * This method plots the actual call graph
      */
-    private function zvs_renderClassChart($postedClassValues){
+    private function zvs_renderClassChart($postedClassValues, $identificationCode){
         
         $classValuesArray = explode(ZVSS_CONNECT, $postedClassValues);
         
@@ -160,8 +170,11 @@ class processClassChart_Model extends Zf_Model {
 
                     }
                     
+                    $zf_action = "stream_details";
+                    $zf_parameter = $identificationCode.ZVSS_CONNECT.$studentStreamCode.ZVSS_CONNECT.$zvs_classYear;
+                    
                     $chartData .= '"tooltext": "'.$totalStreamStudents.' students in '.strtolower($zvs_className.', '.$streamName).' - '.$zvs_classYear.'",
-                                "link":"#"
+                                "link":"'.Zf_GenerateLinks::zf_fusionCharts_link($this->zvs_controller, $zf_action, $zf_parameter).'"
                             },';
                     
                     

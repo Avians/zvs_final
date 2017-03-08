@@ -6,6 +6,8 @@
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
     
+    //echo $identificationCode; exit();
+    
 ?>
     
     <!-- BEGIN CONTENT -->

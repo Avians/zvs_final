@@ -43,6 +43,8 @@ class viewClasses_Model extends Zf_Model {
      */
     public function fetchClassDetails($identificationCode){
         
+        //echo $identificationCode; exit();
+        
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
         $zvs_classGridView = '';
@@ -170,9 +172,6 @@ class viewClasses_Model extends Zf_Model {
     
     
     
-    
-    
-    
     /**
      * This method plots the actual call graph
      */
@@ -270,10 +269,11 @@ class viewClasses_Model extends Zf_Model {
 
                     }
                     
-                    $zf_action = "class_details";
+                    $zf_action = "stream_details";
+                    $zf_parameter = $identificationCode.ZVSS_CONNECT.$studentStreamCode.ZVSS_CONNECT.$currentYear;
                         
                     $chartData .= '"tooltext": "'.$totalStreamStudents.' students in '.strtolower($zvs_className.', '.$streamName).' - '.$currentYear.'",
-                                  "link":"'.Zf_GenerateLinks::zf_fusionCharts_link($this->zvs_controller, $zf_action, $identificationCode).'"
+                                  "link":"'.Zf_GenerateLinks::zf_fusionCharts_link($this->zvs_controller, $zf_action, $zf_parameter).'"
                             },';
                 
                 }
@@ -292,7 +292,6 @@ class viewClasses_Model extends Zf_Model {
         }
            
     }
-    
     
     
     
