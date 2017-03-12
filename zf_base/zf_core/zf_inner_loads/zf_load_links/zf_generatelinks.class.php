@@ -170,10 +170,14 @@ class Zf_GenerateLinks{
         }   
         
     }
+    
+    
+    
+    
     /**
      * -------------------------------------------------------------------------
      * THIS IS THE STATIC METHOD THAT IS RESPONSIBLE FOR GENERATION OF A BASIC 
-     * INTERNAL LINK.
+     * FUSION CHARTS INTERNAL LINK.
      * -------------------------------------------------------------------------
      */
     public static function zf_fusionCharts_link($zf_controller, $zf_action, $zf_parameter){
@@ -213,7 +217,7 @@ class Zf_GenerateLinks{
             } else {
 
                 $basic_internal_link = ZF_ROOT_PATH . $zf_controller . DS . $zf_action . DS . $zf_parameter;
-                return; $basic_internal_link ;
+                return $basic_internal_link ;
                     
             }
             
@@ -221,6 +225,63 @@ class Zf_GenerateLinks{
        
         
     }
+    
+    
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD THAT IS RESPONSIBLE FOR GENERATION OF A BASIC 
+     * PHP GRID INTERNAL LINK.
+     * -------------------------------------------------------------------------
+     */
+    public static function zf_phpGrid_link($zf_controller, $zf_action, $zf_parameter){
+        
+        $url_encryption_status = Zf_Configurations::Zf_ApplicationDefaults();
+        
+        /**
+         * In this case all the 3 parameters have been passed.
+         */
+        if ($zf_parameter != "" && $zf_parameter != NULL) {
+
+            /**
+             * Here we check if URL encryption has been enabled. if yes, then we 
+             * need to encrypt our URL's "$zf_parameter", if no, then we pass
+             *  our raw URL.
+             */
+            if ($url_encryption_status['application_urlencrypt'] === "enabled") {
+
+                /**
+                 * Ensure that the link is not shown if encryption is disables
+                 */
+                if ($url_encryption_status['application_encryption'] == "disabled") {
+
+                    /**
+                     * This ensures that you cannot encrypt your links
+                     * without enabling application encryption.
+                     */
+                    echo "<code>You must enable <strong>application encryption</strong> to be able to encrypt your link parameters.</code>";
+                    
+                } else {
+
+                    $basic_internal_link = ZF_ROOT_PATH . $zf_controller . DS . $zf_action . DS . Zf_SecureData::zf_encode_data($zf_parameter);
+                    echo $basic_internal_link ;
+                    
+                }
+                
+            } else {
+
+                $basic_internal_link = ZF_ROOT_PATH . $zf_controller . DS . $zf_action . DS . $zf_parameter;
+                echo  $basic_internal_link ;
+                    
+            }
+            
+        }
+       
+        
+    }
+    
+    
+    
     
     
     /**

@@ -36,7 +36,17 @@ class parent_moduleController extends Zf_Controller {
     //Executes the index view. Also is the defaukt action for this controller
     public function actionIndex(){
         
-        Zf_View::zf_displayView('index');
+        //Zf_View::zf_displayView('index');
+        echo "We are here";
+        
+    }
+
+    
+    //Executes the index view. Also is the defaukt action for this controller
+    public function actionGuardian_profile($zf_parameter){
+        
+        //Zf_View::zf_displayView('index');
+        echo "This is the parent";
         
     }
     

@@ -95,7 +95,7 @@ class zf_phpGridConfigurations {
 
             //Grid settings for exporting data either as PDF or XLS
             "export" => array("range"=>"filtered", "filename"=>$exportName, "sheetname"=>$exportName, "heading"=>$zf_gridTitle, "orientation"=>"landscape", "paper"=>"a4"),
-            // "export" => array("format"=>"xls", "range"=>"filtered", "filename"=>"my-file", "heading"=>"$zf_gridTitle", "orientation"=>"landscape", "paper"=>"a4"),
+            //"export" => array("format"=>"xls", "range"=>"filtered", "filename"=>"my-file", "heading"=>"$zf_gridTitle", "orientation"=>"landscape", "paper"=>"a4"),
 
 
             "add_options" => array("recreateForm" => true, "closeAfterEdit"=>true, "width"=>"500", "top"=>"600", "left"=>"500" ),

@@ -563,7 +563,7 @@ class Zf_MapBuilder
     
     public function setApiKey($apiKey)
     {
-        $this->_apiKey = $apiKey;
+        $this->_apiKey = MAP_API_KEY;
     }
     
     public function getApiKey()

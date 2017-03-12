@@ -45,10 +45,7 @@ class mainDashboard_Model extends Zf_Model {
         
         //An instance of the ZF_MAPBUILDER CLASS.
         $zf_map = new Zf_MapBuilder();
-        
-        // Set API key
-        $zf_map->setApiKey('AIzaSyB230QxSetZoJiM9noon7FiAQXbc-HPSLU');
-        
+       
         // Set map's center position by latitude and longitude coordinates. 
         $zf_map->setCenter(-1.3001,36.7400);
 

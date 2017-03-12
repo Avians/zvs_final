@@ -131,7 +131,7 @@ class class_moduleController extends Zf_Controller {
         
         $zf_phpGridSettings = $this->actionGenerateStudentsStreamTable($tableData, $zf_studentClassDetails);
         
-        Zf_View::zf_displayView('class_details', $zf_actionData, $zf_phpGridSettings);
+        Zf_View::zf_displayView('stream_details', $zf_actionData, $zf_phpGridSettings);
         
     }
     
@@ -182,6 +182,20 @@ class class_moduleController extends Zf_Controller {
         $studentGender = array("title"=>"Gender", "name"=>"studentGender", "width"=>20, "editable"=>false);
         $zf_gridColumns[] = $studentGender;
         
+        
+        //Here we process the link to the student profile page
+        $studentIdentificationCode = "1234";
+        $studentProfile = ZF_ROOT_PATH."student_module".DS."student_profile".DS.$studentIdentificationCode;
+        $studentDetails = array("title"=>"Student Details", "name"=>"Student Profile", "default"=>"Student Profile", "link"=>$studentProfile, "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
+        $zf_gridColumns[] =  $studentDetails;
+        
+        
+        //Here we process the link to the guardian profile page
+        $guardianIdentificationCode = "1234";
+        $guardianProfile = ZF_ROOT_PATH."parent_module".DS."guardian_profile".DS.$guardianIdentificationCode;
+        $guardianDetails = array("title"=>"Guardian Details", "name"=>"Guardian Profile", "default"=>"Guardian Profile", "link"=>$guardianProfile,  "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
+        $zf_gridColumns[] =  $guardianDetails;
+        
         //This action column of the table 
         $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);
         $zf_gridColumns[] = $action;
@@ -189,7 +203,6 @@ class class_moduleController extends Zf_Controller {
         $zf_phpGridSettings['zf_gridColumns'] = $zf_gridColumns;
         
         //echo $tableQuery; exit();
-
         $zf_phpGridSettings['zf_gridQuery'] = $tableData['tableQuery'];
         
         return $zf_phpGridSettings;

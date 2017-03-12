@@ -631,6 +631,7 @@ class processFinanceStatus_Model extends Zf_Model {
         
         $zvs_value['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         $zvs_value['studentClassCode'] = Zf_QueryGenerator::SQLValue($schoolClassCode);
+        $zvs_value['studentYearOfStudy'] = Zf_QueryGenerator::SQLValue($financialYear);
         
         $classStudents = Zf_QueryGenerator::BuildSQLSelect($zvs_table, $zvs_value, $zvs_column);
         
