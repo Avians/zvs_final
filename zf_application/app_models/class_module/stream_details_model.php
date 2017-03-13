@@ -126,29 +126,11 @@ class stream_details_Model extends Zf_Model {
         $studentStreamCode = $zvs_parameter[1].ZVSS_CONNECT.$zvs_parameter[2].ZVSS_CONNECT.$zvs_parameter[3];
         $studentYearOfStudy = $zvs_parameter[4];
         
-        
-        //echo $identificationCode."<br>".$systemSchoolCode."<br>".$studentClassCode."<br>".$studentStreamCode."<br>".$studentYearOfStudy;
-        
-        
-        //1. Get the expected amount of money to be paif by the stream for the selected year
+        $schoolClassName = $this->getClassName($systemSchoolCode, $studentClassCode);
         
         
-        //2. Get the total amount of money already paid by the selected stream for the slected year.
+        $classStreamName = $this->getStreamName($systemSchoolCode, $studentClassCode, $studentStreamCode);
         
-        
-        //3. Calculate the pending amount by the selected class for the selected year
-        
-        
-        //4. Get the gender segementation of the selected stream for the selected year
-        
-        
-        //5. Get the blood group segementation of the selected stream for the selected year
-        
-        
-        //6. Get the disability segmentation of the selected stream for the selected year
-        
-        
-        //7. Get the guardian segmentation of the selected stream for the selected year
         
         $streamData .= ' <!--START OF FINANCIAL ALLOCATIONS-->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -167,8 +149,8 @@ class stream_details_Model extends Zf_Model {
                                                         Total Amount Expected
                                                     </div>
                                                 </div>
-                                                <div class="more" style="height: 40px;" href="#">
-                                                    Total amount expected for the year '.$postedFinancialYear.'
+                                                <div class="more" style="height: 40px; line-height: 15px !important;" href="#">
+                                                    Total amount expected from '.$schoolClassName.' - '.$classStreamName.', <br>'.$studentYearOfStudy.' class
                                                 </div>
                                             </div>
                                         </div>
@@ -185,8 +167,8 @@ class stream_details_Model extends Zf_Model {
                                                         Total Amount Paid
                                                     </div>
                                                 </div>
-                                                <div class="more" style="height: 40px;" href="#">
-                                                    Total amount Paid for the year '.$postedFinancialYear.'
+                                                <div class="more" style="height: 40px; line-height: 15px !important;" href="#">
+                                                    Total amount already paid by '.$schoolClassName.' - '.$classStreamName.', <br>'.$studentYearOfStudy.' class
                                                 </div>
                                             </div>
                                         </div>
@@ -203,8 +185,8 @@ class stream_details_Model extends Zf_Model {
                                                         Total Amount Pending
                                                     </div>
                                                 </div>
-                                                <div class="more" style="height: 40px;" href="#">
-                                                    Total amount pending for the year '.$postedFinancialYear.'
+                                                <div class="more" style="height: 40px; line-height: 15px !important;" href="#">
+                                                    Total amount pending for '.$schoolClassName.' - '.$classStreamName.', <br>'.$studentYearOfStudy.' class
                                                 </div>
                                             </div>
                                         </div>

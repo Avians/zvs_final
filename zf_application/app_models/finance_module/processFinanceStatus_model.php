@@ -393,12 +393,12 @@ class processFinanceStatus_Model extends Zf_Model {
                   {  
                     "label":"Pending Amount",
                     "value":"'.$amountPending.'",
-                    "tooltext": "Total Amount Pending, <br> KES: '.number_format($amountPending, 2).'"
+                    "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">Total amount of school fees pending, <br> KES: '.number_format($amountPending, 2).'</p>"
                   },
                   {  
                     "label":"Paid Amount",
                     "value":"'.$amountPaid.'",
-                    "tooltext": "Total Amount Paid, <br> KES: '.number_format($amountPaid, 2).'"
+                    "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">Total amount of school fees paid, <br> KES: '.number_format($amountPaid, 2).'</p>"
                   }
                   
                 ]
@@ -510,15 +510,20 @@ class processFinanceStatus_Model extends Zf_Model {
                                         foreach($zvs_fetchClassDetails as $classValues){
                                             
                                             $schoolClassCode =  $classValues['schoolClassCode'];
+                                            $schoolClassName =  strtolower($classValues['schoolClassName']);
+                                            
+                                            //Calculate total amount expected from students in the selected class
+                                            $totalAmountExpected = $this->zvs_classExpectedSchoolFees($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
                                             
                                             //Calculate total amount paid by students in the selected class
-                                            
                                             $totalAmountPaid = $this->zvs_classTotalAmountPaid($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $percentagePayment = ($totalAmountPaid/$totalAmountExpected)*100;
                                             
                                             $chartData .='{
                                                 
                                                             "value": "'.$totalAmountPaid.'",
-                                                            "tooltext": "Total '.$zvs_className.' Paid Amount, <br> KES: '.number_format($totalAmountPaid, 2).'"    
+                                                            "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">'.number_format($percentagePayment, 2).'% of fees already paid by '.$schoolClassName.'. <br> KES: '.number_format($totalAmountPaid, 2).',</p> "    
                                                             
                                                           },';
                                             
@@ -534,15 +539,20 @@ class processFinanceStatus_Model extends Zf_Model {
                                         foreach($zvs_fetchClassDetails as $classValues){
                                             
                                             $schoolClassCode =  $classValues['schoolClassCode'];
+                                            $schoolClassName =  strtolower($classValues['schoolClassName']);
+                                            
+                                            //Calculate total amount expected from students in the selected class
+                                            $totalAmountExpected = $this->zvs_classExpectedSchoolFees($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
                                             
                                             //Calculate total amount pending by students in the selected class
-                                            
                                             $totalAmountPending = $this->zvs_classTotalAmountPending($systemSchoolCode, $schoolClassCode, $postedFinancialYear);
+                                            
+                                            $percentagePending = ($totalAmountPending/$totalAmountExpected)*100;
                                             
                                             $chartData .='{
                                                 
                                                             "value": "'.$totalAmountPending.'",
-                                                            "tooltext": "Total '.$zvs_className.' Pending Amount, <br> KES: '.number_format($totalAmountPending, 2).'"     
+                                                            "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">'.number_format($percentagePending, 2).'% of fees pending payment by '.$schoolClassName.'. <br> KES: '.number_format($totalAmountPending, 2).'</p>"     
                                                             
                                                           },';
                                             
@@ -1437,12 +1447,12 @@ class processFinanceStatus_Model extends Zf_Model {
                   {  
                     "label":"Allocation Pending",
                     "value":"'.$pendingAmount.'",
-                    "tooltext": "Total Allocation Pending, <br> KES: '.number_format($pendingAmount, 2).'"
+                    "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">Total budget allocations pending payment, <br> KES: '.number_format($pendingAmount, 2).'</p>"
                   },
                   {  
                     "label":"Allocated Amount",
                     "value":"'.$allocatedAmount.'",
-                    "tooltext": "Total Allocation Paid, <br> KES: '.number_format($allocatedAmount, 2).'"
+                    "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">Total budget allocations already paid, <br> KES: '.number_format($allocatedAmount, 2).'</p>"
                   }
                   
                 ]
@@ -1556,14 +1566,20 @@ class processFinanceStatus_Model extends Zf_Model {
                                         foreach($zvs_fetchBudgetCategoryDetails as $budgetCategoryValues){
                                             
                                             $budgetCategoryCode =  $budgetCategoryValues['budgetCategoryCode'];
+                                            $zvs_budgetCategoryName = $budgetCategoryValues['budgetCategoryName'];
+                                            
+                                            //Calculate the total running budget
+                                            $totalRunningBudget = $this->estimatedRunningBudget($systemSchoolCode, $financialYearCode, $budgetCategoryCode);
                                             
                                             //Calculate total amount allocated to a budget categories
                                             $totalAmountAllocated = $this->zvs_budgetCategoryAmountAllocated($systemSchoolCode, $financialYearCode, $budgetCategoryCode);
                                             
+                                            $percentageAllocation = (Zf_Core_Functions::Zf_unformatNumbers($totalAmountAllocated)/Zf_Core_Functions::Zf_unformatNumbers($totalRunningBudget))*100;
+                                            
                                             $chartData .='{
                                                 
                                                             "value": "'.$totalAmountAllocated.'",
-                                                            "tooltext": "Total '.$zvs_budgetCategoryName.' Allocated Amount, <br> KES: '.number_format($totalAmountAllocated, 2).'"    
+                                                            "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">'.number_format($percentageAllocation, 2).'% of '.strtolower($zvs_budgetCategoryName).' budgeted amount, is already allocated. <br> KES: '.number_format($totalAmountAllocated, 2).'</p>"    
                                                             
                                                           },';
                                             
@@ -1579,14 +1595,21 @@ class processFinanceStatus_Model extends Zf_Model {
                                         foreach($zvs_fetchBudgetCategoryDetails as $budgetCategoryValues){
                                             
                                             $budgetCategoryCode =  $budgetCategoryValues['budgetCategoryCode'];
+                                            $zvs_budgetCategoryName = $budgetCategoryValues['budgetCategoryName'];
+                                            
+                                            //Calculate the total running budget
+                                            $totalRunningBudget = $this->estimatedRunningBudget($systemSchoolCode, $financialYearCode, $budgetCategoryCode);
                                             
                                             //Calculate total amount pending for given budget categories
                                             $totalAmountPending = $this->zvs_budgetCategoryAmountPending($systemSchoolCode, $budgetCategoryCode, $financialYearCode);
                                             
+                                            $percentagePending = (Zf_Core_Functions::Zf_unformatNumbers($totalAmountPending)/Zf_Core_Functions::Zf_unformatNumbers($totalRunningBudget))*100;
+                                            
+                                            
                                             $chartData .='{
                                                 
                                                             "value": "'.$totalAmountPending.'",
-                                                            "tooltext": "Total '.$zvs_budgetCategoryName.' Pending Amount, <br> KES: '.number_format($totalAmountPending, 2).'"     
+                                                            "tooltext": "<p style=\"font-size: 12px; line-height: 15px; font-family: ProximaNova-Light; padding: 3px;\">'.number_format($percentagePending, 2).'% of '.strtolower($zvs_budgetCategoryName).' budgeted amount, is pending allocation. <br> KES: '.number_format($totalAmountPending, 2).'</p>"     
                                                             
                                                           },';
                                             

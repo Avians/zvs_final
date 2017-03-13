@@ -557,3 +557,8 @@ This is the styling for the zozo tabs and accordion
     border: 1px solid #71ceef !important; height: 75% !important; margin: auto !important; color: #71ceef !important;
     border-radius: 3px !important; -webkit-border-radius: 3px !important; -moz-border-radius: 3px !important;
 }
+
+
+fusionChart_tooltips{
+    font-size: 12px !important; line-height: 15px; font-face: ProximaNova-Light;
+}
