@@ -323,6 +323,48 @@ class manageSchoolDepartments_Model extends Zf_Model {
     }
     
     
+    
+    
+    /**
+     * This method is used to select Admin localities
+     */
+    public function getSchoolSubDepartments(){
+        
+        $schoolDepartmentCode = $_POST['schoolDepartmentCode'];
+         
+        $systemSchoolCode = explode(ZVSS_CONNECT, $schoolDepartmentCode)[0];
+        
+        //Here we fetch and return all budget category details.
+        $zvs_schooSubDepartmentDetails = $this->zvs_fetchSubDepartmentDetails($schoolDepartmentCode);
+     
+        $select_options = '';
+        
+        
+        if($zvs_schooSubDepartmentDetails == 0){
+            
+            $select_options .= '<option value="">No Valid Data!!</option>';
+            
+        }else{
+            
+            $select_options .= '<option value="selectBudgetCategory" selected>Select Budget Category</option>';
+            
+            foreach ($zvs_schooSubDepartmentDetails as $subDepartmentValue) {
+                
+                $schoolSubDepartmentName = $subDepartmentValue['schoolSubDepartmentName']; $schoolSubDepartmentCode = $subDepartmentValue['schoolSubDepartmentCode'];
+                
+                $select_options .= '<option value="'.$schoolSubDepartmentCode.'">'.$schoolSubDepartmentName .'</option>';
+                
+            }
+            
+        }
+        
+               
+        echo $select_options;
+        
+        
+    }
+    
+    
 }
 
 ?>

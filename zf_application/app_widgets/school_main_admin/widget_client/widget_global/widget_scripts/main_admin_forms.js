@@ -51,6 +51,33 @@
         };
         
         
+        //Here we process all subject details
+        var subjectDetails = function ($absolute_path, $separator){
+            
+            //Process school departments based on available school departments
+            $('.schoolDepartmentCode').change(function(){
+
+                var processSchoolSubDepartments = $absolute_path + "school_main_admin" + $separator + "ManageSchoolDepartments" + $separator + "process_sub_departments";
+                var schoolDepartmentCode = $("#schoolDepartmentCode").val();
+
+                //alert(schoolDepartmentCode); exit();
+
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processSchoolSubDepartments,
+                    data: {schoolDepartmentCode: schoolDepartmentCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#schoolSubDepartmentCode").html(html);
+                    }
+                });
+
+            });
+            
+        };
+        
+        
         
         //Here we process all fee form data
         var feesDetails = function ($absolute_path, $separator){
@@ -348,6 +375,10 @@
                 }if($current_view === "manage_department"){
                     
                     departmentDetails($absolute_path, $separator);
+                    
+                }if($current_view === "manage_subjects"){
+                    
+                    subjectDetails($absolute_path, $separator);
                     
                 }if($current_view === "manage_fees"){
                     

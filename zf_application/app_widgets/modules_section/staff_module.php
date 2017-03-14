@@ -19,6 +19,17 @@ $zvs_allowedResources = $zf_externalWidgetData;
 $main_menu = array(
     
     
+    //Staff Details
+    "staff_details" => array(
+        'name' => '<i class="fa fa-users"></i> Staff Details',
+        'controller' => $zvs_controller,
+        'action' => 'staff_details',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
     //Register Staff
     "register_staff" => array(
         'name' => '<i class="fa fa-user-plus"></i> Register Staff',
@@ -47,14 +58,19 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of staff module-->
-<li class="<?php if ($zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-user-circle"></i>
         <span class="title"> Staff Module </span>
-        <?php if ($zvs_action == "register_staff" || $zvs_action == "staff_directory") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STAFF, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "staff_details") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['staff_details']); ?>
+            </li>
+        <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STAFF, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "register_staff") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['register_staff']); ?>

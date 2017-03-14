@@ -33,7 +33,29 @@ class student_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
+    
+    
+    //Executes the student detials action
+    public function actionStudent_details($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        $systemSchoolCode = $this->Zf_GetUserData($zf_actionData)[2];
+        
+        $tableData = array();
+        $tableData['tableTitle'] = "List of all school students";
+        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' ";
+        
+        $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData);
+        
+        Zf_View::zf_displayView('student_details',$zf_actionData, $zf_phpGridSettings);
+        
+    }
+    
+    
+    
+    
+    //Executes the register new student action
     public function actionRegister_student($identificationCode){
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
@@ -95,8 +117,6 @@ class student_moduleController extends Zf_Controller {
        }
         
     }
-    
-    
     
     
     

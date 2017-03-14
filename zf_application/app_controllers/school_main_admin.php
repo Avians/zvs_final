@@ -120,9 +120,28 @@ class School_main_adminController extends Zf_Controller {
    /**
      * This action executes the viewing of department details
      */
+    public function actionManageSchoolDepartments($identificationCode){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($identificationCode);
+        
+        if($filterDataVariable == "process_sub_departments"){
+            
+            //This method generates all the school departments
+            $this->zf_targetModel->getSchoolSubDepartments();
+            
+        }
+        
+    }
+    
+    
+    
+    
+   /**
+     * This action executes the viewing of department details
+     */
     public function actionView_department_details($identificationCode){
         
-        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        $zf_actionData =  Zf_SecureData::zf_decode_data($identificationCode);
         
         Zf_View::zf_displayView('view_department_details', $zf_actionData);
         

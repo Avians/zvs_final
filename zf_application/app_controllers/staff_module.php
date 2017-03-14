@@ -33,7 +33,25 @@ class staff_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
+    //Executes the staff detials action
+    public function actionStaff_details($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        $systemSchoolCode = $this->Zf_GetUserData($zf_actionData)[2];
+        
+        $tableData = array();
+        $tableData['tableTitle'] = "List of all school staff";
+        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' ";
+        
+        $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData);
+        
+        Zf_View::zf_displayView('staff_details',$zf_actionData, $zf_phpGridSettings);
+        
+    }
+
+    
+    //Executes the register new staff action
     public function actionRegister_staff($identificationCode){
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
@@ -62,6 +80,86 @@ class staff_moduleController extends Zf_Controller {
             $this->zf_targetModel->registerNewStaff();
             
         }
+        
+    }
+    
+    
+    
+    
+    /**
+     * IN THIS SECTION, WE GENERATE ALL STUDENT RELATED TABLES FOR VISUAL PURPOSES
+     *  
+     */
+    
+    /**
+     * This is the action that generates the transaction table
+     */
+    public function actionGenerateStudentsTable($tableData, $zf_subGrid = NULL){
+        
+        //This holds the name of the database table that is being accessed.
+        $zf_phpGridSettings['zf_tableName'] = 'zvs_students_personal_details'; 
+        
+        //This is the title of the table as it will appear on the user view
+        $tableTitle = $tableData['tableTitle'];
+        
+        //This holds all the grid setting e.g. title, width, height e.t.c
+        $zf_phpGridSettings['zf_gridSettings'] = zf_phpGridConfigurations::Zf_PhpGridSettings($tableTitle, $zf_subGrid);
+
+        //This holds all the grid actions e.g exporting data, editing data e.t.c
+        $zf_phpGridSettings['zf_gridActions'] = zf_phpGridConfigurations::Zf_PhpGridActions();
+
+        //This array holds all the data related to required grid columns
+        $zf_gridColumns = array();
+
+        $admissionNumber = array("title"=>"Adm Number", "name"=>"studentAdmissionNumber", "width"=>20, "editable"=>false);
+        $zf_gridColumns[] = $admissionNumber;
+        
+        $studentFirstName = array("title"=>"First Name", "name"=>"studentFirstName", "width"=>20, "editable"=>true); 
+        $zf_gridColumns[] = $studentFirstName;
+        
+        $studentMiddleName = array("title"=>"Middle Name", "name"=>"studentMiddleName", "width"=>20, "editable"=>true);
+        $zf_gridColumns[] = $studentMiddleName;
+        
+        $studentLastName = array("title"=>"Last Name", "name"=>"studentLastName", "width"=>20, "editable"=>true);
+        $zf_gridColumns[] = $studentLastName;
+        
+        
+        $studentPhoneNumber = array("title"=>"Mobile Number", "name"=>"studentPhoneNumber", "width"=>20, "editable"=>false);
+        $zf_gridColumns[] = $studentPhoneNumber;
+        
+        $studentGender = array("title"=>"Gender", "name"=>"studentGender", "width"=>15, "editable"=>false);
+        $zf_gridColumns[] = $studentGender;
+        
+        //This action column of the table 
+        $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);
+        $zf_gridColumns[] = $action;
+
+        $zf_phpGridSettings['zf_gridColumns'] = $zf_gridColumns;
+        
+        //echo $tableQuery; exit();
+
+        $zf_phpGridSettings['zf_gridQuery'] = $tableData['tableQuery'];
+        
+        return $zf_phpGridSettings;
+        
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS THE METHOD FOR DECODING THE IDENIFICATION CODE INTO AN 
+     * ARRAY
+     * -------------------------------------------------------------------------
+     */
+    public function Zf_GetUserData($identificationCode){
+        
+        $zf_idenificationArray = explode(ZVSS_CONNECT , Zf_SecureData::zf_decode_data(Zf_SecureData::zf_decode_data($identificationCode)));
+        
+        return $zf_idenificationArray;
         
     }
     

@@ -249,6 +249,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('STUDENT_MODULE') ? null : define('STUDENT_MODULE' , 'StuMod');
     
         //These constant are a set of resources that are usable within the students module
+        defined('STUDENT_DETAILS') ? null : define('STUDENT_DETAILS' , 'StuMod'.CONNECT.'StudentDetails');
         defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
         defined('SHIFT_STUDENTS') ? null : define('SHIFT_STUDENTS' , 'StuMod'.CONNECT.'ShiftStudents');
     
@@ -258,6 +259,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('STAFF_MODULE') ? null : define('STAFF_MODULE' , 'StfMod');
     
         //These constant are a set of resources that are usable within the staff module
+        defined('STAFF_DETAILS') ? null : define('STAFF_DETAILS' , 'StfMod'.CONNECT.'StaffDetails');
         defined('REGISTER_STAFF') ? null : define('REGISTER_STAFF' , 'StfMod'.CONNECT.'RegisterStaff');
         defined('STAFF_DIRECTORY') ? null : define('STAFF_DIRECTORY' , 'StfMod'.CONNECT.'StaffDirectory');
     
@@ -277,6 +279,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('SUBJECT_MODULE') ? null : define('SUBJECT_MODULE' , 'SubMod');
     
         //These constant are a set of resources that are usable within the subjects module
+        defined('SUBJECT_DETAILS') ? null : define('SUBJECT_DETAILS' , 'SubMod'.CONNECT.'SubjectDetails');
         defined('ASSIGN_SUBJECTS_TO_TEACHERS') ? null : define('ASSIGN_SUBJECTS_TO_TEACHERS' , 'SubMod'.CONNECT.'AssignSubjectsToTeachers');
     
     

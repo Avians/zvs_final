@@ -162,7 +162,7 @@ class newResourcesRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Resource name')
                 
                                 ->zf_postFormData('resourceDescription')
-                                ->zf_validateFormData('zf_maximumLength', 240, 'Resource name')
+                                ->zf_validateFormData('zf_maximumLength', 300, 'Resource name')
                 
                                 ->zf_postFormData('adminIdentificationCode');
         

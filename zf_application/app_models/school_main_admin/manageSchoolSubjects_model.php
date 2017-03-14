@@ -61,9 +61,9 @@ class manageSchoolSubjects_Model extends Zf_Model {
                                         </div>
                                         <div class="portlet-body">
                                             <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 12% !important;">
-                                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i>
+                                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br>
                                                 <span class="content-view-errors" >
-                                                    &nbsp;There are no school subjects yet! You need to add atleast one subject to have a school subject overview.'.$systemSchoolCode.'
+                                                    &nbsp;There are no school subjects yet! You need to add atleast one subject to have a school subject overview.
                                                 </span>
                                             </div>
                                         </div>

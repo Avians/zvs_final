@@ -50,10 +50,15 @@ class newSubjectRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Subject alias')
                                 ->zf_validateFormData('zf_minimumLength', 2, 'Subject alias')
                 
+                                ->zf_postFormData('schoolSubDepartmentCode')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Subject Sub-department')
+                
                                 ->zf_postFormData('subjectCode')
                                 ->zf_validateFormData('zf_maximumLength', 4, 'Subject Code')
                                 ->zf_validateFormData('zf_minimumLength', 2, 'Subject Code')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Subject Code')
+                
+                                ->zf_postFormData('examStatus')
                 
                                 ->zf_postFormData('subjectStatus')
                 

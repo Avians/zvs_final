@@ -52,8 +52,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Name:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Name:</label>
+                                <div class="col-md-7">
                                     <input type="text" name="subjectName" class="form-control" placeholder="Mathematics, English, Biology, ..." value="<?php echo $zf_formHandler->zf_getFormValue("subjectName"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("subjectName"); ?>
@@ -63,8 +63,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Alias:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Alias:</label>
+                                <div class="col-md-7">
                                     <input type="text" name="subjectAlias" class="form-control" placeholder="Mathematics, English, Biology, ..." value="<?php echo $zf_formHandler->zf_getFormValue("subjectAlias"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("subjectAlias"); ?>
@@ -78,8 +78,41 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Code:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Select Department:</label>
+                                <div class="col-md-7">
+                                    <select class="form-control select2me schoolDepartmentCode" id="schoolDepartmentCode" name="schoolDepartmentCode" data-placeholder="Mathematics, Languages, Sciences, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolDepartmentCode"); ?>">
+                                        <?php
+                                            $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "department_select.php";
+                                            Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                        ?>
+                                    </select>
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("schoolDepartmentCode") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Sub Department:</label>
+                                <div class="col-md-7">
+                                    <select class="form-control select2me schoolSubDepartmentCode" id="schoolSubDepartmentCode" name="schoolSubDepartmentCode" data-placeholder="Mathematics, English, Biology, History, ..." value="<?php echo $zf_formHandler->zf_getFormValue("schoolSubDepartmentCode"); ?>">
+                                        <option value=""></option>
+                                    </select>
+                                    <span class="help-block server-side-error" >
+                                        <?php echo $zf_formHandler->zf_getFormError("schoolSubDepartmentCode") ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Subject Code:</label>
+                                <div class="col-md-7">
                                     <input type="text" name="subjectCode" class="form-control" placeholder="101, 201, 301, ..." value="<?php echo $zf_formHandler->zf_getFormValue("subjectCode"); ?>">
                                     <span class="help-block server-side-error" >
                                         <?php echo $zf_formHandler->zf_getFormError("subjectCode"); ?>
@@ -89,13 +122,30 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Status:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Examinable:</label>
+                                <div class="col-md-7">
                                     <div class="radio-list">
                                         <label class="radio-inline radio-labels">
-                                        <input type="radio" name="subjectStatus" value="1" data-title="Active"> Active </label>
+                                        <input type="radio" name="examStatus" value="1" checked data-title="Active"> Yes </label>
                                         <label class="radio-inline radio-labels">
-                                        <input type="radio" name="subjectStatus" value="0" checked  data-title="Inactive"> Inactive </label>
+                                        <input type="radio" name="examStatus" value="0"  data-title="Inactive"> No </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Subject Status:</label>
+                                <div class="col-md-7">
+                                    <div class="radio-list">
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="subjectStatus" value="1" checked data-title="Active"> Active </label>
+                                        <label class="radio-inline radio-labels">
+                                        <input type="radio" name="subjectStatus" value="0"  data-title="Inactive"> Inactive </label>
                                     </div>
                                 </div>
                             </div>
@@ -112,13 +162,13 @@
                 <div class="tab-pane" id="confirmNewSubjectInfo">
                     <h3 class="block  form-title"><i class='fa fa-user' style='font-size: 25px !important; padding-right: 5px !important;'></i>Confirm Setup Information</h3>
                     
-                    <h4 class="form-section confirm-inner-title">Subject/Dormitory Setup Information</h4>
+                    <h4 class="form-section confirm-inner-title">Subject Setup Information</h4>
                     
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Name:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Name:</label>
+                                <div class="col-md-7">
                                     <p class="form-control-static confirm-form-result" data-display="subjectName"></p>
                                 </div>
                             </div>
@@ -126,8 +176,8 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Alias:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Alias:</label>
+                                <div class="col-md-7">
                                     <p class="form-control-static confirm-form-result"  data-display="subjectAlias"></p>
                                 </div>
                             </div>
@@ -138,8 +188,29 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Code:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Department:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result" data-display="schoolDepartmentCode"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Sub Department:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result"  data-display="schoolSubDepartmentCode"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Subject Code:</label>
+                                <div class="col-md-7">
                                     <p class="form-control-static confirm-form-result"  data-display="subjectCode"></p>
                                 </div>
                             </div>
@@ -147,8 +218,20 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label col-md-4">Subject Status:</label>
-                                <div class="col-md-8">
+                                <label class="control-label col-md-5">Subject Examinable:</label>
+                                <div class="col-md-7">
+                                    <p class="form-control-static confirm-form-result"  data-display="examStatus"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-5">Subject Status:</label>
+                                <div class="col-md-7">
                                     <p class="form-control-static confirm-form-result"  data-display="subjectStatus"></p>
                                 </div>
                             </div>
@@ -183,3 +266,7 @@
         </div>
     </div>
 </form>
+<?php
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
+?>

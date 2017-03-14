@@ -89,8 +89,17 @@
 </div>
 <!-- END CONTENT -->
 
-<?php
-    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
-    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
-?>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        //Here we are generating the applications absolute path.
+        var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
+        var $separator = "<?= DS; ?>";
+        var $current_view = "manage_subjects";
+
+        ManageForms.init($current_view, $absolute_path, $separator );
+        
+
+    });
+</script> 
 

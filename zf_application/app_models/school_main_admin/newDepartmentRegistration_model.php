@@ -160,8 +160,6 @@ class newDepartmentRegistration_Model extends Zf_Model {
        
         //In this section we chain class data, posted from the form.
         $this->zf_formController->zf_postFormData('schoolDepartmentCode')
-                                ->zf_validateFormData('zf_maximumLength', 45, 'Department name')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Department name')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Department name')
 
                                 ->zf_postFormData('subDepartmentName')
