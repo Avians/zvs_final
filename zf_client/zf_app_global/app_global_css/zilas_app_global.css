@@ -467,8 +467,9 @@ This is the styling for the zozo tabs and accordion
 
 .dashboard-stat .fa{
     color: white;
-    opacity: 0.1;
-    filter: alpha(opacity=10);
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    font-size: 20px;
 }
 
 

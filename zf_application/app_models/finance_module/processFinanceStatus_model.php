@@ -163,7 +163,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                                 KES: '.$this->totalAmountExpected($identificationCode, $postedFinancialYear).'
                                             </div>
                                             <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                Total Amount Expected
+                                                Total Amount Expected&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-money"></i>
                                             </div>
                                         </div>
                                         <div class="more" style="height: 40px;" href="#">
@@ -181,7 +181,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                                 KES: '.$this->totalAmountPaid($identificationCode, $postedFinancialYear).'
                                             </div>
                                             <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                Total Amount Paid
+                                                Total Amount Paid&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-money"></i>
                                             </div>
                                         </div>
                                         <div class="more" style="height: 40px;" href="#">
@@ -199,7 +199,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                                 KES: '.$this->totalAmountPending($identificationCode, $postedFinancialYear).'
                                             </div>
                                             <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                Total Amount Pending
+                                                Total Amount Pending&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-money"></i>
                                             </div>
                                         </div>
                                         <div class="more" style="height: 40px;" href="#">
@@ -1136,7 +1136,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                                         KES: '.$this->estimatedRunningBudget($systemSchoolCode, $financialYearCode).'
                                                     </div>
                                                     <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                        Total Running Budget
+                                                        Total Running Budget&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-money"></i>
                                                     </div>
                                                 </div>
                                                 <div class="more" style="height: 40px;" href="#">
@@ -1154,7 +1154,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                                         KES: '.$this->totalAmountAllocated($systemSchoolCode, $financialYearCode).'
                                                     </div>
                                                     <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                        Total Amount Allocated
+                                                        Total Amount Allocated&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-money"></i>
                                                     </div>
                                                 </div>
                                                 <div class="more" style="height: 40px;" href="#">
@@ -1172,7 +1172,7 @@ class processFinanceStatus_Model extends Zf_Model {
                                                         KES: '.$this->totalAllocationPending($systemSchoolCode, $financialYearCode).'
                                                     </div>
                                                     <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                        Total Allocation Pending
+                                                        Total Allocation Pending&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-money"></i>
                                                     </div>
                                                 </div>
                                                 <div class="more" style="height: 40px;" href="#">

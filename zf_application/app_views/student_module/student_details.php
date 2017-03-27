@@ -43,7 +43,7 @@
                                     425
                                 </div>
                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Total Students
+                                    Total Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
                                 </div>
                             </div>
                             <div class="more" style="height: 25px;" href="#">
@@ -61,7 +61,7 @@
                                     218
                                 </div>
                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Male Students
+                                    Male Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
                                 </div>
                             </div>
                             <div class="more" style="height: 25px;" href="#">
@@ -79,7 +79,7 @@
                                    207
                                 </div>
                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Female Students
+                                    Female Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
                                 </div>
                             </div>
                             <div class="more" style="height: 25px;" href="#">
@@ -97,7 +97,7 @@
                                    10
                                 </div>
                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                   Disabled Students
+                                   Disabled Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-wheelchair-alt"></i>
                                 </div>
                             </div>
                             <div class="more" style="height: 25px;" href="#">
@@ -117,9 +117,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
                 <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
-                    <div class="portlet-empty table-responsive" style="margin-right: 0% !important;">
-                        <div style="margin-right: 8px !important;"><?php echo $zf_generateTable; ?></div>
-                    </div>
+                    <?php echo $zf_generateTable; ?>
                 </div>          
             </div>
         </div>
