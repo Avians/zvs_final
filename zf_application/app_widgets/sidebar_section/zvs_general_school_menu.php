@@ -173,4 +173,13 @@
 
     } 
     
+
+ 
+    //20. Data Module(DtaMod) ==> zvs_data
+    if(Zf_Core_Functions::Zf_recursiveArray(DATA_MODULE, $zvs_allowedResources)){ 
+        
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "data_module.php", $zvs_allowedResources);
+
+    } 
+    
 ?>

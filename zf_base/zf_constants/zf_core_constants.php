@@ -194,6 +194,10 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('STUDENT_ALUMNI')       ?   null : define('STUDENT_ALUMNI'  ,  0);
     
     
+    //Platform Staff Status
+    defined('STAFF_CONTINUING')       ?   null : define('STAFF_CONTINUING'   ,  1);
+    
+    
 
 /**
  * -----------------------------------------------------------------------------
@@ -334,6 +338,15 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Assets Module and resources
     defined('ASTMOD') ? null : define('ASTMOD' , 'assets_module');
     defined('ASSETS_MODULE') ? null : define('ASSETS_MODULE' , 'AstMod');
+    
+    
+    //Data Management Module and resources
+    defined('DTAMOD') ? null : define('DTAMOD' , 'data_module');
+    defined('DATA_MODULE') ? null : define('DATA_MODULE' , 'DtaMod');
+    
+        //These constant are a set of resources that are usable within the data module
+        defined('MANAGE_STUDENT_DATA') ? null : define('MANAGE_STUDENT_DATA' , 'DtaMod'.CONNECT.'ManageStudentData');
+        defined('MANAGE_STAFF_DATA') ? null : define('MANAGE_STAFF_DATA' , 'DtaMod'.CONNECT.'ManageStaffData');
    
 
 ?>

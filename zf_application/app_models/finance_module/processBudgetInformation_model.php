@@ -145,7 +145,7 @@ class processBudgetInformation_Model extends Zf_Model {
         }else{
             
             $zvs_budgetOverviewGrid .='<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                            <div class="portlet box zvs-content-blocks" style="">
                                                 <div class="zvs-content-titles">
                                                     <div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
                                                         <h3 style="padding-left: 10px !important;">'.$financialYearName.' Budget Overview</h3>
@@ -154,7 +154,7 @@ class processBudgetInformation_Model extends Zf_Model {
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
+                                                    <div class="scroller" data-always-visible="1" data-rail-visible="1">
                                                         <div class="table-responsive">
                                                             <table class="table table-striped table-hover">
                                                                 <thead>

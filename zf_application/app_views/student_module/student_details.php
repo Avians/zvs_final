@@ -1,12 +1,12 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("student_module", "processStudentDetails");
+    $zf_controller->Zf_loadModel("student_module", "studentInformation");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
     
-    Zf_SessionHandler::zf_setSessionVariable("financialStatusIdentificationCode", $identificationCode);
+    Zf_SessionHandler::zf_setSessionVariable("sessionIdentificationCode", $identificationCode);
     
 ?>
     
@@ -31,82 +31,7 @@
         <!-- BEGIN DASHBOARD CONTENT -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!--START OF SUBJECT STATISTICS-->
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat purple-sharp">
-                            <div class="visual">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                    425
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Total Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Students In School
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat green-sharp">
-                            <div class="visual">
-                                <i class="fa fa-male"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                    218
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Male Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Male Students In School
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat blue-madison">
-                            <div class="visual">
-                                <i class="fa fa-female"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                   207
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Female Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Female Staff In School
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat red-soft">
-                            <div class="visual">
-                                <i class="fa fa-wheelchair-alt"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                   10
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                   Disabled Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-wheelchair-alt"></i>
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Disabled Students
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--END OF SUBJECT STATISTICS-->
+                <?php $zf_controller->zf_targetModel->zvs_fetchStudentInformation(); ?>
             </div>
         </div>
         <!-- END DASHBOARD CONTENT -->
@@ -117,7 +42,11 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
                 <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
-                    <?php echo $zf_generateTable; ?>
+                    <div class="portlet-empty table-responsive" style="margin-right: 0% !important;">
+                        <div style="margin-right: 8px !important;">
+                            <?php echo $zf_generateTable; ?>
+                        </div>
+                    </div>
                 </div>          
             </div>
         </div>

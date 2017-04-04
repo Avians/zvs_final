@@ -1,12 +1,12 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("staff_module", "processStaffDetails");
+    $zf_controller->Zf_loadModel("staff_module", "processStaffInformation");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
     
-    Zf_SessionHandler::zf_setSessionVariable("financialStatusIdentificationCode", $identificationCode);
+    Zf_SessionHandler::zf_setSessionVariable("sessionIdentificationCode", $identificationCode);
     
 ?>
     
@@ -32,82 +32,7 @@
         <!-- BEGIN DASHBOARD CONTENT -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!--START OF SUBJECT STATISTICS-->
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat purple-sharp">
-                            <div class="visual">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                    37
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Total School Staff
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Staff Members In School
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat green-sharp">
-                            <div class="visual">
-                                <i class="fa fa-male"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                    25
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Male Staff
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Male Staff In School
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat blue-madison">
-                            <div class="visual">
-                                <i class="fa fa-female"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                   12
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                    Female Staff
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total Female Staff In School
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        <div class="dashboard-stat red-soft">
-                            <div class="visual">
-                                <i class="fa fa-snowflake-o"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number" style="font-size: 35px !important">
-                                   10
-                                </div>
-                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                   School Roles
-                                </div>
-                            </div>
-                            <div class="more" style="height: 25px;" href="#">
-                                Total School Roles
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--END OF SUBJECT STATISTICS-->
+                <?php $zf_controller->zf_targetModel->zvs_fetchStaffInformation(); ?>
             </div>
         </div>
         <!-- END DASHBOARD CONTENT -->

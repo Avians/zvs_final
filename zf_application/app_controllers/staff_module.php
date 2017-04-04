@@ -42,9 +42,9 @@ class staff_moduleController extends Zf_Controller {
         
         $tableData = array();
         $tableData['tableTitle'] = "List of all school staff";
-        $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' ";
+        $tableData['tableQuery'] = "SELECT * FROM zvs_staff_personal_details WHERE systemSchoolCode = '".$systemSchoolCode."' AND staffSchoolStatus = '".STAFF_CONTINUING."' ";
         
-        $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData);
+        $zf_phpGridSettings = $this->actionGenerateStaffTable($tableData);
         
         Zf_View::zf_displayView('staff_details',$zf_actionData, $zf_phpGridSettings);
         
@@ -94,10 +94,10 @@ class staff_moduleController extends Zf_Controller {
     /**
      * This is the action that generates the transaction table
      */
-    public function actionGenerateStudentsTable($tableData, $zf_subGrid = NULL){
+    public function actionGenerateStaffTable($tableData, $zf_subGrid = NULL){
         
         //This holds the name of the database table that is being accessed.
-        $zf_phpGridSettings['zf_tableName'] = 'zvs_students_personal_details'; 
+        $zf_phpGridSettings['zf_tableName'] = 'zvs_staff_personal_details'; 
         
         //This is the title of the table as it will appear on the user view
         $tableTitle = $tableData['tableTitle'];
@@ -111,23 +111,23 @@ class staff_moduleController extends Zf_Controller {
         //This array holds all the data related to required grid columns
         $zf_gridColumns = array();
 
-        $admissionNumber = array("title"=>"Adm Number", "name"=>"studentAdmissionNumber", "width"=>20, "editable"=>false);
+        $admissionNumber = array("title"=>"ID Number", "name"=>"staffIdNumber", "width"=>20, "editable"=>false);
         $zf_gridColumns[] = $admissionNumber;
         
-        $studentFirstName = array("title"=>"First Name", "name"=>"studentFirstName", "width"=>20, "editable"=>true); 
+        $studentFirstName = array("title"=>"First Name", "name"=>"staffFirstName", "width"=>20, "editable"=>true); 
         $zf_gridColumns[] = $studentFirstName;
         
-        $studentMiddleName = array("title"=>"Middle Name", "name"=>"studentMiddleName", "width"=>20, "editable"=>true);
+        $studentMiddleName = array("title"=>"Middle Name", "name"=>"staffMiddleName", "width"=>20, "editable"=>true);
         $zf_gridColumns[] = $studentMiddleName;
         
-        $studentLastName = array("title"=>"Last Name", "name"=>"studentLastName", "width"=>20, "editable"=>true);
+        $studentLastName = array("title"=>"Last Name", "name"=>"staffLastName", "width"=>20, "editable"=>true);
         $zf_gridColumns[] = $studentLastName;
         
         
-        $studentPhoneNumber = array("title"=>"Mobile Number", "name"=>"studentPhoneNumber", "width"=>20, "editable"=>false);
+        $studentPhoneNumber = array("title"=>"Mobile Number", "name"=>"staffPhoneNumber", "width"=>20, "editable"=>false);
         $zf_gridColumns[] = $studentPhoneNumber;
         
-        $studentGender = array("title"=>"Gender", "name"=>"studentGender", "width"=>15, "editable"=>false);
+        $studentGender = array("title"=>"Gender", "name"=>"staffGender", "width"=>15, "editable"=>false);
         $zf_gridColumns[] = $studentGender;
         
         //This action column of the table 

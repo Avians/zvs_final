@@ -57,7 +57,7 @@ class newExcelUpload_Model extends Zf_Model {
         
         
         
-        $excelFile = ZF_DATASTORE."zvs_student_bulk_upload".DS."testFile.xls";
+        $excelFile = ZF_DATASTORE."zvs_student_bulk_upload".DS."mathew.xlsx";
          
         echo "<b>Our Data File Source is: </b><i>".$excelFile."<i><br><br>";
                 
@@ -94,7 +94,7 @@ class newExcelUpload_Model extends Zf_Model {
 
                 $excelData  .="<table style='border: 1px solid #000;'>";
 
-                for ($row = 1; $row <= $highestRow; $row++){
+                for ($row = 2; $row <= $highestRow; $row++){
 
                     $excelData .="<tr style='border: 1px solid #000;'><td style='border: 1px solid #000;'>1xxxxxxxx".$row."</td>";
 

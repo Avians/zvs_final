@@ -1330,7 +1330,7 @@ class processFeeInformation_Model extends Zf_Model {
         //echo $paymentAmount = (double)str_replace(',', '', $this->_validResult['paymentAmount'])."<br>";
         
         //This is for debugging purposes only.
-        //echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        //echo "<pre>School Fees Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
         
         
         $adminIdentificationCode = $this->_validResult['adminIdentificationCode'];
@@ -1422,7 +1422,7 @@ class processFeeInformation_Model extends Zf_Model {
                         
                         //This is the case when there is no excess amount but there was prior to this transaction
                         $amountToReserve = "0.00";
-                        //echo "This is the current excess amount paid: ".$amountToReserve."<br><br>";
+                        //echo "This is the current excess amount paid: ".$amountToReserve."<br><br>"; //exit();
                         
                     }
                     
@@ -1431,6 +1431,8 @@ class processFeeInformation_Model extends Zf_Model {
                         
                     //This is the actual amount for fees payment
                     //echo "This is the new payable amount as fees: ".$totalPayableAmount."<br><br>"; //exit();
+                    
+                    //echo $totalPayableAmount."<br>".$amountToReserve."<br>"; //exit();
                     
                     $this->zvs_makeFeesPayment($this->_validResult, $totalPayableAmount, $amountToReserve);
                  
@@ -1459,6 +1461,8 @@ class processFeeInformation_Model extends Zf_Model {
      */
     private function zvs_makeFeesPayment($formResult, $paymentAmount, $amountToReserve = NULL){
         
+        //echo $paymentAmount."<br>".$amountToReserve."<br>"; //exit();
+        
         //0. Strip all form details
         $systemSchoolCode = $formResult['systemSchoolCode'];
         $studentClassCode = $formResult['studentClassCode'];
@@ -1474,7 +1478,6 @@ class processFeeInformation_Model extends Zf_Model {
         $zvs_sqlValuesReserve['studentIdentificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
         $zvs_sqlValuesReserve['studentAdmissionNumber'] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
         $zvs_sqlValuesReserve['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        $zvs_sqlValuesReserve['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
         
         
         //1. INSERT OR UPDATE EXCESS PAYMENT AMOUNT INTO RESERVE
@@ -1486,6 +1489,9 @@ class processFeeInformation_Model extends Zf_Model {
 
             //There is no any pre-existing record, therefore insert
             if($reservedPaymentRecord == 0){
+                
+                $zvs_sqlValuesReserve['updatedBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
+                $zvs_sqlValuesReserve['createdBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
                 
                 $zvs_sqlValuesReserve['reservedAmount'] = Zf_QueryGenerator::SQLValue($amountToReserve);
                 $zvs_sqlValuesReserve['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
@@ -1499,6 +1505,7 @@ class processFeeInformation_Model extends Zf_Model {
                 
                 //We have reserved amount so we update the value
                 $zvs_sqlColumn["reservedAmount"] = Zf_QueryGenerator::SQLValue($amountToReserve);
+                $zvs_sqlColumn['updatedBy'] = Zf_QueryGenerator::SQLValue($adminIdentificationCode);
                 $zvs_sqlColumn['dateReserved'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_CurrentDate("Y-m-d H:i:s"));
 
                 //Update sql query and execution
@@ -1506,7 +1513,7 @@ class processFeeInformation_Model extends Zf_Model {
 
             }
             
-            //echo $zvs_insertUpdateNewReserveDetails."<br><br>";
+            //echo $zvs_insertUpdateNewReserveDetails."<br><br>"; exit();
             
             $zvs_executeInsertUpdateNewReserveDetails = $this->Zf_AdoDB->Execute($zvs_insertUpdateNewReserveDetails);
 

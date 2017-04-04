@@ -164,7 +164,7 @@ class processStaffInformation_Model extends Zf_Model {
         
         
         //This of debugging purposes only.
-        //echo "<pre>All Staff Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; exit();
+        //echo "<pre>All Staff Data<br>"; print_r($this->_errorResult); echo "</pre>"; echo "<pre>"; print_r($this->_validResult); echo "</pre>"; //exit();
         
         
         if(empty($this->_errorResult)){
@@ -285,12 +285,14 @@ class processStaffInformation_Model extends Zf_Model {
                                 $staffPersonalDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
                                 $staffPersonalDetails['dateCreated'] = Zf_QueryGenerator::SQLValue(Zf_Core_Functions::Zf_FomartDate("Y-m-d", Zf_Core_Functions::Zf_CurrentDate()));
                                 $staffPersonalDetails['staffStatus'] = Zf_QueryGenerator::SQLValue(1); 
+                                $staffPersonalDetails['staffSchoolStatus'] = Zf_QueryGenerator::SQLValue(1); 
                                 
                                 
                                 //Since all data has been prepared for database, build the INSERTION SQL quries
 
                                 //1. Insert staff application user details
                                 $insertStaffApplicationUserDetails = Zf_QueryGenerator::BuildSQLInsert('zvs_application_users', $staffApplicationUserDetails);
+                                //echo  $insertStaffApplicationUserDetails; exit();
                                 $executeInsertStaffApplicationUserDetails = $this->Zf_AdoDB->Execute($insertStaffApplicationUserDetails);
                                 if(!$executeInsertStaffApplicationUserDetails){
 
@@ -340,6 +342,146 @@ class processStaffInformation_Model extends Zf_Model {
         
     }
     
+    
+    
+    
+    //This prublic method fetcches school student statistics for a selceted year.
+    public function zvs_fetchStaffInformation(){
+        
+        $zvs_staffDetails = "";
+        
+        $zvs_staffDetails .='   <!--START OF STAFF STATISTICS-->
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat purple-sharp">
+                                            <div class="visual">
+                                                <i class="fa fa-users"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
+                                                    $zvs_staffDetails .= $this->getTotalStaff();    
+                        $zvs_staffDetails .='   </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                    Total School Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
+                                                </div>
+                                            </div>
+                                            <div class="more" style="height: 25px;" href="#">
+                                                Total Staff Members In School
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat green-sharp">
+                                            <div class="visual">
+                                                <i class="fa fa-male"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
+                                                    $zvs_staffDetails .= $this->countStaffGender("Male"); 
+                        $zvs_staffDetails .='   </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                    Male Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
+                                                </div>
+                                            </div>
+                                            <div class="more" style="height: 25px;" href="#">
+                                                Total Male Staff In School
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat blue-madison">
+                                            <div class="visual">
+                                                <i class="fa fa-female"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
+                                                    $zvs_staffDetails .= $this->countStaffGender("Female"); 
+                        $zvs_staffDetails .='   </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                    Female Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
+                                                </div>
+                                            </div>
+                                            <div class="more" style="height: 25px;" href="#">
+                                                Total Female Staff In School
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat red-soft">
+                                            <div class="visual">
+                                                <i class="fa fa-snowflake-o"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">
+                                                   10
+                                                </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                   School Roles&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-snowflake-o"></i>
+                                                </div>
+                                            </div>
+                                            <div class="more" style="height: 25px;" href="#">
+                                                Total School Roles
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--END OF STAFF STATISTICS-->';
+        
+        
+        
+        echo $zvs_staffDetails;
+        
+    }
+    
+    
+    
+    
+    
+    
+    //This private method counts data for all staff in school
+    private function getTotalStaff(){
+        
+        //Male staff
+        $totalMaleStaff = $this->countStaffGender("Male");
+        
+        //Female staff
+        $totalFemaleStaff = $this->countStaffGender("Female");
+        
+        //All staff
+        $totalStaff= $totalMaleStaff + $totalFemaleStaff;
+        
+        return $totalStaff;
+        
+    }
+    
+    
+    
+    //This private method counts all staff based on gender
+    private function countStaffGender($gender){
+        
+        $staffPersonalDetailsTable = "zvs_staff_personal_details";
+        $staffGender = $gender;
+        
+        //The counts SQL query goes here
+        $zvsStaffCount = 'SELECT * FROM `'.$staffPersonalDetailsTable.'` WHERE `'.$staffPersonalDetailsTable.'`.`staffGender` = "'.$staffGender.'" ';
+        
+        $executeStaffCount   = $this->Zf_AdoDB->Execute($zvsStaffCount);
+        
+        if (!$executeStaffCount){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            $staffCount = $executeStaffCount->RecordCount();
+        }
+        
+        //return staff count
+        return $staffCount;
+        
+    }
+        
+        
 }
 
 ?>
