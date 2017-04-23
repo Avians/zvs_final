@@ -66,5 +66,13 @@
  * -----------------------------------------------------------------------------
  */
     defined('ZVSS_CONNECT') ? null : define('ZVSS_CONNECT' , '[`^`]');
+
+    
+/**
+ * -----------------------------------------------------------------------------
+ * THIS IS THE TEMPORARY PASSWORD THAT MUST BE CHANGED ON FIRST LOGIN
+ * -----------------------------------------------------------------------------
+ */
+    defined('ZVS_PASSWORD') ? null : define('ZVS_PASSWORD' , 'zvs_temporary_password');
     
 ?>

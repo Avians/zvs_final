@@ -396,6 +396,22 @@ class Zf_Core_Functions {
     
     /**
      * -------------------------------------------------------------------------
+     * THIS IS THE STATIC METHOD FOR GENERATING CURRENT TIMESTAMP
+     * -------------------------------------------------------------------------
+     * @param none
+     * @return string current time
+     */
+    public static function Zf_CurrentTimeStamp(){
+        
+       $date = date_create();
+        
+       return date_timestamp_get($date);
+        
+    }
+    
+    
+    /**
+     * -------------------------------------------------------------------------
      * THIS IS THE STATIC METHOD FOR FORMATING DATE STRINGS
      * -------------------------------------------------------------------------
      * @param none
@@ -480,23 +496,37 @@ class Zf_Core_Functions {
      * @param none
      * @return string image path
      */
-    public static function Zf_uploadImages($imageArray, $imageName, $uploadDirectory){
+    public static function Zf_uploadFiles($fileArray, $fileName, $uploadDirectory, $fileType = NULL){
         
         //Generate the parameters for the file to be uploaded (school logo)
         $zf_upload_parameters = array(
             "zf_fileUploadFolder" => $uploadDirectory,
-            "zf_fileFieldName" => $imageArray
+            "zf_fileFieldName" => $fileArray
         );
 
-        //Rules for modifying the file to be uploaded (school logo)
-        $zf_upload_settings = array(
-            'file_new_name_body' => $imageName,
-            'file_new_name_ext' => 'png',
-            'image_resize' => true,
-            'image_x' => 100,
-            'image_y' => 100,
-            'forbidden' => array('application/*')
-        );
+        if(!empty($fileType) && $fileType != NULL && $fileType = "image"){
+            
+            //Rules for modifying the file to be uploaded (school logo)
+            $zf_upload_settings = array(
+                'file_new_name_body' => $fileName,
+                'file_new_name_ext' => 'png',
+                'image_resize' => true,
+                'image_x' => 100,
+                'image_y' => 100,
+                'forbidden' => array('application/*')
+            );
+            
+        }else{
+            
+            //Rules for modifying the file to be uploaded (school logo)
+            $zf_upload_settings = array(
+                
+                'file_new_name_body' => $fileName
+                    
+            );
+            
+        }
+        
 
         //Process the actual upload of the user image
         Zf_File_Upload::zf_fileUpload($zf_upload_parameters, $zf_upload_settings);

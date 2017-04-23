@@ -323,7 +323,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                                 $imageArray = $this->_validResult['imagePath'];
 
                                 //Store the user image into the datastore/user_images/zvs_super_admin directory
-                                Zf_Core_Functions::Zf_uploadImages($imageArray, $imageName, $uploadDirectory);
+                                Zf_Core_Functions::Zf_uploadFiles($imageArray, $imageName, $uploadDirectory, $fileType = "image");
                                 
                                 //This is the image name stored in the database
                                 $zvs_adminDetails['imagePath'] = Zf_QueryGenerator::SQLValue($imageName.".png");
@@ -345,7 +345,7 @@ class newSchoolRegistration_Model extends Zf_Model {
                                 $imageArray = $this->_validResult['schoolLogoPath'];
 
                                 //Store the user image into the datastore/user_images/zvs_super_admin directory
-                                Zf_Core_Functions::Zf_uploadImages($imageArray, $schoolLogoPath, $uploadDirectory);
+                                Zf_Core_Functions::Zf_uploadFiles($imageArray, $schoolLogoPath, $uploadDirectory, $fileType = "image");
                                 
                                 //This is the image name stored in the database
                                 $zvs_schoolDetails['schoolLogoPath'] = Zf_QueryGenerator::SQLValue($schoolLogoPath.".png");

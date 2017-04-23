@@ -307,6 +307,11 @@ THE CSS IN THIS SECTION IS STRICTLY FOR STYLING THE PORTLETS
 }
 
 
+.thumbnail{
+    border: 2px solid #21B4E2 !important;
+    border-radius: 7px !important; 
+}
+
 
 .portlet-titles-blue{
     font-family: ProximaNova-Semibold !important; font-size: 13px !important; line-height: 14px; font-weight: bold; letter-spacing: 0.05em !important; color: #21B4E2 !important;

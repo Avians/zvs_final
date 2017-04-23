@@ -58,6 +58,7 @@ class newExcelUpload_Model extends Zf_Model {
         
         
         $excelFile = ZF_DATASTORE."zvs_student_bulk_upload".DS."mathew.xlsx";
+        $excelFile = ZF_DATASTORE."zvs_student_bulk_upload".DS."test_data_4.xls";
          
         echo "<b>Our Data File Source is: </b><i>".$excelFile."<i><br><br>";
                 

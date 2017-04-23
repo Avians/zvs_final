@@ -69,6 +69,29 @@ class data_moduleController extends Zf_Controller {
         
     }
     
+    
+    //This public methoduplloads all data templates
+    public function actionUpload_data_templates($zvs_parameter){
+        
+        $data_sheet = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        //echo $data_sheet; exit();
+        
+        if($data_sheet == "student_data_template"){
+            
+            //This method uploads all student data in bulk
+            $this->zf_targetModel->uploadStudentData();
+            
+        }else if($data_sheet == "staff_data_template"){
+           
+            //This method uploads all staff data in bulk
+            $this->zf_targetModel->uploadStaffData();
+            
+        }
+        
+        
+    }
+    
   
 
 }
