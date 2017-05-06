@@ -94,10 +94,10 @@ class platformSchoolResources_Model extends Zf_Model {
                                        if($zvs_resourceDetails == 0){
 
                                            $zvs_resourcesGridView .='<div class="portlet-body">
-                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 13% !important;">
+                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 15% !important;">
                                                                         <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
                                                                         <span class="content-view-errors data-danger" >
-                                                                            &nbsp;There are no resources registered for '.strtolower($categoryName).' module! <br>Once resources are added to the module, they will be populated here-in.
+                                                                            &nbsp;There are no resources in '.strtolower($categoryName).' module! Once resources are added to the module, they will be populated here-in.
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -138,7 +138,7 @@ class platformSchoolResources_Model extends Zf_Model {
                                                                         <div class="zvs-content-footer">
                                                                             <div class="row">';
                                                                     
-                                                                   $zvs_resourcesGridView .= '<div class="col-lg-6 col-md-6 col-sm-9 col-xs-9">
+                                                                   $zvs_resourcesGridView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                                                                     Total '.$categoryName.' Resources:
                                                                                                 </div>';  
                                                                                 

@@ -67,8 +67,7 @@
         
         if($userRole != "" && !empty($userRole)){
     
-            Zf_ApplicationWidgets::zf_load_widget("sidebar_section", "zvs_general_school_menu.php", $identificationCode);
-           
+            Zf_ApplicationWidgets::zf_load_widget("sidebar_section", "zvs_general_school_menu.php", $identificationCode);  
         
         }else{
             

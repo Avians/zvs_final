@@ -8,7 +8,8 @@
 $activeURL = Zf_Core_Functions::Zf_URLSanitize();
 
 //This are the active controller, action and parameter if any.
-$zvs_controller = TRNMOD; $zvs_action = $activeURL[1]; $zvs_parameter = Zf_SecureData::zf_decode_data($activeURL[2]);
+$zvs_controller = TRNMOD; $zvs_action = $activeURL[1]; 
+$zvs_parameter = explode(ZVSS_CONNECT, Zf_SecureData::zf_decode_data($activeURL[2]))[0];
 
 //This external widget data 
 $zvs_allowedResources = $zf_externalWidgetData;
@@ -16,49 +17,60 @@ $zvs_allowedResources = $zf_externalWidgetData;
 
 $main_menu = array(
     
-    
-    //New platform user
-    "new_user" => array(
-        'name' => '<i class="fa fa-user"></i> New User',
+    //Transport Zones
+    "transport_overview" => array(
+        'name' => '<i class="fa fa-empire"></i> Transport Overview',
         'controller' => $zvs_controller,
-        'action' => 'new_user',
-        'parameter' => $identificationCode,
+        'action' => 'transport_overview',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin directory
-    "admin_directory" => array(
-        'name' => '<i class="fa fa-list"></i> Admin Users Directory',
+    //Transport Setup
+    "transport_setup" => array(
+        'name' => '<i class="fa fa-cogs"></i> Transport Setup',
         'controller' => $zvs_controller,
-        'action' => 'admin_directory',
-        'parameter' => $identificationCode,
+        'action' => 'transport_setup',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin reports
-    "admin_reports" => array(
-        'name' => '<i class="fa fa-bar-chart"></i> Admin Reports',
+    //Assign Students
+    "assign_drivers" => array(
+        'name' => '<i class="fa fa-users"></i> Assign Drivers',
         'controller' => $zvs_controller,
-        'action' => 'admin_reports',
-        'parameter' => $identificationCode,
+        'action' => 'assign_drivers',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Manage resources
-    "manage_resources" => array(
-        'name' => '<i class="fa fa-yelp"></i> Manage Resources <span class="selected"></span>',
+    //Assign Students
+    "assign_students" => array(
+        'name' => '<i class="fa fa-users"></i> Assign Students',
         'controller' => $zvs_controller,
-        'action' => 'manage_resources',
-        'parameter' => $identificationCode,
+        'action' => 'assign_students',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
+    //Transport Reports
+    "transport_reports" => array(
+        'name' => '<i class="fa fa-line-chart"></i> Transport Reports',
+        'controller' => $zvs_controller,
+        'action' => 'transport_reports',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
@@ -68,24 +80,40 @@ $main_menu = array(
 );
 ?>
 
-<!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "active";} ?>">
+
+<!-- This menu item manages all aspects of transport module-->
+<li class="<?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "active";} ?>">
     <a href="javascript:;">
-        <i class="fa fa-users"></i>
-        <span class="title"> ZVS Admin Users </span>
-        <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
+        <i class="fa fa-bus"></i>
+        <span class="title"> Transport Module </span>
+        <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['new_user']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_directory") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_directory']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_reports") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_reports']); ?>
-        </li>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_OVERVIEW, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "transport_overview") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['transport_overview']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_SETUP, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "transport_setup") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['transport_setup']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_ASSIGN_DRIVERS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "assign_drivers") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['assign_drivers']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_ASSIGN_STUDENTS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "assign_students") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['assign_students']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_REPORTS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "transport_reports") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['transport_reports']); ?>
+            </li>
+        <?php } ?>
     </ul>
 </li>
-

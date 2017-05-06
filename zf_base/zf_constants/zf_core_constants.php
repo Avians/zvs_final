@@ -314,10 +314,24 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('LIBMOD') ? null : define('LIBMOD' , 'library_module');
     defined('LIBRARY_MODULE') ? null : define('LIBRARY_MODULE' , 'LibMod');
     
+        //These constant are a set of resources that are usable within the library module
+        defined('LIBRARY_OVERVIEW') ? null : define('LIBRARY_OVERVIEW' , 'LibMod'.CONNECT.'LibraryOverview');
+        defined('LIBRARY_SETUP') ? null : define('LIBRARY_SETUP' , 'LibMod'.CONNECT.'LibrarySetup');
+        defined('LIBRARY_RECEIVING') ? null : define('LIBRARY_RECEIVING' , 'LibMod'.CONNECT.'LibraryReceiving');
+        defined('LIBRARY_ISSUING') ? null : define('LIBRARY_ISSUING' , 'LibMod'.CONNECT.'LibraryIssuing');
+        defined('LIBRARY_REPORTS') ? null : define('LIBRARY_REPORTS' , 'LibMod'.CONNECT.'LibraryReports');
+    
     
     //Transport Module and resources
     defined('TRNMOD') ? null : define('TRNMOD' , 'transport_module');
     defined('TRANSPORT_MODULE') ? null : define('TRANSPORT_MODULE' , 'TrnMod');
+    
+        //These constant are a set of resources that are usable within the transport module
+        defined('TRANSPORT_OVERVIEW') ? null : define('TRANSPORT_OVERVIEW' , 'TrnMod'.CONNECT.'TransportOverview');
+        defined('TRANSPORT_SETUP') ? null : define('TRANSPORT_SETUP' , 'TrnMod'.CONNECT.'TransportSetup');
+        defined('TRANSPORT_ASSIGN_DRIVERS') ? null : define('TRANSPORT_ASSIGN_DRIVERS' , 'TrnMod'.CONNECT.'AssignDrivers');
+        defined('TRANSPORT_ASSIGN_STUDENTS') ? null : define('TRANSPORT_ASSIGN_STUDENTS' , 'TrnMod'.CONNECT.'AssignStudents');
+        defined('TRANSPORT_REPORTS') ? null : define('TRANSPORT_REPORTS' , 'TrnMod'.CONNECT.'TransportReports');
     
     
     //Kitchen Module and resources
@@ -335,9 +349,31 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('HOSTEL_MODULE') ? null : define('HOSTEL_MODULE' , 'HosMod');
     
     
-    //Assets Module and resources
-    defined('ASTMOD') ? null : define('ASTMOD' , 'assets_module');
-    defined('ASSETS_MODULE') ? null : define('ASSETS_MODULE' , 'AstMod');
+    //Asset Module and resources
+    defined('ASSMOD') ? null : define('ASSMOD' , 'asset_module');
+    defined('ASSET_MODULE') ? null : define('ASSET_MODULE' , 'AssMod');
+    
+        //These constant are a set of resources that are usable within the asset module
+        defined('ASSET_OVERVIEW') ? null : define('ASSET_OVERVIEW' , 'AssMod'.CONNECT.'AssetOverview');
+        defined('ASSET_SETUP') ? null : define('ASSET_SETUP' , 'AssMod'.CONNECT.'AssetSetup');
+        defined('ASSET_INVENTORY') ? null : define('ASSET_INVENTORY' , 'AssMod'.CONNECT.'AssetInventory');
+        defined('ASSET_ITEMS') ? null : define('ASSET_ITEMS' , 'AssMod'.CONNECT.'AssetItems');
+    
+    
+    
+    //Store Module and resources
+    defined('STRMOD') ? null : define('STRMOD' , 'store_module');
+    defined('STORE_MODULE') ? null : define('STORE_MODULE' , 'StrMod');
+    
+        //These constant are a set of resources that are usable within the store module
+        defined('STORE_OVERVIEW') ? null : define('STORE_OVERVIEW' , 'StrMod'.CONNECT.'StoreOverview');
+        defined('STORE_SUPPLIERS') ? null : define('STORE_SUPPLIERS' , 'StrMod'.CONNECT.'StoreSuppliers');
+        defined('STORE_SETUP') ? null : define('STORE_SETUP' , 'StrMod'.CONNECT.'StoreSetup');
+        defined('STORE_ASSIGNMENT') ? null : define('STORE_ASSIGNMENT' , 'StrMod'.CONNECT.'StoreAssignment');
+        defined('STORE_RECEIVING') ? null : define('STORE_RECEIVING' , 'StrMod'.CONNECT.'StoreReceiving');
+        defined('STORE_ISSUING') ? null : define('STORE_ISSUING' , 'StrMod'.CONNECT.'StoreIssuing');
+        defined('STORE_REPORTS') ? null : define('STORE_REPORTS' , 'StrMod'.CONNECT.'StoreReports');
+    
     
     
     //Data Management Module and resources

@@ -21,9 +21,11 @@
      */
 
     //This array holds all valid user resources for the selected role.
-    $zvs_allowedResources = $zf_model_data->zvs_fetchUserResources($identificationCode);
+    $zvs_allowedResources = $zf_model_data->zvs_fetchUserActiveResources($identificationCode);
 
-
+//    echo "<pre>";
+//    print_r($zvs_allowedResources);
+//    echo "</pre>"; exit();
     //MODULES AND RESOURCES LIST BEGINS HERE
 
     /**
@@ -166,10 +168,19 @@
     } 
 
  
-    //18. Assets Module(AstMod) ==> zvs_assets
-    if(Zf_Core_Functions::Zf_recursiveArray(ASSETS_MODULE, $zvs_allowedResources)){ 
+    //18. Asset Module(AssMod) ==> zvs_asset
+    if(Zf_Core_Functions::Zf_recursiveArray(ASSET_MODULE, $zvs_allowedResources)){ 
         
-        Zf_ApplicationWidgets::zf_load_widget("modules_section", "assets_module.php", $zvs_allowedResources);
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "asset_module.php", $zvs_allowedResources);
+
+    } 
+    
+
+ 
+    //19. Store Module(StrMod) ==> zvs_store
+    if(Zf_Core_Functions::Zf_recursiveArray(STORE_MODULE, $zvs_allowedResources)){ 
+        
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "store_module.php", $zvs_allowedResources);
 
     } 
     

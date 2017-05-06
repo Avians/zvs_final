@@ -16,49 +16,60 @@ $zvs_allowedResources = $zf_externalWidgetData;
 
 $main_menu = array(
     
-    
-    //New platform user
-    "new_user" => array(
-        'name' => '<i class="fa fa-user"></i> New User',
+    //Library Overview
+    "library_overview" => array(
+        'name' => '<i class="fa fa-empire"></i> Library Overview',
         'controller' => $zvs_controller,
-        'action' => 'new_user',
-        'parameter' => $identificationCode,
+        'action' => 'library_overview',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin directory
-    "admin_directory" => array(
-        'name' => '<i class="fa fa-list"></i> Admin Users Directory',
+    //Library Setup
+    "library_setup" => array(
+        'name' => '<i class="fa fa-cogs"></i> Library Setup',
         'controller' => $zvs_controller,
-        'action' => 'admin_directory',
-        'parameter' => $identificationCode,
+        'action' => 'library_setup',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Admin reports
-    "admin_reports" => array(
-        'name' => '<i class="fa fa-bar-chart"></i> Admin Reports',
+    //Library Issuing
+    "library_issuing" => array(
+        'name' => '<i class="fa fa-outdent"></i> Library Issuing',
         'controller' => $zvs_controller,
-        'action' => 'admin_reports',
-        'parameter' => $identificationCode,
+        'action' => 'library_issuing',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
     ),
     
     
-    //Manage resources
-    "manage_resources" => array(
-        'name' => '<i class="fa fa-yelp"></i> Manage Resources <span class="selected"></span>',
+    //Library Recieving
+    "library_receiving" => array(
+        'name' => '<i class="fa fa-indent"></i> Library Receiving',
         'controller' => $zvs_controller,
-        'action' => 'manage_resources',
-        'parameter' => $identificationCode,
+        'action' => 'library_receiving',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
+    //Library Report
+    "library_reports" => array(
+        'name' => '<i class="fa fa-line-chart"></i> Library Reports',
+        'controller' => $zvs_controller,
+        'action' => 'library_reports',
+        'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
         'id' => ''
@@ -68,24 +79,40 @@ $main_menu = array(
 );
 ?>
 
-<!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "active";} ?>">
+<!-- This menu item manages all aspects of library module-->
+<li class="<?php if ($zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") { echo "active";} ?>">
     <a href="javascript:;">
-        <i class="fa fa-users"></i>
-        <span class="title"> ZVS Admin Users </span>
-        <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
+        <i class="fa fa-trello"></i>
+        <span class="title"> Library Module </span>
+        <?php if ($zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['new_user']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_directory") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_directory']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "admin_reports") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['admin_reports']); ?>
-        </li>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_OVERVIEW, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "library_overview") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['library_overview']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_SETUP, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "library_setup") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['library_setup']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_ISSUING, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "library_issuing") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['library_issuing']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_RECEIVING, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "library_receiving") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['library_receiving']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_REPORTS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "library_reports") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['library_reports']); ?>
+            </li>
+        <?php } ?>
     </ul>
 </li>
 
