@@ -358,6 +358,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         defined('ASSET_SETUP') ? null : define('ASSET_SETUP' , 'AssMod'.CONNECT.'AssetSetup');
         defined('ASSET_INVENTORY') ? null : define('ASSET_INVENTORY' , 'AssMod'.CONNECT.'AssetInventory');
         defined('ASSET_ITEMS') ? null : define('ASSET_ITEMS' , 'AssMod'.CONNECT.'AssetItems');
+        defined('ASSET_REPORTS') ? null : define('ASSET_REPORTS' , 'AssMod'.CONNECT.'AssetReports');
     
     
     

@@ -19,7 +19,7 @@
 class library_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "library_overview";
 
 
 
@@ -33,13 +33,59 @@ class library_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    
+    //Executes the library overview. Also is the default action for this controller
+    public function actionLibrary_overview($identificationCode){
         
-        Zf_View::zf_displayView('index');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('library_overview', $zf_actionData);
+        
+    }
+
+    
+    
+    //Executes the library setup. Also is the default action for this controller
+    public function actionLibrary_setup($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('library_setup', $zf_actionData);
+        
+    }
+
+    
+    
+    //Executes the library issuing. Also is the default action for this controller
+    public function actionLibrary_issuing($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('library_issuing', $zf_actionData);
+        
+    }
+
+    
+    
+    //Executes the library receiving. Also is the default action for this controller
+    public function actionLibrary_receiving($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('library_receiving', $zf_actionData);
         
     }
     
+    
+    
+    //Executes the library reports. Also is the default action for this controller
+    public function actionLibrary_reports($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('library_reports', $zf_actionData);
+        
+    }
     
 
 }

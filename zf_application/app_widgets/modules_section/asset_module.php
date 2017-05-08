@@ -62,6 +62,18 @@ $main_menu = array(
         'title' => '',
         'style' => '',
         'id' => ''
+    ),
+    
+    
+    //Asset Reports
+    "asset_reports" => array(
+        'name' => '<i class="fa fa-line-chart"></i> Asset Reports',
+        'controller' => $zvs_controller,
+        'action' => 'asset_reports',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
     )
     
     
@@ -70,12 +82,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-connectdevelop"></i>
         <span class="title"> Assets Module </span>
-        <?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(ASSET_OVERVIEW, $zvs_allowedResources)){ ?>
@@ -96,6 +108,11 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(ASSET_ITEMS, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "asset_items") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['asset_items']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(ASSET_REPORTS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "asset_reports") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['asset_reports']); ?>
             </li>
         <?php } ?>
     </ul>

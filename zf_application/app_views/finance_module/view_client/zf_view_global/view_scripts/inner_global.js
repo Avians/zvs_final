@@ -114,7 +114,7 @@ var FinanceModule = function(){
     //Here we process all fee structure javascript and ajax
     var feeStructure = function ($absolute_path, $separator){
 
-        $('#feeStructureData, #feeClassTitle').hide();
+        $('#feeStructureData, #feeClassTitle, #printButton, .hidden-fee-structure').hide();
         
         $('#activeClassSelector, #classFeesYearsSelector').change(function(){
             
@@ -126,11 +126,11 @@ var FinanceModule = function(){
             
             if(selectedClass == ""){
                 
-                $('#feeClassTitle').hide(); $('#feeDefaultTitle').show();
+                $('#feeClassTitle').hide(); $('#feeDefaultTitle, #printButton').show();
                 
             }else{
                 
-                $('#feeDefaultTitle').hide(); $('#feeClassTitle').show();
+                $('#feeDefaultTitle').hide(); $('#feeClassTitle, #printButton').show();
                 //Model variables
                 var targetController = "finance_module";
                 var targetAction = "processFeeStructure";
