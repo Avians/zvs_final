@@ -73,6 +73,16 @@ class store_moduleController extends Zf_Controller {
     }
     
     
+    //Executes the store items. Also is the default action for this controller
+    public function actionStore_items($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('store_items', $zf_actionData);
+        
+    }
+    
+    
     //Executes the store receiving. Also is the default action for this controller
     public function actionStore_receiving($identificationCode){
         

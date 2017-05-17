@@ -127,7 +127,7 @@ class class_moduleController extends Zf_Controller {
         $tableData['tableQuery'] = "SELECT ".$studentAdmissionNumer." , ".$studentFirstName." , ".$studentMiddleName." , ".$studentLastName." , ".$studentGender." FROM ".$zf_studentClassDetails." INNER JOIN ".$zf_studentPersonalDetails." on ".$zf_studentClassDetails.".identificationCode = ".$zf_studentPersonalDetails.".identificationCode WHERE ".$zf_studentClassDetails.".systemSchoolCode = '".$systemSchoolCode."' AND ".$zf_studentClassDetails.".studentClassCode = '".$studentClassCode."' AND ".$zf_studentClassDetails.".studentStreamCode = '".$studentStreamCode."' AND ".$zf_studentClassDetails.".studentYearOfStudy = '".$studentYearOfStudy."' AND ".$zf_studentClassDetails.".studentClassStatus = '".STUDENT_CONTINUING."' ";
         
         
-        echo "<pre>".$tableData['tableQuery']."</pre>"; exit();
+        //echo "<pre>".$tableData['tableQuery']."</pre>"; exit();
         
         $zf_phpGridSettings = $this->actionGenerateStudentsStreamTable($tableData, $zf_studentClassDetails);
         

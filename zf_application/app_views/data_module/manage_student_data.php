@@ -46,7 +46,7 @@
                                             <div class="row margin-top-20">
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 300px !important; height: auto !important; text-align: center !important">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style=" margin-top: 80px !important;">
-                                                        <a href="<?php echo Zf_GenerateLinks::basic_internal_link("data_module", "download_data_templates", "students_data_template.xlsx") ?>" target="_blank">
+                                                        <a href="<?php echo Zf_GenerateLinks::basic_internal_link("data_module", "download_data_templates", "students_data_template.xls") ?>" target="_blank">
                                                             <i class="fa fa-cloud-download margin-top-20" style="font-size: 150px !important; color: #21B4E2;"></i>
                                                         </a>
                                                     </div>

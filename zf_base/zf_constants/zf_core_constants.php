@@ -371,6 +371,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         defined('STORE_SUPPLIERS') ? null : define('STORE_SUPPLIERS' , 'StrMod'.CONNECT.'StoreSuppliers');
         defined('STORE_SETUP') ? null : define('STORE_SETUP' , 'StrMod'.CONNECT.'StoreSetup');
         defined('STORE_ASSIGNMENT') ? null : define('STORE_ASSIGNMENT' , 'StrMod'.CONNECT.'StoreAssignment');
+        defined('STORE_ITEMS') ? null : define('STORE_ITEMS' , 'StrMod'.CONNECT.'StoreItems');
         defined('STORE_RECEIVING') ? null : define('STORE_RECEIVING' , 'StrMod'.CONNECT.'StoreReceiving');
         defined('STORE_ISSUING') ? null : define('STORE_ISSUING' , 'StrMod'.CONNECT.'StoreIssuing');
         defined('STORE_REPORTS') ? null : define('STORE_REPORTS' , 'StrMod'.CONNECT.'StoreReports');

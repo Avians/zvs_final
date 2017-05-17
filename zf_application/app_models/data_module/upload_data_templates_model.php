@@ -193,10 +193,11 @@ class upload_data_templates_Model extends Zf_Model {
                     //3.2.2 Returns the number of columns in the sheet
                     $numberOfColumns = Zf_ExcelReader::zf_numberOfColumns($excelFile, $sheetNo);
                     
+                    echo "Mathew Juma<br>";
+                    
                     //3.2.3 Loop through a row of the sheet to collect data from all the data cells within the row
                     for ($row = 2; $row <= $numberOfRows; $row++){
   
-                        
                         
                     }
                     
@@ -221,7 +222,7 @@ class upload_data_templates_Model extends Zf_Model {
             //execution time of the script
             echo '<b>Total Execution Time:</b> '.$execution_time.' Mins';
             
-            exit();
+            //exit();
 
 
             //3. Loop through the spreadsheet and check if any of the student admission numbers already exists in the database

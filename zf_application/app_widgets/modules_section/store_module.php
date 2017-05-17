@@ -31,7 +31,7 @@ $main_menu = array(
     
     //Store Suppliers
     "store_suppliers" => array(
-        'name' => '<i class="fa fa-cubes"></i> Suppliers/Vendors',
+        'name' => '<i class="fa fa-users"></i> Suppliers/Vendors',
         'controller' => $zvs_controller,
         'action' => 'store_suppliers',
         'parameter' => $zvs_parameter,
@@ -58,6 +58,18 @@ $main_menu = array(
         'name' => '<i class="fa fa-yelp"></i> Store Assignment',
         'controller' => $zvs_controller,
         'action' => 'store_assignment',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
+    //Store Items
+    "store_items" => array(
+        'name' => '<i class="fa fa-cubes"></i> Store Items',
+        'controller' => $zvs_controller,
+        'action' => 'store_items',
         'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
@@ -106,12 +118,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of store module-->
-<li class="<?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items" || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-institution"></i>
         <span class="title"> Store Module </span>
-        <?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items"  || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items"  || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STORE_OVERVIEW, $zvs_allowedResources)){ ?>
@@ -132,6 +144,11 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STORE_ASSIGNMENT, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "store_assignment") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['store_assignment']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STORE_ITEMS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "store_items") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['store_items']); ?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STORE_RECEIVING, $zvs_allowedResources)){ ?>
