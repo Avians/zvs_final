@@ -29,8 +29,34 @@
 
         <!-- BEGIN INNER CONTENT -->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                Data for view goes here.
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
+                <div id="tabbed-nav">
+                    <ul class="z-tabs-titles">
+                        <li><a>Asset items overview</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Add a new asset item</a></li>
+                    </ul>
+
+                    <div class="z-content-inner">
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        Have an overview of asset items here
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        Add a new asset item here
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END INNER CONTENT -->

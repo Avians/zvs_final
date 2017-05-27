@@ -56,6 +56,17 @@ class transport_moduleController extends Zf_Controller {
 
     
     
+    //Executes the transport vehicles.
+    public function actionTransport_vehicles($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('transport_vehicles', $zf_actionData);
+        
+    }
+
+    
+    
     //Executes the assign drivers. Also is the default action for this controller
     public function actionAssign_drivers($identificationCode){
         

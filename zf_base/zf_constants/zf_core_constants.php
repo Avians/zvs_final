@@ -283,8 +283,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     defined('SUBJECT_MODULE') ? null : define('SUBJECT_MODULE' , 'SubMod');
     
         //These constant are a set of resources that are usable within the subjects module
-        defined('SUBJECT_DETAILS') ? null : define('SUBJECT_DETAILS' , 'SubMod'.CONNECT.'SubjectDetails');
-        defined('ASSIGN_SUBJECTS_TO_TEACHERS') ? null : define('ASSIGN_SUBJECTS_TO_TEACHERS' , 'SubMod'.CONNECT.'AssignSubjectsToTeachers');
+        defined('SUBJECT_OVERVIEW') ? null : define('SUBJECT_OVERVIEW' , 'SubMod'.CONNECT.'SubjectOverview');
+        defined('SUBJECT_SETUP') ? null : define('SUBJECT_SETUP' , 'SubMod'.CONNECT.'SubjectSetup');
+        defined('SUBJECT_REPORTS') ? null : define('SUBJECT_REPORTS' , 'SubMod'.CONNECT.'SubjectReports');
     
     
     //Examination Module and resources
@@ -329,6 +330,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         //These constant are a set of resources that are usable within the transport module
         defined('TRANSPORT_OVERVIEW') ? null : define('TRANSPORT_OVERVIEW' , 'TrnMod'.CONNECT.'TransportOverview');
         defined('TRANSPORT_SETUP') ? null : define('TRANSPORT_SETUP' , 'TrnMod'.CONNECT.'TransportSetup');
+        defined('TRANSPORT_VEHICLES') ? null : define('TRANSPORT_VEHICLES' , 'TrnMod'.CONNECT.'TransportVehicles');
         defined('TRANSPORT_ASSIGN_DRIVERS') ? null : define('TRANSPORT_ASSIGN_DRIVERS' , 'TrnMod'.CONNECT.'AssignDrivers');
         defined('TRANSPORT_ASSIGN_STUDENTS') ? null : define('TRANSPORT_ASSIGN_STUDENTS' , 'TrnMod'.CONNECT.'AssignStudents');
         defined('TRANSPORT_REPORTS') ? null : define('TRANSPORT_REPORTS' , 'TrnMod'.CONNECT.'TransportReports');

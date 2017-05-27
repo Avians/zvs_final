@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /** 
  * This menu is used to list all resource within the subject module
@@ -17,11 +17,11 @@ $zvs_allowedResources = $zf_externalWidgetData;
 $main_menu = array(
     
     
-    //This link helps us to assign subjects to teachers. 
-    "subject_details" => array(
-        'name' => '<i class="fa fa-object-group"></i> Subject Details',
+    //Subject Overview 
+    "subject_overview" => array(
+        'name' => '<i class="fa fa-empire"></i> Subject Overview',
         'controller' => $zvs_controller,
-        'action' => 'subject_details',
+        'action' => 'subject_overview',
         'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
@@ -29,11 +29,23 @@ $main_menu = array(
     ),
     
     
-    //This link helps us to assign subjects to teachers. 
-    "assign_subjects_to_teachers" => array(
-        'name' => '<i class="fa fa-flickr"></i> Assign Subjects',
+    //Subject Setup 
+    "subject_setup" => array(
+        'name' => '<i class="fa fa-cogs"></i> Subject Setup',
         'controller' => $zvs_controller,
-        'action' => 'assign_subjects_to_teachers',
+        'action' => 'subject_setup',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
+    //Subject Reports 
+    "subject_reports" => array(
+        'name' => '<i class="fa fa-line-chart"></i> Subject Reports',
+        'controller' => $zvs_controller,
+        'action' => 'subject_reports',
         'parameter' => $zvs_parameter,
         'title' => '',
         'style' => '',
@@ -45,22 +57,27 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects subjects module-->
-<li class="<?php if ($zvs_action == "subject_details" || $zvs_action == "assign_subjects_to_teachers") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-book"></i>
         <span class="title"> Subjects Module </span>
-        <?php if ($zvs_action == "subject_details" || $zvs_action == "assign_subjects_to_teachers") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "subject_details" || $zvs_action == "assign_subjects_to_teachers") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STUDENT, $zvs_allowedResources)){ ?>
-            <li class="<?php if ($zvs_action == "subject_details") { echo "active";} ?>">
-                <?php Zf_GenerateLinks::zf_internal_link($main_menu['subject_details']); ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(SUBJECT_OVERVIEW, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "subject_overview") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['subject_overview']); ?>
             </li>
         <?php } ?>
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STUDENT, $zvs_allowedResources)){ ?>
-            <li class="<?php if ($zvs_action == "assign_subjects_to_teachers") { echo "active";} ?>">
-                <?php Zf_GenerateLinks::zf_internal_link($main_menu['assign_subjects_to_teachers']); ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(SUBJECT_SETUP, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "subject_setup") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['subject_setup']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(SUBJECT_REPORTS, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "subject_reports") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['subject_reports']); ?>
             </li>
         <?php } ?>
     </ul>

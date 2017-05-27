@@ -29,8 +29,34 @@
 
         <!-- BEGIN INNER CONTENT -->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                Data for view goes here.
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
+                <div id="tabbed-nav">
+                    <ul class="z-tabs-titles">
+                        <li><a>School library overview</a></li>
+                        <li><a><i class="fa fa-filter"></i> Filtered school library</a></li>
+                    </ul>
+
+                    <div class="z-content-inner">
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        Here we have a general overview of school library
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        Here we have a filtered overview of school library
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- END INNER CONTENT -->
@@ -39,3 +65,8 @@
 </div>
 <!-- END CONTENT -->
 
+
+<?php
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
+    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
+?>

@@ -12,7 +12,7 @@
  * ---------------------------------------------------------------------
  */
 
-class processSubjectInformation_Model extends Zf_Model {
+class subjectOverview_Model extends Zf_Model {
     
 
     private $_errorResult = array();
@@ -42,7 +42,6 @@ class processSubjectInformation_Model extends Zf_Model {
     public function getSubjectDashboardInformation($identificationCode){
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-        
         
         $subjectInformation = "";
         
@@ -76,6 +75,7 @@ class processSubjectInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
+                        
                                                     $totalExaminableSubjects = $this->getTotalExaminableSubjects($systemSchoolCode);
                                                     $subjectInformation .= $totalExaminableSubjects;
                                                     
@@ -145,7 +145,8 @@ class processSubjectInformation_Model extends Zf_Model {
     //This private method returns total subjects in a given school
     private function getTotalSchoolSubjects($systemSchoolCode){
         
-        return 23;
+        //This method counts the total number of subjects
+        return $this->zvs_countSchoolSubjects($systemSchoolCode);
         
     }
 
@@ -155,7 +156,8 @@ class processSubjectInformation_Model extends Zf_Model {
     //This private method returns all subjects that are examinable in a school
     private function getTotalExaminableSubjects($systemSchoolCode){
         
-        return 15;
+        //This method counts the total number of subjects that are examinable
+        return $this->zvs_countSchoolSubjects($systemSchoolCode, "examinable");
         
     }
 
@@ -165,7 +167,8 @@ class processSubjectInformation_Model extends Zf_Model {
     //This private method returns all non examinable subjects in a school
     private function getTotalNonExaminableSubjects($systemSchoolCode){
         
-        return 8;
+        //This method counts the total number of subjects that are examinable
+        return $this->zvs_countSchoolSubjects($systemSchoolCode, "non-examinable");
         
     }
 
@@ -175,7 +178,49 @@ class processSubjectInformation_Model extends Zf_Model {
     //This private method returns all the number of subject departments in a school
     private function getTotalSubjectsDepartments($systemSchoolCode){
         
-        return 10;
+        //This method counts the total number of subjects that are examinable
+        return $this->zvs_countSchoolSubjects($systemSchoolCode, "departments");
+        
+    }
+    
+    
+    
+    //This private method fetches all the school subjects
+    private function zvs_countSchoolSubjects($systemSchoolCode, $dataflag = NULL){
+        
+        $schoolSubjectTable = "zvs_school_subjects";
+        
+        $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        if($dataflag == "examinable"){
+            
+           $sqlValues['examStatus'] = Zf_QueryGenerator::SQLValue(1); 
+           
+        }
+        
+        if($dataflag == "non-examinable"){
+            
+           $sqlValues['examStatus'] = Zf_QueryGenerator::SQLValue(0); 
+           
+        }
+        
+        $zvs_selectSubjects = Zf_QueryGenerator::BuildSQLSelect($schoolSubjectTable, $sqlValues);
+        
+        
+        $executeSubjectCount   = $this->Zf_AdoDB->Execute($zvs_selectSubjects);
+        
+        if (!$executeSubjectCount){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            $subjectCount = $executeSubjectCount->RecordCount();
+            
+        }
+        
+        //return subject count
+        return $subjectCount;
         
     }
 

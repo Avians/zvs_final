@@ -19,7 +19,7 @@
 class subject_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "subject_overview";
 
 
 
@@ -35,8 +35,8 @@ class subject_moduleController extends Zf_Controller {
     
     
     
-    //Executes the subject detials action
-    public function actionSubject_details($identificationCode){
+    //This action executes the subject overview view
+    public function actionSubject_overview($identificationCode){
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
@@ -48,7 +48,7 @@ class subject_moduleController extends Zf_Controller {
         
         $zf_phpGridSettings = $this->actionGenerateSubjectsTable($tableData);
         
-        Zf_View::zf_displayView('subject_details',$zf_actionData, $zf_phpGridSettings);
+        Zf_View::zf_displayView('subject_overview',$zf_actionData, $zf_phpGridSettings);
         
     }
     
@@ -56,18 +56,59 @@ class subject_moduleController extends Zf_Controller {
     
     
     
-    //This controller executes the view for assigning sun=bjects to teachers.
-    public function actionAssign_subjects_to_teachers($identificationCode){
+    //This action executes the subject setup view
+    public function actionSubject_setup($identificationCode){
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
-        Zf_View::zf_displayView('assign_subjects_to_teachers',$zf_actionData);
+        Zf_View::zf_displayView('subject_setup',$zf_actionData);
         
     }
     
     
     
     
+    
+    //This action executes the subject reports view
+    public function actionSubject_reports($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('subject_reports',$zf_actionData);
+        
+    }
+    
+    
+    
+    
+    //This action process the assignment of subjects to classes
+    public function actionProcessSubjectAssignment($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_url($zvs_parameter);
+       
+        
+        if($filteredData == "assign_subjects"){
+            
+            //This method assigns subjects to classes
+            $this->zf_targetModel->assignSubjectsToClasses();
+            
+        }
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * IN THIS SECTION, WE GENERATE ALL STUDENT RELATED TABLES FOR VISUAL PURPOSES
      *  
@@ -93,19 +134,22 @@ class subject_moduleController extends Zf_Controller {
         //This array holds all the data related to required grid columns
         $zf_gridColumns = array();
 
-        $admissionNumber = array("title"=>"Subject Code", "name"=>"subjectCode", "width"=>20, "editable"=>false);
-        $zf_gridColumns[] = $admissionNumber;
+        $subjectCode = array("title"=>"Subject Code", "name"=>"subjectCode", "width"=>20, "editable"=>false);
+        $zf_gridColumns[] = $subjectCode;
         
-        $studentFirstName = array("title"=>"Subject Name", "name"=>"subjectName", "width"=>20, "editable"=>false); 
-        $zf_gridColumns[] = $studentFirstName;
+        $subjectName = array("title"=>"Subject Name", "name"=>"subjectName", "width"=>20, "editable"=>false); 
+        $zf_gridColumns[] = $subjectName;
         
-        $studentMiddleName = array("title"=>"Subject Abbreviation", "name"=>"subjectAlias", "width"=>20, "editable"=>false);
-        $zf_gridColumns[] = $studentMiddleName;
+        $subjectAbbreviation = array("title"=>"Subject Abbreviation", "name"=>"subjectAlias", "width"=>20, "editable"=>false);
+        $zf_gridColumns[] = $subjectAbbreviation;
+        
+        $examStatus = array("title"=>"Exam Status", "name"=>"examStatus", "width"=>20, "editable"=>false, "condition"=>array('$row["examStatus"] == 1', "Examinable", "Not Examinable"));
+        $zf_gridColumns[] = $examStatus;
         
         //This action column of the table 
         $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);
         $zf_gridColumns[] = $action;
-
+        
         $zf_phpGridSettings['zf_gridColumns'] = $zf_gridColumns;
         
         //echo $tableQuery; exit();

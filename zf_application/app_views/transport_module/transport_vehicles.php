@@ -1,7 +1,7 @@
 <?php
 
-    //Here we load library module model for receiving books
-    $zf_controller->Zf_loadModel("library_module", "library_receiving");
+    //Here we load transport module model for transport setup
+    $zf_controller->Zf_loadModel("transport_module", "transport_vehicles");
     
     //This is user identification code
     $zf_urlParameter = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -16,9 +16,9 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">Library Receiving</h3>
+                <h3 class="page-title">Transport Vehicles</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-indent"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <i class="fa fa-cogs"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -32,8 +32,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
-                        <li><a>Library receiving overview</a></li>
-                        <li><a><i class="fa fa-indent"></i> Receive library books</a></li>
+                        <li><a>Transport vehicles overview</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Add vehicle categories</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Assign vehicles to categories</a></li>
+                        <li><a><i class="fa fa-plus-square"></i> Assign vehicles to routes</a></li>
                     </ul>
 
                     <div class="z-content-inner">
@@ -41,7 +43,7 @@
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        In this section we have an overview of how books have been received from students and staff
+                                        In this section we have an overview of all transport vehicles in the school
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +52,25 @@
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        In this section we receive books from students or staff
+                                        In this section we create a vehicle categories
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        In this section we add vehicles into categories
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        In this section we assign vehicles to routes
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +84,6 @@
     </div>
 </div>
 <!-- END CONTENT -->
-
 
 <?php
     Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");

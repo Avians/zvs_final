@@ -81,7 +81,7 @@ class newSubjectRegistration_Model extends Zf_Model {
             
             $subjectName = $this->_validResult['subjectName'];
             $systemSchoolCode = $identificationArray[2];
-            $systemSubjectCode = $systemSchoolCode.ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($this->_validResult['subjectName']);
+            $systemSubjectCode = $systemSchoolCode.ZVSS_CONNECT.str_replace(".","",Zf_Core_Functions::Zf_CleanName($this->_validResult['subjectName']));
             
             //We prepare SQL values
             $zvs_sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);

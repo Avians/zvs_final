@@ -1,7 +1,7 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("subject_module", "processSubjectInformation");
+    $zf_controller->Zf_loadModel("subject_module", "subjectOverview");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -18,9 +18,9 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">Subject Details</h3>
+                <h3 class="page-title">Subject Overview</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-users"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <i class="fa fa-empire"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -44,7 +44,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 0px !important;">
                 <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
                     <div class="portlet-empty table-responsive" style="margin-right: 0% !important;">
-                        <div style="margin-right: 8px !important;"><?php echo $zf_generateTable; ?></div>
+                        <?php echo $zf_generateTable; ?>
                     </div>
                 </div>          
             </div>

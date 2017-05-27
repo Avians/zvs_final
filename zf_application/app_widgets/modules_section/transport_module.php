@@ -41,6 +41,18 @@ $main_menu = array(
     ),
     
     
+    //Transport Vehicles
+    "transport_vehicles" => array(
+        'name' => '<i class="fa fa-truck"></i> Transport Vehicles',
+        'controller' => $zvs_controller,
+        'action' => 'transport_vehicles',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
     //Assign Students
     "assign_drivers" => array(
         'name' => '<i class="fa fa-users"></i> Assign Drivers',
@@ -82,12 +94,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of transport module-->
-<li class="<?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-bus"></i>
         <span class="title"> Transport Module </span>
-        <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_OVERVIEW, $zvs_allowedResources)){ ?>
@@ -98,6 +110,11 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_SETUP, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "transport_setup") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['transport_setup']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_VEHICLES, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "transport_vehicles") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['transport_vehicles']); ?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_ASSIGN_DRIVERS, $zvs_allowedResources)){ ?>
