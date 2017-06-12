@@ -57,12 +57,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects subjects module-->
-<li class="<?php if ($zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "subject_module" || $zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-book"></i>
         <span class="title"> Subjects Module </span>
-        <?php if ($zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "subject_module" || $zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "subject_module" || $zvs_action == "subject_overview" || $zvs_action == "subject_setup" || $zvs_action == "subject_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(SUBJECT_OVERVIEW, $zvs_allowedResources)){ ?>

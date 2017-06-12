@@ -19,7 +19,7 @@
 class parent_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "parent_module";
 
 
 
@@ -33,14 +33,18 @@ class parent_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    
+    //This action executes the landing page for this module
+    public function actionParent_module($identificationCode){
         
-        //Zf_View::zf_displayView('index');
-        echo "We are here";
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("parent_module_introduction", $zf_actionData);
         
     }
 
+    
+    
     
     //Executes the index view. Also is the defaukt action for this controller
     public function actionGuardian_profile($zf_parameter){

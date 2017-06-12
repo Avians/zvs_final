@@ -19,7 +19,7 @@
 class department_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "department_module";
 
 
 
@@ -32,6 +32,19 @@ class department_moduleController extends Zf_Controller {
         
     }
 
+    
+    
+    //This action executes the landing page for this module
+    public function actionDepartment_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("department_module_introduction", $zf_actionData);
+        
+    }
+    
+    
+    
     
     //Executes the view departments view. Also is the defaukt action for this controller
     public function actionView_departments(){

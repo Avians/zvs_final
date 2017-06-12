@@ -13,8 +13,6 @@
     //User identification code. This code is also stored in a session variable
     $identificationCode = $zf_externalWidgetData;
 
-
-
     /**
      * We access the database to retrieve the resources assigned to the current user role. If there are resources assigned in the returned array
      * then we return those resources in an array.

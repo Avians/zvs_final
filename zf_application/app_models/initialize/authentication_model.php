@@ -240,7 +240,7 @@ class Authentication_Model extends Zf_Model {
                                                 if(!empty($userRole) && $userRole != ""){
                                                     
                                                     //Redirect to the general dashboard for any school user.
-                                                    Zf_GenerateLinks::zf_header_location("zvs_general_school", "main_dashboard", $identificationCode);
+                                                    Zf_GenerateLinks::zf_header_location("zvs_general_school", "landing_page", $identificationCode);
                                                     exit();
                                                     
                                                 }else{

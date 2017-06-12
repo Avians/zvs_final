@@ -82,12 +82,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "asset_module" || $zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-connectdevelop"></i>
         <span class="title"> Assets Module </span>
-        <?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "asset_module" || $zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "asset_module" || $zvs_action == "asset_overview" || $zvs_action == "asset_setup" || $zvs_action == "asset_inventory" || $zvs_action == "asset_items" || $zvs_action == "asset_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(ASSET_OVERVIEW, $zvs_allowedResources)){ ?>

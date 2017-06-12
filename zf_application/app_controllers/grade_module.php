@@ -19,7 +19,7 @@
 class grade_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "grade_module";
 
 
 
@@ -31,12 +31,16 @@ class grade_moduleController extends Zf_Controller {
         parent::__construct();
         
     }
-
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    
+    
+    
+    //This action executes the landing page for this module
+    public function actionGrade_module($identificationCode){
         
-        Zf_View::zf_displayView('index');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("grade_module_introduction", $zf_actionData);
         
     }
     

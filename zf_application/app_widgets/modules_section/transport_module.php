@@ -94,12 +94,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of transport module-->
-<li class="<?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "transport_module" || $zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-bus"></i>
         <span class="title"> Transport Module </span>
-        <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "transport_module" || $zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "transport_module" || $zvs_action == "transport_overview" || $zvs_action == "transport_setup" || $zvs_action == "transport_vehicles" || $zvs_action == "assign_drivers" || $zvs_action == "assign_students" || $zvs_action == "transport_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(TRANSPORT_OVERVIEW, $zvs_allowedResources)){ ?>

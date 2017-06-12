@@ -1,4 +1,4 @@
-var AssingSubjectsToClassesFormWizard = function () {
+var NewTransportRouteFormWizard = function () {
 
 
     return {
@@ -23,7 +23,7 @@ var AssingSubjectsToClassesFormWizard = function () {
                 }
             });
 
-            var form = $('#assign_subjects_form');
+            var form = $('#new_transport_route_form');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -34,30 +34,32 @@ var AssingSubjectsToClassesFormWizard = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
                     
+                    
+                    
                     //THESE RULES GOVERN THE VALIDATION OF SCHOOL REGISTRTAION FORM
-                    //Class Name
-                    schoolClassCode: {
+                    
+                    //Transport Zone Code
+                    transportZoneCode: {
+                        required: true
+                    },
+                    
+                    
+                    //Transport Route Name
+                    transportRouteName: {
+                        maxlength: 45,
+                        minlength: 2,
+                        required: true
+                    },
+                    
+                    //Transport Route Alias
+                    transportRouteAlias: {
+                        maxlength: 45,
+                        minlength: 2,
                         required: true
                     }
                     
+                },
                 
-                },
-
-                messages: { // custom messages for radio buttons and checkboxes
-                    'gender': {
-                        required: "Select at one option",
-                        minlength: jQuery.format("Select at one option")
-                    }
-                },
-
-                errorPlacement: function (error, element) { // render error placement for each input type
-                    if (element.attr("name") == "adminGender") { // for uniform radio buttons, insert the after the given container
-                        error.insertAfter("#adminGender_error");
-                    } else {
-                        error.insertAfter(element); // for other inputs, just perform default behavior
-                    }
-                },
-
                 invalidHandler: function (event, validator) { //display error alert on form submit   
                     success.hide();
                     error.show();
@@ -97,17 +99,12 @@ var AssingSubjectsToClassesFormWizard = function () {
             
 
             var displayConfirm = function() {
-                $('#confirmAssignSubjectsInfo .form-control-static', form).each(function(){
+                $('#confirmNewTransportRouteInfo .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
-                    if (input.is(":radio")) {
-                        input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
-                    }
                     if (input.is(":text") || input.is("textarea")) {
                         $(this).html(input.val());
                     } else if (input.is("select")) {
                         $(this).html(input.find('option:selected').text());
-                    } else if (input.is(":radio") && input.is(":checked")) {
-                        $(this).html(input.attr("data-title"));
                     }
                 });
             }
@@ -116,33 +113,33 @@ var AssingSubjectsToClassesFormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#assignSubjects')).text('Step ' + (index + 1) + ' of ' + total);
+                $('.step-title', $('#newTransportRoute')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
-                jQuery('li', $('#assignSubjects')).removeClass("done");
+                jQuery('li', $('#newTransportRoute')).removeClass("done");
                 var li_list = navigation.find('li');
                 for (var i = 0; i < index; i++) {
                     jQuery(li_list[i]).addClass("done");
                 }
 
                 if (current == 1) {
-                    $('#assignSubjects').find('.button-previous').hide();
+                    $('#newTransportRoute').find('.button-previous').hide();
                 } else {
-                    $('#assignSubjects').find('.button-previous').show();
+                    $('#newTransportRoute').find('.button-previous').show();
                 }
 
                 if (current >= total) {
-                    $('#assignSubjects').find('.button-next').hide();
-                    $('#assignSubjects').find('.button-submit').show();
+                    $('#newTransportRoute').find('.button-next').hide();
+                    $('#newTransportRoute').find('.button-submit').show();
                     displayConfirm();
                 } else {
-                    $('#assignSubjects').find('.button-next').show();
-                    $('#assignSubjects').find('.button-submit').hide();
+                    $('#newTransportRoute').find('.button-next').show();
+                    $('#newTransportRoute').find('.button-submit').hide();
                 }
                 App.scrollTo($('.page-title'));
             }
 
             // default form wizard
-            $('#assign_subjects_form').bootstrapWizard({
+            $('#new_transport_route_form').bootstrapWizard({
                 'nextSelector': '.button-next',
                 'previousSelector': '.button-previous',
                 onTabClick: function (tab, navigation, index, clickedIndex) {
@@ -173,14 +170,14 @@ var AssingSubjectsToClassesFormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     var $percent = (current / total) * 100;
-                    $('#assignSubjects').find('.progress-bar').css({
+                    $('#newTransportRoute').find('.progress-bar').css({
                         width: $percent + '%'
                     });
                 }
             });
 
-            $('#assign_subjects_form').find('.button-previous').hide();
-            $('#assign_subjects_form .button-submit').click(function () {
+            $('#new_transport_route_form').find('.button-previous').hide();
+            $('#new_transport_route_form .button-submit').click(function () {
                 
                 //form.submit();
                 

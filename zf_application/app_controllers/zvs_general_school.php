@@ -19,7 +19,7 @@
 class Zvs_general_schoolController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "main_dashboard";
+    public $zf_defaultAction = "landing_page";
 
 
     /**
@@ -38,11 +38,11 @@ class Zvs_general_schoolController extends Zf_Controller {
 
     
     /**
-     * This action executes the main dashboard view
+     * This action executes the landing page view
      */
-    public function actionMain_dashboard(){
+    public function actionLanding_page(){
         
-        Zf_View::zf_displayView('main_dashboard');
+        Zf_View::zf_displayView('landing_page');
         
     }
     

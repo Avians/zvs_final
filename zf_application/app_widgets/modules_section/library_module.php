@@ -80,12 +80,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of library module-->
-<li class="<?php if ($zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "library_module" || $zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-trello"></i>
         <span class="title"> Library Module </span>
-        <?php if ($zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "library_module" || $zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "library_module" || $zvs_action == "library_overview" || $zvs_action == "library_setup" || $zvs_action == "library_issuing" || $zvs_action == "library_receiving" || $zvs_action == "library_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(LIBRARY_OVERVIEW, $zvs_allowedResources)){ ?>

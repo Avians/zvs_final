@@ -69,12 +69,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "health_module" || $zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
         <span class="title"> ZVS Admin Users </span>
-        <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "health_module" || $zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "health_module" || $zvs_action == "new_user" || $zvs_action == "admin_directory" || $zvs_action == "admin_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <li class="<?php if ($zvs_action == "new_user") { echo "active";} ?>">

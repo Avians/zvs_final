@@ -19,7 +19,7 @@
 class subject_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "subject_overview";
+    public $zf_defaultAction = "subject_module";
 
 
 
@@ -32,6 +32,16 @@ class subject_moduleController extends Zf_Controller {
         
     }
 
+    
+    
+    //This action executes the landing page for this module
+    public function actionSubject_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("subject_module_introduction", $zf_actionData);
+        
+    }
     
     
     
@@ -85,9 +95,8 @@ class subject_moduleController extends Zf_Controller {
     public function actionProcessSubjectAssignment($zvs_parameter){
         
         $filteredData = Zf_SecureData::zf_decode_url($zvs_parameter);
-       
         
-        if($filteredData == "assign_subjects"){
+        if($filteredData == "assign_subjects_to_class"){
             
             //This method assigns subjects to classes
             $this->zf_targetModel->assignSubjectsToClasses();
@@ -96,8 +105,29 @@ class subject_moduleController extends Zf_Controller {
         
     }
 
+    
+    
+    
+    //Executes the subjects teacher processing action
+    public function actionSubjects_Teacher_Process($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_url($zvs_parameter);
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
 
 
+        if($filterDataVariable == "process_subjects_teacher"){
+            
+            //This model method process the teachers for the selected role
+            $this->zf_targetModel->processSubjectsTeacher();
+            
+        }else if($filteredData == "assign_subjects_to_teacher"){
+
+           //This method assigns subjects to a selected teacher
+            $this->zf_targetModel->assignSubjectsToTeacher();
+
+        }
+        
+    }
 
 
 

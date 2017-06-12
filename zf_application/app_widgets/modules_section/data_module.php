@@ -46,12 +46,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of data management-->
-<li class="<?php if ($zvs_action == "manage_student_data" || $zvs_action == "manage_staff_data") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "data_module" || $zvs_action == "manage_student_data" || $zvs_action == "manage_staff_data") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-database"></i>
         <span class="title"> Data Management </span>
-        <?php if ($zvs_action == "manage_student_data" || $zvs_action == "manage_staff_data") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "manage_student_data" || $zvs_action == "manage_staff_data") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "data_module" || $zvs_action == "manage_student_data" || $zvs_action == "manage_staff_data") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "data_module" || $zvs_action == "manage_student_data" || $zvs_action == "manage_staff_data") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(MANAGE_STUDENT_DATA, $zvs_allowedResources)){ ?>

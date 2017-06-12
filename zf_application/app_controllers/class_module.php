@@ -19,7 +19,7 @@
 class class_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "view_classes";
+    public $zf_defaultAction = "class_module";
 
 
 
@@ -31,6 +31,21 @@ class class_moduleController extends Zf_Controller {
         parent::__construct();
         
     }
+    
+    
+    
+    
+    //This action executes the landing page for this module
+    public function actionClass_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('class_module_introduction', $zf_actionData);
+        
+    }
+    
+    
+    
     
     //Executes the view classes view. Also is the defaukt action for this controller
     public function actionView_classes($identificationCode){

@@ -84,6 +84,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
  */
     defined('ZF_DATASTORE')      ? null : define('ZF_DATASTORE' , 'zf_datastore'.DS);  
     
+    //This is the path of all feature images
+    @define('ZVS_MODULE_IMAGES')    ? null : define('ZVS_MODULE_IMAGES'  , ZF_DATASTORE."zvs_module_images".DS);  
+    
     
 /**
  * -----------------------------------------------------------------------------

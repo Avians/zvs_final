@@ -19,7 +19,7 @@
 class store_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "store_overview";
+    public $zf_defaultAction = "store_module";
 
 
 
@@ -31,6 +31,18 @@ class store_moduleController extends Zf_Controller {
         parent::__construct();
         
     }
+    
+    
+    
+    //This action executes the landing page for this module
+    public function actionStore_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("store_module_introduction", $zf_actionData);
+        
+    }
+    
     
     
     //Executes the store overview. Also is the default action for this controller

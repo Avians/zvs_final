@@ -19,7 +19,7 @@
 class timetable_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "timetable_module";
 
 
 
@@ -31,14 +31,16 @@ class timetable_moduleController extends Zf_Controller {
         parent::__construct();
         
     }
-
-
-
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    
+    
+    
+    //This action executes the landing page for this module
+    public function actionTimetable_module($identificationCode){
         
-        Zf_View::zf_displayView('index');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("timetable_module_introduction", $zf_actionData);
         
     }
     

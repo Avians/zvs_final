@@ -33,12 +33,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "create_time_table") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "timetable_module" || $zvs_action == "create_time_table") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-table"></i>
         <span class="title"> TimeTable Module </span>
-        <?php if ($zvs_action == "create_time_table") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "create_time_table") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "timetable_module" || $zvs_action == "create_time_table") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "timetable_module" || $zvs_action == "create_time_table") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <li class="<?php if ($zvs_action == "create_time_table") { echo "active";} ?>">

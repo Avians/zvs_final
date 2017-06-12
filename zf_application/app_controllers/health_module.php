@@ -19,7 +19,7 @@
 class health_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "health_module";
 
 
 
@@ -33,10 +33,13 @@ class health_moduleController extends Zf_Controller {
     }
 
     
-    //Executes the index view. Also is the defaukt action for this controller
-    public function actionIndex(){
+    
+    //This action executes the landing page for this module
+    public function actionHealth_module($identificationCode){
         
-        Zf_View::zf_displayView('index');
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("health_module_introduction", $zf_actionData);
         
     }
     

@@ -19,7 +19,7 @@
 class asset_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "asset_overview";
+    public $zf_defaultAction = "asset_module";
 
 
 
@@ -31,6 +31,19 @@ class asset_moduleController extends Zf_Controller {
         parent::__construct();
         
     }
+    
+    
+    
+    
+    //This action executes the landing page for this module
+    public function actionAsset_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("asset_module_introduction", $zf_actionData);
+        
+    }
+    
     
     
     //Executes the asset overview. Also is the default action for this controller

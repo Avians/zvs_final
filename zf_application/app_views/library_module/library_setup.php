@@ -51,27 +51,42 @@
                         <div>
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        In this section we create new books category
-                                    </div>
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="portlet-body form" >
+                                            <?php
+                                                //This is the form for adding a new library category
+                                                Zf_ApplicationWidgets::zf_load_widget("library_module", "new_library_category_form.php");
+                                            ?>
+                                        </div>
+                                    </div>          
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        In this section we create the books sub-category
-                                    </div>
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="portlet-body form" >
+                                            <?php
+                                                //This is the form for adding a new library sub category
+                                                Zf_ApplicationWidgets::zf_load_widget("library_module", "new_library_sub_category_form.php");
+                                            ?>
+                                        </div>
+                                    </div>          
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div class="row margin-top-10">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        In this section we add new books into the library
-                                    </div>
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                        <div class="portlet-body form" >
+                                            <?php
+                                                //This is the form for adding a new book into a library sub category
+                                                Zf_ApplicationWidgets::zf_load_widget("library_module", "new_library_book_form.php");
+                                            ?>
+                                        </div>
+                                    </div>          
                                 </div>
                             </div>
                         </div>
@@ -84,7 +99,19 @@
     </div>
 </div>
 <!-- END CONTENT -->
+<script type="text/javascript">
+    $(document).ready(function() {
 
+        //Here we are generating the applications absolute path.
+        var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
+        var $separator = "<?= DS; ?>";
+        var $current_view = "library_setup";
+
+        Library_Module.init($current_view, $absolute_path, $separator );
+
+
+    });
+</script>
 <?php
     Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
     Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");

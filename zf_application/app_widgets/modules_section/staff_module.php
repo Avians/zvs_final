@@ -58,12 +58,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of staff module-->
-<li class="<?php if ($zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-user-circle"></i>
         <span class="title"> Staff Module </span>
-        <?php if ($zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STAFF, $zvs_allowedResources)){ ?>

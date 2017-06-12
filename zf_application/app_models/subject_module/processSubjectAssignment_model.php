@@ -38,7 +38,7 @@ class processSubjectAssignment_Model extends Zf_Model {
     /**
      * Register a new stream within a class which exists within a valid school.
      */
-   public function assignSubjectsToClasses(){
+    public function assignSubjectsToClasses(){
        
        //echo "We are here!!"; exit();
        
@@ -197,8 +197,8 @@ class processSubjectAssignment_Model extends Zf_Model {
    
    
    
-   //This private method checks if a subject has already been assigned to a given class
-   private function checkSubjectAssignmentStatus($systemSchoolCode, $schoolClassCode, $schoolSubjectCode){
+    //This private method checks if a subject has already been assigned to a given class
+    private function checkSubjectAssignmentStatus($systemSchoolCode, $schoolClassCode, $schoolSubjectCode){
        
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         $zvs_sqlValue["schoolClassCode"] = Zf_QueryGenerator::SQLValue($schoolClassCode);
@@ -244,7 +244,7 @@ class processSubjectAssignment_Model extends Zf_Model {
 
 
 
-   //This private method returns school subjects
+    //This private method returns school subjects
     private function getSchoolSubjects($systemSchoolCode){
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);

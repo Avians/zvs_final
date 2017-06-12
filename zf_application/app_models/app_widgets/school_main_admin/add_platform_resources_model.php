@@ -106,23 +106,23 @@ class add_platform_resources_Model extends Zf_Model {
                 
                 
             $zvs_resourcesGridView .='<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                   <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="zvs-content-titles">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <h3 style="padding-left: 10px !important;">'.$categoryName.'</h3>
-                                            </div>
-                                        </div>';
+                                        <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
+                                             <div class="zvs-content-titles">
+                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                     <h3 style="padding-left: 10px !important;">'.$categoryName.'</h3>
+                                                 </div>
+                                             </div>';
 
                                        if(empty($unassignedResourceDetails)){
 
-                                           $zvs_resourcesGridView .='<div class="portlet-body">
-                                                                    <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 30% !important;">
-                                                                        <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
-                                                                        <span class="content-view-errors" >
-                                                                            &nbsp;There are no unassigned active resources as of now!!
-                                                                        </span>
-                                                                    </div>
-                                                                </div>';
+                                            $zvs_resourcesGridView .='<div class="portlet-body">
+                                                                         <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 30% !important;">
+                                                                             <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 25px !important;"></i><br><br>
+                                                                             <span class="content-view-errors" >
+                                                                                 &nbsp;There are no unassigned active resources as of now!!
+                                                                             </span>
+                                                                         </div>
+                                                                     </div>';
 
                                        }else{
                                            

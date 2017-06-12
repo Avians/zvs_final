@@ -19,7 +19,7 @@
 class library_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "library_overview";
+    public $zf_defaultAction = "library_module";
 
 
 
@@ -32,6 +32,18 @@ class library_moduleController extends Zf_Controller {
         
     }
 
+    
+    
+    //This action executes the landing page for this module
+    public function actionLibrary_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('library_module_introduction', $zf_actionData);
+        
+    }
+    
+    
     
     
     //Executes the library overview. Also is the default action for this controller
@@ -84,6 +96,41 @@ class library_moduleController extends Zf_Controller {
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
         Zf_View::zf_displayView('library_reports', $zf_actionData);
+        
+    }
+    
+    
+    
+    
+    
+    //Executes the library processing action
+    public function actionLibrary_Setup_Process($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_url($zvs_parameter);
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+
+
+        if($filteredData == "new_library_category"){
+
+           //This model method create a new library category
+           $this->zf_targetModel->newLibraryCategory();
+
+        }else if($filteredData == "new_library_sub_category"){
+
+           //This model method create a new library sub category
+           $this->zf_targetModel->newLibrarySubCategory();
+
+        }else if($filteredData == "new_library_book"){
+            
+           //This model method create a new library book
+           $this->zf_targetModel->newLibraryBook();
+
+        }else if($filterDataVariable == "process_library_sub_categories"){
+            
+            //This model method processes all library sub categories for the chosen category
+            $this->zf_targetModel->processLibrarySubCategories();
+            
+        }
         
     }
     

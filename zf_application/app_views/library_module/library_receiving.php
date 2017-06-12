@@ -34,6 +34,7 @@
                     <ul class="z-tabs-titles">
                         <li><a>Library receiving overview</a></li>
                         <li><a><i class="fa fa-indent"></i> Receive library books</a></li>
+                        <li><a><i class="fa fa-recycle"></i> Renew library books</a></li>
                     </ul>
 
                     <div class="z-content-inner">
@@ -51,6 +52,15 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
                                         In this section we receive books from students or staff
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        In this section we renew books from students or staff
                                     </div>
                                 </div>
                             </div>

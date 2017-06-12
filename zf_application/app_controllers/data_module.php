@@ -19,7 +19,7 @@
 class data_moduleController extends Zf_Controller {
    
     
-    public $zf_defaultAction = "index";
+    public $zf_defaultAction = "data_module";
 
 
 
@@ -32,6 +32,18 @@ class data_moduleController extends Zf_Controller {
         
     }
 
+    
+    
+    //This action executes the landing page for this module
+    public function actionData_module($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("data_module_introduction", $zf_actionData);
+        
+    }
+    
+    
     
     //Executes the view for managing student data
     public function actionManage_student_data($identificationCode){

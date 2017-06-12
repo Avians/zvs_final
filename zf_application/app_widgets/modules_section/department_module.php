@@ -69,12 +69,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "department_module" || $zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
         <span class="title"> Department Module </span>
-        <?php if ($zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "department_module" || $zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "department_module" || $zvs_action == "view_departments" || $zvs_action == "department_profile" || $zvs_action == "view_sub_departments" || $zvs_action == "sub_department_profile") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_DEPARTMENTS, $zvs_allowedResources)){ ?>

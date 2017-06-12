@@ -50,7 +50,7 @@ class subjectOverview_Model extends Zf_Model {
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                         <div class="dashboard-stat purple-sharp">
                                             <div class="visual">
-                                                <i class="fa fa-book"></i>
+                                                <i class="fa fa-edit"></i>
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
@@ -71,7 +71,7 @@ class subjectOverview_Model extends Zf_Model {
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                         <div class="dashboard-stat green-sharp">
                                             <div class="visual">
-                                                <i class="fa fa-file-text-o"></i>
+                                                <i class="fa fa-check"></i>
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
@@ -92,7 +92,7 @@ class subjectOverview_Model extends Zf_Model {
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                         <div class="dashboard-stat blue-madison">
                                             <div class="visual">
-                                                <i class="fa fa-file-excel-o"></i>
+                                                <i class="fa fa-remove"></i>
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
@@ -113,21 +113,21 @@ class subjectOverview_Model extends Zf_Model {
                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                         <div class="dashboard-stat red-soft">
                                             <div class="visual">
-                                                <i class="fa fa-object-group"></i>
+                                                <i class="fa fa-users"></i>
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
                         
-                                                   $totalSubjectDepartments = $this->getTotalSubjectsDepartments($systemSchoolCode);
-                                                   $subjectInformation .= $totalSubjectDepartments;
+                                                   $totalSubjectTeachers = $this->getTotalSubjectsTeachers($systemSchoolCode);
+                                                   $subjectInformation .= $totalSubjectTeachers;
                                                    
                         $subjectInformation .=' </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                   Subject Departments
+                                                   Subject Teachers
                                                 </div>
                                             </div>
                                             <div class="more" style="height: 25px;" href="#">
-                                                Total Subject Departments
+                                                Total Subject Teachers
                                             </div>
                                         </div>
                                     </div>
@@ -175,11 +175,11 @@ class subjectOverview_Model extends Zf_Model {
     
 
     
-    //This private method returns all the number of subject departments in a school
-    private function getTotalSubjectsDepartments($systemSchoolCode){
+    //This private method returns all the number of subject teachers in a school
+    private function getTotalSubjectsTeachers($systemSchoolCode){
         
         //This method counts the total number of subjects that are examinable
-        return $this->zvs_countSchoolSubjects($systemSchoolCode, "departments");
+        return $this->zvs_countSchoolSubjectsTeachers($systemSchoolCode);
         
     }
     
@@ -221,6 +221,34 @@ class subjectOverview_Model extends Zf_Model {
         
         //return subject count
         return $subjectCount;
+        
+    }
+    
+    
+    
+    //This private method fetches all the school subjects
+    private function zvs_countSchoolSubjectsTeachers($systemSchoolCode){
+        
+        $selectedTable = "zvs_school_class_subject_teacher_mapper";
+        
+        $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        $zvs_selectSubjectsTeachers = "SELECT DISTINCT teacherIdentificationCode FROM `$selectedTable` WHERE `systemSchoolCode` = '$systemSchoolCode' ";
+        
+        $executeSubjectTeachersCount = $this->Zf_AdoDB->Execute($zvs_selectSubjectsTeachers);
+        
+        if (!$executeSubjectTeachersCount){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            $teachersCount = $executeSubjectTeachersCount->RecordCount();
+            
+        }
+        
+        //return subject count
+        return $teachersCount;
         
     }
 

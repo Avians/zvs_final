@@ -121,12 +121,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" ||  $zvs_action == "create_budget" || $zvs_action == "collect_fees"  || $zvs_action == "finance_status" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "finance_module" || $zvs_action == "create_fees" || $zvs_action == "allocate_finances" ||  $zvs_action == "create_budget" || $zvs_action == "collect_fees"  || $zvs_action == "finance_status" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-money"></i>
         <span class="title"> Finance Module </span>
-        <?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" || $zvs_action == "create_budget" || $zvs_action == "collect_fees"  || $zvs_action == "finance_status" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "create_fees" || $zvs_action == "allocate_finances" ||  $zvs_action == "create_budget" || $zvs_action == "collect_fees" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "finance_module" || $zvs_action == "create_fees" || $zvs_action == "allocate_finances" || $zvs_action == "create_budget" || $zvs_action == "collect_fees"  || $zvs_action == "finance_status" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "finance_module" || $zvs_action == "create_fees" || $zvs_action == "allocate_finances" ||  $zvs_action == "create_budget" || $zvs_action == "collect_fees" || $zvs_action == "fee_structure" || $zvs_action == "fee_defaulters" || $zvs_action == "fee_refunds") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(FINANCE_STATUS, $zvs_allowedResources)){ ?>

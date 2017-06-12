@@ -118,12 +118,12 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of store module-->
-<li class="<?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items" || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "store_module" || $zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items" || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-institution"></i>
         <span class="title"> Store Module </span>
-        <?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items"  || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items"  || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "store_module" || $zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items"  || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "store_module" || $zvs_action == "store_overview" || $zvs_action == "store_suppliers" || $zvs_action == "store_setup" || $zvs_action == "store_assignment" || $zvs_action == "store_items"  || $zvs_action == "store_receiving" || $zvs_action == "store_issuing" || $zvs_action == "store_reports") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STORE_OVERVIEW, $zvs_allowedResources)){ ?>
