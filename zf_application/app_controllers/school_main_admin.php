@@ -219,9 +219,9 @@ class School_main_adminController extends Zf_Controller {
     /**
      * This action executes the manage substaff view
      */
-    public function actionManage_substaff(){
+    public function actionManage_staff(){
         
-        Zf_View::zf_displayView('manage_substaff');
+        Zf_View::zf_displayView('manage_staff');
         
     }
    
@@ -727,6 +727,26 @@ class School_main_adminController extends Zf_Controller {
         
     }
     
+    
+    //This method process all related staff information
+    public function actionProcessStaffInformation($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == 'process_locality'){
+            
+            //Get the locality related to any student registration data
+            $this->zf_targetModel->getStaffLocality();
+            
+        }else if($filterDataUrl == 'new_staff'){
+            
+            //We are about to register a new staff to the administration
+            $this->zf_targetModel->registerNewStaff();
+            
+        }
+        
+    }
     
     
     

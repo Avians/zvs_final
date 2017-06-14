@@ -100,7 +100,7 @@
         var $separator = "<?= DS; ?>";
         var $current_view = "new_staff";
 
-        StaffFormData.init($current_view, $absolute_path, $separator );
+        //StaffFormData.init($current_view, $absolute_path, $separator );
 
 
     });

@@ -363,6 +363,32 @@
         };
         
         
+        //This function processes all staff registration form data.
+        var newStaffData = function ($absolute_path, $separator){
+            
+            //Process the location of a staff based on the selected country
+            $('.staffCountry').change(function(){
+                
+                var processLocality = $absolute_path + "school_main_admin" + $separator + "processStaffInformation" + $separator + "process_locality";
+                var staffCountryCode = $("#staffCountry").val();
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processLocality,
+                    data: {staffCountryCode: staffCountryCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#staffLocality").html(html);
+                    }
+                });
+
+            });
+            
+            
+        };
+        
+        
         //Here we initialize all the above functions
         return { 
 
@@ -395,6 +421,10 @@
                 }if($current_view === "configure_timeTable"){
                     
                     timeTableDetails($absolute_path, $separator);
+                    
+                }if($current_view === "manage_staff"){
+                    
+                    newStaffData($absolute_path, $separator);
                     
                 }
 

@@ -8,6 +8,9 @@ $(document).ready(function() {
     NewClassFormWizard.init();
     NewStreamFormWizard.init();
     
+    //Configure New Staff
+    NewStaffFormWizard.init();
+    
     //Manage School Fees
     NewFeeItemFormWizard.init();
     PaymentScheduleFormWizard.init();

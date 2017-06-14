@@ -99,11 +99,11 @@ $main_menu = array(
     ),
 
     
-    //Manage Sub Staff
-    "manage_substaff" => array(
-        'name' => '<i class="fa fa-male"></i> Configure Sub-Staff ',
+    //Manage Staff
+    "manage_staff" => array(
+        'name' => '<i class="fa fa-male"></i> Configure Staff ',
         'controller' => $zvs_controller,
-        'action' => 'manage_substaff',
+        'action' => 'manage_staff',
         'parameter' => $identificationCode,
         'title' => '',
         'style' => '',
@@ -305,22 +305,22 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS School admissions-->
-<li class="<?php if ($zvs_action == "manage_teachers" || $zvs_action == "manage_students" || $zvs_action == "manage_substaff") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "manage_teachers" || $zvs_action == "manage_students" || $zvs_action == "manage_staff") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-sign-in"></i>
         <span class="title"> School Admissions </span>
-        <?php if ($zvs_action == "manage_teachers" || $zvs_action == "manage_students" || $zvs_action == "manage_substaff") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "manage_teachers" || $zvs_action == "manage_students" || $zvs_action == "manage_substaff") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "manage_teachers" || $zvs_action == "manage_students" || $zvs_action == "manage_staff") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "manage_teachers" || $zvs_action == "manage_students" || $zvs_action == "manage_staff") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <li class="<?php if ($zvs_action == "manage_teachers") { echo "active";} ?>">
+<!--        <li class="<?php if ($zvs_action == "manage_teachers") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_teachers']); ?>
         </li>
         <li class="<?php if ($zvs_action == "manage_students") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_students']); ?>
-        </li>
-        <li class="<?php if ($zvs_action == "manage_substaff") { echo "active";} ?>">
-            <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_substaff']); ?>
+        </li>-->
+        <li class="<?php if ($zvs_action == "manage_staff") { echo "active";} ?>">
+            <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_staff']); ?>
         </li>
     </ul>
 </li>
