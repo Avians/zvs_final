@@ -1,10 +1,11 @@
 <?php
 
-    //Here we load transport module model for transport overview
-    $zf_controller->Zf_loadModel("transport_module", "");
+    //This model processes all transport overview information.
+    $zf_controller->Zf_loadModel("transport_module", "transportOverview");
     
     //This is user identification code
-    $zf_urlParameter = Zf_SecureData::zf_decode_data($zf_actionData);
+    $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
+
     
 ?>
     
@@ -24,48 +25,55 @@
             </div>
         </div>
         <!-- END PAGE HEADER-->
-
+        
         <div class="clearfix"></div>
-
-        <!-- BEGIN INNER CONTENT -->
+        
+        <!-- BEGIN DASHBOARD CONTENT -->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
-                <div id="tabbed-nav">
-                    <ul class="z-tabs-titles">
-                        <li><a>School transport overview</a></li>
-                        <li><a><i class="fa fa-filter"></i> Filtered transport overview</a></li>
-                    </ul>
-
-                    <div class="z-content-inner">
-                        <div>
-                            <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        In this section we have a general overview of school transport system
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="row margin-top-10">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
-                                        This section allows for a filtered view of school transport
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php $zf_controller->zf_targetModel->getTransportDashboardInformation($identificationCode); ?> 
             </div>
         </div>
-        <!-- END INNER CONTENT -->
-
+        <!-- END DASHBOARDCONTENT -->
+        
+        <div class="clearfix"></div>
+        
+        <!-- BEGIN TABLE CONTENT -->
+        <div class="row">
+            
+            <!-- BEGINING OF ZONES AND ROUTES -->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <?php $zf_controller->zf_targetModel->getTransportZonesAndRoutes($identificationCode); ?>
+            </div>
+            <!-- END OF ZONES AND ROUTES -->
+            
+            <!-- BEGINING OF CATEGORIES AND VEHICLES -->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <?php $zf_controller->zf_targetModel->getTransportCategoriesAndVehicles($identificationCode); ?>
+            </div>
+            <!-- END OF CATEGORIES AND VEHICLES -->
+            
+            <!-- BEGINING OF DRIVERS -->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <?php $zf_controller->zf_targetModel->getTransportDrivers($identificationCode); ?>
+            </div>
+            <!-- END OF ZONES AND ROUTES -->
+        </div>
+        <!-- END TABLE CONTENT-->
+        
     </div>
 </div>
 <!-- END CONTENT -->
+<script type="text/javascript">
+    $(document).ready(function() {
 
-<?php
-    Zf_SessionHandler::zf_unsetSessionVariable("zf_valueArray");
-    Zf_SessionHandler::zf_unsetSessionVariable("zf_errorArray");
-?>
+        //Here we are generating the applications absolute path.
+        var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
+        var $separator = "<?= DS; ?>";
+        var $current_view = "transport_overview";
+
+        //TransportModule.init($current_view, $absolute_path, $separator );
+
+
+    });
+</script>  

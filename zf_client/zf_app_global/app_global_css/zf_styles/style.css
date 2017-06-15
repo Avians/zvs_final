@@ -323,6 +323,10 @@ Tools
   margin-bottom: 10px !important;
 }
 
+.margin-top-5 {
+  margin-top: 5px !important;
+}
+
 .margin-top-10 {
   margin-top: 10px !important;
 }
@@ -343,8 +347,20 @@ Tools
   margin-bottom: 25px !important;
 }
 
+.margin-right-5 {
+  margin-right: 5px !important;
+}
+
 .margin-right-10 {
   margin-right: 10px !important;
+}
+
+.margin-left-5 {
+  margin-left: 5px !important;
+}
+
+.margin-left-10 {
+  margin-left: 10px !important;
 }
 
 .bold {

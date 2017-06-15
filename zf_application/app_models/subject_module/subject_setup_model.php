@@ -120,7 +120,7 @@ class subject_setup_Model extends Zf_Model {
 
                                                                                                         $schoolSubjectName = $subjectValues['subjectName'];
 
-                                                                                                        $zvs_classGridView .='<tr><td>'.$schoolSubjectName.'</td>';
+                                                                                                        $zvs_classGridView .='<tr><td>'.$schoolSubjectName.'</td></tr>';
 
                                                                                                     }
                                                                                                 }

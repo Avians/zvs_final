@@ -14,3 +14,6 @@
 /*This section styles the look and feel of the dashboard section*/
 
 
+.dynamic-border{
+    border-bottom: 1px solid #fff !important;
+}

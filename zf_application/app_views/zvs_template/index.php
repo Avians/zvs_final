@@ -211,8 +211,108 @@
                 </div>
             </div>
             <!-- END DASHBOARD STATS -->
-            <div class="clearfix">
+            <div class="clearfix"></div>
+            
+            <!-- BEGIN DASHBOARD CONTENT -->
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat purple-sharp" style="min-height: 120px;">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5 dynamic-border" style="height: 100px !important;">
+                                <div class="visual">
+                                    <i class="fa fa-snowflake-o"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number" style="font-size: 35px !important">2</div>
+                                    <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                        Zones
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5" style="height: 100px !important;">
+                                <div class="visual margin-left-10">
+                                    <i class="fa fa-sliders"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number text-center" style="font-size: 35px !important">2</div>
+                                    <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                        Routes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="more text-center" style="height: 25px;" href="#">
+                            Transport Zones &AMP; Routes
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-sharp" style="min-height: 120px;">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5 dynamic-border"style="height: 100px !important;">
+                                <div class="visual">
+                                    <i class="fa fa-braille"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number" style="font-size: 35px !important">2</div>
+                                    <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                        Categories
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5"style="height: 100px !important;">
+                                <div class="visual margin-left-10">
+                                    <i class="fa fa-bus"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number text-center" style="font-size: 35px !important">2</div>
+                                    <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                        Vehicles
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="more text-center" style="height: 25px;" href="#">
+                            Transport Categories &AMP; Vehicles
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison" style="min-height: 120px;">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5 dynamic-border"style="height: 100px !important;">
+                                <div class="visual">
+                                    <i class="fa fa-drivers-license"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number" style="font-size: 35px !important">2</div>
+                                    <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                        Drivers
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5"style="height: 100px !important;">
+                                <div class="visual margin-left-10">
+                                    <i class="fa fa-users"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number text-center" style="font-size: 35px !important">2</div>
+                                    <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                        Students
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="more text-center" style="height: 25px;" href="#">
+                            Transport Drivers &AMP; Students
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- END DASHBOARDCONTENT -->
+            
+            <div class="clearfix"></div>
+            
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <!-- BEGIN PORTLET-->
