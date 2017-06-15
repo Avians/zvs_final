@@ -411,9 +411,9 @@ class transportOverview_Model extends Zf_Model {
     //This private method fetches all transport zones
     private function zvs_getTransportRoutes($systemSchoolCode){
         
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        $zvs_targetTable = "zvs_school_transport_routes";
         
-        $fetchTransportRoutes = Zf_QueryGenerator::BuildSQLSelect('zvs_school_transport_routes', $zvs_sqlValue);
+        $fetchTransportRoutes = "SELECT *  FROM `$zvs_targetTable` WHERE `systemSchoolCode` = '$systemSchoolCode' ORDER BY `transportZoneCode`";
         
         $zf_executeFetchTransportRoutes = $this->Zf_AdoDB->Execute($fetchTransportRoutes);
 
