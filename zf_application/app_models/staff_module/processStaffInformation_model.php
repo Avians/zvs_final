@@ -346,7 +346,9 @@ class processStaffInformation_Model extends Zf_Model {
     
     
     //This prublic method fetcches school student statistics for a selceted year.
-    public function zvs_fetchStaffInformation(){
+    public function zvs_fetchStaffInformation($identificationCode){
+        
+        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
         $zvs_staffDetails = "";
         
@@ -359,7 +361,10 @@ class processStaffInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
-                                                    $zvs_staffDetails .= $this->getTotalStaff();    
+        
+                                                   $totalSchoolStaff = $this->zvs_getStaffAndRoleInformation($zvs_targetInformation = "Gender", $systemSchoolCode);
+                                                   $zvs_staffDetails .= $totalSchoolStaff;  
+                                                    
                         $zvs_staffDetails .='   </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                     Total School Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
@@ -377,7 +382,10 @@ class processStaffInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
-                                                    $zvs_staffDetails .= $this->countStaffGender("Male"); 
+                        
+                                                    $totalMaleStaff = $this->zvs_getStaffAndRoleInformation($zvs_targetInformation = "Gender", $systemSchoolCode, "Male");
+                                                    $zvs_staffDetails .= $totalMaleStaff; 
+                                                    
                         $zvs_staffDetails .='   </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                     Male Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
@@ -395,7 +403,10 @@ class processStaffInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
-                                                    $zvs_staffDetails .= $this->countStaffGender("Female"); 
+                        
+                                                    $totalFemaleStaff = $this->zvs_getStaffAndRoleInformation($zvs_targetInformation = "Gender", $systemSchoolCode, "Female");
+                                                    $zvs_staffDetails .= $totalFemaleStaff; 
+                        
                         $zvs_staffDetails .='   </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                     Female Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
@@ -412,9 +423,12 @@ class processStaffInformation_Model extends Zf_Model {
                                                 <i class="fa fa-snowflake-o"></i>
                                             </div>
                                             <div class="details">
-                                                <div class="number" style="font-size: 35px !important">
-                                                   10
-                                                </div>
+                                                <div class="number" style="font-size: 35px !important">';
+                        
+                                                    $totalSchoolRoles = $this->zvs_getStaffAndRoleInformation($zvs_targetInformation = "Role", $systemSchoolCode);
+                                                    $zvs_staffDetails .= $totalSchoolRoles;  
+                        
+                    $zvs_staffDetails .='       </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                    School Roles&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-snowflake-o"></i>
                                                 </div>
@@ -436,51 +450,91 @@ class processStaffInformation_Model extends Zf_Model {
     
     
     
-    
-    
-    //This private method counts data for all staff in school
-    private function getTotalStaff(){
+    //This private method returns total staff count base don parameters
+    private function zvs_getStaffAndRoleInformation($zvs_targetInformation, $systemSchoolCode, $staffGender = NULL){
         
-        //Male staff
-        $totalMaleStaff = $this->countStaffGender("Male");
-        
-        //Female staff
-        $totalFemaleStaff = $this->countStaffGender("Female");
-        
-        //All staff
-        $totalStaff= $totalMaleStaff + $totalFemaleStaff;
-        
-        return $totalStaff;
+        if($zvs_targetInformation == "Gender"){
+            
+            //This is the actual count of staff gender
+            return $this->zvs_countSchoolStaff($systemSchoolCode, $staffGender);
+            
+        }else if($zvs_targetInformation == "Role"){
+            
+            //This is the actual count of school roles
+            return $this->zvs_countSchoolRoles($systemSchoolCode);
+            
+        }
         
     }
     
     
     
-    //This private method counts all staff based on gender
-    private function countStaffGender($gender){
+    
+    //This private method does the actual counting school staff
+    private function zvs_countSchoolStaff($systemSchoolCode, $staffGender = NULL){
         
-        $staffPersonalDetailsTable = "zvs_staff_personal_details";
-        $staffGender = $gender;
+        $zvs_targetTable = "zvs_staff_personal_details";
         
-        //The counts SQL query goes here
-        $zvsStaffCount = 'SELECT * FROM `'.$staffPersonalDetailsTable.'` WHERE `'.$staffPersonalDetailsTable.'`.`staffGender` = "'.$staffGender.'" ';
+        $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         
-        $executeStaffCount   = $this->Zf_AdoDB->Execute($zvsStaffCount);
+        if(!empty($staffGender) && $staffGender != NULL){
+            
+            $sqlValues['staffGender'] = Zf_QueryGenerator::SQLValue($staffGender);
         
-        if (!$executeStaffCount){
+        }
+
+        $zvs_selectSchoolStaff = Zf_QueryGenerator::BuildSQLSelect($zvs_targetTable, $sqlValues);
+        
+        //echo $zvs_selectSchoolStaff; exit();
+        
+        $executeSchoolStaffCount  = $this->Zf_AdoDB->Execute($zvs_selectSchoolStaff);
+        
+        if (!$executeSchoolStaffCount){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
-            $staffCount = $executeStaffCount->RecordCount();
+            $schoolStaffCount = $executeSchoolStaffCount->RecordCount();
+            
         }
         
-        //return staff count
-        return $staffCount;
+        //return staff information count
+        return $schoolStaffCount;
         
     }
+    
+    
+    
+    
+    //This private method does the actual counting of school roles
+    private function zvs_countSchoolRoles($systemSchoolCode){
         
+        $zvs_targetTable = "zvs_school_roles";
+        
+        $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+
+        $zvs_selectSchoolRoles= Zf_QueryGenerator::BuildSQLSelect($zvs_targetTable, $sqlValues);
+        
+        //echo $zvs_selectSchoolStaff; exit();
+        
+        $executeSchoolRolesCount  = $this->Zf_AdoDB->Execute($zvs_selectSchoolRoles);
+        
+        if (!$executeSchoolRolesCount){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            $schoolRolesCount = $executeSchoolRolesCount->RecordCount();
+            
+        }
+        
+        //return staff information count
+        return $schoolRolesCount;
+        
+    } 
         
 }
 

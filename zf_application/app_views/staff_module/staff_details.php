@@ -32,7 +32,7 @@
         <!-- BEGIN DASHBOARD CONTENT -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <?php $zf_controller->zf_targetModel->zvs_fetchStaffInformation(); ?>
+                <?php $zf_controller->zf_targetModel->zvs_fetchStaffInformation($identificationCode); ?>
             </div>
         </div>
         <!-- END DASHBOARD CONTENT -->
