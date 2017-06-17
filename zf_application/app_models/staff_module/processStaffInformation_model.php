@@ -129,6 +129,10 @@ class processStaffInformation_Model extends Zf_Model {
                                 ->zf_postFormData('staffPhoneNumber')//not required field
                                 ->zf_validateFormData('zf_maximumLength', 30, 'Staff phone number')
                 
+                                ->zf_postFormData('staffAdmissionNumber')
+                                ->zf_validateFormData('zf_maximumLength', 30, 'Staff number')
+                                ->zf_validateFormData('zf_fieldNotEmpty', 'Staff number')
+                
                                 ->zf_postFormData('staffLanguage')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Staff language');
         
@@ -196,7 +200,7 @@ class processStaffInformation_Model extends Zf_Model {
                 
                 //Generate unique staff access code.
                 $staffIdentificationCode = Zf_SecureData::zf_encode_data($staffCountry.ZVSS_CONNECT.$staffLocality.ZVSS_CONNECT.$systemSchoolCode.ZVSS_CONNECT.$staffRole.ZVSS_CONNECT.$staffAdmissionNumber);
-            
+                
                 //1. Check if a similar staff has already been registered in the same school. 
                 //Hint: Each Zilas user must have a unique email address, so check using the email address.
                 $staffEmailValue['email'] = Zf_QueryGenerator::SQLValue($staffEmailAddress);
@@ -210,10 +214,10 @@ class processStaffInformation_Model extends Zf_Model {
                     echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
                 }else{
-                    
+                   
                     //Check if a similar user exists.
                     if($zvs_executeStaffEmailSqlQuery->RecordCount() > 0){
-
+                        
                         //This staff email already exists
                         Zf_SessionHandler::zf_setSessionVariable("staff_registration", "existent_staff_email");
 
@@ -228,7 +232,8 @@ class processStaffInformation_Model extends Zf_Model {
                         //Hint: Each staff within the school MUST have a unique admission number: check the istaff admission number.
                         $staffIdNumberValue['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
                         $staffIdNumberValue['staffIdNumber'] = Zf_QueryGenerator::SQLValue($staffIdNumber);
-                        $staffIdNumberColumn = array("staffIdNumber");
+                        $staffIdNumberValue['staffAdmissionNumber'] = Zf_QueryGenerator::SQLValue($staffIdNumber);
+                        $staffIdNumberColumn = array("staffIdNumber", "staffAdmissionNumber");
 
                         $zvs_staffIdNumberSqlQuery = Zf_QueryGenerator::BuildSQLSelect('zvs_staff_personal_details', $staffIdNumberValue, $staffIdNumberColumn);
 
@@ -269,6 +274,7 @@ class processStaffInformation_Model extends Zf_Model {
                                 //2. Staff personal detiails
                                 $staffPersonalDetails['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
                                 $staffPersonalDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($staffIdentificationCode);
+                                $staffPersonalDetails['staffAdmissionNumber'] = Zf_QueryGenerator::SQLValue($staffAdmissionNumber);
                                 $staffPersonalDetails['staffIdNumber'] = Zf_QueryGenerator::SQLValue($staffIdNumber);
                                 $staffPersonalDetails['staffFirstName'] = Zf_QueryGenerator::SQLValue($staffFirstName);
                                 $staffPersonalDetails['staffMiddleName'] = Zf_QueryGenerator::SQLValue($staffMiddleName);

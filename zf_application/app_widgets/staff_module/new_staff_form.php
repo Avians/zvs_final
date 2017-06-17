@@ -15,7 +15,7 @@
     $registeredBy = $identificationCode;
 ?>
 
-<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "ProcessStaffInformation", $new_staff); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_staff_form">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("staff_module", "ProcessStaffInformation", $new_staff); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_staff_form">
     <div class="form-wizard" id="newStaff">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">
@@ -233,7 +233,18 @@
                             </div>
                         </div>
                         
-                        <div class="row">
+                        <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Staff Number:</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="staffAdmissionNumber" class="form-control" placeholder="001, 002, ABC-001, ABC-002,..." value="<?php echo $zf_formHandler->zf_getFormValue("staffAdmissionNumber"); ?>">
+                                        <span class="help-block server-side-error" >
+                                            <?php echo $zf_formHandler->zf_getFormError("staffAdmissionNumber"); ?>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label col-md-4">Official Language:</label>
@@ -476,6 +487,15 @@
                                     <!--row-->
 
                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-5">Staff Number:</label>
+                                                <div class="col-md-7">
+                                                    <p class="form-control-static confirm-form-result" data-display="staffAdmissionNumber"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--/span-->
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label col-md-5">Staff Language:</label>

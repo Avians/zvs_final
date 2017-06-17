@@ -39,7 +39,6 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
-                        <li><a>School staff overview</a></li>
                         <li><a><i class="fa fa-user-plus"></i> Register New Staff</a></li>
                     </ul>
 
@@ -47,34 +46,12 @@
                         <div>
                             <!--Staff Overview goes here!!-->
                             <div class="row margin-top-10">
-                                <?php
-                                    //Here we fetch all class details
-                                    //$zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
-                                ?>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
                                         <div class="portlet-body form" >
                                             <?php
                                                 //This is the form for registering new student into a given school.
                                                 Zf_ApplicationWidgets::zf_load_widget("staff_module", "new_staff_form.php");
-                                            ?>
-                                        </div>
-                                    </div>          
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="row margin-top-10">
-                                <?php
-                                    //Here we fetch all class details
-                                    //$zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
-                                ?>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="portlet-body form" >
-                                            <?php
-                                                //This is the form for registering new student into a given school.
-                                                //Zf_ApplicationWidgets::zf_load_widget("staff_module", "new_staff_form.php");
                                             ?>
                                         </div>
                                     </div>          
