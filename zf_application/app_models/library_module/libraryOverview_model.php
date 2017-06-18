@@ -6,13 +6,13 @@
 /*
  * ---------------------------------------------------------------------
  * |                                                                   |
- * |  This the model is responsible for processing all transport       |
- * |  overview information                                             |
+ * | This the model is responsible for processing all library overview |
+ * | information                                                       |
  * |                                                                   |
  * ---------------------------------------------------------------------
  */
 
-class transportOverview_Model extends Zf_Model {
+class libraryOverview_Model extends Zf_Model {
     
 
     private $_errorResult = array();
@@ -39,7 +39,7 @@ class transportOverview_Model extends Zf_Model {
     /**
      * This method is used to return tranport dashlets
      */
-    public function getTransportDashboardInformation($identificationCode){
+    public function getLibraryDashboardInformation($identificationCode){
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
@@ -62,7 +62,7 @@ class transportOverview_Model extends Zf_Model {
                                                     
                                 $transportInformation .=' </div>
                                                         <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Zones&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-snowflake-o"></i>
+                                                            Zones
                                                         </div>
                                                     </div>
                                                 </div>
@@ -78,7 +78,7 @@ class transportOverview_Model extends Zf_Model {
                                                     
                                 $transportInformation .=' </div>
                                                         <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Routes&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-sliders"></i>
+                                                            Routes
                                                         </div>
                                                     </div>
                                                 </div>
@@ -103,7 +103,7 @@ class transportOverview_Model extends Zf_Model {
                                                     
                                 $transportInformation .=' </div>
                                                         <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Categories&nbsp;&nbsp;<span style="font-size: 15px !important;">
+                                                            Categories
                                                         </div>
                                                     </div>
                                                 </div>
@@ -119,7 +119,7 @@ class transportOverview_Model extends Zf_Model {
                                                     
                                 $transportInformation .=' </div>
                                                         <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Vehicles&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-bus"></i>
+                                                            Vehicles
                                                         </div>
                                                     </div>
                                                 </div>
@@ -144,7 +144,7 @@ class transportOverview_Model extends Zf_Model {
                                                     
                                 $transportInformation .=' </div>
                                                         <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Drivers&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-drivers-license"></i>
+                                                            Drivers
                                                         </div>
                                                     </div>
                                                 </div>

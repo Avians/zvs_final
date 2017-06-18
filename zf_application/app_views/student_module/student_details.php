@@ -28,39 +28,55 @@
         <!-- END PAGE HEADER-->
         <div class="clearfix"></div>
         
-        <!-- BEGIN DASHBOARD CONTENT -->
+        <!-- BEGIN INNER CONTENT -->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <?php $zf_controller->zf_targetModel->zvs_fetchStudentInformation(); ?>
-            </div>
-        </div>
-        <!-- END DASHBOARD CONTENT -->
-        
-        <div class="clearfix"></div>
-        
-        <!-- BEGIN TABLE CONTENT-->
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
-                <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
-                    <div class="portlet-empty table-responsive" style="margin-right: 0% !important;">
-                        <div style="margin-right: 8px !important;">
-                            <?php echo $zf_generateTable; ?>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
+                <div id="tabbed-nav">
+                    <ul class="z-tabs-titles">
+                        <li><a>General students details</a></li>
+                    </ul>
+
+                    <div class="z-content-inner" style="background-color: #EFEFEF !important;">
+                        <div style="margin-bottom: -15px !important;">
+                            <!--START OF SECTION-->
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
+                                        <!-- BEGIN DASHBOARD CONTENT -->
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <?php $zf_controller->zf_targetModel->zvs_fetchStudentInformation(); ?>
+                                            </div>
+                                        </div>
+                                        <!-- END DASHBOARD CONTENT -->
+                                        
+                                        <div class="clearfix"></div>
+                                        
+                                        <!-- BEGIN TABLE CONTENT-->
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
+                                                <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
+                                                    <div class="portlet-empty table-responsive" style="margin-right: 4% !important;">
+                                                        <div style="margin-right: 8px !important;">
+                                                            <?php echo $zf_generateTable; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>          
+                                            </div>
+                                        </div>
+                                        <!-- END TABLE CONTENT-->
+                                        
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END OF SECTION-->
                         </div>
                     </div>
-                </div>          
+                </div>
             </div>
         </div>
-        <!-- END TABLE CONTENT-->
-        
-        <div class="clearfix"></div>
-        
-        <!-- BEGIN CHART CONTENT-->
-        <div class="row margin-top-10">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -10px !important;">
-                Chart Goes Here         
-            </div>
-        </div>
-        <!-- END CHART CONTENT-->
+        <!-- END INNER CONTENT -->
         
     </div>
 </div>
@@ -73,7 +89,7 @@
         var $separator = "<?= DS; ?>";
         var $current_view = "student_details";
 
-        StudentModule.init($current_view, $absolute_path, $separator );
+        //StudentModule.init($current_view, $absolute_path, $separator );
 
 
     });

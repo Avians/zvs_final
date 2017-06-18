@@ -63,7 +63,7 @@ class subjectOverview_Model extends Zf_Model {
                                                     Total Subjects
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
+                                            <div class="more text-center" style="height: 25px;" href="#">
                                                 Total Subjects In School
                                             </div>
                                         </div>
@@ -81,11 +81,11 @@ class subjectOverview_Model extends Zf_Model {
                                                     
                         $subjectInformation .=' </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                    Examinable Subjects
+                                                    Examinable
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Examinable Subjects
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Examinable Subjects
                                             </div>
                                         </div>
                                     </div>
@@ -102,11 +102,11 @@ class subjectOverview_Model extends Zf_Model {
                                                    
                         $subjectInformation .=' </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                    Non Examinable Subjects
+                                                    Non Examinable
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Non-examinable Subjects
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Non-examinable Subjects
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@ class subjectOverview_Model extends Zf_Model {
                                                    Subject Teachers
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
+                                            <div class="more text-center" style="height: 25px;" href="#">
                                                 Total Subject Teachers
                                             </div>
                                         </div>

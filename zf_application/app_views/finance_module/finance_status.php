@@ -94,7 +94,7 @@
     </div>
 </div>
 <!-- END CONTENT -->
-<!-- END CONTENT -->
+
 <script type="text/javascript">
     $(document).ready(function() {
 

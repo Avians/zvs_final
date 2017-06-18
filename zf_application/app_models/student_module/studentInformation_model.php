@@ -183,8 +183,8 @@ class studentInformation_Model extends Zf_Model {
                                                     Total Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Students In School
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total Students
                                             </div>
                                         </div>
                                     </div>
@@ -201,8 +201,8 @@ class studentInformation_Model extends Zf_Model {
                                                     Male Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Male Students In School
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total Male Students
                                             </div>
                                         </div>
                                     </div>
@@ -219,8 +219,8 @@ class studentInformation_Model extends Zf_Model {
                                                     Female Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Female Staff In School
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total Female Students
                                             </div>
                                         </div>
                                     </div>
@@ -237,7 +237,7 @@ class studentInformation_Model extends Zf_Model {
                                                    Disabled Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-wheelchair-alt"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
+                                            <div class="more text-center" style="height: 25px;" href="#">
                                                 Total Disabled Students
                                             </div>
                                         </div>

@@ -373,11 +373,11 @@ class processStaffInformation_Model extends Zf_Model {
                                                     
                         $zvs_staffDetails .='   </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                    Total School Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
+                                                    Total Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Staff Members In School
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total Staff Members
                                             </div>
                                         </div>
                                     </div>
@@ -397,8 +397,8 @@ class processStaffInformation_Model extends Zf_Model {
                                                     Male Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Male Staff In School
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total Male Staff
                                             </div>
                                         </div>
                                     </div>
@@ -418,8 +418,8 @@ class processStaffInformation_Model extends Zf_Model {
                                                     Female Staff&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
-                                                Total Female Staff In School
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total Female Staff
                                             </div>
                                         </div>
                                     </div>
@@ -439,7 +439,7 @@ class processStaffInformation_Model extends Zf_Model {
                                                    School Roles&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-snowflake-o"></i>
                                                 </div>
                                             </div>
-                                            <div class="more" style="height: 25px;" href="#">
+                                            <div class="more text-center" style="height: 25px;" href="#">
                                                 Total School Roles
                                             </div>
                                         </div>

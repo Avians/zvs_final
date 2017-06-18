@@ -29,27 +29,51 @@
         
         <div class="clearfix"></div>
         
-        <!-- BEGIN DASHBOARD CONTENT -->
+        <!-- BEGIN INNER CONTENT -->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <?php $zf_controller->zf_targetModel->getSubjectDashboardInformation($identificationCode);?> 
-            </div>
-        </div>
-        <!-- END DASHBOARDCONTENT -->
-        
-        <div class="clearfix"></div>
-        
-        <!-- BEGIN TABLE CONTENT-->
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 0px !important;">
-                <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
-                    <div class="portlet-empty table-responsive" style="margin-right: 0% !important;">
-                        <?php echo $zf_generateTable; ?>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
+                <div id="tabbed-nav">
+                    <ul class="z-tabs-titles">
+                        <li><a>General subjects overview</a></li>
+                    </ul>
+
+                    <div class="z-content-inner" style="background-color: #EFEFEF !important;">
+                        <div style="margin-bottom: -15px !important;">
+                            <!--START OF SECTION-->
+                            <div class="row margin-top-10">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="portlet zvs-content-blocks" style="min-height: 400px !important;">
+                                        <!-- BEGIN DASHBOARD CONTENT -->
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <?php $zf_controller->zf_targetModel->getSubjectDashboardInformation($identificationCode);?> 
+                                            </div>
+                                        </div>
+                                        <!-- END DASHBOARDCONTENT -->
+                                        
+                                        <div class="clearfix"></div>
+                                        
+                                        <!-- BEGIN TABLE CONTENT-->
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 0px !important;">
+                                                <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
+                                                    <div class="portlet-empty table-responsive" style="margin-right: 4% !important;">
+                                                        <?php echo $zf_generateTable; ?>
+                                                    </div>
+                                                </div>          
+                                            </div>
+                                        </div>
+                                        <!-- END TABLE CONTENT-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END OF SECTION-->
+                        </div>
                     </div>
-                </div>          
+                </div>
             </div>
         </div>
-        <!-- END TABLE CONTENT-->
+        <!-- END INNER CONTENT -->
         
     </div>
 </div>
