@@ -48,6 +48,41 @@
                                             </div>
                                         </div>
                                         <!-- END DASHBOARDCONTENT -->
+                                        
+                                        <div class="clearfix"></div>
+
+                                        <!-- BEGIN TABLE CONTENT -->
+                                        <div class="row">
+
+                                            <!-- BEGINING OF LIBRARY CATEGORIES -->
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <?php $zf_controller->zf_targetModel->getSchoolLibaryCategories($identificationCode); ?>
+                                            </div>
+                                            <!-- END OF LIBRARY CATEGORIES -->
+
+                                            <!-- BEGINING OF LIBRARY SUB-CATEGORIES -->
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <?php $zf_controller->zf_targetModel->getSchoolLibarySubCategories($identificationCode); ?>
+                                            </div>
+                                            <!-- END OF LIBRARY SUB-CATEGORIES -->
+
+                                        </div>
+                                        <!-- END TABLE CONTENT-->
+                                        
+                                        <div class="clearfix"><br></div>
+                                        
+                                        <!-- BEGIN TABLE CONTENT-->
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-10" style="margin-bottom: -15px !important;">
+                                                <div class="portlet box zvs-content-blocks" style="min-height: 10px !important;">
+                                                    <div class="portlet-empty table-responsive" style="margin-right: 4% !important;">
+                                                        <?php echo $zf_generateTable; ?>
+                                                    </div>
+                                                </div>          
+                                            </div>
+                                        </div>
+                                        <!-- END TABLE CONTENT-->
+                                        
                                     </div>
                                 </div>
                             </div>

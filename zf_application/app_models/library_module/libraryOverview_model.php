@@ -43,138 +43,99 @@ class libraryOverview_Model extends Zf_Model {
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
-        $transportInformation = "";
+        $libraryInformation = "";
         
-        $transportInformation .=' <!-- BEGIN DASHBOARD CONTENT -->
+        $libraryInformation .=' <!--START OF SUBJECT STATISTICS-->
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="dashboard-stat purple-sharp" style="min-height: 120px;">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5 dynamic-border" style="height: 100px !important;">
-                                                    <div class="visual">
-                                                        <i class="fa fa-snowflake-o"></i>
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">';
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat purple-sharp">
+                                            <div class="visual">
+                                                <i class="fa fa-building-o"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
         
-                                                        $totalTransportZones = $this->getTransportInformation($systemSchoolCode, $zvs_targetTable = "zvs_school_transport_zones" );
-                                                        $transportInformation .= $totalTransportZones;
-                                                    
-                                $transportInformation .=' </div>
-                                                        <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Zones
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5" style="height: 100px !important;">
-                                                    <div class="visual margin-left-10">
-                                                        <i class="fa fa-sliders"></i>
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">';
-        
-                                                        $totalTransportRoutes = $this->getTransportInformation($systemSchoolCode, $zvs_targetTable = "zvs_school_transport_routes" );
-                                                        $transportInformation .= $totalTransportRoutes;
-                                                    
-                                $transportInformation .=' </div>
-                                                        <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Routes
-                                                        </div>
-                                                    </div>
+                                                    $totalLibraryCategories = $this->getSchoolLibraryInformation($systemSchoolCode, "library_categories");
+                                                    $libraryInformation .= $totalLibraryCategories;
+                                                            
+                        $libraryInformation .=' </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                    Total Categories&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-building-o"></i>
                                                 </div>
                                             </div>
                                             <div class="more text-center" style="height: 25px;" href="#">
-                                                Transport Zones &AMP; Routes
+                                                Total library categories
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="dashboard-stat green-sharp" style="min-height: 120px;">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5 dynamic-border"style="height: 100px !important;">
-                                                    <div class="visual">
-                                                        <i class="fa fa-braille"></i>
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">';
-        
-                                                        $totalTransportCategories = $this->getTransportInformation($systemSchoolCode, $zvs_targetTable = "zvs_school_transport_categories" );
-                                                        $transportInformation .= $totalTransportCategories;
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat green-sharp">
+                                            <div class="visual">
+                                                <i class="fa fa-sliders"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
+                        
+                                                    $totalLibrarySubCategories = $this->getSchoolLibraryInformation($systemSchoolCode, "library_sub_categories");
+                                                    $libraryInformation .= $totalLibrarySubCategories;
                                                     
-                                $transportInformation .=' </div>
-                                                        <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Categories
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5"style="height: 100px !important;">
-                                                    <div class="visual margin-left-10">
-                                                        <i class="fa fa-bus"></i>
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">';
-        
-                                                        $totalTransportVehicles = $this->getTransportInformation($systemSchoolCode, $zvs_targetTable = "zvs_school_transport_vehicles" );
-                                                        $transportInformation .= $totalTransportVehicles;
-                                                    
-                                $transportInformation .=' </div>
-                                                        <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Vehicles
-                                                        </div>
-                                                    </div>
+                        $libraryInformation .=' </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                    Sub Categories&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-sliders"></i>
                                                 </div>
                                             </div>
                                             <div class="more text-center" style="height: 25px;" href="#">
-                                                Transport Categories &AMP; Vehicles
+                                                Library sub-categories
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="dashboard-stat blue-madison" style="min-height: 120px;">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5 dynamic-border"style="height: 100px !important;">
-                                                    <div class="visual">
-                                                        <i class="fa fa-drivers-license"></i>
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">';
-        
-                                                        $totalTransportDrivers = $this->getTransportInformation($systemSchoolCode, $zvs_targetTable = "zvs_school_transport_vehicle_driver_mapper" );
-                                                        $transportInformation .= $totalTransportDrivers;
-                                                    
-                                $transportInformation .=' </div>
-                                                        <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Drivers
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6 col-sm-12 margin-top-5 margin-bottom-5"style="height: 100px !important;">
-                                                    <div class="visual margin-left-10">
-                                                        <i class="fa fa-users"></i>
-                                                    </div>
-                                                    <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">0';
-        
-                                                        //$totalTransportStudents = $this->getTransportInformation($systemSchoolCode);
-                                                        //$transportInformation .= $totalTransportStudents;
-                                                    
-                                $transportInformation .=' </div>
-                                                        <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Students
-                                                        </div>
-                                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat blue-madison">
+                                            <div class="visual">
+                                                <i class="fa fa-book"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
+                        
+                                                   $totalLibraryBooks = $this->getSchoolLibraryInformation($systemSchoolCode,  "library_books");
+                                                   $libraryInformation .= $totalLibraryBooks;
+                                                   
+                        $libraryInformation .=' </div>
+                                                <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
+                                                    Library Books&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-book"></i>
                                                 </div>
                                             </div>
                                             <div class="more text-center" style="height: 25px;" href="#">
-                                                Transport Drivers &AMP; Students
+                                                Total library books
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                        <div class="dashboard-stat red-soft">
+                                            <div class="visual">
+                                                <i class="fa fa-id-badge"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number" style="font-size: 35px !important">';
+                        
+                                                   $totalBooksIssued = $this->getSchoolLibraryInformation($systemSchoolCode,  "books_issued");
+                                                   $libraryInformation .= $totalBooksIssued;
+                                                   
+                        $libraryInformation .=' </div>
+                                                <div class="desc text-center" style="padding-top: 15px; font-family: Ubuntu-B;">
+                                                   Library Book Issues<br>Coming Soon
+                                                </div>
+                                            </div>
+                                            <div class="more text-center" style="height: 25px;" href="#">
+                                                Total books issued
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- END DASHBOARDCONTENT -->';
+                                <!--END OF SUBJECT STATISTICS-->';
         
         
-        echo $transportInformation;
+        echo $libraryInformation;
         
         
     }
@@ -182,89 +143,72 @@ class libraryOverview_Model extends Zf_Model {
     
     
     //This private method returns total of all transport Information in the school
-    private function getTransportInformation($systemSchoolCode, $zvs_targetTable){
+    private function getSchoolLibraryInformation($systemSchoolCode, $zvs_targetAction){
         
-        if($zvs_targetTable === "zvs_school_transport_vehicle_driver_mapper"){
+        if($zvs_targetAction === "library_categories"){
             
-            //This method uniquely counts the total number of drivers assigned to vehicles
-            return $this->zvs_countSchoolTransportDrivers($systemSchoolCode, $zvs_targetTable);
+            //This method uniquely counts all the library categories
+            return $this->zvs_countSchoolLibraryInformation($systemSchoolCode,"zvs_school_library_category");
             
-        }else{
+        }else if($zvs_targetAction === "library_sub_categories"){
         
-            //This method counts the total number of transport information
-            return $this->zvs_countTransportInformation($systemSchoolCode, $zvs_targetTable);
+            //This method uniquely counts all the library sub-categories
+            return $this->zvs_countSchoolLibraryInformation($systemSchoolCode, "zvs_school_library_sub_category");
+            
+        }else if($zvs_targetAction === "library_books"){
+        
+            //This method uniquely counts all library book
+            return $this->zvs_countSchoolLibraryInformation($systemSchoolCode, "zvs_school_library_books");
+            
+        }else if($zvs_targetAction === "books_issues"){
+        
+            //This method uniquely counts all books issued
+            //return $this->zvs_countSchoolLibraryBooksIssued($systemSchoolCode);
             
         }
     }
-
     
     
     
-    //This private method fetches all the school transport information
-    private function zvs_countTransportInformation($systemSchoolCode, $zvs_targetTable){
+    
+    //This private method counts actual library information
+    private function zvs_countSchoolLibraryInformation($systemSchoolCode, $zvs_targetTable){
         
         $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
 
-        $zvs_selectTransportInformation = Zf_QueryGenerator::BuildSQLSelect($zvs_targetTable, $sqlValues);
+        $zvs_selectLibraryInformation = Zf_QueryGenerator::BuildSQLSelect($zvs_targetTable, $sqlValues);
         
+        $executeLibraryInformationCount   = $this->Zf_AdoDB->Execute($zvs_selectLibraryInformation);
         
-        $executeTransportInformationCount   = $this->Zf_AdoDB->Execute($zvs_selectTransportInformation);
-        
-        if (!$executeTransportInformationCount){
+        if (!$executeLibraryInformationCount){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
-            $transportInformationCount = $executeTransportInformationCount->RecordCount();
+            $libraryInformationCount = $executeLibraryInformationCount->RecordCount();
             
         }
         
-        //return transport information count
-        return $transportInformationCount;
+        //return library information count
+        return $libraryInformationCount;
         
     }
     
-    
-    
-    
-    //This private method fetches all the school transport drivers
-    private function zvs_countSchoolTransportDrivers($systemSchoolCode, $zvs_targetTable){
-        
-        $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        
-        $zvs_selectTransportDrivers = "SELECT DISTINCT driverIdentificationCode FROM `$zvs_targetTable` WHERE `systemSchoolCode` = '$systemSchoolCode' ";
-        
-        $executeTransportDriversCount = $this->Zf_AdoDB->Execute($zvs_selectTransportDrivers);
-        
-        if (!$executeTransportDriversCount){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            $driversCount = $executeTransportDriversCount->RecordCount();
-            
-        }
-        
-        //return drivers count
-        return $driversCount;
-        
-    }
     
     
     
     /**
-     * This method is used to return transport zones and routes
+     * This method is used to return all school library categories
      */
-    public function getTransportZonesAndRoutes($identificationCode){
+    public function getSchoolLibaryCategories($identificationCode){
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
-        $transportZonesAndRoutes = '<div class="portlet box zvs-content-blocks" style="min-height: 340px !important; margin-bottom: 0px !important;">
+        $libraryCategoriesGrid = '<div class="portlet box zvs-content-blocks" style="min-height: 340px !important; margin-bottom: 0px !important;">
                                         <div class="zvs-content-titles">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <h3 style="padding-left: 10px !important;">Transport Zones</h3>
+                                                <h3 style="padding-left: 10px !important;">Library Categories</h3>
                                             </div>
                                         </div>
                                         <div class="portlet-body">
@@ -273,123 +217,70 @@ class libraryOverview_Model extends Zf_Model {
                                                     <table class="table table-striped table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th  style="width: 100%;">Zone Name</th>
+                                                                <th style="width: 70%;">Category Name</th><th style="width: 30%;">Book Count</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>';
                                                             
-                                                            //This method fetches all tramsport zones
-                                                            $transportZones = $this->zvs_getTransportZones($systemSchoolCode);
+                                                            //This method fetches all library categories
+                                                            $libraryCategories = $this->zvs_getLibraryCategories($systemSchoolCode);
                                                             
-                                                            if($transportZones == 0){
+                                                            if($libraryCategories == 0){
                                                                 
-                                                                $transportZonesAndRoutes .='<tr><td>There are no transport zones</td></tr>';
+                                                                $libraryCategoriesGrid .='<tr><td>There are no library categories</td></tr>';
                                                                 
                                                             }else{
                                                                 
-                                                                foreach($transportZones as $zoneValues){
+                                                                foreach($libraryCategories as $categoryValues){
                                                                     
-                                                                    $transportZoneName = $zoneValues['transportZoneName'];
+                                                                    $libraryCategoryName = $categoryValues['libraryCategoryName'];
                                                                     
-                                                                    $transportZonesAndRoutes .='<tr><td>'.$transportZoneName.'</td></tr>';
+                                                                    $libraryCategoriesGrid .='<tr><td>'.$libraryCategoryName.'</td>';
+                                                                    
+                                                                    //Count books per category
+                                                                    $libraryCategoryCode = $categoryValues['libraryCategoryCode'];
+                                                                    $categoryBookCount = $this->zvs_schoolLibraryBookCount($systemSchoolCode, $libraryCategoryCode);
+                                                                    
+                                                                    $libraryCategoriesGrid .='<td>'.$categoryBookCount.'</td></tr>';
                                                                     
                                                                 }
                                                                 
                                                             }
                                                             
-                            $transportZonesAndRoutes .='</tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="clearfix"><hr></div>
-
-                                    <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                        <div class="zvs-content-titles">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <h3 style="padding-left: 10px !important;">Transport Routes</h3>
-                                            </div>
-                                        </div>
-                                        <div class="portlet-body">
-                                            <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th style="width: 50%;">Route Name</th><th style="width: 50%;">Zone Name</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>';
-                                                            
-                                                            //This method fetches all transport zones
-                                                            $transportRoutes = $this->zvs_getTransportRoutes($systemSchoolCode);
-                                                            
-                                                            if($transportRoutes == 0){
-                                                                
-                                                                $transportZonesAndRoutes .='<tr><td>There are no transport routes</td></tr>';
-                                                                
-                                                            }else{
-                                                                
-                                                                foreach($transportRoutes as $routeValues){
-                                                                    
-                                                                    $transportRouteName = $routeValues['transportRouteName']; $transportZoneCode = $routeValues['transportZoneCode']; 
-                                                                    
-                                                                    $transportZoneName = $this->zvs_getTransportZones($systemSchoolCode, $transportZoneCode);
-                                                                    
-                                                                    foreach($transportZoneName as $zoneValues){
-                                                                        
-                                                                        $zoneName = $zoneValues['transportZoneName'];
-                                                                        
-                                                                        $transportZonesAndRoutes .='<tr><td>'.$transportRouteName.'</td><td>'.$zoneName.'</td></tr>';
-                                                                        
-                                                                    }
-                                                                    
-                                                                }
-                                                                
-                                                            }
-                                                            
-                            $transportZonesAndRoutes .='</tbody>
+                            $libraryCategoriesGrid .='</tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>';
         
-        echo $transportZonesAndRoutes;
+        echo $libraryCategoriesGrid;
         
     }
     
     
     
     
-    //This private method fetches all transport zones
-    private function zvs_getTransportZones($systemSchoolCode, $transportZoneCode = NULL){
+    //This private method fetches all library categories
+    private function zvs_getLibraryCategories($systemSchoolCode){
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         
-        if(!empty($transportZoneCode) && $transportZoneCode != NULL){
-            
-            $zvs_sqlValue["transportZoneCode"] = Zf_QueryGenerator::SQLValue($transportZoneCode);
-            
-        }
+        $fetchLibraryCategories = Zf_QueryGenerator::BuildSQLSelect('zvs_school_library_category', $zvs_sqlValue);
         
-        $fetchTransportZones = Zf_QueryGenerator::BuildSQLSelect('zvs_school_transport_zones', $zvs_sqlValue);
-        
-        $zf_executeFetchTransportZones = $this->Zf_AdoDB->Execute($fetchTransportZones);
+        $zf_executeFetchLibraryCategories = $this->Zf_AdoDB->Execute($fetchLibraryCategories);
 
-        if(!$zf_executeFetchTransportZones){
+        if(!$zf_executeFetchLibraryCategories){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
-            if($zf_executeFetchTransportZones->RecordCount() > 0){
+            if($zf_executeFetchLibraryCategories->RecordCount() > 0){
 
-                while(!$zf_executeFetchTransportZones->EOF){
+                while(!$zf_executeFetchLibraryCategories->EOF){
                     
-                    $results = $zf_executeFetchTransportZones->GetRows();
+                    $results = $zf_executeFetchLibraryCategories->GetRows();
                     
                 }
                 
@@ -408,387 +299,146 @@ class libraryOverview_Model extends Zf_Model {
     
     
     
-    //This private method fetches all transport zones
-    private function zvs_getTransportRoutes($systemSchoolCode){
-        
-        $zvs_targetTable = "zvs_school_transport_routes";
-        
-        $fetchTransportRoutes = "SELECT *  FROM `$zvs_targetTable` WHERE `systemSchoolCode` = '$systemSchoolCode' ORDER BY `transportZoneCode`";
-        
-        $zf_executeFetchTransportRoutes = $this->Zf_AdoDB->Execute($fetchTransportRoutes);
-
-        if(!$zf_executeFetchTransportRoutes){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            if($zf_executeFetchTransportRoutes->RecordCount() > 0){
-
-                while(!$zf_executeFetchTransportRoutes->EOF){
-                    
-                    $results = $zf_executeFetchTransportRoutes->GetRows();
-                    
-                }
-                
-                return $results;
-
-                
-            }else{
-                
-                return 0;
-                
-            }
-        }
-        
-    }
-
-    
-
     /**
-     * This method is used to return transport categories and vehicles
+     * This method is used to return all school library categories
      */
-    public function getTransportCategoriesAndVehicles($identificationCode){
+    public function getSchoolLibarySubCategories($identificationCode){
         
         $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
         
-        $transportCategoriesAndVehicles = ' <div class="portlet box zvs-content-blocks" style="min-height: 340px !important; margin-bottom: 0px !important;">
-                                                <div class="zvs-content-titles">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <h3 style="padding-left: 10px !important;">Transport Categories</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body margin-bottom-5">
-                                                    <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-striped table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th  style="width: 100%;">Category Name</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>';
+        $librarySubCategoriesGrid = '<div class="portlet box zvs-content-blocks" style="min-height: 340px !important; margin-bottom: 0px !important;">
+                                        <div class="zvs-content-titles">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <h3 style="padding-left: 10px !important;">Library Sub-Categories</h3>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 70%;">Sub-Category Name</th><th>Book Count</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>';
                                                             
-                                                            //This method fetches all transport categories
-                                                            $transportCategories = $this->zvs_getTransportCategories($systemSchoolCode);
+                                                            //This method fetches all library sub categories
+                                                            $librarySubCategories = $this->zvs_getLibrarySubCategories($systemSchoolCode);
                                                             
-                                                            if($transportCategories == 0){
+                                                            if($librarySubCategories == 0){
                                                                 
-                                $transportCategoriesAndVehicles .='<tr><td>There are no transport categories</td></tr>';
+                                                                $librarySubCategoriesGrid .='<tr><td colspan="2">There are no library categories</td></tr>';
                                                                 
                                                             }else{
                                                                 
-                                                                foreach($transportCategories as $categoryValues){
+                                                                foreach($librarySubCategories as $subCategoryValues){
                                                                     
-                                                                    $transportCategoryName = $categoryValues['transportCategoryName'];
+                                                                    $librarySubCategoryName = $subCategoryValues['librarySubCategoryName'];
+                                                                    $librarySubCategoriesGrid .='<tr><td>'.$librarySubCategoryName.'</td>';
                                                                     
-                                                                    $transportCategoriesAndVehicles .='<tr><td>'.$transportCategoryName.'</td></tr>';
+                                                                    //Count books per sub category
+                                                                    $librarySubCategoryCode = $subCategoryValues['librarySubCategoryCode'];
+                                                                    $subCategoryBookCount = $this->zvs_schoolLibraryBookCount($systemSchoolCode, NULL,  $librarySubCategoryCode);
+                                                                    
+                                                                    $librarySubCategoriesGrid .='<td>'.$subCategoryBookCount.'</td></tr>';
                                                                     
                                                                 }
                                                                 
                                                             }
                                                             
-                            $transportCategoriesAndVehicles .='</tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
+                            $librarySubCategoriesGrid .='</tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-
-                                            <div class="clearfix"><hr></div>
-
-                                            <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                                <div class="zvs-content-titles">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <h3 style="padding-left: 10px !important;">Transport Vehicles</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="portlet-body">
-                                                    <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-striped table-hover">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th style="width: 50%;">Reg. No</th><th style="width: 50%;"> Vehicle Name</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>';
-                                                            
-                                                            //This method fetches all transport categories
-                                                            $transportVehicles = $this->zvs_getTransportVehicles($systemSchoolCode);
-                                                            
-                                                            if($transportVehicles == 0){
-                                                                
-                                $transportCategoriesAndVehicles .='<tr><td>There are no transport vehicles</td></tr>';
-                                                                
-                                                            }else{
-                                                                
-                                                                foreach($transportVehicles as $vehicleValues){
-                                                                    
-                                                                    $vehicleName = $vehicleValues['vehicleName'];
-                                                                    $vehicleRegistrationNumber = $vehicleValues['vehicleRegistrationNumber'];
-                                                                    
-                                                                    $transportCategoriesAndVehicles .='<tr><td>'.$vehicleRegistrationNumber.'</td><td>'.$vehicleName.'</td></tr>';
-                                                                    
-                                                                }
-                                                                
-                                                            }
-                                                            
-                            $transportCategoriesAndVehicles .='</tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>';
-        
-        
-        echo $transportCategoriesAndVehicles;
-    }
-    
-    
-    
-    
-    //This private method fetches all transport categories
-    private function zvs_getTransportCategories($systemSchoolCode, $transportCategoryCode = NULL){
-        
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        
-        if(!empty($transportCategoryCode) && $transportCategoryCode != NULL){
-            
-            $zvs_sqlValue["transportCategoryCode"] = Zf_QueryGenerator::SQLValue($transportCategoryCode);
-            
-        }
-        
-        $fetchTransportCategories = Zf_QueryGenerator::BuildSQLSelect('zvs_school_transport_categories', $zvs_sqlValue);
-        
-        $zf_executeFetchTransportCategories = $this->Zf_AdoDB->Execute($fetchTransportCategories);
-
-        if(!$zf_executeFetchTransportCategories){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            if($zf_executeFetchTransportCategories->RecordCount() > 0){
-
-                while(!$zf_executeFetchTransportCategories->EOF){
-                    
-                    $results = $zf_executeFetchTransportCategories->GetRows();
-                    
-                }
-                
-                return $results;
-
-                
-            }else{
-                
-                return 0;
-                
-            }
-        }
-        
-    }
-    
-    
-    
-    
-    //This private method fetches all transport vehicles
-    private function zvs_getTransportVehicles($systemSchoolCode){
-        
-        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-        
-        $fetchTransportVehicles = Zf_QueryGenerator::BuildSQLSelect('zvs_school_transport_vehicles', $zvs_sqlValue);
-        
-        $zf_executeFetchTransportVehicles = $this->Zf_AdoDB->Execute($fetchTransportVehicles);
-
-        if(!$zf_executeFetchTransportVehicles){
-
-            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-        }else{
-
-            if($zf_executeFetchTransportVehicles->RecordCount() > 0){
-
-                while(!$zf_executeFetchTransportVehicles->EOF){
-                    
-                    $results = $zf_executeFetchTransportVehicles->GetRows();
-                    
-                }
-                
-                return $results;
-
-                
-            }else{
-                
-                return 0;
-                
-            }
-        }
-        
-    }
-    
-    
-    
-    
-    /**
-     * This method is used to return transport drivers
-     */
-    public function getTransportDrivers($identificationCode){
-        
-        $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[2];
-        
-        $transportDrivers = '<div class="portlet box zvs-content-blocks" style="min-height: 340px !important; margin-bottom: 0px !important;">
-                                <div class="zvs-content-titles">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <h3 style="padding-left: 10px !important;">Transport Drivers</h3>
-                                    </div>
-                                </div>
-                                <div class="portlet-body">
-                                    <div class="zvs-table-blocks scroller zvs-table-blocks" data-always-visible="1" data-rail-visible="0">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="width: 60%;">Driver Name</th><th style="width: 40%;">Mobie No.</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>';
-                                                            
-                                                            //This method fetches all transport drivers
-                                                            $getTransportDrivers = $this->zvs_getTransportDrivers($systemSchoolCode);
-                                                            
-                                                            if($getTransportDrivers == 0){
-                                                                
-                                                                $transportDrivers .='<tr><td>There are no transport driver</td></tr>';
-                                                                
-                                                            }else{
-                                                                
-                                                                foreach($getTransportDrivers as $driverValues){
-                                                                    
-                                                                    //($user['permissions'] == 'admin') ? true : false;
-                                                                    $staffMiddleName = (!empty($driverValues['staffMiddleName'])) ? $driverValues['staffMiddleName'] : "";
-                                                                    
-                                                                    $driverName = $driverValues['staffFirstName']." ".$staffMiddleName." ".$driverValues['staffLastName'];
-                                                                    
-                                                                    $phoneNumber = $driverValues['staffPhoneNumber'];
-                                                                    
-                                                                    $transportDrivers .='<tr><td>'.$driverName.'</td><td>'.$phoneNumber.'</td></tr>';
-                                                                    
-                                                                }
-                                                                
-                                                            }
-                                                            
-                            $transportDrivers .='</tbody>
-                                            </table>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"><hr></div>';
+                                    </div>';
         
-        
-        echo $transportDrivers;
+        echo $librarySubCategoriesGrid;
         
     }
     
     
     
     
-    //This private method fetches all the school transport drivers
-    private function zvs_getTransportDrivers($systemSchoolCode){
+    //This private method fetches all library sub categories
+    private function zvs_getLibrarySubCategories($systemSchoolCode){
         
-        //This pulls all transport driver codes
-        $transportDriverCode = $this->zvs_getTransportDriversCode($systemSchoolCode);
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         
-        if($transportDriverCode == 0){
-            
-            return 0;
-            
+        $fetchLibrarySubCategories = Zf_QueryGenerator::BuildSQLSelect('zvs_school_library_sub_category', $zvs_sqlValue);
+        
+        $zf_executeFetchLibrarySubCategories = $this->Zf_AdoDB->Execute($fetchLibrarySubCategories);
+
+        if(!$zf_executeFetchLibrarySubCategories){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
         }else{
-            
-            foreach ($transportDriverCode as $driverValue) {
-                
-                $driverIdentificationCode = $driverValue['driverIdentificationCode'];
-                
-                $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
-                $sqlValues['identificationCode'] = Zf_QueryGenerator::SQLValue($driverIdentificationCode);
 
-                $zvs_selectDriverDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_staff_personal_details', $sqlValue);;
+            if($zf_executeFetchLibrarySubCategories->RecordCount() > 0){
 
-                $executeFetchDriverDetails = $this->Zf_AdoDB->Execute($zvs_selectDriverDetails);
-
-                if (!$executeFetchDriverDetails){
-
-                    echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
-
-                }else{
-
-                    if($executeFetchDriverDetails->RecordCount() > 0){
-
-                        while(!$executeFetchDriverDetails->EOF){
-
-                            $results = $executeFetchDriverDetails->GetRows();
-
-                        }
-
-                        return $results;
-
-
-                    }else{
-
-                        return 0;
-
-                    }
-
+                while(!$zf_executeFetchLibrarySubCategories->EOF){
+                    
+                    $results = $zf_executeFetchLibrarySubCategories->GetRows();
+                    
                 }
                 
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
             }
-            
         }
         
     }
     
     
-    
-    
-    //This private method fetches all the school transport drivers
-    private function zvs_getTransportDriversCode($systemSchoolCode){
+    //This private method counts actual books in the library based on category, sub-category or both
+    private function zvs_schoolLibraryBookCount($systemSchoolCode, $libraryCategoryCode = NULL, $librarySubCategoryCode = NULL){
         
-        $zvs_targetTable = "zvs_school_transport_vehicle_driver_mapper";
+        $zvs_targetTable = "zvs_school_library_books";
         
         $sqlValues['systemSchoolCode'] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         
-        $zvs_selectTransportDrivers = "SELECT DISTINCT driverIdentificationCode FROM `$zvs_targetTable` WHERE `systemSchoolCode` = '$systemSchoolCode' ";
+        //This includes library category code
+        if(!empty($libraryCategoryCode) && $libraryCategoryCode != NULL){
+            
+            $sqlValues['libraryCategoryCode'] = Zf_QueryGenerator::SQLValue($libraryCategoryCode);
+            
+        }
         
-        $executeFetchTransportDrivers = $this->Zf_AdoDB->Execute($zvs_selectTransportDrivers);
+        //This include library sub category code
+        if(!empty($librarySubCategoryCode) && $librarySubCategoryCode != NULL){
+            
+            $sqlValues['librarySubCategoryCode'] = Zf_QueryGenerator::SQLValue($librarySubCategoryCode);
+            
+        }
+
+        $zvs_selectLibraryBooks = Zf_QueryGenerator::BuildSQLSelect($zvs_targetTable, $sqlValues);
         
-        if (!$executeFetchTransportDrivers){
+        
+        $executeLibraryBookCount   = $this->Zf_AdoDB->Execute($zvs_selectLibraryBooks);
+        
+        if (!$executeLibraryBookCount){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
         }else{
 
-            if($executeFetchTransportDrivers->RecordCount() > 0){
-
-                while(!$executeFetchTransportDrivers->EOF){
-                    
-                    $results = $executeFetchTransportDrivers->GetRows();
-                    
-                }
-                
-                return $results;
-
-                
-            }else{
-                
-                return 0;
-                
-            }
+            $libraryBookCount = $executeLibraryBookCount->RecordCount();
             
         }
         
+        //return library book count
+        return $libraryBookCount;
+        
     }
-
+    
+    
     
 }
 

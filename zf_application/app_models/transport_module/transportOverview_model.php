@@ -153,14 +153,14 @@ class transportOverview_Model extends Zf_Model {
                                                         <i class="fa fa-users"></i>
                                                     </div>
                                                     <div class="details">
-                                                        <div class="number" style="font-size: 35px !important">0';
+                                                        <div class="number" style="font-size: 35px !important">';
         
                                                         //$totalTransportStudents = $this->getTransportInformation($systemSchoolCode);
                                                         //$transportInformation .= $totalTransportStudents;
                                                     
                                 $transportInformation .=' </div>
-                                                        <div class="desc text-center" style="padding-top: 5px; font-family: Ubuntu-B;">
-                                                            Students
+                                                        <div class="desc text-center" style="padding-top: 15px; font-family: Ubuntu-B;">
+                                                            Student Data<br>Coming Soon
                                                         </div>
                                                     </div>
                                                 </div>
