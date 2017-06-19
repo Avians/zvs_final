@@ -33,6 +33,114 @@ var NewStaffFormWizard = function () {
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: true, // do not focus the last invalid input
                 
+                rules: {
+                    
+                    //THESE RULES GOVERN THE VALIDATION OF NEW STAFF REGISTRATION FORM
+                    
+                    //First name
+                    staffFirstName: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 1
+                    },
+                    
+                    //Last name
+                    staffLastName: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 1
+                    },
+                    
+                    //Id number
+                    staffIdNumber: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Gender
+                    staffGender: {
+                        required: true
+                    },
+                    
+                    //Marital status
+                    staffMaritalStatus: {
+                        required: true
+                    },
+                    
+                    //Date of brith
+                    staffDateOfBirth: {
+                        required: true
+                    },
+                    
+                    //Religion
+                    staffReligion: {
+                        required: true
+                    },
+                    
+                    //Country
+                    staffCountry: {
+                        required: true
+                    },
+                    
+                    //Locality
+                    staffLocality: {
+                        required: true
+                    },
+                    
+                    //Box address
+                    staffBoxAddress: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Phone number
+                    staffPhoneNumber: {
+                        required: true,
+                        maxlength: 15,
+                        minlength: 10
+                    },
+                    
+                    //Admission number
+                    staffAdmissionNumber: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Language
+                    staffLanguage: {
+                        required: true
+                    },
+                    
+                    //Email address
+                    staffEmailAddress: {
+                       required: true, 
+                       email: true
+                    },
+                    
+                    //School role
+                    staffSchoolRole: {
+                        required: true
+                    },
+                    
+                    //Password
+                    staffPassword: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 5
+                    },
+                    
+                    //Password 2
+                    staffPassword2: {
+                        required: true,
+                        equalTo: "#staffPassword"
+                    }
+                    
+                
+                },
+                
 
                 messages: { // custom messages for radio buttons and checkboxes
                     'gender': {

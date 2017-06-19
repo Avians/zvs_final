@@ -32,7 +32,236 @@ var NewStudentFormWizard = function () {
                 errorElement: 'span', //default input error message container
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: true, // do not focus the last invalid input
-                
+                rules: {
+                    
+                    
+                    
+                    //THESE RULES GOVERN THE VALIDATION OF NEW STUDENT REGISTRATION FORM
+                    
+                    //First name
+                    studentFirstName: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 1
+                    },
+                    
+                    //Last name
+                    studentLastName: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 1
+                    },
+                    
+                    //Gender
+                    studentGender: {
+                        required: true
+                    },
+                    
+                    //Marital status
+                    studentMaritalStatus: {
+                        required: true
+                    },
+                    
+                    //Date of brith
+                    studentDateOfBirth: {
+                        required: true
+                    },
+                    
+                    //Religion
+                    studentReligion: {
+                        required: true
+                    },
+                    
+                    //Country
+                    studentCountry: {
+                        required: true
+                    },
+                    
+                    //Locality
+                    studentLocality: {
+                        required: true
+                    },
+                    
+                    //Box address
+                    studentBoxAddress: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Phone number
+                    studentPhoneNumber: {
+                        required: true,
+                        maxlength: 15,
+                        minlength: 10
+                    },
+                    
+                    //Admission number
+                    studentAdmissionNumber: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Language
+                    studentLanguage: {
+                        required: true
+                    },
+                    
+                    //Designation
+                    guardianDesignation: {
+                        required: true
+                    },
+
+                    //First name
+                    guardianFirstName: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 1
+                    },
+                    
+                    //Last name
+                    guardianLastName: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 1
+                    },
+                    
+                    //Gender
+                    guardianGender: {
+                        required: true
+                    },
+                    
+                    //Marital status
+                    guardianMaritalStatus: {
+                        required: true
+                    },
+                    
+                    //Date of brith
+                    guardianDateOfBirth: {
+                        required: true
+                    },
+                    
+                    //Religion
+                    guardianReligion: {
+                        required: true
+                    },
+
+                    //Relation
+                    guardianRelation: {
+                        required: true
+                    },
+
+                    //Occupation
+                    guardianOccupation: {
+                        required: true
+                    },
+                    
+                    //Country
+                    guardianCountry: {
+                        required: true
+                    },
+                    
+                    //Locality
+                    guardianLocality: {
+                        required: true
+                    },
+                    
+                    //Box address
+                    guardianBoxAddress: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Phone number
+                    guardianPhoneNumber: {
+                        required: true,
+                        maxlength: 15,
+                        minlength: 10
+                    },
+                    
+                    //Admission number
+                    guardianAdmissionNumber: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 3
+                    },
+                    
+                    //Language
+                    guardianLanguage: {
+                        required: true
+                    },
+                    
+                    //Login and role details
+                    
+                    //Class
+                    studentClassCode: {
+                        required: true
+                    },
+                    
+                    //Stream
+                    studentStreamCode: {
+                        required: true
+                    },
+                    
+                    //Admission number
+                    studentAdmissionNumber: {
+                        required: true,
+                        maxlength: 10,
+                        minlength: 4
+                    },
+                    
+                    //Email address
+                    studentEmailAddress: {
+                       required: true, 
+                       email: true
+                    },
+                    
+                    //School role
+                    studentSchoolRole: {
+                        required: true
+                    },
+                    
+                    //Password
+                    studentPassword: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 5
+                    },
+                    
+                    //Password 2
+                    studentPassword2: {
+                        required: true,
+                        equalTo: "#studentPassword"
+                    },
+                    
+                    //Email address
+                    guardianEmailAddress: {
+                       required: true, 
+                       email: true
+                    },
+                    
+                    //School role
+                    guardianSchoolRole: {
+                        required: true
+                    },
+                    
+                    //Password
+                    guardianPassword: {
+                        required: true,
+                        maxlength: 30,
+                        minlength: 5
+                    },
+                    
+                    //Password 2
+                    guardianPassword2: {
+                        required: true,
+                        equalTo: "#guardianPassword"
+                    },
+                    
+                    
+                },
 
                 messages: { // custom messages for radio buttons and checkboxes
                     'gender': {
