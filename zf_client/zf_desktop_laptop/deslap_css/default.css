@@ -6,6 +6,10 @@
         Purpose of the stylesheet follows.
 */
 
+.landing_page_link{
+    text-align: right !important;
+}
+
 .dynamic-border{
     border-right: 1px solid #E7E7E7 !important;
     border-width:  0.01em !important;

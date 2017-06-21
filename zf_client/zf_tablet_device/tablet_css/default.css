@@ -6,3 +6,6 @@
         Purpose of the stylesheet follows.
 */
 
+.landing_page_link{
+    text-align: right !important;
+}

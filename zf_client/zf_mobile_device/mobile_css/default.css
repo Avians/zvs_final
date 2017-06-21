@@ -11,6 +11,10 @@
     text-shadow: none !important; margin-bottom: 0px !important; margin-left: 8% !important;
 }
 
+.landing_page_link{
+    text-align: left !important;
+}
+
 /*This section styles the look and feel of the dashboard section*/
 
 
