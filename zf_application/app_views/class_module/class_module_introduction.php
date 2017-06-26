@@ -4,8 +4,9 @@
     //$zf_controller->Zf_loadModel("class_module", "section_module_file");
     
     //This is user identification code
-    $zf_urlParameter = Zf_SecureData::zf_decode_data($zf_actionData);
+    //$zf_urlParameter = Zf_SecureData::zf_decode_data($zf_actionData);
     
+    $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
 ?>
     
 <!-- BEGIN CONTENT -->
@@ -18,7 +19,14 @@
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">Class Module</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-cubes"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <div class="row">
+                        <div class="col-lg-6 text-left">
+                            <i class="fa fa-building-o"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                        </div>
+                        <div class="col-lg-6 landing_page_link">
+                            <?php Zf_BreadCrumbs::zf_landing_page($identificationCode); ?>
+                        </div>
+                    </div>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -42,7 +50,7 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 portlet-titles margin-top-20" style=" font-size: 12px !important;">
                             <p>This module contains all resources that the school administrator has allowed for your use to access and/or manage all class related information.<br></p>
-                            <p><br>With of 5 resources, you will only be able to use resources whose access you have have been assigned to your school role. If all resource are taken away from the role, the entire module will not be available for your use.</p>
+                            <p><br>With over five resources, you will only be able to use resources whose access you have have been assigned to your school role. If all resource are taken away from the role, the entire module will not be available for your use.</p>
                         </div>
                     </div>
                 </div>

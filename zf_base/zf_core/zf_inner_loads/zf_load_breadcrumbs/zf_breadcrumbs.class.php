@@ -169,6 +169,24 @@ class Zf_BreadCrumbs {
         
     }
     
+    
+    
+    /**
+     * -------------------------------------------------------------------------
+     * THIS IS STATIC METHOD THAT IS RESPONSIBLE FOR GENERATING THE LANDING 
+     * PAGE LINK
+     * -------------------------------------------------------------------------
+     */
+    public static function zf_landing_page($identificationCode){
+        
+        $actualUrl = ZF_ROOT_PATH."zvs_general_school".DS."landing_page".DS.  Zf_SecureData::zf_encode_data($identificationCode);
+        
+        $landing_page_url = "<a href=\" ".$actualUrl." \" > <<&nbsp;&nbsp;Back to Landing Page </a> ";
+        
+        echo $landing_page_url;
+ 
+    }
+    
 }
 
 ?>

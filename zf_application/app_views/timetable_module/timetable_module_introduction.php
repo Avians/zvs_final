@@ -1,11 +1,7 @@
 <?php
 
-    //Here we load store module model for store suppliers
-    //$zf_controller->Zf_loadModel("class_module", "section_module_file");
-    
     //This is user identification code
-    $zf_urlParameter = Zf_SecureData::zf_decode_data($zf_actionData);
-    
+    $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
 ?>
     
 <!-- BEGIN CONTENT -->
@@ -18,7 +14,14 @@
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">Timetable Module</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-cubes"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <div class="row">
+                        <div class="col-lg-6 text-left">
+                            <i class="fa fa-building-o"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                        </div>
+                        <div class="col-lg-6 landing_page_link">
+                            <?php Zf_BreadCrumbs::zf_landing_page($identificationCode); ?>
+                        </div>
+                    </div>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>
@@ -41,14 +44,8 @@
                             Introduction to timetable module
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 portlet-titles margin-top-20" style=" font-size: 12px !important;">
-                            <ol class="instructions-list" start="i">
-                                <li>Download students data template from the left section of this page.</li>
-                                <li>Open the download file in a spreadsheet application e.g. Excel, Numbers, or Libre Office.</li>
-                                <li style="color: #ff0000;"><strong>NB:</strong> You will be uploading data in batches of at-most 30 records at a time.</li>
-                                <li>Fill in at-most 30 records, without renaming any field titles or the worksheet names.</li>
-                                <li>After filling all valid information, counter-check then save all the changes that you have made.</li>
-                                <li>Your students data is now ready for uploading into the system.</li>
-                            </ol>
+                            <p>This module contains all resources that the school administrator has allowed for your use to access and/or manage all timetable related information.<br></p>
+                            <p><br>With over five resources, you will only be able to use resources whose access you have have been assigned to your school role. If all resource are taken away from the role, the entire module will not be available for your use.</p>
                         </div>
                     </div>
                 </div>
