@@ -111,6 +111,18 @@ $main_menu = array(
     ),
     
     
+    //Configure Payment
+    "configure_payment" => array(
+        'name' => '<i class="fa fa-linode"></i> Configure Payment ',
+        'controller' => $zvs_controller,
+        'action' => 'configure_payment',
+        'parameter' => $identificationCode,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
     //Configure Fees
     "manage_fees" => array(
         'name' => '<i class="fa fa-money"></i> Configure Fees ',
@@ -327,16 +339,19 @@ $main_menu = array(
 
 
 <!-- This menu item manages all aspects of ZVS School Entities-->
-<li class="<?php if ($zvs_action == "configure_budget" || $zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "configure_budget" || $zvs_action == "configure_payment" || $zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-th-list"></i>
         <span class="title"> School Entities </span>
-        <?php if ($zvs_action == "configure_budget" || $zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "configure_budget" || $zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "configure_budget" || $zvs_action == "configure_payment" ||  $zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "configure_budget" || $zvs_action == "configure_payment" || $zvs_action == "manage_fees" || $zvs_action == "manage_subjects" || $zvs_action == "manage_exams" || $zvs_action == "manage_grades" || $zvs_action == "configure_attendance") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <li class="<?php if ($zvs_action == "manage_fees") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['manage_fees']); ?>
+        </li>
+        <li class="<?php if ($zvs_action == "configure_payment") { echo "active";} ?>">
+            <?php Zf_GenerateLinks::zf_internal_link($main_menu['configure_payment']); ?>
         </li>
         <li class="<?php if ($zvs_action == "configure_budget") { echo "active";} ?>">
             <?php Zf_GenerateLinks::zf_internal_link($main_menu['configure_budget']); ?>

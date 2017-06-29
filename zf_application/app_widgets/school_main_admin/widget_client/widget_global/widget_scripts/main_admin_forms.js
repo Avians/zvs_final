@@ -79,6 +79,83 @@
         
         
         
+        
+        //Here we process all vendor payment details
+        var paymentDetails = function($absolute_path, $separator){
+            
+            //Global Model variables
+            var targetController = "school_main_admin";
+            var targetAction = "processPaymentInformation";
+
+            $('#schoolVendorSettingsCategoryCode').change(function(){
+
+                var processActualVendorCode = $absolute_path + targetController + $separator + targetAction + $separator + "process_vendor_categories";
+                var vendorCategoryCode = $('#schoolVendorSettingsCategoryCode').val();
+
+                //alert(vendorCategoryCode); die();
+
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processActualVendorCode ,
+                    data: {vendorCategoryCode: vendorCategoryCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#schoolVendorSettingsPaymentCode").html(html);
+                    }
+                });
+
+            });
+            
+            
+            
+            $('#schoolVendorAccountCategoryCode').change(function(){
+
+                var processActualVendorCode = $absolute_path + targetController + $separator + targetAction + $separator + "process_vendor_categories";
+                var vendorCategoryCode = $('#schoolVendorAccountCategoryCode').val();
+
+                //alert(vendorCategoryCode); die();
+
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processActualVendorCode ,
+                    data: {vendorCategoryCode: vendorCategoryCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#schoolVendorAccountPaymentCode").html(html);
+                    }
+                });
+
+            });
+            
+            
+            
+            
+            
+            $('#schoolVendorAccountPaymentCode').change(function(){
+
+                var processVendorPaymentCode = $absolute_path + targetController + $separator + targetAction + $separator + "process_vendor_names";
+                var vendorPaymentCode = $('#schoolVendorAccountPaymentCode').val();
+
+                //alert(vendorPaymentCode); die();
+
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processVendorPaymentCode ,
+                    data: {vendorPaymentCode: vendorPaymentCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#schoolVendorAccountLineCode").html(html);
+                    }
+                });
+
+            });
+            
+        };
+        
+        
         //Here we process all fee form data
         var feesDetails = function ($absolute_path, $separator){
             
@@ -405,6 +482,10 @@
                 }if($current_view === "manage_subjects"){
                     
                     subjectDetails($absolute_path, $separator);
+                    
+                }if($current_view === "configure_payment"){
+                    
+                    paymentDetails($absolute_path, $separator);
                     
                 }if($current_view === "manage_fees"){
                     

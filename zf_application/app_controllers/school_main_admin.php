@@ -238,6 +238,20 @@ class School_main_adminController extends Zf_Controller {
         Zf_View::zf_displayView('manage_fees', $zf_actionData);
         
     }
+   
+    
+
+    
+    /**
+     * This action executes the configure payment
+     */
+    public function actionConfigure_payment($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('configure_payment', $zf_actionData);
+        
+    }
     
     
     
@@ -601,6 +615,51 @@ class School_main_adminController extends Zf_Controller {
         }
         
     }
+    
+    
+    
+    //This method process all payment related information
+    public function actionProcessPaymentInformation($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataUrl == "new_payment_category_form"){
+            
+            //We are about to register a new vendor payment category
+            $this->zf_targetModel->registerNewVendorPaymentCategory();
+            
+        }else if($filterDataUrl == "new_payment_vendor_form"){
+            
+            //We are about to register a new actual payment vendor
+            $this->zf_targetModel->registerNewActualPaymentVendor();
+                    
+        }else if($filterDataUrl == "new_vendor_settings_form"){
+            
+            //We are about to register a new payment vendor settings
+            $this->zf_targetModel->registerNewPaymentVendorSettings();
+                    
+        }else if($filterDataUrl == "new_payment_account_form"){
+            
+            //We are about to register a new payment vendor account
+            $this->zf_targetModel->registerNewPaymentVendorAccount();
+                    
+        }else if($filterDataVariable == "process_vendor_categories"){
+            
+            //process all vendors in the school
+            $this->zf_targetModel->processSchoolVendors();
+            
+        }else if($filterDataVariable == "process_vendor_names"){
+            
+            //process all vendor settings
+            $this->zf_targetModel->processVendorSettings();
+            
+        }
+        
+    }
+    
+    
+    
     
     
     

@@ -20,6 +20,12 @@ $(document).ready(function() {
     NewBugdetCategoryFormWizard.init();
     NewBudgetSubCategoryFormWizard.init();
     
+    //Configure Payment Details
+    NewPaymentCategoryFormWizard.init();
+    NewPaymentVendorFormWizard.init();
+    NewPaymentVendorSettingsFormWizard.init();
+    NewPaymentAccountFormWizard.init();
+    
     //Manage Subjects
     NewSubjectFormWizard.init();
     
