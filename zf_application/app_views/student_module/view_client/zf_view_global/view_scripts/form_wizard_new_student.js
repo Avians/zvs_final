@@ -57,60 +57,31 @@ var NewStudentFormWizard = function () {
                         required: true
                     },
                     
-                    //Marital status
-                    studentMaritalStatus: {
-                        required: true
-                    },
-                    
                     //Date of brith
                     studentDateOfBirth: {
-                        required: true
+                        //required: true
                     },
                     
                     //Religion
                     studentReligion: {
-                        required: true
-                    },
-                    
-                    //Country
-                    studentCountry: {
-                        required: true
-                    },
-                    
-                    //Locality
-                    studentLocality: {
-                        required: true
+                        //required: true
                     },
                     
                     //Box address
                     studentBoxAddress: {
-                        required: true,
                         maxlength: 30,
-                        minlength: 3
+                        minlength: 2
                     },
                     
                     //Phone number
                     studentPhoneNumber: {
-                        required: true,
                         maxlength: 15,
                         minlength: 10
                     },
                     
-                    //Admission number
-                    studentAdmissionNumber: {
-                        required: true,
-                        maxlength: 30,
-                        minlength: 3
-                    },
-                    
-                    //Language
-                    studentLanguage: {
-                        required: true
-                    },
-                    
                     //Designation
                     guardianDesignation: {
-                        required: true
+                        //required: true
                     },
 
                     //First name
@@ -125,72 +96,6 @@ var NewStudentFormWizard = function () {
                         required: true,
                         maxlength: 30,
                         minlength: 1
-                    },
-                    
-                    //Gender
-                    guardianGender: {
-                        required: true
-                    },
-                    
-                    //Marital status
-                    guardianMaritalStatus: {
-                        required: true
-                    },
-                    
-                    //Date of brith
-                    guardianDateOfBirth: {
-                        required: true
-                    },
-                    
-                    //Religion
-                    guardianReligion: {
-                        required: true
-                    },
-
-                    //Relation
-                    guardianRelation: {
-                        required: true
-                    },
-
-                    //Occupation
-                    guardianOccupation: {
-                        required: true
-                    },
-                    
-                    //Country
-                    guardianCountry: {
-                        required: true
-                    },
-                    
-                    //Locality
-                    guardianLocality: {
-                        required: true
-                    },
-                    
-                    //Box address
-                    guardianBoxAddress: {
-                        required: true,
-                        maxlength: 30,
-                        minlength: 3
-                    },
-                    
-                    //Phone number
-                    guardianPhoneNumber: {
-                        required: true,
-                        maxlength: 15,
-                        minlength: 10
-                    },
-                    
-                    //Admission number
-                    guardianAdmissionNumber: {
-                        required: true,
-                        maxlength: 30,
-                        minlength: 3
-                    },
-                    
-                    //Language
-                    guardianLanguage: {
-                        required: true
                     },
                     
                     //Login and role details
@@ -209,13 +114,14 @@ var NewStudentFormWizard = function () {
                     studentAdmissionNumber: {
                         required: true,
                         maxlength: 10,
-                        minlength: 4
+                        minlength: 3
                     },
                     
                     //Email address
                     studentEmailAddress: {
-                       required: true, 
-                       email: true
+                        maxlength: 60,
+                        minlength: 5,
+                        email: true
                     },
                     
                     //School role
@@ -225,21 +131,20 @@ var NewStudentFormWizard = function () {
                     
                     //Password
                     studentPassword: {
-                        required: true,
                         maxlength: 30,
-                        minlength: 5
+                        minlength: 4
                     },
                     
                     //Password 2
                     studentPassword2: {
-                        required: true,
                         equalTo: "#studentPassword"
                     },
                     
                     //Email address
                     guardianEmailAddress: {
-                       required: true, 
-                       email: true
+                        maxlength: 60,
+                        minlength: 5,
+                        email: true
                     },
                     
                     //School role
@@ -249,14 +154,12 @@ var NewStudentFormWizard = function () {
                     
                     //Password
                     guardianPassword: {
-                        required: true,
                         maxlength: 30,
-                        minlength: 5
+                        minlength: 4
                     },
                     
                     //Password 2
                     guardianPassword2: {
-                        required: true,
                         equalTo: "#guardianPassword"
                     },
                     

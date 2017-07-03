@@ -64,14 +64,17 @@ class Zf_FormValidators{
       */
      public function zf_minimumLength($zf_data, $zf_argument, $zf_fieldName){
         
-        if(strlen($zf_data) < $zf_argument){
-            
-            $zf_fieldName = ucfirst($zf_fieldName);
-            
-            return "* {$zf_fieldName}, minimum {$zf_argument} characters long.";
-            
-        }
-        
+         if($zf_fieldData != "" && !empty($zf_fieldData) && $zf_fieldData != NULL && strlen($zf_data) > 0){
+             
+             if(strlen($zf_data) < $zf_argument){
+
+                $zf_fieldName = ucfirst($zf_fieldName);
+
+                return "* {$zf_fieldName}, minimum {$zf_argument} characters long.";
+
+            }
+             
+         }
     }
     
     
@@ -85,12 +88,16 @@ class Zf_FormValidators{
       */
     public function zf_maximumLength($zf_data, $zf_argument, $zf_fieldName){
         
-        if(strlen($zf_data) > $zf_argument){
-            
-            $zf_fieldName = ucfirst($zf_fieldName);
-            
-            return "* {$zf_fieldName}, maximum {$zf_argument} characters long.";
-            
+        if($zf_fieldData != "" && !empty($zf_fieldData) && $zf_fieldData != NULL && strlen($zf_data) > 0){
+        
+            if(strlen($zf_data) > $zf_argument){
+
+                $zf_fieldName = ucfirst($zf_fieldName);
+
+                return "* {$zf_fieldName}, maximum {$zf_argument} characters long.";
+
+            }
+        
         }
         
     }
@@ -163,10 +170,13 @@ class Zf_FormValidators{
       */
     public function zf_checkEmail($zf_fieldData){
         
+        if($zf_fieldData != "" && !empty($zf_fieldData) && $zf_fieldData != NULL){
         
-        if(!filter_var($zf_fieldData, FILTER_VALIDATE_EMAIL)){
-            
-            return "* The email format is invalid.";
+            if(!filter_var($zf_fieldData, FILTER_VALIDATE_EMAIL)){
+
+                return "* The email format is invalid.";
+
+            }
             
         }
         

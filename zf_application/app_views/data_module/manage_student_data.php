@@ -82,47 +82,10 @@
                                         <div class="portlet-body form" >
                                             <div class="row margin-top-20">
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 300px !important; height: auto !important; text-align: center !important">
-                                                    <form action="<?php Zf_GenerateLinks::basic_internal_link("data_module", "upload_data_templates", "student_data_template"); ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group">
-                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
-                                                                    <div class="fileinput-new thumbnail margin-top-20" style="width: 150px; height: 120px; padding-top: 50px;">
-                                                                        <i class="fa fa-cloud-upload" style="font-size: 100px !important; color: #21B4E2;"></i>
-                                                                    </div>
-                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="width: 150px; height: 120px; color: #21B4E2 !important; padding-top: 0px;"></div>
-                                                                    <div style="margin-left: 10px !important; margin-top: 10px !important;">
-                                                                        <span class="btn default btn-file form-btn">
-                                                                            <span class="fileinput-new">
-                                                                                Select File
-                                                                            </span>
-                                                                            <span class="fileinput-exists">
-                                                                                Change
-                                                                            </span>
-                                                                            <input type="file" name="studentDataTemplate" value="">
-                                                                        </span>
-                                                                        &nbsp;&nbsp;
-                                                                        <span>
-                                                                            <a href="#" class="btn default fileinput-exists form-btn" data-dismiss="fileinput">
-                                                                                Remove
-                                                                            </a>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-12">
-                                                            <div class="form-actions fluid">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <button type="submit" class="btn zvs-buttons center-block" style="color: #ffffff !important;">
-                                                                            Upload Student Data
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" class="form-control" name="createdBy" value="<?php echo $identificationCode; ?>">
-                                                    </form>
+                                                    <?php
+                                                        //This is the form for uploading bulk student data
+                                                        Zf_ApplicationWidgets::zf_load_widget("data_module", "student_upload_form.php");
+                                                    ?>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 portlet-titles-blue margin-top-20" style=" text-align: center !important;">

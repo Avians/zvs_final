@@ -101,9 +101,12 @@
                                     <div class="col-md-8">
                                         <div class="radio-list">
                                             <label class="radio-inline radio-labels">
-                                            <input type="radio" name="studentGender" value="Male" checked data-title="Male"> Male </label>
+                                            <input type="radio" name="studentGender" value="Male" data-title="Male"> Male </label>
                                             <label class="radio-inline radio-labels">
                                             <input type="radio" name="studentGender" value="Female"  data-title="Female"> Female </label>
+                                            <span class="help-block server-side-error">
+                                                <?php echo $zf_formHandler->zf_getFormError("studentGender") ?>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -289,13 +292,13 @@
                                     <div class="col-md-8">
                                         <div class="radio-list">
                                             <label class="radio-inline">
-                                            <input type="radio" name="guardianGender" value="Male" checked data-title="Male"> Male </label>
+                                            <input type="radio" name="guardianGender" value="Male" data-title="Male"> Male </label>
                                             <label class="radio-inline">
                                             <input type="radio" name="guardianGender" value="Female"  data-title="Female"> Female </label>
-                                            <span class="help-block server-side-error">
-                                                <?php echo $zf_formHandler->zf_getFormError("guardianGender") ?>
-                                            </span>
                                         </div>
+                                        <span class="help-block server-side-error">
+                                            <?php echo $zf_formHandler->zf_getFormError("guardianGender") ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

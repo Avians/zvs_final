@@ -51,7 +51,6 @@ class newStudentRegistration_Model extends Zf_Model {
                                 ->zf_postFormData('studentMiddleName')
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Student middle name')
                                 ->zf_validateFormData('zf_minimumLength', 2, 'Student middle name')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student middle name')
                 
                                 ->zf_postFormData('studentLastName')
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Student last name')
@@ -62,31 +61,28 @@ class newStudentRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Student gender')
                 
                                 ->zf_postFormData('studentDateOfBirth')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student date of birth')
                 
                                 ->zf_postFormData('studentReligion')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student religion')
                 
                                 ->zf_postFormData('studentCountry')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student country')
                 
                                 ->zf_postFormData('studentLocality')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student locality')
                 
                                 ->zf_postFormData('studentBoxAddress')//not required field
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Student box address')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Student box address')
                 
                                 ->zf_postFormData('studentPhoneNumber')//not required field
-                                ->zf_validateFormData('zf_maximumLength', 30, 'Student phone number')
+                                ->zf_validateFormData('zf_maximumLength', 15, 'Student phone number')
+                                ->zf_validateFormData('zf_minimumLength', 10, 'Student phone number')
                 
-                                ->zf_postFormData('studentLanguage')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student language');
+                                ->zf_postFormData('studentLanguage');
         
         
         
         //In this section we chain all guardian related data
         $this->zf_formController->zf_postFormData('guardianDesignation')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian desigantion')
+                                //->zf_validateFormData('zf_fieldNotEmpty', 'Guardian desigantion')
                 
                                 ->zf_postFormData('guardianFirstName')
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Guardian first name')
@@ -102,34 +98,30 @@ class newStudentRegistration_Model extends Zf_Model {
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian last name')
                 
                                 ->zf_postFormData('guardianGender')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian gender')
                 
                                 ->zf_postFormData('guardianDateOfBirth')//not required field
                 
                                 ->zf_postFormData('guardianReligion')//not required field
                 
                                 ->zf_postFormData('guardianCountry')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian country')
         
                                 ->zf_postFormData('guardianLocality')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian locality')
                    
                                 ->zf_postFormData('guardianBoxAddress')//not required field
                                 ->zf_validateFormData('zf_maximumLength', 60, 'Guardian box address')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Guardian box address')
                 
                                 ->zf_postFormData('guardianPhoneNumber')
-                                ->zf_validateFormData('zf_maximumLength', 30, 'Guardian phone number')
-                                ->zf_validateFormData('zf_minimumLength', 5, 'Guardian phone number')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian phone number')
+                                ->zf_validateFormData('zf_maximumLength', 15, 'Guardian phone number')
+                                ->zf_validateFormData('zf_minimumLength', 10, 'Guardian phone number')
                 
                                 ->zf_postFormData('guardianRelation')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian relation')
                 
                                 ->zf_postFormData('guardianOccupation')//not required field
                                 ->zf_validateFormData('zf_maximumLength', 120, 'Guardian occupation')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Guardian occupation')
                 
-                                ->zf_postFormData('guardianLanguage')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian language');
+                                ->zf_postFormData('guardianLanguage');
         
         
         
@@ -223,22 +215,20 @@ class newStudentRegistration_Model extends Zf_Model {
         
                                 ->zf_postFormData('studentAdmissionNumber')
                                 ->zf_validateFormData('zf_maximumLength', 30, 'Student admission number')
-                                ->zf_validateFormData('zf_minimumLength', 2, 'Student admission number')
+                                ->zf_validateFormData('zf_minimumLength', 3, 'Student admission number')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Student admission number');
         
         
         
         //In this section we chain all student login data
         $this->zf_formController->zf_postFormData('studentEmailAddress')
-                                ->zf_validateFormData('zf_maximumLength', 120, 'Student email address')
-                                ->zf_validateFormData('zf_minimumLength', 6, 'Student email address')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Student email address')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Student email address')
                                 ->zf_validateFormData('zf_checkEmail', 'studentEmailAddress')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student email address')
                 
                                 ->zf_postFormData('studentPassword')
                                 ->zf_validateFormData('zf_maximumLength', 120, 'Student password')
-                                ->zf_validateFormData('zf_minimumLength', 5, 'Student password')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Student password')
+                                ->zf_validateFormData('zf_minimumLength', 4, 'Student password')
         
                                 ->zf_postFormData('studentSchoolRole')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Student role');
@@ -247,15 +237,13 @@ class newStudentRegistration_Model extends Zf_Model {
         
         //In this section we chain all student login data
         $this->zf_formController->zf_postFormData('guardianEmailAddress')
-                                ->zf_validateFormData('zf_maximumLength', 120, 'Guardian email address')
-                                ->zf_validateFormData('zf_minimumLength', 6, 'Guardian email address')
+                                ->zf_validateFormData('zf_maximumLength', 60, 'Guardian email address')
+                                ->zf_validateFormData('zf_minimumLength', 5, 'Guardian email address')
                                 ->zf_validateFormData('zf_checkEmail', 'guardianEmailAddress')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian email address')
         
                                 ->zf_postFormData('guardianPassword')
                                 ->zf_validateFormData('zf_maximumLength', 120, 'Guardian password')
-                                ->zf_validateFormData('zf_minimumLength', 5, 'Guardian password')
-                                ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian password')
+                                ->zf_validateFormData('zf_minimumLength', 4, 'Guardian password')
         
                                 ->zf_postFormData('guardianSchoolRole')
                                 ->zf_validateFormData('zf_fieldNotEmpty', 'Guardian role');
@@ -285,6 +273,31 @@ class newStudentRegistration_Model extends Zf_Model {
             //This is the school code for the person registering the new student.
             $systemSchoolCode = Zf_Core_Functions::Zf_DecodeIdentificationCode($registeredBy)[2];
             
+            //Using the school code, pull school information
+            $zvs_schoolDetails = $this->zvs_fetchSchoolDetails($systemSchoolCode);
+            
+            if($zvs_schoolDetails == 0){
+                
+                //Redirect to the registration form section. Also make an error indicator.
+                Zf_SessionHandler::zf_setSessionVariable("student_registration", "general_form_error");
+
+                echo Zf_FormController::zf_validateGeneralForm($this->_validResult, $this->_errorResult);
+                Zf_GenerateLinks::zf_header_location("student_module", 'register_student', $registeredBy);
+                exit();
+                
+            }else{
+                
+                foreach ($zvs_schoolDetails as $schoolValues) {
+                    
+                    $schoolCountry = $schoolValues['schoolCountry']; $schoolLocality = $schoolValues['schoolLocality']; 
+                    $schoolBoxAddress = $schoolValues['schoolBoxAddress']; $schoolPhoneNumber = $schoolValues['schoolPhoneNumber'];
+                    $schoolEmailDomain = $this->zvs_generateEmailDomain($schoolValues['schoolWebsite']);
+                    
+                }
+                
+            }
+            
+            
             //Prepare all variables for student form data.
                 $studentFirstName = $this->_validResult['studentFirstName'];
                 $studentMiddleName = $this->_validResult['studentMiddleName'];
@@ -292,21 +305,22 @@ class newStudentRegistration_Model extends Zf_Model {
                 $studentGender = $this->_validResult['studentGender'];
                 $studentDateOfBirth = $this->_validResult['studentDateOfBirth'];
                 $studentReligion = $this->_validResult['studentReligion'];
-                $studentCountry = $this->_validResult['studentCountry'];
-                $studentLocality = $this->_validResult['studentLocality'];
-                $studentBoxAddress = $this->_validResult['studentBoxAddress'];//not required field
-                $studentPhoneNumber = $this->_validResult['studentPhoneNumber'];//not required field
+                $studentCountry = (empty($this->_validResult['studentCountry'])) ? $schoolCountry : $this->_validResult['studentCountry'];
+                $studentLocality = (empty($this->_validResult['studentLocality'])) ? $schoolLocality : $this->_validResult['studentLocality'];
+                $studentBoxAddress = (empty($this->_validResult['studentBoxAddress'])) ? $schoolBoxAddress : $this->_validResult['studentBoxAddress'];
+                $studentPhoneNumber = (empty($this->_validResult['studentPhoneNumber'])) ? $schoolPhoneNumber : $this->_validResult['studentPhoneNumber'];
                 $studentLanguage = $this->_validResult['studentLanguage'];
                 $studentClassCode = $this->_validResult['studentClassCode'];
                 $studentStreamCode = $this->_validResult['studentStreamCode'];
                 $studentYearOfStudy = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
                 $studentAdmissionNumber = $this->_validResult['studentAdmissionNumber'];
-                $studentEmailAddress = $this->_validResult['studentEmailAddress'];
-                $studentPassword = $this->_validResult['studentPassword'];
+                $studentEmailAddress = (empty($this->_validResult['studentEmailAddress'])) ? "stu_".$studentAdmissionNumber.$schoolEmailDomain : $this->_validResult['studentEmailAddress'];
+                $studentPassword = (empty($this->_validResult['studentPassword'])) ? "zvsStudent" : $this->_validResult['studentPassword'];
                 $studentRole = explode(ZVSS_CONNECT, $this->_validResult['studentSchoolRole'])[1];
+                
                 //Generate unique student access code.
                 $studentIdentificationCode = Zf_SecureData::zf_encode_data($studentCountry.ZVSS_CONNECT.$studentLocality.ZVSS_CONNECT.$systemSchoolCode.ZVSS_CONNECT.$studentRole.ZVSS_CONNECT.$studentAdmissionNumber);
-              
+                
                 
             //Prepare all variable for guardian form data
                 $guardianDesignation = $this->_validResult['guardianDesignation'];
@@ -316,19 +330,20 @@ class newStudentRegistration_Model extends Zf_Model {
                 $guardianGender = $this->_validResult['guardianGender'];
                 $guardianDateOfBirth = $this->_validResult['guardianDateOfBirth'];//not required field
                 $guardianReligion = $this->_validResult['guardianReligion'];//not required field
-                $guardianCountry = $this->_validResult['guardianCountry'];
-                $guardianLocality= $this->_validResult['guardianLocality'];
-                $guardianBoxAddress = $this->_validResult['guardianBoxAddress'];//not required field
-                $guardianPhoneNumber = $this->_validResult['guardianPhoneNumber'];//not required field
+                $guardianCountry = (empty($this->_validResult['guardianCountry'])) ? $schoolCountry : $this->_validResult['guardianCountry'];
+                $guardianLocality = (empty($this->_validResult['guardianLocality'])) ? $schoolLocality : $this->_validResult['guardianLocality'];
+                $guardianBoxAddress = (empty($this->_validResult['guardianBoxAddress'])) ? $schoolBoxAddress : $this->_validResult['guardianBoxAddress'];
+                $guardianPhoneNumber = (empty($this->_validResult['guardianPhoneNumber'])) ? $schoolPhoneNumber : $this->_validResult['guardianPhoneNumber'];
                 $guardianRelation = $this->_validResult['guardianRelation'];
                 $guardianOccupation = $this->_validResult['guardianOccupation'];//not required field
                 $guardianLanguage = $this->_validResult['guardianLanguage'];
-                $guardianEmailAddress = $this->_validResult['guardianEmailAddress'];
-                $guardianPassword = $this->_validResult['guardianPassword'];
+                $guardianEmailAddress = (empty($this->_validResult['guardianEmailAddress'])) ? "gud_".$studentAdmissionNumber.$schoolEmailDomain : $this->_validResult['guardianEmailAddress'];
+                $guardianPassword = (empty($this->_validResult['guardianPassword']))?  "zvsGuardian"  : $this->_validResult['guardianPassword'];
                 $guardianRole = explode(ZVSS_CONNECT, $this->_validResult['guardianSchoolRole'])[1];
+                
                 //Generate unique guardian access code.
                 $guardianIdentificationCode = Zf_SecureData::zf_encode_data($guardianCountry.ZVSS_CONNECT.$guardianLocality.ZVSS_CONNECT.$systemSchoolCode.ZVSS_CONNECT.$guardianRole.ZVSS_CONNECT.$studentAdmissionNumber);
-            
+   
             
             //Prepare all variables for student medical data
                 $isStudentBloodGroup = $this->_validResult['isStudentBloodGroup'];
@@ -455,14 +470,14 @@ class newStudentRegistration_Model extends Zf_Model {
                                         $studentApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($studentEmailAddress);
                                         $studentApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($studentPassword));
                                         $studentApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
-                                        $studentApplicationUserDetails['zvs_user_role'] = Zf_QueryGenerator::SQLValue(ZVS_SCHOOL_STUDENT);
+                                        $studentApplicationUserDetails['zvs_platform_role'] = Zf_QueryGenerator::SQLValue(ZVS_SCHOOL_STUDENT);
                                         $studentApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
 
 
                                         $guardianApplicationUserDetails['email'] = Zf_QueryGenerator::SQLValue($guardianEmailAddress);
                                         $guardianApplicationUserDetails['password'] = Zf_QueryGenerator::SQLValue(Zf_SecureData::zf_encode_data($guardianPassword));
                                         $guardianApplicationUserDetails['identificationCode'] = Zf_QueryGenerator::SQLValue($guardianIdentificationCode);
-                                        $guardianApplicationUserDetails['zvs_user_role'] = Zf_QueryGenerator::SQLValue(ZVS_SCHOOL_PARENT);
+                                        $guardianApplicationUserDetails['zvs_platform_role'] = Zf_QueryGenerator::SQLValue(ZVS_SCHOOL_PARENT);
                                         $guardianApplicationUserDetails['userStatus'] = Zf_QueryGenerator::SQLValue(1);
 
 
@@ -725,9 +740,66 @@ class newStudentRegistration_Model extends Zf_Model {
         
     }
     
+    
+    
+    
+    //This private method fetches school information for the current school
+    private function zvs_fetchSchoolDetails($systemSchoolCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        
+        $fetchSchoolDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_details', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolDetails = $this->Zf_AdoDB->Execute($fetchSchoolDetails);
+
+        if(!$zf_executeFetchSchoolDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolDetails->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolDetails->EOF){
+                    
+                    $results = $zf_executeFetchSchoolDetails->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+        
+    }
+    
   
     
-    
+    //This private method takes in school website domain and returns the school email domain
+    private function zvs_generateEmailDomain($zvs_schoolWebDomain){
+        
+        $schoolDomain = parse_url($zvs_schoolWebDomain);
+        
+        //Here we create the school domain array
+        $schoolDomainArray = explode(".", $schoolDomain["host"]);
+
+        //We splice the array to remove the very first portion
+        array_splice($schoolDomainArray, 0 ,1);
+
+        //Here we piece this together to generate school email domain
+        $newEmailDomain =  implode(".",$schoolDomainArray);
+
+        return  "@".$newEmailDomain;
+            
+           
+    }
 }
 
 ?>
