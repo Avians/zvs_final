@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 /**
  * A class for reading Microsoft Excel (97/2003) Spreadsheets.
  *
