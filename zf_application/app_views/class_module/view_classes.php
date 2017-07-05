@@ -35,7 +35,6 @@
                     <div id="tabbed-nav">
                         <ul class="z-tabs-titles">
                             <li><a>Overall Class Overview</a></li>
-                            <li><a><i class="fa fa-user-plus"></i> Filtered Class Overview</a></li>
                         </ul>
 
                         <div class="z-content-inner" style="margin-bottom: 10px !important;">
@@ -45,17 +44,6 @@
                                         //Here we fetch all class details
                                         $zf_controller->zf_targetModel->fetchClassDetails($identificationCode);
                                     ?>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="row margin-top-10">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -15px !important;">
-                                        <div class="portlet box zvs-content-blocks" style="min-height: 340px !important;">
-                                            <div class="portlet-body form" >
-                                                
-                                            </div>
-                                        </div>          
-                                    </div>
                                 </div>
                             </div>
                         </div>
