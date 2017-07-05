@@ -217,16 +217,16 @@ class upload_data_templates_Model extends Zf_Model {
                         if(!empty($studentAdmissionNumber) && $studentAdmissionNumber != "" && $studentAdmissionNumber != NULL){
 
                             //Student specific data
-                            $studentFirstName = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 2);
-                            $studentMiddleName = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 3);
-                            $studentLastName = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 4);
+                            $studentFirstName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 2));
+                            $studentMiddleName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 3));
+                            $studentLastName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 4));
                             $studentGender = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 5);
                             $studentEmailAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 6))) ? "stu_".$studentAdmissionNumber.$schoolEmailDomain  : Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 6);
                             $studentBoxAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 7))) ? $schoolBoxAddress : Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 7);
                             $studentPhoneNumber = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 8))) ? $schoolPhoneNumber: Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 8);
-                            $studentClass = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 9);
-                            $studentStream = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 10);
-                            $studentRole = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 11);
+                            $studentClass = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 9));
+                            $studentStream = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 10));
+                            $studentRole = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 11));
                             $studentClassCode = $systemSchoolCode.ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($studentClass);
                             $studentStreamCode = $studentClassCode.ZVSS_CONNECT.Zf_Core_Functions::Zf_CleanName($studentStream);
                             $studentYearOfStudy = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
@@ -239,13 +239,13 @@ class upload_data_templates_Model extends Zf_Model {
                             $guardianSheet = 1;
 
                             //Guardian specific data
-                            $guardianFirstName = Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 4);
-                            $guardianMiddleName = Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 5);
-                            $guardianLastName = Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 6);
+                            $guardianFirstName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 4));
+                            $guardianMiddleName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 5));
+                            $guardianLastName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 6));
                             $guardianEmailAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 7))) ? "gud_".$studentAdmissionNumber.$schoolEmailDomain  : Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 7);
                             $guardianBoxAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 8))) ? $schoolBoxAddress : Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 8);
                             $guardianPhoneNumber = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 9))) ? $schoolPhoneNumber: Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 9);
-                            $guardianRole = Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 10);
+                            $guardianRole = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 10));
                             $guardianPassword = "zvsGuardian";
 
                             //Generate guardian Identification Code
