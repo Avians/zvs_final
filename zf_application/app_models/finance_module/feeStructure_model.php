@@ -149,7 +149,6 @@ class feeStructure_Model extends Zf_Model {
             
             echo $option;
         }
-        
  
     }
     

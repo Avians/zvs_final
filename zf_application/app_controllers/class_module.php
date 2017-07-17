@@ -99,6 +99,8 @@ class class_moduleController extends Zf_Controller {
         //Get a parameter array
         $zvs_parameter = explode(ZVSS_CONNECT, Zf_SecureData::zf_decode_url($zvs_parameter));
         
+        $userIdentificationCode = Zf_SecureData::zf_encode_data($zvs_parameter[0]);
+        
         $zvs_currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
         
         $identificationCode = Zf_SecureData::zf_encode_url($zvs_parameter[0]);
@@ -131,6 +133,7 @@ class class_moduleController extends Zf_Controller {
         
         
         //Student Personal Details Columns
+        $identificationCode = $zf_studentPersonalDetails.".identificationCode";
         $studentFirstName = $zf_studentPersonalDetails.".studentFirstName";
         $studentMiddleName = $zf_studentPersonalDetails.".studentMiddleName";
         $studentLastName = $zf_studentPersonalDetails.".studentLastName";
@@ -139,12 +142,12 @@ class class_moduleController extends Zf_Controller {
         
         
         //$tableData['tableQuery'] = "SELECT * FROM ".$zf_table." WHERE systemSchoolCode = '".$systemSchoolCode."' AND studentClassCode = '".$studentClassCode."' AND studentStreamCode = '".$studentStreamCode."' AND studentYearOfStudy = '".$studentYearOfStudy."' AND studentClassStatus = '".STUDENT_CONTINUING."' ";
-        $tableData['tableQuery'] = "SELECT ".$studentAdmissionNumer." , ".$studentFirstName." , ".$studentMiddleName." , ".$studentLastName." , ".$studentGender." FROM ".$zf_studentClassDetails." INNER JOIN ".$zf_studentPersonalDetails." on ".$zf_studentClassDetails.".identificationCode = ".$zf_studentPersonalDetails.".identificationCode WHERE ".$zf_studentClassDetails.".systemSchoolCode = '".$systemSchoolCode."' AND ".$zf_studentClassDetails.".studentClassCode = '".$studentClassCode."' AND ".$zf_studentClassDetails.".studentStreamCode = '".$studentStreamCode."' AND ".$zf_studentClassDetails.".studentYearOfStudy = '".$studentYearOfStudy."' AND ".$zf_studentClassDetails.".studentClassStatus = '".STUDENT_CONTINUING."' ";
+        $tableData['tableQuery'] = "SELECT ".$identificationCode." , ".$studentAdmissionNumer." , ".$studentFirstName." , ".$studentMiddleName." , ".$studentLastName." , ".$studentGender." FROM ".$zf_studentClassDetails." INNER JOIN ".$zf_studentPersonalDetails." on ".$zf_studentClassDetails.".identificationCode = ".$zf_studentPersonalDetails.".identificationCode WHERE ".$zf_studentClassDetails.".systemSchoolCode = '".$systemSchoolCode."' AND ".$zf_studentClassDetails.".studentClassCode = '".$studentClassCode."' AND ".$zf_studentClassDetails.".studentStreamCode = '".$studentStreamCode."' AND ".$zf_studentClassDetails.".studentYearOfStudy = '".$studentYearOfStudy."' AND ".$zf_studentClassDetails.".studentClassStatus = '".STUDENT_CONTINUING."' ";
         
         
         //echo "<pre>".$tableData['tableQuery']."</pre>"; exit();
         
-        $zf_phpGridSettings = $this->actionGenerateStudentsStreamTable($tableData, $zf_studentClassDetails);
+        $zf_phpGridSettings = $this->actionGenerateStudentsStreamTable($tableData, $zf_studentClassDetails, $userIdentificationCode);
         
         Zf_View::zf_displayView('stream_details', $zf_actionData, $zf_phpGridSettings);
         
@@ -165,7 +168,7 @@ class class_moduleController extends Zf_Controller {
     /**
      * This is the action that generates the transaction table
      */
-    public function actionGenerateStudentsStreamTable($tableData, $zf_studentClassDetails, $zf_subGrid = NULL){
+    public function actionGenerateStudentsStreamTable($tableData, $zf_studentClassDetails, $userIdentificationCode = NULL){
         
         //This holds the name of the database table that is being accessed.
         $zf_phpGridSettings['zf_tableName'] = $zf_studentClassDetails; 
@@ -181,7 +184,10 @@ class class_moduleController extends Zf_Controller {
 
         //This array holds all the data related to required grid columns
         $zf_gridColumns = array();
-
+        
+        $identificationCode = array("title"=>"Id Code", "name"=>"identificationCode", "width"=>20, "editable"=>false, "hidden"=>true);
+        $zf_gridColumns[] = $identificationCode;
+        
         $admissionNumber = array("title"=>"Adm No.", "name"=>"studentAdmissionNumber", "width"=>20, "editable"=>false);
         $zf_gridColumns[] = $admissionNumber;
 
@@ -197,17 +203,18 @@ class class_moduleController extends Zf_Controller {
         $studentGender = array("title"=>"Gender", "name"=>"studentGender", "width"=>20, "editable"=>false);
         $zf_gridColumns[] = $studentGender;
         
+        //$identificationCode = array("name"=>"studentGender");
+        $studentIdentificationCode = "$zf_gridColumns[$identificationCode]";
+        
         
         //Here we process the link to the student profile page
-        $studentIdentificationCode = "1234";
-        $studentProfile = ZF_ROOT_PATH."student_module".DS."student_profile".DS.$studentIdentificationCode;
+        $studentProfile = ZF_ROOT_PATH."student_module".DS."student_profile".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
         $studentDetails = array("title"=>"Student Details", "name"=>"Student Profile", "default"=>"Student Profile", "link"=>$studentProfile, "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
         $zf_gridColumns[] =  $studentDetails;
         
         
         //Here we process the link to the guardian profile page
-        $guardianIdentificationCode = "1234";
-        $guardianProfile = ZF_ROOT_PATH."parent_module".DS."guardian_profile".DS.$guardianIdentificationCode;
+        $guardianProfile = ZF_ROOT_PATH."parent_module".DS."parent_profile".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
         $guardianDetails = array("title"=>"Guardian Details", "name"=>"Guardian Profile", "default"=>"Guardian Profile", "link"=>$guardianProfile,  "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
         $zf_gridColumns[] =  $guardianDetails;
         

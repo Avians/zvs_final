@@ -41,6 +41,18 @@ $main_menu = array(
     ),
     
     
+    //Student profile
+    "student_profile" => array(
+        'name' => '<i class="fa fa-users"></i> Student Profile',
+        'controller' => $zvs_controller,
+        'action' => 'student_profile',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
+    
     //Shift students
     "shift_students" => array(
         'name' => '<i class="fa fa-exchange"></i> Shift Students',
@@ -57,16 +69,16 @@ $main_menu = array(
 ?>
 
 
-<!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "student_module" || $zvs_action == "student_details" || $zvs_action == "register_student" || $zvs_action == "shift_students") { echo "active";} ?>">
+<!-- This menu item manages all aspects of student module-->
+<li class="<?php if ($zvs_action == "student_module" || $zvs_action == "student_details" || $zvs_action == "register_student" || $zvs_action == "student_profile" || $zvs_action == "shift_students") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
-        <span class="title"> Student Module </span>
-        <?php if ($zvs_action == "student_module" || $zvs_action == "student_details" || $zvs_action == "register_student" || $zvs_action == "shift_students") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "student_module" || $zvs_action == "student_details" || $zvs_action == "register_student" || $zvs_action == "shift_students") { echo "open";} ?>"></span>
+        <span class="title"> Student Module</span>
+        <?php if ($zvs_action == "student_module" || $zvs_action == "student_details" || $zvs_action == "register_student" || $zvs_action == "student_profile" || $zvs_action == "shift_students") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "student_module" || $zvs_action == "student_details" || $zvs_action == "register_student" || $zvs_action == "student_profile" || $zvs_action == "shift_students") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STUDENT, $zvs_allowedResources)){ ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STUDENT_DETAILS, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "student_details") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['student_details']); ?>
             </li>
@@ -74,6 +86,11 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STUDENT, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "register_student") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['register_student']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STUDENT_PROFILE, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "student_profile") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['student_profile']); ?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(SHIFT_STUDENTS, $zvs_allowedResources)){ ?>

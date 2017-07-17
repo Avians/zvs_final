@@ -23,11 +23,11 @@ $zvs_allowedResources = $zf_externalWidgetData;
 <a href="<?php Zf_GenerateLinks::basic_internal_link($zvs_controller, $zvs_action, $zvs_parameter)?>">
     <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
         <div class="lp-shortcut-wrapper">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height: auto !important; text-align: center !important">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height: auto !important; text-align: center !important;">
                 <img src="<?php echo ZF_ROOT_PATH.ZF_DATASTORE."zvs_module_images".DS."inventory.png"; ?>" width=" 80% " height=" 80%" alt="Assets Module" >
                 <div class="clearfix"></div>
                 <h6 class="features-title" style="font-size: 11px !important;">Assets Module</h6>
-                <div class="clearfix"><br></div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

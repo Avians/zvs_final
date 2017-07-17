@@ -42,6 +42,34 @@ class hostel_moduleController extends Zf_Controller {
         Zf_View::zf_displayView("hostel_module_introduction", $zf_actionData);
         
     }
+
+    
+    
+    //This action executes the view for registering students into hostels
+    public function actionHostel_register_student($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView("hostel_register_student", $zf_actionData);
+        
+    }
+    
+    
+    //Executes the action for registering new student into hostel
+    public function actionProcess_hostel_student($zvs_parameter){
+        
+        $filteredData = Zf_SecureData::zf_decode_url($zvs_parameter);
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+
+
+        if($filteredData == "new_hostel_student"){
+
+           //This model method create a new student into school hostel
+           $this->zf_targetModel->newHostelStudentRegistration();
+
+        }
+        
+    }
     
     
 

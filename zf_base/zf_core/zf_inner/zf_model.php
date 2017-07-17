@@ -23,11 +23,32 @@ class Zf_Model extends Zf_QueryGenerator {
     
     /**
      *This is property that is used to instantiate the ADODB library for 
+     * loose transactions from controllers.
+     * 
+     * @var type oublic
+     */
+    public $Zf_LooseDB;
+    
+    /**
+     *This is property that is used to instantiate the ADODB library for 
      * database transaction processing.
      * 
      * @var type protected
      */
     protected $Zf_AdoDB;
+    
+    
+    
+    
+    /**
+     * This is property that is used to instantiate the Zf_QueryGenerator 
+     * library for database transaction processing.
+     * 
+     * @var type public
+     */
+    public $Zf_LooseQueryGenerator;
+    
+    
     
     
     /**
@@ -66,12 +87,27 @@ class Zf_Model extends Zf_QueryGenerator {
             
         }
         
+        //ZF_AdoDB Connection
         $this->Zf_AdoDB = ADONewConnection($databasetype);
         
         $this->Zf_AdoDB->debug = $database_settings['zf_dbDebug']; 
         
         $this->Zf_AdoDB->Connect($server, $user, $password, $database);
         
+        
+        //ZF_LooseConnection
+        $this->Zf_LooseDB = ADONewConnection($databasetype);
+        
+        $this->Zf_LooseDB->debug = $database_settings['zf_dbDebug']; 
+        
+        $this->Zf_LooseDB->Connect($server, $user, $password, $database);
+        
+        
+        //This is the loose query generator
+        $this->Zf_LooseQueryGenerator = new Zf_QueryGenerator(true, $database, $server, $user, $password);  
+        
+        
+        //This is the actual query generator
         $this->Zf_QueryGenerator = new Zf_QueryGenerator(true, $database, $server, $user, $password);  
             
     }

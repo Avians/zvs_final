@@ -27,7 +27,7 @@ $zvs_allowedResources = $zf_externalWidgetData;
                 <img src="<?php echo ZF_ROOT_PATH.ZF_DATASTORE."zvs_module_images".DS."department.png"; ?>" width=" 80% " height=" 80%" alt="Departments Module" >
                 <div class="clearfix"></div>
                 <h6 class="features-title" style="font-size: 11px !important;">Departments Module</h6>
-                <div class="clearfix"><br></div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>

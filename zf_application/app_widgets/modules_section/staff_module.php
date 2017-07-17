@@ -66,7 +66,7 @@ $main_menu = array(
         <span class="arrow <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
-        <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STAFF, $zvs_allowedResources)){ ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STAFF_DETAILS, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "staff_details") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['staff_details']); ?>
             </li>

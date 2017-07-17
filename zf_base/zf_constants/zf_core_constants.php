@@ -258,6 +258,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         //These constant are a set of resources that are usable within the students module
         defined('STUDENT_DETAILS') ? null : define('STUDENT_DETAILS' , 'StuMod'.CONNECT.'StudentDetails');
         defined('REGISTER_STUDENT') ? null : define('REGISTER_STUDENT' , 'StuMod'.CONNECT.'RegisterStudent');
+        defined('STUDENT_PROFILE') ? null : define('STUDENT_PROFILE' , 'StuMod'.CONNECT.'StudentProfile');
         defined('SHIFT_STUDENTS') ? null : define('SHIFT_STUDENTS' , 'StuMod'.CONNECT.'ShiftStudents');
     
     
@@ -274,6 +275,9 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Parent Module and resources
     defined('PARMOD') ? null : define('PARMOD' , 'parent_module');
     defined('PARENT_MODULE') ? null : define('PARENT_MODULE' , 'ParMod');
+    
+        //These constant are a set of resources that are usable within the parents module
+        defined('PARENT_PROFILE') ? null : define('PARENT_PROFILE' , 'ParMod'.CONNECT.'ParentProfile');
     
     
     //BOG Module and resources
@@ -352,6 +356,10 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
     //Hostel Module and resources
     defined('HOSMOD') ? null : define('HOSMOD' , 'hostel_module');
     defined('HOSTEL_MODULE') ? null : define('HOSTEL_MODULE' , 'HosMod');
+    
+        //These constant are a set of resources that are usable within the hostel module
+        //defined('HOSTEL_OVERVIEW') ? null : define('HOSTEL_OVERIEW' , 'HosMod'.CONNECT.'HostelOverview');
+        defined('HOSTEL_REGISTER_STUDENT') ? null : define('HOSTEL_REGISTER_STUDENT' , 'HosMod'.CONNECT.'RegisterStudent');
     
     
     //Asset Module and resources
