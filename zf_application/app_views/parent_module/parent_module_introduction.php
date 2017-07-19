@@ -18,7 +18,14 @@
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
                 <h3 class="page-title">Parent Module</h3>
                 <div class="page-breadcrumb breadcrumb">
-                    <i class="fa fa-cubes"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                    <div class="row">
+                        <div class="col-lg-6 text-left">
+                            <i class="fa fa-users"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
+                        </div>
+                        <div class="col-lg-6 landing_page_link">
+                            <?php Zf_BreadCrumbs::zf_landing_page($identificationCode); ?>
+                        </div>
+                    </div>
                 </div>
                 <!-- END PAGE TITLE & BREADCRUMB-->
             </div>

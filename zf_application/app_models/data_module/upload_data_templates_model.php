@@ -220,8 +220,8 @@ class upload_data_templates_Model extends Zf_Model {
                             $studentFirstName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 2));
                             $studentMiddleName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 3));
                             $studentLastName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 4));
-                            $studentGender = Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 5);
-                            $studentEmailAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 6))) ? "stu_".$studentAdmissionNumber.$schoolEmailDomain  : Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 6);
+                            $studentGender = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 5))) ? "Not set" : Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 5);
+                            $studentEmailAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 6))) ? "stu_".Zf_Core_Functions::Zf_CleanName($studentAdmissionNumber).$schoolEmailDomain  : Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 6);
                             $studentBoxAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 7))) ? $schoolBoxAddress : Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 7);
                             $studentPhoneNumber = (empty(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 8))) ? $schoolPhoneNumber: Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 8);
                             $studentClass = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $studentSheet, $row, 9));
@@ -242,9 +242,10 @@ class upload_data_templates_Model extends Zf_Model {
                             $guardianFirstName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 4));
                             $guardianMiddleName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 5));
                             $guardianLastName = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 6));
-                            $guardianEmailAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 7))) ? "gud_".$studentAdmissionNumber.$schoolEmailDomain  : Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 7);
+                            $guardianEmailAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 7))) ? "gud_".Zf_Core_Functions::Zf_CleanName($studentAdmissionNumber).$schoolEmailDomain  : Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 7);
                             $guardianBoxAddress = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 8))) ? $schoolBoxAddress : Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 8);
                             $guardianPhoneNumber = (empty(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 9))) ? $schoolPhoneNumber: Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 9);
+                            $guardianRelation = "Not set";
                             $guardianRole = ucfirst(Zf_ExcelReader::zf_cellData($excelFile, $guardianSheet, $row, 10));
                             $guardianPassword = "zvsGuardian";
 
@@ -295,6 +296,7 @@ class upload_data_templates_Model extends Zf_Model {
                             $studentGuardianDetails['guardianLocality'] = Zf_QueryGenerator::SQLValue($schoolLocality);
                             $studentGuardianDetails['guardianBoxAddress'] = Zf_QueryGenerator::SQLValue($guardianBoxAddress);
                             $studentGuardianDetails['guardianPhoneNumber'] = Zf_QueryGenerator::SQLValue($guardianPhoneNumber);
+                            $studentGuardianDetails['guardianRelation'] = Zf_QueryGenerator::SQLValue($guardianRelation);
                             $studentGuardianDetails['studentSchoolStatus'] = Zf_QueryGenerator::SQLValue(1);
                             $studentGuardianDetails['registeredBy'] = Zf_QueryGenerator::SQLValue($registeredBy);
                             $studentGuardianDetails['guardianStatus'] = Zf_QueryGenerator::SQLValue(1);

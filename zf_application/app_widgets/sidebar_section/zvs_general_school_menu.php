@@ -55,19 +55,21 @@
         
     } 
   
-    //4. Student Module(StuMod) ==> zvs_student
-    if(Zf_Core_Functions::Zf_recursiveArray(STUDENT_MODULE, $zvs_allowedResources)){ 
-         
-        Zf_ApplicationWidgets::zf_load_widget("modules_section", "student_module.php", $zvs_allowedResources);
-         
-    }
     
-    //5. Staff Module(SstMod) ==> zvs_subStaff
+    //4. Staff Module(SstMod) ==> zvs_subStaff
     if(Zf_Core_Functions::Zf_recursiveArray(STAFF_MODULE, $zvs_allowedResources)){ 
         
         Zf_ApplicationWidgets::zf_load_widget("modules_section", "staff_module.php", $zvs_allowedResources);
     
     }  
+    
+    
+    //3. Student Module(StuMod) ==> zvs_student
+    if(Zf_Core_Functions::Zf_recursiveArray(STUDENT_MODULE, $zvs_allowedResources)){ 
+         
+        Zf_ApplicationWidgets::zf_load_widget("modules_section", "student_module.php", $zvs_allowedResources);
+         
+    }
     
     
     //6. Parent Module(ParMod) ==> zvs_parent

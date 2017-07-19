@@ -125,10 +125,14 @@ class processFeeInformation_Model extends Zf_Model {
                     
                     foreach ($studentPersonalDetails as $studentPersonalValue) {
                         
-                        $studentFirstName = $studentPersonalValue['studentFirstName']; $studentLastName = $studentPersonalValue['studentLastName'];
+                        $studentFirstName = $studentPersonalValue['studentFirstName']; 
+                        $studentMiddleName = empty($studentPersonalValue['studentMiddleName']) ? "" : $studentPersonalValue['studentMiddleName'];
+                        $studentLastName = empty($studentPersonalValue['studentLastName']) ? "" : $studentPersonalValue['studentLastName'];
                         $studentAdmissionNumber = $studentPersonalValue['studentAdmissionNumber']; $identificationCode = $studentPersonalValue['identificationCode'];
+                        
+                        $studentFullName = $studentFirstName." ".$studentMiddleName." ".$studentLastName;
 
-                        $select_options .= '<option value="'.$identificationCode.'">'.$studentFirstName.' '.$studentLastName.' - ['.$studentAdmissionNumber.']</option>';
+                        $select_options .= '<option value="'.$identificationCode.'">['.$studentAdmissionNumber.'] - '.$studentFullName.'</option>';
                     
                     }
                     

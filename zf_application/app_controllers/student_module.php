@@ -53,65 +53,33 @@ class student_moduleController extends Zf_Controller {
     public function actionStudent_profile($zf_parameter){
         
         //This is the incoming data parameter
-        $zf_actionData = explode(ZVSS_CONNECT, Zf_SecureData::zf_decode_data($zf_parameter));
-        
-        //This is the unique user identification code
-        $userIdentificationCode = Zf_SecureData::zf_decode_data($zf_actionData[0]);
-        
-        //This is the user identification array
-        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($userIdentificationCode);
-        
-        //This is the student admission number
-        $studentAdmissionNumber = $zf_actionData[1];
-        
-        
-        /**
-         * ACCESS TO THIS METHOD CAN BE FROM TO PLATFORM PERSPECTIVES
-         */
-        $zf_numberOfArrayElements = count($zf_actionData);
-        
-        //echo $zf_numberOfArrayElements; exit();
-        
-        
-        //1. From the resources perspective using main menu
-        if($zf_numberOfArrayElements === 1){
+        $zf_actionData = Zf_SecureData::zf_decode_data($zf_parameter);
+          
+        //User can be staff, parent, student
+        $systemUserProfile = $this->Zf_GetUserSystemProfile(Zf_SecureData::zf_decode_data($zf_actionData));
+
+        //echo $systemUserProfile; exit();
+
+        //1. Staff user should be redirected to students datails action
+        if($systemUserProfile == ZVS_SCHOOL_STAFF){
             
-            //User can be staff, parent, student
+            //Here, the parent id viewing student profile
+            Zf_View::zf_displayView('student_guardian_profile', $zf_actionData);
+
+        }
+        //2. Parent user should be directed to their respective student profile page
+        else if($systemUserProfile == ZVS_SCHOOL_PARENT){
             
-            $systemUserProfile = $this->Zf_GetUserSystemProfile($userIdentificationCode);
-        
-            //1. Staff user should be redirected to students datails action
-            if($systemUserProfile == ZVS_SCHOOL_STAFF){
-                
-                //Here, a school staff is view student profile
-                $this->actionStudent_details(Zf_SecureData::zf_encode_data(Zf_SecureData::zf_encode_data($userIdentificationCode)), "check_student_profile");
-                
-            }
-            //2. Parent user should be directed to their respective student profile page
-            else if($systemUserProfile == ZVS_SCHOOL_PARENT){
-                
-                //Here, the parent id viewing student profile
-                Zf_View::zf_displayView('student_profile', $zf_actionData);
-                
-            }
-            //3. Student user should be directed to their own profile page
-            else if($systemUserProfile == ZVS_SCHOOL_STUDENT){
-                
-                //Here the student is viewing their own profile
-                Zf_View::zf_displayView('student_profile', $zf_actionData);
-                
-            }else{
-                
-                //Here, a school staff is view student profile
-                $this->actionStudent_details(Zf_SecureData::zf_encode_data(Zf_SecureData::zf_encode_data($userIdentificationCode)), "check_student_profile");
-                
-            }
-        
-        }else{
-            
-            //Here, we view the student profile form another system school resource
+            //Here, the parent id viewing student profile
             Zf_View::zf_displayView('student_profile', $zf_actionData);
+
+        }
+        //3. Student user should be directed to their own profile page
+        else if($systemUserProfile == ZVS_SCHOOL_STUDENT){
             
+            //Here the student is viewing their own profile
+            Zf_View::zf_displayView('student_profile', $zf_actionData);
+
         }
         
     }
@@ -121,8 +89,7 @@ class student_moduleController extends Zf_Controller {
     
     
     //Executes the student detials action
-    public function actionStudent_details($identificationCode, $student_profile = NULL){
-        
+    public function actionStudent_details($identificationCode){
         
         $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
         
@@ -131,10 +98,7 @@ class student_moduleController extends Zf_Controller {
         $tableData = array();
         $tableData['tableTitle'] = "List of all school students";
         $tableData['tableQuery'] = "SELECT * FROM zvs_students_personal_details WHERE systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' ";
-        if($student_profile != NULL && !empty($student_profile) && $student_profile != ""){
-          $tableData['studentProfile'] =  $student_profile;
-          $tableData['userIdentificationCode'] =  Zf_SecureData::zf_decode_data($identificationCode);
-        }
+        $tableData['userIdentificationCode'] =  Zf_SecureData::zf_decode_data($identificationCode);
 
         $zf_phpGridSettings = $this->actionGenerateStudentsTable($tableData, $zf_subGrid = NULL);
         
@@ -184,6 +148,41 @@ class student_moduleController extends Zf_Controller {
             //Get the streams related a selected class
             $this->zf_targetModel->getStreamDetails();
             
+        }else if($filterDataVariable == 'process_students_list'){
+            
+            //Get the student related to a selected class
+            $this->zf_targetModel->getStudentsList();
+            
+        }else if($filterDataVariable == 'process_student_profile'){
+            
+            //Get the student related to a selected class
+            $this->zf_targetModel->getStudentsList();
+            
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * This action sends the user information to the model for processing
+     */
+    public function actionStudentProfile($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == 'process_student_profile'){
+            
+            //Get the student related to a selected class
+            $this->zf_targetModel->pullStudentProfile();
+            
+        }else if($filterDataVariable == 'process_student_guardian'){
+            
+            //Get the guardian related to a selected class
+            $this->zf_targetModel->pullGuardianProfile();
+            
         }
         
     }
@@ -221,7 +220,6 @@ class student_moduleController extends Zf_Controller {
      */
     public function actionGenerateStudentsTable($tableData, $zf_subGrid = NULL){
         
-        $studentProfile = $tableData['studentProfile'];
         $userIdentificationCode = $tableData['userIdentificationCode'];
         
         //This holds the name of the database table that is being accessed.
@@ -259,24 +257,14 @@ class student_moduleController extends Zf_Controller {
         $zf_gridColumns[] = $studentGender;
         
         
-        if($studentProfile == "check_student_profile"){
-            
-            //Here we process the link to the student profile page
-            $studentProfile = ZF_ROOT_PATH."student_module".DS."student_profile".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
-            $studentDetails = array("title"=>"Student Profile", "name"=>"Student Profile", "default"=>"Student Profile", "link"=>$studentProfile, "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
-            $zf_gridColumns[] =  $studentDetails;
-            
-        }
-        
         //This action column of the table 
         $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);
         $zf_gridColumns[] = $action;
 
         $zf_phpGridSettings['zf_gridColumns'] = $zf_gridColumns;
-        
-        //echo $tableQuery; exit();
 
         $zf_phpGridSettings['zf_gridQuery'] = $tableData['tableQuery'];
+        
         
         return $zf_phpGridSettings;
         

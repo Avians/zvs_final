@@ -35,103 +35,127 @@ class guardianProfile_Model extends Zf_Model {
     }
     
     
-  
+    
+    
     /**
      * This method is returns all student profile data
      */
-    public function fetchStudentProfile($zf_actionData){
+    public function pullStudentProfile(){
         
-        $zf_arrayCount = count($zf_actionData);
+        $identificationCode = $_POST['studentIdentificationCode'];
         
-        //Accessor is parent or student
-        if($zf_arrayCount < 2){
+        //User Identification Array
+        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        //System School Code
+        $systemSchoolCode = $userIdentificationArray[2];
+
+        //Student Admission Number
+        $studentAdmissionNumber = $userIdentificationArray[4];
+        
+        $studentProfile = $this->actualStudentProfileData($systemSchoolCode, $studentAdmissionNumber);
+        
+        $studentProfileView = "";
+        
+        $studentProfileView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        <!--Student Personal Details-->
+                                        <div class="zvs-content-titles">
+                                            <h3 class="" style="color: #21B4E2 !important;">Student Details</h3>
+                                        </div>';
+                                        $studentProfileView .= $studentProfile;
+            $studentProfileView .= '</div>
+                                </div>';
+        
+        echo $studentProfileView;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method is returns all guardian profile data
+     */
+    public function pullGuardianProfile(){
+        
+        //This is the student identification code
+        $identificationCode = $_POST['studentIdentificationCode'];
+        
+        //User Identification Array
+        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        //System School Code
+        $systemSchoolCode = $userIdentificationArray[2];
+
+        //Student Admission Number
+        $studentAdmissionNumber = $userIdentificationArray[4];
+        
+        $guardianProfile = $this->actualGuardianProfileData($systemSchoolCode, $studentAdmissionNumber);
+        
+        
+        $guardianProfileView = "";
+        
+        $guardianProfileView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        <!--Student Guardian Details-->
+                                        <div class="zvs-content-titles">
+                                            <h3 class="" style="color: #21B4E2 !important;">Guardian Details</h3>
+                                        </div>';
+                                        $guardianProfileView .= $guardianProfile;
+            $guardianProfileView .= '</div>
+                                </div>';
+        
+       echo $guardianProfileView;
             
-            //User Identification Code
-            $userIdentificationCode = Zf_SecureData::zf_data_decode($zf_actionData[0]);
-            
-            //User Identification Array
-            $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($userIdentificationCode);
-            
-            //System School Code
-            $systemSchoolCode = $userIdentificationArray[2];
-            
-            //Student Admission Number
-            $studentAdmissionNumber = $userIdentificationArray[4];
-            
-            //This function fetches and returns the actual student profile data
-            $this->actualStudentProfileData($systemSchoolCode, $studentAdmissionNumber);
-            
-            
-        }
-        //Accessor is platform resource
-        else if($zf_arrayCount > 1){
-            
-            //User Identification Code
-            $userIdentificationCode = Zf_SecureData::zf_data_decode($zf_actionData[0]);
-            
-            //User Idenification Array
-            $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($userIdentificationCode);
-            
-            //System School Code
-            $systemSchoolCode = $userIdentificationArray[2];
-            
-            //Student Admission Number
-            $studentAdmissionNumber = $zf_actionData[1];
-            
-            //This function fetches and returns the actual student profile data
-            $this->actualStudentProfileData($systemSchoolCode, $studentAdmissionNumber);
-        }
         
     }
     
     
   
+    
+    /**
+     * This method is returns all student profile data
+     */
+    public function fetchStudentProfile($identificationCode){
+        
+        //User Identification Array
+        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        //System School Code
+        $systemSchoolCode = $userIdentificationArray[2];
+
+        //Student Admission Number
+        $studentAdmissionNumber = $userIdentificationArray[4];
+
+        //This function fetches and returns the actual student profile data
+        $studentProfile = $this->actualStudentProfileData($systemSchoolCode, $studentAdmissionNumber);
+        
+        echo $studentProfile;
+        
+    }
+    
+    
+  
+    
     /**
      * This method is returns all guardian profile data
      */
-    public function fetchGuardianProfile($zf_actionData){
+    public function fetchGuardianProfile($identificationCode){
         
-        $zf_arrayCount = count($zf_actionData);
-        
-        //Accessor is parent or student
-        if($zf_arrayCount < 2){
-            
-            //User Identification Code
-            $userIdentificationCode = Zf_SecureData::zf_data_decode($zf_actionData[0]);
-            
-            //User Identification Array
-            $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($userIdentificationCode);
-            
-            //System School Code
-            $systemSchoolCode = $userIdentificationArray[2];
-                    
-            //Student Admission Number
-            $studentAdmissionNumber = $userIdentificationArray[4];
-            
-            //This function fetches and returns the actual student profile data
-            $this->actualGuardianProfileData($systemSchoolCode, $studentAdmissionNumber);
-            
-        }
-        //Accessor is platform resource
-        else if($zf_arrayCount > 1){
-            
-            //User Identification Code
-            $userIdentificationCode = Zf_SecureData::zf_data_decode($zf_actionData[0]);
-            
-            //User Idenification Array
-            $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($userIdentificationCode);
-            
-            //System School Code
-            $systemSchoolCode = $userIdentificationArray[2];
-            
-            //Student Admission Number
-            $studentAdmissionNumber = $zf_actionData[1];
-            
-            //This function fetches and returns the actual student profile data
-            $this->actualGuardianProfileData($systemSchoolCode, $studentAdmissionNumber);
-            
-        }
-         
+        //User Identification Array
+        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        //System School Code
+        $systemSchoolCode = $userIdentificationArray[2];
+
+        //Student Admission Number
+        $studentAdmissionNumber = $userIdentificationArray[4];
+
+        //This function fetches and returns the actual student profile data
+        $guardianProfile = $this->actualGuardianProfileData($systemSchoolCode, $studentAdmissionNumber);
+
+        echo $guardianProfile; 
     }
     
     
@@ -165,9 +189,9 @@ class guardianProfile_Model extends Zf_Model {
             
             foreach ($studentDetails as $studentValues) {
                 
-                $studentIdentificationCode = $studentValues['identificationCode'];
+                $studentIdentificationCode = $studentValues['identificationCode']; $admissionNumber = $studentValues['studentAdmissionNumber'];
                 $studentFirstName = $studentValues['studentFirstName']; $studentMiddleName = empty($studentValues['studentMiddleName']) ? "" : $studentValues['studentMiddleName']; $studentLastName = empty($studentValues['studentLastName']) ? "" : $studentValues['studentLastName']; 
-                $studentGender = $studentValues['studentGender']; $studentDateOfBirth = empty($studentValues['studentDateOfBirth']) ? "Not set" : $studentValues['studentDateOfBirth']; $studentReligion = $studentValues['studentReligion'];
+                $studentGender = empty($studentValues['studentGender']) ? "Not set" : $studentValues['studentGender'];  $studentDateOfBirth = empty($studentValues['studentDateOfBirth']) ? "Not set" : $studentValues['studentDateOfBirth']; $studentReligion = $studentValues['studentReligion'];
                 $studentBoxAddress = $studentValues['studentBoxAddress']; $studentPhoneNumber = $studentValues['studentPhoneNumber']; $studentLanguage = $studentValues['studentLanguage'];
                 
                 $studentFullName = $studentFirstName." ".$studentMiddleName." ".$studentLastName;
@@ -249,11 +273,17 @@ class guardianProfile_Model extends Zf_Model {
                                         <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Class:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$className.'</div>  
-                                        </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        </div>';
+            
+                                        if($className != $streamName){
+                                            
+                $studentProfileView .= '<div class="row-fluid margin-bottom-15" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Stream:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$streamName.'</div>  
                                         </div>';
+                
+                                        }
+                                        
                                         
                                         //This private function pulls school hostel details
                                         $schoolDetails = $this->zvs_pullSchoolDetails($systemSchoolCode);
@@ -275,7 +305,7 @@ class guardianProfile_Model extends Zf_Model {
             
         }
 
-        echo $studentProfileView;
+        return $studentProfileView;
         
         
     }
@@ -288,8 +318,11 @@ class guardianProfile_Model extends Zf_Model {
      */
     private function actualGuardianProfileData($systemSchoolCode, $studentAdmissionNumber){
         
+        //Get guardian identification code
+        $guardianIdentificationCode = $this->zvs_pullGuardianIdentificationCode($systemSchoolCode, $studentAdmissionNumber);
+        
         //This is the method that pull guardian data from the database
-        $guardianDetails = $this->zvs_pullGuardianDetails($systemSchoolCode, $this->gurdianIdentificationCode);
+        $guardianDetails = $this->zvs_pullGuardianDetails($systemSchoolCode, $guardianIdentificationCode);
         
         //This is the variable that creates guardian profile view
         $guardianProfileView = "";
@@ -322,7 +355,7 @@ class guardianProfile_Model extends Zf_Model {
                 $guardianLanguage = empty($guardianValues['guardianLanguage']) ? "Not set" : $guardianValues['guardianLanguage'];
                 
                 //Pull guardian email address
-                $guardianEmail = $this->zvs_pullApplicationUserEmail($this->gurdianIdentificationCode);
+                $guardianEmail = $this->zvs_pullApplicationUserEmail($guardianIdentificationCode);
                 
                 //Pull student country
                 $countryName = $this->zvs_pullCountryDetails($guardianValues['guardianCountry']);
@@ -395,7 +428,7 @@ class guardianProfile_Model extends Zf_Model {
         
             
                                   
-        echo $guardianProfileView;
+        return $guardianProfileView;
         
     }
     
@@ -407,11 +440,12 @@ class guardianProfile_Model extends Zf_Model {
      */
     private function zvs_pullStudentDetails($systemSchoolCode, $studentAdmissionNumber){
         
+        
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
         $zvs_sqlValue["studentAdmissionNumber"] = Zf_QueryGenerator::SQLValue($studentAdmissionNumber);
-        
+
         $fetchStudentDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_personal_details', $zvs_sqlValue);
-        
+
         $zf_executeFetchStudentDetails = $this->Zf_AdoDB->Execute($fetchStudentDetails);
 
         if(!$zf_executeFetchStudentDetails){
@@ -423,20 +457,21 @@ class guardianProfile_Model extends Zf_Model {
             if($zf_executeFetchStudentDetails->RecordCount() > 0){
 
                 while(!$zf_executeFetchStudentDetails->EOF){
-                    
+
                     $results = $zf_executeFetchStudentDetails->GetRows();
-                    
+
                 }
-                
+
                 return $results;
 
-                
+
             }else{
-                
+
                 return 0;
-                
+
             }
         }
+                    
         
     }
     
@@ -884,38 +919,57 @@ class guardianProfile_Model extends Zf_Model {
     /**
      * This survey pulls the users email address
      */
-    private function zvs_pullGuardianIdentificationCode($studentIdentificationCode){
+    private function zvs_pullGuardianIdentificationCode($systemSchoolCode, $studentAdmissionNumber){
         
-        $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+        //Pull student details to get the student identification code
+        $studentDetails = $this->zvs_pullStudentDetails($systemSchoolCode, $studentAdmissionNumber);
         
-        $zf_selectGuardianIdentificationCode = Zf_QueryGenerator::BuildSQLSelect('zvs_students_guardians_mapper', $zvs_sqlValue);
-
-        if(!$this->Zf_QueryGenerator->Query($zf_selectGuardianIdentificationCode)){
-                
-            $message = "Query execution failed.<br><br>";
-            $message.= "The failed Query is : <b><i>{$zf_selectGuardianIdentificationCode}.</i></b>";
-            echo $message; exit();
-
+        if($studentDetails == 0){
+            
+            $guardianIdentificationCode = "No Guardian for the selected student!!";
+            
         }else{
-            
-            
-            $resultCount = $this->Zf_QueryGenerator->RowCount();
-            
-            if($resultCount > 0){
-
-                $this->Zf_QueryGenerator->MoveFirst();
+        
+            foreach ($studentDetails as $studentValues) {
                 
-                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+                //This is the student identification code
+                $studentIdentificationCode = $studentValues['identificationCode'];
+                
+                
+                $zvs_sqlValue["studentIdentificationCode"] = Zf_QueryGenerator::SQLValue($studentIdentificationCode);
+                $zf_selectGuardianIdentificationCode = Zf_QueryGenerator::BuildSQLSelect('zvs_students_guardians_mapper', $zvs_sqlValue);
 
-                    $fetchRow = $this->Zf_QueryGenerator->Row();
-                    $guardianIdentificationCode = $fetchRow->guardianIdentificationCode;
+                if(!$this->Zf_QueryGenerator->Query($zf_selectGuardianIdentificationCode)){
+
+                    $message = "Query execution failed.<br><br>";
+                    $message.= "The failed Query is : <b><i>{$zf_selectGuardianIdentificationCode}.</i></b>";
+                    echo $message; exit();
+
+                }else{
+
+
+                    $resultCount = $this->Zf_QueryGenerator->RowCount();
+
+                    if($resultCount > 0){
+
+                        $this->Zf_QueryGenerator->MoveFirst();
+
+                        while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                            $fetchRow = $this->Zf_QueryGenerator->Row();
+                            $guardianIdentificationCode = $fetchRow->guardianIdentificationCode;
+
+                        }
+
+                    }
 
                 }
-
+                
             }
-            
-            return $guardianIdentificationCode;
+              
         }
+        
+        return $guardianIdentificationCode;
         
     }
     

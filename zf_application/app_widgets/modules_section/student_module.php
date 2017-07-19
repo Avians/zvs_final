@@ -40,7 +40,6 @@ $main_menu = array(
         'id' => ''
     ),
     
-    
     //Student profile
     "student_profile" => array(
         'name' => '<i class="fa fa-users"></i> Student Profile',
@@ -90,7 +89,7 @@ $main_menu = array(
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STUDENT_PROFILE, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "student_profile") { echo "active";} ?>">
-                <?php Zf_GenerateLinks::zf_internal_link($main_menu['student_profile']); ?>
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['student_profile']);?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(SHIFT_STUDENTS, $zvs_allowedResources)){ ?>

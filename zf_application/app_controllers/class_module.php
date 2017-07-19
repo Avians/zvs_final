@@ -114,7 +114,7 @@ class class_moduleController extends Zf_Controller {
         
         $tableData = array();
         
-        $tableData['tableTitle'] = $getClassName." ".$getStreamName." Student List - ".$studentYearOfStudy ;
+        $tableData['tableTitle'] = $getClassName." ".(($getStreamName == $getClassName) ? "" : $getStreamName)." Student List - ".$studentYearOfStudy ;
         
         if($studentYearOfStudy == $zvs_currentYear){
             
@@ -208,15 +208,15 @@ class class_moduleController extends Zf_Controller {
         
         
         //Here we process the link to the student profile page
-        $studentProfile = ZF_ROOT_PATH."student_module".DS."student_profile".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
-        $studentDetails = array("title"=>"Student Details", "name"=>"Student Profile", "default"=>"Student Profile", "link"=>$studentProfile, "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
-        $zf_gridColumns[] =  $studentDetails;
+        //$studentProfile = ZF_ROOT_PATH."student_module".DS."student_profile_data".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
+        //$studentDetails = array("title"=>"Student Details", "name"=>"Student Profile", "default"=>"Student Profile", "link"=>$studentProfile, "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
+        //$zf_gridColumns[] =  $studentDetails;
         
         
         //Here we process the link to the guardian profile page
-        $guardianProfile = ZF_ROOT_PATH."parent_module".DS."parent_profile".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
-        $guardianDetails = array("title"=>"Guardian Details", "name"=>"Guardian Profile", "default"=>"Guardian Profile", "link"=>$guardianProfile,  "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
-        $zf_gridColumns[] =  $guardianDetails;
+        //$guardianProfile = ZF_ROOT_PATH."parent_module".DS."parent_profile".DS.$userIdentificationCode.ZVSS_CONNECT."{studentAdmissionNumber}";
+        //$guardianDetails = array("title"=>"Guardian Details", "name"=>"Guardian Profile", "default"=>"Guardian Profile", "link"=>$guardianProfile,  "align"=>"center", "width"=>20, "editable"=>false, "export"=>false);
+        //$zf_gridColumns[] =  $guardianDetails;
         
         //This action column of the table 
         $action = array("title"=>"Actions", "name"=>"act", "align"=>"center", "width"=>20, "export"=>false, "hidden"=>true);

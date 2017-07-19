@@ -34,8 +34,6 @@ class studentInformation_Model extends Zf_Model {
     
   
     
-    
-    
     /**
      * This method is used to select Admin localities
      */
@@ -78,9 +76,6 @@ class studentInformation_Model extends Zf_Model {
     }
     
     
-  
-    
-    
     
     /**
      * This method is used to select Admin localities
@@ -102,6 +97,8 @@ class studentInformation_Model extends Zf_Model {
             
         }else{
             
+            $select_options .= '<option value="">Select a stream</option>';
+            
             foreach ($streamDetails as $streamValue) {
                 
                 $streamName = $streamValue['schoolStreamName']; $streamCode = $streamValue['schoolStreamCode'];
@@ -112,6 +109,67 @@ class studentInformation_Model extends Zf_Model {
                     $select_options .= '<option value="'.$streamCode.'">'.$streamName.'</option>';;
                     
                 }
+                
+            }
+            
+        }
+        
+               
+        echo $select_options;
+        
+        
+    }
+    
+    
+    
+    
+    //This public method is responsible for fetching all the student list for a given stream
+    public function getStudentsList(){
+        
+        //Student stream code
+        $studentStreamCode = $_POST['studentStreamCode'];
+        
+        //Here we have fetch all student class details
+        $studentClassDetails = $this->zvs_fetchStudentClassDetails($studentStreamCode);
+        
+        $select_options = '';
+        
+        
+        if($studentClassDetails == 0){
+            
+            $select_options .= '<option value="">No Valid Data!!</option>';
+            
+        }else{
+            
+            $select_options .= '<option value="" selected="selected">Select a student</option>';
+            
+            foreach ($studentClassDetails as $studentClassValue) {
+                
+                $identificationCode = $studentClassValue['identificationCode'];
+                
+                $studentPersonalDetails = $this->zvs_fetchStudentsPersonalDetails($identificationCode);
+                
+                if($studentPersonalDetails == 0){
+            
+                    $select_options .= '<option value="">No Valid Data!!</option>';
+
+                }else{
+                    
+                    foreach ($studentPersonalDetails as $studentPersonalValue) {
+                        
+                        $studentFirstName = $studentPersonalValue['studentFirstName']; 
+                        $studentMiddleName = empty($studentPersonalValue['studentMiddleName']) ? "" : $studentPersonalValue['studentMiddleName'];
+                        $studentLastName = empty($studentPersonalValue['studentLastName']) ? "" : $studentPersonalValue['studentLastName'];
+                        $studentAdmissionNumber = $studentPersonalValue['studentAdmissionNumber']; $identificationCode = $studentPersonalValue['identificationCode'];
+                        
+                        $studentFullName = $studentFirstName." ".$studentMiddleName." ".$studentLastName;
+
+                        $select_options .= '<option value="'.$identificationCode.'">['.$studentAdmissionNumber.'] - '.$studentFullName.'</option>';
+                    
+                    }
+                    
+                }
+                
                 
             }
             
@@ -164,7 +222,11 @@ class studentInformation_Model extends Zf_Model {
     
     
     //This prublic method fetcches school student statistics for a selceted year.
-    public function zvs_fetchStudentInformation(){
+    public function zvs_fetchStudentInformation($identificationCode){
+        
+        $identificationArray = explode(ZVSS_CONNECT, Zf_SecureData::zf_decode_data($identificationCode));
+        
+        $systemSchoolCode = $identificationArray[2];
         
         $zvs_studentDetails = "";
         
@@ -177,7 +239,7 @@ class studentInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
-                                                    $zvs_studentDetails .= $this->getTotalStudents(); 
+                                                    $zvs_studentDetails .= $this->getTotalStudents($systemSchoolCode); 
                         $zvs_studentDetails .=' </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                     Total Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-users"></i>
@@ -195,7 +257,7 @@ class studentInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
-                                                   $zvs_studentDetails .= $this->countStudentGender("Male"); 
+                                                   $zvs_studentDetails .= $this->countStudentGender($systemSchoolCode, "Male"); 
                         $zvs_studentDetails .=' </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                     Male Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-male"></i>
@@ -213,7 +275,7 @@ class studentInformation_Model extends Zf_Model {
                                             </div>
                                             <div class="details">
                                                 <div class="number" style="font-size: 35px !important">';
-                                                   $zvs_studentDetails .= $this->countStudentGender("Female");
+                                                   $zvs_studentDetails .= $this->countStudentGender($systemSchoolCode, "Female");
                         $zvs_studentDetails .=' </div>
                                                 <div class="desc" style="padding-top: 5px; font-family: Ubuntu-B;">
                                                     Female Students&nbsp;&nbsp;<span style="font-size: 15px !important;"><i class="fa fa-female"></i>
@@ -254,32 +316,13 @@ class studentInformation_Model extends Zf_Model {
     
     
     //This private method pulls data for all students in school
-    private function getTotalStudents(){
-        
-        //Male students
-        $totalMaleStudents = $this->countStudentGender("Male");
-        
-        //Female studenrs
-        $totalFemaleStudents = $this->countStudentGender("Female");
-        
-        //All students
-        $totalStudents = $totalMaleStudents + $totalFemaleStudents;
-        
-        return $totalStudents;
-        
-    }
-    
-    
-    
-    //This private method pulls data for all students based on gender
-    private function countStudentGender($gender){
+    private function getTotalStudents($systemSchoolCode){
         
         $studentPersonalDetailsTable = "zvs_students_personal_details";
         $studentClassDetailsTable = "zvs_students_class_details";
-        $studentsGender = $gender;
         
         //The counts SQL query goes here
-        $zvsStudentsCount = 'SELECT * FROM `'.$studentPersonalDetailsTable.'` INNER JOIN `'.$studentClassDetailsTable.'` on `'.$studentPersonalDetailsTable.'`.`identificationCode` = `'.$studentClassDetailsTable.'`.`identificationCode`  WHERE `'.$studentPersonalDetailsTable.'`.`studentGender` = "'.$studentsGender.'" ';
+        $zvsStudentsCount = 'SELECT * FROM `'.$studentPersonalDetailsTable.'` INNER JOIN `'.$studentClassDetailsTable.'` on `'.$studentPersonalDetailsTable.'`.`identificationCode` = `'.$studentClassDetailsTable.'`.`identificationCode`  WHERE  `'.$studentPersonalDetailsTable.'`.`systemSchoolCode` = "'.$systemSchoolCode.'" ';
         
         $executeStudentCount   = $this->Zf_AdoDB->Execute($zvsStudentsCount);
         
@@ -296,6 +339,36 @@ class studentInformation_Model extends Zf_Model {
         return $studentCount;
         
     }
+    
+    
+    
+    
+    //This private method pulls data for all students based on gender
+    private function countStudentGender($systemSchoolCode, $gender){
+        
+        $studentPersonalDetailsTable = "zvs_students_personal_details";
+        $studentClassDetailsTable = "zvs_students_class_details";
+        $studentsGender = $gender;
+        
+        //The counts SQL query goes here
+        $zvsStudentsCount = 'SELECT * FROM `'.$studentPersonalDetailsTable.'` INNER JOIN `'.$studentClassDetailsTable.'` on `'.$studentPersonalDetailsTable.'`.`identificationCode` = `'.$studentClassDetailsTable.'`.`identificationCode`  WHERE  `'.$studentPersonalDetailsTable.'`.`systemSchoolCode` = "'.$systemSchoolCode.'" AND `'.$studentPersonalDetailsTable.'`.`studentGender` = "'.$studentsGender.'" ';
+        
+        $executeStudentCount   = $this->Zf_AdoDB->Execute($zvsStudentsCount);
+        
+        if (!$executeStudentCount){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            $studentCount = $executeStudentCount->RecordCount();
+        }
+        
+        //return student count
+        return $studentCount;
+        
+    }
+    
     
     
     
@@ -322,6 +395,84 @@ class studentInformation_Model extends Zf_Model {
         
         //return student count
         return $studentCount;
+        
+    }
+    
+    
+    
+    
+    //This private method fetches student class detials for a given selected stream.
+    private function zvs_fetchStudentClassDetails($studentsStreamCode){
+        
+        $currentYear = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
+            
+        $zvs_sqlValue["studentStreamCode"] = Zf_QueryGenerator::SQLValue($studentsStreamCode);
+        $zvs_sqlValue["studentYearOfStudy"] = Zf_QueryGenerator::SQLValue($currentYear);
+
+        $fetchStudentClassDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_class_details', $zvs_sqlValue);
+        
+        $zf_executeFetchStudentClassDetails = $this->Zf_AdoDB->Execute($fetchStudentClassDetails);
+
+        if(!$zf_executeFetchStudentClassDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchStudentClassDetails->RecordCount() > 0){
+
+                while(!$zf_executeFetchStudentClassDetails->EOF){
+                    
+                    $results = $zf_executeFetchStudentClassDetails->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    //This private method fetches student class detials for a given selected stream.
+    private function zvs_fetchStudentsPersonalDetails($identificationCode){
+         
+        $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+        
+        $fetchStudentPersonalDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_students_personal_details', $zvs_sqlValue);
+        
+        $zf_executeFetchStudentPersonalDetails = $this->Zf_AdoDB->Execute($fetchStudentPersonalDetails);
+
+        if(!$zf_executeFetchStudentPersonalDetails){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchStudentPersonalDetails->RecordCount() > 0){
+
+                while(!$zf_executeFetchStudentPersonalDetails->EOF){
+                    
+                    $results = $zf_executeFetchStudentPersonalDetails->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
         
     }
     

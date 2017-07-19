@@ -4,13 +4,7 @@
     $zf_controller->Zf_loadModel("student_module", "studentProfile");
     
     //This is user identification code
-    $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData[0]);
-    
-    //This is the student admission number
-    $studentAdmissionNumber = $zf_actionData[1];
-    
-    //Zf_SessionHandler::zf_setSessionVariable("sessionIdentificationCode", $identificationCode);
-  
+    $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
     
 ?>
     
@@ -51,7 +45,7 @@
                                             <h3 class="" style="color: #21B4E2 !important;">Student Details</h3>
                                         </div>
                                         <?php
-                                            $zf_controller->zf_targetModel->fetchStudentProfile($zf_actionData);
+                                            $zf_controller->zf_targetModel->fetchStudentProfile($identificationCode);
                                         ?>
                                     </div>
                                 </div>
@@ -62,7 +56,7 @@
                                             <h3 class=""style="color: #21B4E2 !important;">Guardian Details</h3>
                                         </div>
                                         <?php
-                                            $zf_controller->zf_targetModel->fetchGuardianProfile($zf_actionData);
+                                            $zf_controller->zf_targetModel->fetchGuardianProfile($identificationCode);
                                         ?>
                                     </div>
                                     <div class="clearfix"></div>

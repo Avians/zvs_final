@@ -34,12 +34,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of parent module-->
-<li class="<?php if ($zvs_action == "parent_profile") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "parent_module" || $zvs_action == "parent_profile") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-users"></i>
         <span class="title"> Parent Module</span>
-        <?php if ($zvs_action == "parent_profile") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "parent_profile") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "parent_module" || $zvs_action == "parent_profile") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "parent_module" || $zvs_action == "parent_profile") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(PARENT_PROFILE, $zvs_allowedResources)){ ?>

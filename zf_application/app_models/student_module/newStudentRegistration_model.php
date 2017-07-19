@@ -314,7 +314,7 @@ class newStudentRegistration_Model extends Zf_Model {
                 $studentStreamCode = $this->_validResult['studentStreamCode'];
                 $studentYearOfStudy = explode("-", Zf_Core_Functions::Zf_CurrentDate())[2];
                 $studentAdmissionNumber = $this->_validResult['studentAdmissionNumber'];
-                $studentEmailAddress = (empty($this->_validResult['studentEmailAddress'])) ? "stu_".$studentAdmissionNumber.$schoolEmailDomain : $this->_validResult['studentEmailAddress'];
+                $studentEmailAddress = (empty($this->_validResult['studentEmailAddress'])) ? "stu_".Zf_Core_Functions::Zf_CleanName($studentAdmissionNumber).$schoolEmailDomain : $this->_validResult['studentEmailAddress'];
                 $studentPassword = (empty($this->_validResult['studentPassword'])) ? "zvsStudent" : $this->_validResult['studentPassword'];
                 $studentRole = explode(ZVSS_CONNECT, $this->_validResult['studentSchoolRole'])[1];
                 
@@ -334,10 +334,10 @@ class newStudentRegistration_Model extends Zf_Model {
                 $guardianLocality = (empty($this->_validResult['guardianLocality'])) ? $schoolLocality : $this->_validResult['guardianLocality'];
                 $guardianBoxAddress = (empty($this->_validResult['guardianBoxAddress'])) ? $schoolBoxAddress : $this->_validResult['guardianBoxAddress'];
                 $guardianPhoneNumber = (empty($this->_validResult['guardianPhoneNumber'])) ? $schoolPhoneNumber : $this->_validResult['guardianPhoneNumber'];
-                $guardianRelation = $this->_validResult['guardianRelation'];
+                $guardianRelation = (empty($this->_validResult['guardianRelation'])) ? "Not set" : $this->_validResult['guardianRelation'];
                 $guardianOccupation = $this->_validResult['guardianOccupation'];//not required field
                 $guardianLanguage = $this->_validResult['guardianLanguage'];
-                $guardianEmailAddress = (empty($this->_validResult['guardianEmailAddress'])) ? "gud_".$studentAdmissionNumber.$schoolEmailDomain : $this->_validResult['guardianEmailAddress'];
+                $guardianEmailAddress = (empty($this->_validResult['guardianEmailAddress'])) ? "gud_".Zf_Core_Functions::Zf_CleanName($studentAdmissionNumber).$schoolEmailDomain : $this->_validResult['guardianEmailAddress'];
                 $guardianPassword = (empty($this->_validResult['guardianPassword']))?  "zvsGuardian"  : $this->_validResult['guardianPassword'];
                 $guardianRole = explode(ZVSS_CONNECT, $this->_validResult['guardianSchoolRole'])[1];
                 
