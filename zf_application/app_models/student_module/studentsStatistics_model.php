@@ -86,12 +86,14 @@ class studentsStatistics_Model extends Zf_Model {
 
         $getMaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Male' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
         $getFemaleStudents = "SELECT * FROM " . $zvs_table . " WHERE studentGender ='Female' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
-
+        $getGenderNotSet = "SELECT * FROM " . $zvs_table . " WHERE studentGender = 'Not set' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        
 
         $executeMaleStudents   = $this->Zf_AdoDB->Execute($getMaleStudents);
         $executeFemaleStudents = $this->Zf_AdoDB->Execute($getFemaleStudents);
+        $executeGenderNotSet = $this->Zf_AdoDB->Execute($getGenderNotSet);
 
-        if (!$executeMaleStudents|| !$executeFemaleStudents){
+        if (!$executeMaleStudents|| !$executeFemaleStudents || !$executeGenderNotSet){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
@@ -99,6 +101,7 @@ class studentsStatistics_Model extends Zf_Model {
 
             $maleCount = $executeMaleStudents->RecordCount();
             $femaleCount = $executeFemaleStudents->RecordCount();
+            $notSetCount = $executeGenderNotSet->RecordCount();
 
         }
         
@@ -116,7 +119,12 @@ class studentsStatistics_Model extends Zf_Model {
                     "label":"Female Students",
                     "value":"'.$femaleCount.'",
                     "tooltext": "Total Female Students: '.$femaleCount.'"
-                  }
+                  },
+                  {  
+                    "label":"Gender Not Set",
+                    "value":"'.$notSetCount.'",
+                    "tooltext": "Gender Not Set: '.$notSetCount.'"
+                  },
                 ]
                             
                     ';
@@ -438,6 +446,7 @@ class studentsStatistics_Model extends Zf_Model {
         $getSponsor = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Sponsor' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
         $getFamilyFriend = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Family Friend' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
         $getOthers = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Others' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
+        $getNotSet = "SELECT * FROM " . $zvs_table . " WHERE guardianRelation ='Not set' AND systemSchoolCode = '".$systemSchoolCode."' AND studentSchoolStatus = '".STUDENT_CONTINUING."' "; //die();
 
 
         $executeGetParent   = $this->Zf_AdoDB->Execute($getParent);
@@ -449,9 +458,10 @@ class studentsStatistics_Model extends Zf_Model {
         $executeGetSponsor   = $this->Zf_AdoDB->Execute($getSponsor);
         $executeGetFamilyFriend   = $this->Zf_AdoDB->Execute($getFamilyFriend);
         $executeGetOthers   = $this->Zf_AdoDB->Execute($getOthers);
+        $executeGetNotSet   = $this->Zf_AdoDB->Execute($getNotSet);
         
 
-        if (!$executeGetParent || !$executeGetAdoptiveParent || !$executeGetGrandParent || !$executeGetUncleAunt || !$executeGetCousin || !$executeGetNephewNiece || !$executeGetSponsor || !$executeGetFamilyFriend || !$executeGetOthers){
+        if (!$executeGetParent || !$executeGetAdoptiveParent || !$executeGetGrandParent || !$executeGetUncleAunt || !$executeGetCousin || !$executeGetNephewNiece || !$executeGetSponsor || !$executeGetFamilyFriend || !$executeGetOthers || !$executeGetNotSet){
 
             echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
 
@@ -466,6 +476,7 @@ class studentsStatistics_Model extends Zf_Model {
             $sponsorCount = $executeGetSponsor->RecordCount();
             $familyFriendCount = $executeGetFamilyFriend->RecordCount();
             $othersCount = $executeGetOthers->RecordCount();
+            $notSetCount = $executeGetNotSet->RecordCount();
         }
         
         
@@ -518,6 +529,11 @@ class studentsStatistics_Model extends Zf_Model {
                      "label":"Others",
                      "value":"'.$othersCount.'",
                      "tooltext": "Total Others: '.$othersCount.'"
+                  },
+                  {  
+                     "label":"Not Set",
+                     "value":"'.$notSetCount.'",
+                     "tooltext": "Total Not Set: '.$notSetCount.'"
                   },
                   
                 ]

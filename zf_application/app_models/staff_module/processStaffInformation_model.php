@@ -350,6 +350,96 @@ class processStaffInformation_Model extends Zf_Model {
     
     
     
+    /**
+     * This method processes all school staff that belong to a selected role
+     */
+    public function processStaffList(){
+        
+        $schoolRoleCode = $_POST['schoolRoleCode'];
+        
+        $systemSchoolCode = explode(ZVSS_CONNECT, $schoolRoleCode)[0];
+        
+        //Here we fetch all school staff with this school role code
+        $schoolStaffDetails = $this->zvs_fetchSchoolStaff($systemSchoolCode);
+        
+        $select_options = '';
+        
+        if($schoolStaffDetails == 0){
+            
+            $select_options .= '<option value="">No Valid Staff Data!!</option>';
+            
+        }else{
+            
+            $select_options .= '<option value="" selected="selectedDriver">Select school staff</option>';
+            
+            foreach ($schoolStaffDetails as $staffValue) {
+                
+                //Pull staff identification code
+                $identificationCode = $staffValue['identificationCode'];
+                
+                //Pull staff school role from the identification code        
+                $staffRole = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode)[3];
+                
+                //Return only values for staff whose role matches current selected role
+                if($schoolRoleCode == $systemSchoolCode.ZVSS_CONNECT.$staffRole){
+                    
+                    $firstName = (empty($staffValue['staffFirstName'])) ? "" : $staffValue['staffFirstName'];
+                    $middleName = (empty($staffValue['staffMiddleName'])) ? "" : $staffValue['staffMiddleName'];
+                    $lastName = (empty($staffValue['staffLastName'])) ? "" : $staffValue['staffLastName'];
+                    $staffNumber = $staffValue['staffAdmissionNumber'];
+                    
+                    $select_options .= '<option value="'.$identificationCode.'">['.$staffNumber.'] - '.$firstName.' '.$lastName.'</option>';
+
+                }
+
+            }
+            
+        }
+            
+        echo $select_options;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method processes all stuff profile
+     */
+    public function processStaffProfile(){
+        
+        //This is staff identification code
+        $identificationCode = $_POST['staffIdentificationCode'];
+        
+        //User Identification Array
+        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        //System School Code
+        $systemSchoolCode = $userIdentificationArray[2];
+
+        //Student Admission Number
+        $studentAdmissionNumber = $userIdentificationArray[4];
+        
+        //$staffProfile = $this->actualStaffProfileData($systemSchoolCode, $studentAdmissionNumber);
+        
+        $staffProfileView = "";
+        
+        $staffProfileView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
+                                        <!--Staff Personal Details-->
+                                        <div class="zvs-content-titles">
+                                            <h3 class="" style="color: #21B4E2 !important;">Staff Details</h3>
+                                        </div>';
+                                        //$staffProfileView .= $studentProfile;
+                                        $staffProfileView .= $identificationCode;
+            $staffProfileView .= '</div>
+                                </div>';
+        
+        echo $staffProfileView;
+        
+    }
+    
+    
     
     //This prublic method fetcches school student statistics for a selceted year.
     public function zvs_fetchStaffInformation($identificationCode){
@@ -450,6 +540,44 @@ class processStaffInformation_Model extends Zf_Model {
         
         
         echo $zvs_staffDetails;
+        
+    }
+    
+    
+    
+    
+    //This private method fetches all details of school staff
+    private function zvs_fetchSchoolStaff($systemSchoolCode){
+        
+        $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        $fetchSchoolStaff = Zf_QueryGenerator::BuildSQLSelect('zvs_staff_personal_details', $zvs_sqlValue);
+        
+        $zf_executeFetchSchoolStaff = $this->Zf_AdoDB->Execute($fetchSchoolStaff);
+
+        if(!$zf_executeFetchSchoolStaff){
+
+            echo "<strong>Query Execution Failed:</strong> <code>" . $this->Zf_AdoDB->ErrorMsg() . "</code>";
+
+        }else{
+
+            if($zf_executeFetchSchoolStaff->RecordCount() > 0){
+
+                while(!$zf_executeFetchSchoolStaff->EOF){
+                    
+                    $results = $zf_executeFetchSchoolStaff->GetRows();
+                    
+                }
+                
+                return $results;
+
+                
+            }else{
+                
+                return 0;
+                
+            }
+        }
         
     }
     

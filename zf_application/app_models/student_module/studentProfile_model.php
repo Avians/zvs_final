@@ -236,19 +236,19 @@ class studentProfile_Model extends Zf_Model {
                                                 </div>
                                             </div>
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10" style="border-left: 1px solid #eeeeee; min-height: 100px;">
-                                                <div class="row-fluid margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Full Name:</div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentFullName.'</div>  
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$studentFullName.'</div>  
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <div class="row-fluid margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Email:</div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px;">'.$studentEmailAddress.'</div>  
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important;  word-wrap:break-word;">'.$studentEmailAddress.'</div>  
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <div class="row-fluid margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Mobile:</div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px;">'.$studentPhoneNumber.'</div>  
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$studentPhoneNumber.'</div>  
                                                 </div>
                                             </div>  
                                         </div>
@@ -269,9 +269,9 @@ class studentProfile_Model extends Zf_Model {
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Blood Group:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentBloodGroup.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="row-fluid margin-top-5 margin-bottom-15" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Disability Status:</b></div>
-                                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentDisability.'</div>  
+                                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$studentDisability.'</div>  
                                         </div>
                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Student Country:</b></div>
@@ -390,20 +390,20 @@ class studentProfile_Model extends Zf_Model {
                                                     <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10" style="border-left: 1px solid #eeeeee; min-height: 100px;">
-                                                <div class="row-fluid margin-bottom-10" style="min-height: 25px;">
+                                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10 style="border-left: 1px solid #eeeeee; min-height: 100px;">
+                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Full Name:</div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$guardianFullName.'</div>  
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$guardianFullName.'</div>  
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <div class="row-fluid margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Email:</div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px;">'.$guardianEmail.'</div>  
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$guardianEmail.'</div>  
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <div class="row-fluid margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Mobile:</div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px;">'.$guardianPhoneNumber.'</div>  
+                                                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$guardianPhoneNumber.'</div>  
                                                 </div>
                                             </div>  
                                         </div>

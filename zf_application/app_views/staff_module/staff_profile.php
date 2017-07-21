@@ -1,7 +1,7 @@
 <?php
 
     //Access to pull all administrator information.
-    $zf_controller->Zf_loadModel("student_module", "studentInformation");
+    $zf_controller->Zf_loadModel("staff_module", "staffInformation");
     
     //This is user identification code
     $identificationCode = Zf_SecureData::zf_decode_data($zf_actionData);
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- BEGIN PAGE TITLE & BREADCRUMB-->
-                <h3 class="page-title">Student &AMP; Guardian Information</h3>
+                <h3 class="page-title">Staff Information</h3>
                 <div class="page-breadcrumb breadcrumb">
                     <i class="fa fa-home"></i> <?php Zf_BreadCrumbs::zf_load_breadcrumbs(); ?>
                 </div>
@@ -32,7 +32,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
-                        <li><a>General student details</a></li>
+                        <li><a>General staff details</a></li>
                     </ul>
 
                     <div class="z-content-inner" style="background-color: #EFEFEF !important;">
@@ -42,62 +42,45 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="alert alert-info">
                                         <button class="close" data-dismiss="alert"></button>
-                                        <b>In order to view a student profile, select the target student class, then select an associated stream. From the populated student list, select/search the name of the student whose profile you want to view.</b>
+                                        <b>In order to view staff profile, select a specific school role to which the target staff belongs. From the populated staff list, select/search the name of the staff whose profile you want to view.</b>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="portlet zvs-content-blocks" style="min-height: 150px !important;">
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 160px !important; height: auto !important;">
-                                                <div class="portlet-titles">Student Class Details</div>
+                                            <div class="col-md-6 col-sm-12 col-xs-12" style="border-right: 1px solid #efefef; min-height: 90px !important; height: auto !important;">
+                                                <div class="portlet-titles">Filter Staff Role</div>
                                                 <div class="row" style="margin-top: 20px !important;">
                                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-4 col-sm-12 col-xs-12">Select Class:</label>
-                                                            <div class="col-md-8 col-sm-12 col-xs-12">
-                                                                <select class="form-control select2me studentClassCode" id="studentClassCode" name="studentClassCode" data-placeholder="Form 1 or Class 1, Form 2 or Class 2, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentClassCode"); ?>">
+                                                            <label class="control-label col-md-4">Select Role:</label>
+                                                            <div class="col-md-8">
+                                                                <select class="form-control select2me schoolRoleCode" id="schoolRoleCode" name="schoolRoleCode" data-placeholder="" value="<?php echo $zf_formHandler->zf_getFormValue("schoolRoleCode"); ?>">
                                                                     <?php
-                                                                        $zf_widgetFolder = "zvs_options"; $zf_widgetFile = "class_select.php";
-                                                                        Zf_ApplicationWidgets::zf_load_widget($zf_widgetFolder, $zf_widgetFile, $identificationCode);
+                                                                        //Here we fetch all available school roles
+                                                                        Zf_ApplicationWidgets::zf_load_widget("zvs_options", "role_select.php", $identificationCode);
                                                                     ?>
                                                                 </select>
                                                                 <span class="help-block server-side-error">
-                                                                    <?php echo $zf_formHandler->zf_getFormError("studentClassCode") ?>
+                                                                    <?php echo $zf_formHandler->zf_getFormError("schoolRoleCode") ?>
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row clearfix"><br /></div>
-                                                <div class="row">
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-4 col-sm-12 col-xs-12">Stream Name:</label>
-                                                            <div class="col-md-8 col-sm-12 col-xs-12">
-                                                                <select class="form-control select2me studentStreamCode" id="studentStreamCode" name="studentStreamCode" data-placeholder="East, West, North, South, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentStreamCode"); ?>">
-                                                                    <option value=""></option>
-                                                                </select>
-                                                                <span class="help-block server-side-error" >
-                                                                    <?php echo $zf_formHandler->zf_getFormError("studentStreamCode") ?>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--/row-->
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-xs-12">
-                                                <div class="portlet-titles">Name / Admission No.</div>
+                                                <div class="portlet-titles">Filter Staff Name</div>
                                                 <div class="row" style="margin-top: 20px !important;">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-4">Name/Admn No:</label>
+                                                            <label class="control-label col-md-4">Name/ID No:</label>
                                                             <div class="col-md-8">
-                                                                <select class="form-control select2me studentsListDetails" id="studentsListDetails" name="studentsListDetails" data-placeholder="Athias Avians - 2373, ..." value="<?php echo $zf_formHandler->zf_getFormValue("studentsListDetails"); ?>">
+                                                                <select class="form-control select2me staffIdentificationCode" id="staffIdentificationCode" name="staffIdentificationCode" data-placeholder="[25138058] - Athias Avians, ..." value="<?php echo $zf_formHandler->zf_getFormValue("staffIdentificationCode"); ?>">
                                                                     <option value=""></option>
                                                                 </select>
                                                                 <span class="help-block server-side-error" >
-                                                                    <?php echo $zf_formHandler->zf_getFormError("studentsListDetails") ?>
+                                                                    <?php echo $zf_formHandler->zf_getFormError("staffIdentificationCode") ?>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -109,10 +92,10 @@
                                 </div>
                             </div>
                             
-                            <!--This section holds information about the students who has been selected-->
+                            <!--This section holds information about the staff who has been selected-->
                             <div class="row" class="row margin-top-10">
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="studentProfileContainer" style="margin-bottom: -5px !important;">
-                                    <div class="row" id="studentProfileDetails">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="staffProfileContainer" style="margin-bottom: -5px !important;">
+                                    <div class="row" id="staffProfileDetails">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="portlet zvs-content-blocks col-md-12" class="zvs_preloader" align="center">
                                                 <div class="zvs_loader"></div>
@@ -120,8 +103,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="guardianProfileContainer" style="margin-bottom: -5px !important;">
-                                    <div class="row" id="guardianProfileDetails">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="relatedDetailsContainer" style="margin-bottom: -5px !important;">
+                                    <div class="row" id="relatedStaffDetails">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="portlet zvs-content-blocks col-md-12" class="zvs_preloader" align="center">
                                                 <div class="zvs_loader"></div>
@@ -146,9 +129,9 @@
         //Here we are generating the applications absolute path.
         var $absolute_path = "<?= ZF_ROOT_PATH; ?>";
         var $separator = "<?= DS; ?>";
-        var $current_view = "student_guardian_profile";
+        var $current_view = "staff_profile";
 
-        StudentModule.init($current_view, $absolute_path, $separator );
+        StaffModule.init($current_view, $absolute_path, $separator );
         
         //This ensures that the data pre-loader is loaded before data is loaded.
         $(".studentsListDetails").change(function(){

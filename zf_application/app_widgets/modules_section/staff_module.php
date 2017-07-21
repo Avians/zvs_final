@@ -41,6 +41,17 @@ $main_menu = array(
         'id' => ''
     ),
     
+    //Staff Profile
+    "staff_profile" => array(
+        'name' => '<i class="fa fa-user"></i> Staff Profile',
+        'controller' => $zvs_controller,
+        'action' => 'staff_profile',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    ),
+    
     
     //Staff directory
     "staff_directory" => array(
@@ -58,12 +69,12 @@ $main_menu = array(
 ?>
 
 <!-- This menu item manages all aspects of staff module-->
-<li class="<?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_profile" || $zvs_action == "staff_directory") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-user-circle"></i>
         <span class="title"> Staff Module </span>
-        <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_profile" || $zvs_action == "staff_directory") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "staff_module" || $zvs_action == "staff_details" || $zvs_action == "register_staff" || $zvs_action == "staff_profile" || $zvs_action == "staff_directory") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STAFF_DETAILS, $zvs_allowedResources)){ ?>
@@ -74,6 +85,11 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(REGISTER_STAFF, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "register_staff") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['register_staff']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(STAFF_PROFILE, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "staff_profile") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['staff_profile']); ?>
             </li>
         <?php } ?>
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STAFF_DIRECTORY, $zvs_allowedResources)){ ?>

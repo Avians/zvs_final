@@ -32,7 +32,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 zozo_tab_wrapper">
                 <div id="tabbed-nav">
                     <ul class="z-tabs-titles">
-                        <li><a>Collect school fees</a></li>
+                        <li><a>General guardian details</a></li>
                     </ul>
 
                     <div class="z-content-inner" style="background-color: #EFEFEF !important;">

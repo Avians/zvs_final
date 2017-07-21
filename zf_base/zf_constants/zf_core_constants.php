@@ -269,6 +269,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         //These constant are a set of resources that are usable within the staff module
         defined('STAFF_DETAILS') ? null : define('STAFF_DETAILS' , 'StfMod'.CONNECT.'StaffDetails');
         defined('REGISTER_STAFF') ? null : define('REGISTER_STAFF' , 'StfMod'.CONNECT.'RegisterStaff');
+        defined('STAFF_PROFILE') ? null : define('STAFF_PROFILE' , 'StfMod'.CONNECT.'StaffProfile');
         defined('STAFF_DIRECTORY') ? null : define('STAFF_DIRECTORY' , 'StfMod'.CONNECT.'StaffDirectory');
     
     
