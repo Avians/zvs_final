@@ -3,7 +3,9 @@
 class role_select_Model extends Zf_Model {
 
     public function __construct() {
+        
         parent::__construct();
+        
     }
     
     

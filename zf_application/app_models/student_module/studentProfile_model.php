@@ -236,17 +236,17 @@ class studentProfile_Model extends Zf_Model {
                                                 </div>
                                             </div>
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10" style="border-left: 1px solid #eeeeee; min-height: 100px;">
-                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Full Name:</div>
                                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$studentFullName.'</div>  
                                                 </div>
-                                                <div class="clearfix"></div>
-                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
+                                                <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                                <div class="row-fluid" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Email:</div>
                                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important;  word-wrap:break-word;">'.$studentEmailAddress.'</div>  
                                                 </div>
-                                                <div class="clearfix"></div>
-                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
+                                                <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                                <div class="row-fluid" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Mobile:</div>
                                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$studentPhoneNumber.'</div>  
                                                 </div>
@@ -257,27 +257,32 @@ class studentProfile_Model extends Zf_Model {
                                                 <div class="clearfix"><hr></div>
                                             </div>
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Gender:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentGender.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Year of Birth:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentDateOfBirth.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Blood Group:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentBloodGroup.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-top-5 margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Disability Status:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$studentDisability.'</div>  
                                         </div>
-                                       <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Student Country:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$countryName.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Student Locality:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$localityName.'</div>  
                                         </div>
@@ -286,18 +291,20 @@ class studentProfile_Model extends Zf_Model {
                                                 <div class="clearfix"><hr></div>
                                             </div>
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Admission No:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentAdmissionNumber.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Class:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$className.'</div>  
                                         </div>';
             
                                         if($className != $streamName){
                                             
-                $studentProfileView .= '<div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                $studentProfileView .= '<div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Stream:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$streamName.'</div>  
                                         </div>';
@@ -312,7 +319,8 @@ class studentProfile_Model extends Zf_Model {
                                             //This private method pulls student hostel details
                                             $studentHostelName = $this->zvs_pullStudentHostelDetails($systemSchoolCode, $studentIdentificationCode);
             
-                                            $studentProfileView .= '<div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                            $studentProfileView .= '<div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                                                    <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
                                                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Hostel:</b></div>
                                                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$studentHostelName.'</div>  
                                                                     </div>';
@@ -391,16 +399,16 @@ class studentProfile_Model extends Zf_Model {
                                                 </div>
                                             </div>
                                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10 style="border-left: 1px solid #eeeeee; min-height: 100px;">
-                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
+                                                <div class="row-fluid" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Full Name:</div>
                                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$guardianFullName.'</div>  
                                                 </div>
-                                                <div class="clearfix"></div>
-                                                <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
+                                                <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                                <div class="row-fluid" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Email:</div>
                                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$guardianEmail.'</div>  
                                                 </div>
-                                                <div class="clearfix"></div>
+                                                <div class="clearfix margin-top-5 margin-bottom-10"></div>
                                                 <div class="row-fluid margin-top-5 margin-bottom-10" style="min-height: 25px;">
                                                     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Mobile:</div>
                                                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$guardianPhoneNumber.'</div>  
@@ -412,31 +420,37 @@ class studentProfile_Model extends Zf_Model {
                                                 <div class="clearfix"><hr></div>
                                             </div>
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Box Address:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$guardianBoxAddress.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Gender:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$guardianGender.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Student Relation:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$guardianRelation.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Occupation:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$guardianOccupation.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Official Language:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$guardianLanguage.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Guardian Country:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$countryName.'</div>  
                                         </div>
-                                        <div class="row-fluid margin-bottom-15" style="min-height: 25px;">
+                                        <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                        <div class="row-fluid" style="min-height: 25px;">
                                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Guardian Locality:</b></div>
                                             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$localityName.'</div>  
                                         </div>

@@ -7,7 +7,7 @@
  * ---------------------------------------------------------------------
  * |                                                                   |
  * |  This the model is responsible for fetching data about location   |
- * |  of a newly registered staff.                                   |
+ * |  of a newly registered staff.                                     |
  * |                                                                   |
  * ---------------------------------------------------------------------
  */
@@ -420,20 +420,141 @@ class processStaffInformation_Model extends Zf_Model {
         //Student Admission Number
         $studentAdmissionNumber = $userIdentificationArray[4];
         
-        //$staffProfile = $this->actualStaffProfileData($systemSchoolCode, $studentAdmissionNumber);
+        $staffDetails = $this->zvs_fetchSchoolStaff($systemSchoolCode, $identificationCode);
         
         $staffProfileView = "";
         
-        $staffProfileView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
+        if($staffDetails == 0){
+            
+            $staffProfileView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
+                                    <div class="portlet box zvs-content-blocks" style="min-height: 310px !important;">
+                                        <!--Staff Personal Details-->
+                                        <div class="zvs-content-titles">
+                                            <h3 class="" style="color: #21B4E2 !important;">Staff Details</h3>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 20% !important;">
+                                                <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br>
+                                                <span class="content-view-errors" style="color: #B94A48;">
+                                                    &nbsp;There is no staff details associated with the selected school staff! Contact school system administrator for more information.
+                                                </span>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>';
+            
+        }else{
+            
+            
+            foreach ($staffDetails as $staffValues){
+                
+                $staffDesignation = empty($staffValues['staffDesignation']) ? "" : $staffValues['staffDesignation'].".";
+                $staffFirstName = $staffValues['staffFirstName']; $staffMiddleName = empty($staffValues['staffMiddleName']) ? "" : $staffValues['staffMiddleName']; $staffLastName = $staffValues['staffLastName']; 
+                $staffFullName = $staffDesignation." ".$staffFirstName." ".$staffMiddleName." ".$staffLastName;
+                $staffPhoneNumber = empty($staffValues['staffPhoneNumber']) ? "Not set" : $staffValues['staffPhoneNumber'];
+                $staffBoxAddress = empty($staffValues['staffBoxAddress']) ? "Not set" : $staffValues['staffBoxAddress'];
+                $staffGender = empty($staffValues['staffGender']) ? "Not set" : $staffValues['staffGender'];
+                $staffAdmissionNumber = empty($staffValues['staffAdmissionNumber']) ? "Not set" : $staffValues['staffAdmissionNumber'];
+                $staffIdNumber = empty($staffValues['staffIdNumber']) ? "Not set" : $staffValues['staffIdNumber'];
+                $staffReligion = empty($staffValues['staffReligion']) ? "Not set" : $staffValues['staffReligion'];
+                $staffMaritalStatus = empty($staffValues['staffMaritalStatus']) ? "Not set" : $staffValues['staffMaritalStatus'];
+                $staffLanguage = empty($staffValues['staffLanguage']) ? "Not set" : $staffValues['staffLanguage'];
+                
+                //Pull staff email address
+                $staffEmail = $this->zvs_pullApplicationUserEmail($identificationCode);
+                
+                //Pull student country
+                $countryName = $this->zvs_pullCountryDetails($staffValues['staffCountry']);
+                
+                //Pull student locality
+                $localityName = $this->zvs_pullLocalityDetails($staffValues['staffCountry'], $staffValues['staffLocality']);
+            }
+            
+            $staffProfileView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
                                     <div class="portlet box zvs-content-blocks" style="min-height: 350px !important;">
                                         <!--Staff Personal Details-->
                                         <div class="zvs-content-titles">
                                             <h3 class="" style="color: #21B4E2 !important;">Staff Details</h3>
-                                        </div>';
-                                        //$staffProfileView .= $studentProfile;
-                                        $staffProfileView .= $identificationCode;
-            $staffProfileView .= '</div>
+                                        </div>
+                                        <div class="col-md-12 margin-bottom-10" style="border: 0px solid #efefef; border-radius: 5px !important;">
+                                            <div class="row" style="min-height: 60px;">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12  margin-top-10" style="text-align: center; padding-top: 10px;">
+                                                    <div class="zvs-circular">   
+                                                        <i class="fa fa-user" style="font-size: 80px; padding-top: 30px !important; color: #e5e5e5 !important;"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 margin-top-10" style="border-left: 1px solid #eeeeee; min-height: 100px;">
+                                                    <div class="row-fluid" style="min-height: 25px;">
+                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Full Name:</div>
+                                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$staffFullName.'</div>  
+                                                    </div>
+                                                    <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                                    <div class="row-fluid" style="min-height: 25px;">
+                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Email:</div>
+                                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$staffEmail.'</div>  
+                                                    </div>
+                                                    <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                                    <div class="row-fluid" style="min-height: 25px;">
+                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="text-align: right; padding: 4px;">Mobile:</div>
+                                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="background-color:  #f2f3f4; padding: 5px; overflow: hidden !important; word-wrap:break-word;">'.$staffPhoneNumber.'</div>  
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="clearfix"><hr></div>
+                                                </div>
+                                            </div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Staff Number:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffAdmissionNumber.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>ID Number:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffIdNumber.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Box Address:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffBoxAddress.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Gender:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffGender.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Staff Religion:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffReligion.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Martial Status:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffMaritalStatus.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Official Language:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$staffLanguage.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Staff Country:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$countryName.'</div>  
+                                            </div>
+                                            <div class="clearfix margin-top-5 margin-bottom-10"></div>
+                                            <div class="row-fluid" style="min-height: 25px;">
+                                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" style="text-align: right; padding: 5px;"><b>Staff Locality:</b></div>
+                                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="background-color: #f2f3f4; padding: 5px;">'.$localityName.'</div>  
+                                            </div>
+                                        </div>
+                                        <div class="clearfix" style="margin-bottom: 20px !important;"></div>
+                                    </div>
                                 </div>';
+            
+        }
         
         echo $staffProfileView;
         
@@ -547,9 +668,15 @@ class processStaffInformation_Model extends Zf_Model {
     
     
     //This private method fetches all details of school staff
-    private function zvs_fetchSchoolStaff($systemSchoolCode){
+    private function zvs_fetchSchoolStaff($systemSchoolCode, $identificationCode = NULL){
         
         $zvs_sqlValue["systemSchoolCode"] = Zf_QueryGenerator::SQLValue($systemSchoolCode);
+        
+        if(!empty($identificationCode) && $identificationCode != "" && $identificationCode != NULL){
+            
+            $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+            
+        }
         
         $fetchSchoolStaff = Zf_QueryGenerator::BuildSQLSelect('zvs_staff_personal_details', $zvs_sqlValue);
         
@@ -669,6 +796,129 @@ class processStaffInformation_Model extends Zf_Model {
         return $schoolRolesCount;
         
     } 
+    
+    
+    
+    /**
+     * This survey pulls the users email address
+     */
+    private function zvs_pullApplicationUserEmail($identificationCode){
+        
+        $zvs_sqlValue["identificationCode"] = Zf_QueryGenerator::SQLValue($identificationCode);
+        
+        $zf_selectUserDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_application_users', $zvs_sqlValue);
+
+        if(!$this->Zf_QueryGenerator->Query($zf_selectUserDetails)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$zf_selectUserDetails}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $fetchRow = $this->Zf_QueryGenerator->Row();
+                    $emailAddress = $fetchRow->email;
+
+                }
+
+            }
+            
+            return $emailAddress;
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * This survey pulls the users email address
+     */
+    private function zvs_pullCountryDetails($countryCode){
+        
+        $zvs_sqlValue["countryCode"] = Zf_QueryGenerator::SQLValue($countryCode);
+        
+        $zf_selectCountryDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_country', $zvs_sqlValue);
+
+        if(!$this->Zf_QueryGenerator->Query($zf_selectCountryDetails)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$zf_selectCountryDetails}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $fetchRow = $this->Zf_QueryGenerator->Row();
+                    $countryName = $fetchRow->countryName;
+
+                }
+
+            }
+            
+            return $countryName;
+        }
+        
+    }
+    
+    
+    
+    
+    /**
+     * This survey pulls the users email address
+     */
+    private function zvs_pullLocalityDetails($countryCode, $localityCode){
+        
+        $zvs_sqlValue["countryCode"] = Zf_QueryGenerator::SQLValue($countryCode);
+        $zvs_sqlValue["localityCode"] = Zf_QueryGenerator::SQLValue($localityCode);
+        
+        $zf_selectLocalityDetails = Zf_QueryGenerator::BuildSQLSelect('zvs_school_locality', $zvs_sqlValue);
+
+        if(!$this->Zf_QueryGenerator->Query($zf_selectLocalityDetails)){
+                
+            $message = "Query execution failed.<br><br>";
+            $message.= "The failed Query is : <b><i>{$zf_selectUserDetails}.</i></b>";
+            echo $message; exit();
+
+        }else{
+            
+            
+            $resultCount = $this->Zf_QueryGenerator->RowCount();
+            
+            if($resultCount > 0){
+
+                $this->Zf_QueryGenerator->MoveFirst();
+                
+                while(!$this->Zf_QueryGenerator->EndOfSeek()){
+
+                    $fetchRow = $this->Zf_QueryGenerator->Row();
+                    $localityName = $fetchRow->localityName.", ".$fetchRow->localityType;
+
+                }
+
+            }
+            
+            return $localityName;
+        }
+        
+    }
         
 }
 
