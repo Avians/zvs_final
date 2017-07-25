@@ -10,7 +10,7 @@
     
 ?>
 
-<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newAttendanceRegistration", $new_attendance); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_attendance_form">
+<form action="<?php Zf_GenerateLinks::basic_internal_link("school_main_admin", "newAttendanceRegistration", $new_attendance); ?>" method="post" enctype="multipart/form-data" class="form-horizontal" id="new_class_attendance_form">
     <div class="form-wizard" id="newAttendance">
         <div class="form-body">
             <ul class="nav nav-pills nav-justified steps">

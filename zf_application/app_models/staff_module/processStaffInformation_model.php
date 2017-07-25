@@ -416,10 +416,8 @@ class processStaffInformation_Model extends Zf_Model {
 
         //System School Code
         $systemSchoolCode = $userIdentificationArray[2];
-
-        //Student Admission Number
-        $studentAdmissionNumber = $userIdentificationArray[4];
         
+        //Here we fetch all the staff information
         $staffDetails = $this->zvs_fetchSchoolStaff($systemSchoolCode, $identificationCode);
         
         $staffProfileView = "";
@@ -557,6 +555,51 @@ class processStaffInformation_Model extends Zf_Model {
         }
         
         echo $staffProfileView;
+        
+    }
+    
+    
+    
+    
+    /**
+     * This method processes all staff profile
+     */
+    public function processStaffDetails(){
+        
+        //This is staff identification code
+        $identificationCode = $_POST['staffIdentificationCode'];
+        
+        //User Identification Array
+        $userIdentificationArray = Zf_Core_Functions::Zf_DecodeIdentificationCode($identificationCode);
+
+        //System School Code
+        $systemSchoolCode = $userIdentificationArray[2];
+        
+        //This method pulls all staff details
+        $staffDetails = $this->zvs_fetchSchoolStaff($systemSchoolCode, $identificationCode);
+        
+        $staffDetailsView = "";
+        
+            
+        $staffDetailsView .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: -5px !important;">
+                                <div class="portlet box zvs-content-blocks" style="min-height: 310px !important;">
+                                    <!--Staff Personal Details-->
+                                    <div class="zvs-content-titles">
+                                        <h3 class="" style="color: #21B4E2 !important;">Related Staff Details</h3>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="zvs-table-blocks zvs-table-blocks zvs-content-warnings" style="text-align: center !important; padding-top: 25% !important;">
+                                            <i class="fa fa-warning" style="color: #B94A48 !important;font-size: 18px !important;"></i><br>
+                                            <span class="content-view-errors" style="color: #B94A48;">
+                                                &nbsp;Information about related staff details will be populated soon!!.
+                                            </span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>';
+            
+        
+        echo $staffDetailsView;
         
     }
     

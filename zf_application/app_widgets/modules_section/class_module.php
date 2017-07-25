@@ -63,19 +63,29 @@ $main_menu = array(
         'title' => '',
         'style' => '',
         'id' => ''
-    )
+    ),
     
+    //Class Register
+    "class_register" => array(
+        'name' => '<i class="fa fa-calendar-check-o"></i> Class Register',
+        'controller' => $zvs_controller,
+        'action' => 'class_register',
+        'parameter' => $zvs_parameter,
+        'title' => '',
+        'style' => '',
+        'id' => ''
+    )
     
 );
 ?>
 
 <!-- This menu item manages all aspects of ZVS admin users-->
-<li class="<?php if ($zvs_action == "class_module" || $zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") { echo "active";} ?>">
+<li class="<?php if ($zvs_action == "class_module" || $zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile" || $zvs_action == "class_register") { echo "active";} ?>">
     <a href="javascript:;">
         <i class="fa fa-building-o"></i>
         <span class="title"> Class Module </span>
-        <?php if ($zvs_action == "class_module" ||$zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") {?><span class="selected"></span><?php } ?>
-        <span class="arrow <?php if ($zvs_action == "class_module" ||$zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile") { echo "open";} ?>"></span>
+        <?php if ($zvs_action == "class_module" ||$zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile" || $zvs_action == "stream_profile" || $zvs_action == "class_register") {?><span class="selected"></span><?php } ?>
+        <span class="arrow <?php if ($zvs_action == "class_module" ||$zvs_action == "view_classes" || $zvs_action == "class_details" || $zvs_action == "view_streams" || $zvs_action == "stream_profile" || $zvs_action == "stream_profile" || $zvs_action == "class_register") { echo "open";} ?>"></span>
     </a>
     <ul class="sub-menu">
         <?php if(Zf_Core_Functions::Zf_recursiveArray(VIEW_CLASSES, $zvs_allowedResources)){ ?>
@@ -96,6 +106,11 @@ $main_menu = array(
         <?php if(Zf_Core_Functions::Zf_recursiveArray(STREAM_DETAILS, $zvs_allowedResources)){ ?>
             <li class="<?php if ($zvs_action == "stream_details") { echo "active";} ?>">
                 <?php Zf_GenerateLinks::zf_internal_link($main_menu['stream_details']); ?>
+            </li>
+        <?php } ?>
+        <?php if(Zf_Core_Functions::Zf_recursiveArray(CLASS_REGISTER, $zvs_allowedResources)){ ?>
+            <li class="<?php if ($zvs_action == "class_register") { echo "active";} ?>">
+                <?php Zf_GenerateLinks::zf_internal_link($main_menu['class_register']); ?>
             </li>
         <?php } ?>
     </ul>

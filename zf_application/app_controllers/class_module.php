@@ -69,6 +69,57 @@ class class_moduleController extends Zf_Controller {
     
     
     
+    //This controller executes the view streams view.
+    public function actionView_streams(){
+        
+        Zf_View::zf_displayView('view_streams');
+        
+    }
+    
+    
+    
+    //This controller execute the view for taking class attendance
+    public function actionClass_register($identificationCode){
+        
+        $zf_actionData = Zf_SecureData::zf_decode_data($identificationCode);
+        
+        Zf_View::zf_displayView('class_register', $zf_actionData);
+        
+    }
+
+
+    
+    /**
+     * ==================================================================================================
+     */
+    //This method process all related staff information
+    public function actionProcessClassAttendance($zvs_parameter){
+        
+        $filterDataVariable =  Zf_SecureData::zf_decode_data($zvs_parameter);
+        $filterDataUrl = Zf_SecureData::zf_decode_url($zvs_parameter);
+        
+        if($filterDataVariable == 'process_streams'){
+            
+            //Get the streams related a selected class
+            $this->zf_targetModel->getStreamDetails();
+            
+        }else if($filterDataVariable == 'process_students'){
+            
+            //Get the students related to the selected stream
+            $this->zf_targetModel->getStudentsDetails();
+            
+        }else if($filterDataUrl == 'class_attendance_register'){
+            
+            //This method is used to register actual attendance detials
+            $this->zf_targetModel->registerAttendanceDetails();
+            
+        }
+        
+    }
+    
+    
+    
+    
     //This method is vital is processing class charts
     public function actionProcessClassChart($zvs_parameter){
         
@@ -77,15 +128,6 @@ class class_moduleController extends Zf_Controller {
         
     }
     
-    
-    
-    
-    //This controller executes the view streams view.
-    public function actionView_streams(){
-        
-        Zf_View::zf_displayView('view_streams');
-        
-    }
     
     
 

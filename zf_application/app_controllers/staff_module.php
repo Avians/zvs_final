@@ -124,8 +124,14 @@ class staff_moduleController extends Zf_Controller {
             
         }else if($filterDataVariable == 'process_staff_profile'){
             
-            //We are about process staff profile details
+            //We are about process staff profile
             $this->zf_targetModel->processStaffProfile();
+            
+        }else if($filterDataVariable == 'process_staff_details'){
+            
+            //We are about process staff details
+            $this->zf_targetModel->processStaffDetails();
+            
         }
         
     }

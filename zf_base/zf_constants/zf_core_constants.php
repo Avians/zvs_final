@@ -224,6 +224,7 @@ $zf_directorySeparator = Zf_Configurations::Zf_directorySeparator();
         defined('CLASS_DETAILS') ? null : define('CLASS_DETAILS' , 'ClsMod'.CONNECT.'ClassDetails');
         defined('VIEW_STREAMS') ? null : define('VIEW_STREAMS' , 'ClsMod'.CONNECT.'ViewStreams');
         defined('STREAM_DETAILS') ? null : define('STREAM_DETAILS' , 'ClsMod'.CONNECT.'StreamDetails');
+        defined('CLASS_REGISTER') ? null : define('CLASS_REGISTER' , 'ClsMod'.CONNECT.'ClassRegister');
     
     //Department Module and resources
     defined('DEPMOD') ? null : define('DEPMOD' , 'department_module');

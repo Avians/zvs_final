@@ -40,17 +40,43 @@ var StaffModule = function(){
         //Process the details for the selected staff
         $('.staffIdentificationCode').change(function(){
             
+            var identificationCode = $("#staffIdentificationCode").val();
+            
             //This process student profile data
-            $('#staffProfileContainer, #relatedDetailsContainer').fadeIn(1000, function(){
+            $('#staffProfileContainer').fadeIn(1000, function(){
                 
-                var identificationCode = $("#staffIdentificationCode").val();
-                
-                $('#staffProfileDetails, #relatedStaffDetails').show();
+                //Show in the container that holds staff profile information
+                $('#staffProfileDetails').show();
                 
                 //alert(identificationCode); die();
                 
                 //Process Student Details
-                var processStaffDetails = $absolute_path + targetController + $separator + targetAction + $separator + "process_staff_profile";
+                var processStaffProfile = $absolute_path + targetController + $separator + targetAction + $separator + "process_staff_profile";
+                var staffIdentificationCode = identificationCode;
+                
+                //Here we run ajax task
+                $.ajax({
+                    type: "POST",
+                    url: processStaffProfile,
+                    data: {staffIdentificationCode: staffIdentificationCode},
+                    cache: false,
+                    success: function(html) {
+                       $("#staffProfileDetails").html(html);
+                    }
+                });
+            });
+            
+            
+            
+            
+            //This process guardian profile data
+            $('#relatedDetailsContainer').fadeIn(1000, function(){
+                
+                //Show the container that holds all staff related information
+                $('#relatedStaffDetails').show();
+            
+                //Process Guardian Details
+                var processStaffDetails = $absolute_path + targetController + $separator + targetAction + $separator + "process_staff_details";
                 var staffIdentificationCode = identificationCode;
                 
                 //Here we run ajax task
@@ -60,10 +86,12 @@ var StaffModule = function(){
                     data: {staffIdentificationCode: staffIdentificationCode},
                     cache: false,
                     success: function(html) {
-                       $("#staffProfileDetails").html(html);
+                       $("#relatedStaffDetails").html(html);
                     }
                 });
+                
             });
+            
             
         });
         
